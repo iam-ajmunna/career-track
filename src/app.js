@@ -14,11 +14,15 @@ const els = {
   pageTitle: document.querySelector('#pageTitle'),
   nav: document.querySelector('#nav'),
   search: document.querySelector('#globalSearch'),
+  searchClear: document.querySelector('#searchClear'),
   themeToggle: document.querySelector('#themeToggle'),
   resetProgress: document.querySelector('#resetProgress'),
   dialog: document.querySelector('#scholarshipDialog'),
   dialogContent: document.querySelector('#dialogContent'),
   dialogClose: document.querySelector('#dialogClose'),
+  resetDialog: document.querySelector('#resetDialog'),
+  resetCancel: document.querySelector('#resetCancel'),
+  resetConfirm: document.querySelector('#resetConfirm'),
   toastRoot: document.querySelector('#toastRoot')
 };
 
@@ -121,7 +125,7 @@ function renderOverview() {
         <strong>Application command center</strong>
         <p>Data snapshot: 26 Sep 2026. This is a planning workspace, not a live scholarship feed. Always verify deadlines and funding terms on the official source before submission.</p>
       </div>
-      <span class="pill info">2027 Intake</span>
+      <span class="pill info banner-badge">2027 Intake</span>
     </div>
 
     <div class="grid grid-4 section">
@@ -135,11 +139,11 @@ function renderOverview() {
       <div class="section-head"><div><div class="section-title">Recommended execution order</div><div class="section-sub">Profile-fit ordering, not an official acceptance ranking.</div></div></div>
       <div class="priority-list">
         ${best.map((s, i) => `
-          <div class="priority-item" data-open-scholarship="${s.id}">
-            <div class="rank">0${i+1}</div>
-            <div><div class="item-title">${s.name}</div><div class="item-meta">${s.country} · ${s.funding}</div></div>
+          <button type="button" class="priority-item" data-open-scholarship="${s.id}">
+            <span class="rank">0${i+1}</span>
+            <span class="priority-copy"><span class="item-title">${s.name}</span><span class="item-meta">${s.country} · ${s.funding}</span></span>
             ${badge(fitMap[s.fit])}
-          </div>`).join('')}
+          </button>`).join('')}
       </div>
     </section>
 
@@ -181,8 +185,8 @@ function filteredScholarships() {
 function renderScholarships() {
   const items = filteredScholarships();
   document.querySelector('#view-scholarships').innerHTML = `
-    <div class="filters" role="tablist" aria-label="Scholarship filters">
-      ${[['all','All'],['open','Open / opening'],['priority','Priority'],['full','Guaranteed / stated full'],['blocked','Ineligible']].map(([id,label]) => `<button class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}">${label}</button>`).join('')}
+    <div class="filters" role="group" aria-label="Scholarship filters">
+      ${[['all','All'],['open','Open / opening'],['priority','Priority'],['full','Guaranteed / stated full'],['blocked','Ineligible']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
     </div>
     <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>`;
 }
@@ -190,7 +194,7 @@ function renderScholarships() {
 function renderPipeline() {
   const ordered = [...scholarships].filter(s => s.eligible).sort((a,b) => a.priority - b.priority);
   document.querySelector('#view-pipeline').innerHTML = `
-    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral">Local progress</span></div>
+    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Local progress</span></div>
     <div class="section grid">
       ${ordered.map(s => {
         const progress = getScholarshipProgress(s.id);
@@ -281,7 +285,15 @@ function renderCurrentView() {
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active-view'));
   document.querySelector(`#view-${state.view}`).classList.add('active-view');
   els.pageTitle.textContent = viewTitles[state.view];
-  els.nav.querySelectorAll('.nav-item').forEach(b => b.classList.toggle('active', b.dataset.view === state.view));
+  document.title = `${viewTitles[state.view]} · MSc Scholarship Command Center`;
+  els.nav.querySelectorAll('.nav-item').forEach(b => {
+    const active = b.dataset.view === state.view;
+    b.classList.toggle('active', active);
+    if (active) b.setAttribute('aria-current', 'page');
+    else b.removeAttribute('aria-current');
+  });
+  els.search.value = state.query;
+  els.searchClear.hidden = !state.query;
 }
 
 function openScholarship(id) {
@@ -292,7 +304,7 @@ function openScholarship(id) {
   els.dialogContent.innerHTML = `
     <div class="dialog-body">
       <div class="tag-row">${badge(status)} ${badge(fit)}</div>
-      <h2 class="dialog-title">${s.name}</h2>
+      <h2 id="scholarshipDialogTitle" class="dialog-title">${s.name}</h2>
       <div class="muted">${s.country} · ${s.provider}</div>
       <div class="dialog-grid">
         <div class="info-box"><div class="info-label">Funding</div><div class="info-value">${s.funding}</div></div>
@@ -334,22 +346,45 @@ els.search.addEventListener('input', e => {
   renderCurrentView();
 });
 
+els.searchClear.addEventListener('click', () => {
+  state.query = '';
+  els.search.value = '';
+  renderCurrentView();
+  els.search.focus();
+});
+
+function syncThemeToggle() {
+  const dark = state.theme === 'dark';
+  const label = dark ? 'Switch to light theme' : 'Switch to dark theme';
+  els.themeToggle.setAttribute('aria-label', label);
+  els.themeToggle.setAttribute('title', label);
+  els.themeToggle.setAttribute('aria-pressed', String(dark));
+}
+
 els.themeToggle.addEventListener('click', () => {
   state.theme = state.theme === 'light' ? 'dark' : 'light';
   document.documentElement.dataset.theme = state.theme;
   localStorage.setItem('scholarship-theme', state.theme);
+  syncThemeToggle();
 });
 
 els.dialogClose.addEventListener('click', () => els.dialog.close());
 els.dialog.addEventListener('click', e => { if (e.target === els.dialog) els.dialog.close(); });
 
 els.resetProgress.addEventListener('click', () => {
-  if (!confirm('Reset all local scholarship and document progress?')) return;
+  els.resetDialog.showModal();
+  els.resetCancel.focus();
+});
+
+els.resetCancel.addEventListener('click', () => els.resetDialog.close());
+els.resetConfirm.addEventListener('click', () => {
   state.progress = {};
   saveProgress();
+  els.resetDialog.close();
   renderCurrentView();
   toast('Progress reset');
 });
+els.resetDialog.addEventListener('click', e => { if (e.target === els.resetDialog) els.resetDialog.close(); });
 
 document.addEventListener('click', e => {
   const filter = e.target.closest('[data-filter]');
@@ -377,15 +412,16 @@ document.addEventListener('change', e => {
 });
 
 document.addEventListener('keydown', e => {
-  if (/^[1-5]$/.test(e.key) && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+  if (/^[1-5]$/.test(e.key) && !document.querySelector('dialog[open]') && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
     const views = ['overview','scholarships','pipeline','documents','profile'];
     state.view = views[Number(e.key)-1];
     renderCurrentView();
   }
-  if (e.key === '/' && document.activeElement !== els.search) {
+  if (e.key === '/' && !document.querySelector('dialog[open]') && document.activeElement !== els.search) {
     e.preventDefault();
     els.search.focus();
   }
 });
 
+syncThemeToggle();
 renderCurrentView();
