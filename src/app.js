@@ -1,4 +1,4 @@
-import { scholarships, profile, documents, timeline, snapshotDate } from './data.js';
+import { scholarships, profile, documents, englishPlan, referees, refereeStages, timeline, snapshotDate } from './data.js';
 
 const state = {
   view: 'overview',
@@ -39,6 +39,8 @@ const statusMap = {
   'opens-soon': ['Opens soon', 'info'],
   urgent: ['Urgent', 'danger'],
   upcoming: ['Upcoming', 'neutral'],
+  watch: ['Watch', 'info'],
+  closed: ['Closed', 'neutral'],
   blocked: ['Ineligible', 'danger']
 };
 
@@ -55,17 +57,46 @@ function saveProgress() {
   localStorage.setItem('scholarship-progress', JSON.stringify(state.progress));
 }
 
+function localDate(date) {
+  const [year, month, day] = date.split('-').map(Number);
+  return new Date(year, month - 1, day);
+}
+
+function todayStart() {
+  const now = new Date();
+  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
+}
+
 function daysUntil(date) {
-  const now = new Date(`${snapshotDate}T00:00:00`);
-  const end = new Date(`${date}T00:00:00`);
-  return Math.ceil((end - now) / 86400000);
+  const end = localDate(date);
+  return Math.ceil((end - todayStart()) / 86400000);
+}
+
+function effectiveStatus(item) {
+  if (['blocked', 'closed', 'watch'].includes(item.status)) return item.status;
+  if (item.deadline && daysUntil(item.deadline) < 0) return 'closed';
+  if (item.opens && daysUntil(item.opens) > 0) {
+    return daysUntil(item.opens) <= 45 ? 'opens-soon' : 'upcoming';
+  }
+  if (item.deadline && daysUntil(item.deadline) <= 14) return 'urgent';
+  return item.status === 'upcoming' ? 'upcoming' : 'open';
 }
 
 function deadlineLabel(item) {
-  if (item.status === 'blocked') return 'Not eligible this cycle';
-  if (!item.deadline) return 'No deadline recorded';
-  const days = daysUntil(item.deadline);
-  return `${item.deadline} · ${days >= 0 ? `${days} days` : 'closed'}`;
+  const status = effectiveStatus(item);
+  if (status === 'blocked') return 'Not eligible this cycle';
+  if (status === 'closed') return item.timing || 'Closed for this cycle';
+  if (status === 'watch' && item.timing) return item.timing;
+  if (item.opens && daysUntil(item.opens) > 0) {
+    const openDays = daysUntil(item.opens);
+    const closing = item.deadline ? ` · closes ${item.deadline}` : '';
+    return `Opens ${item.opens} · ${openDays} days${closing}`;
+  }
+  if (item.deadline) {
+    const days = daysUntil(item.deadline);
+    return `${item.deadline} · ${days} day${days === 1 ? '' : 's'} remaining`;
+  }
+  return item.timing || 'Official timetable pending';
 }
 
 function getScholarshipProgress(id) {
@@ -87,7 +118,7 @@ function badge([label, kind]) {
 }
 
 function scholarshipCard(item) {
-  const status = statusMap[item.status] || ['Unknown', 'neutral'];
+  const status = statusMap[effectiveStatus(item)] || ['Unknown', 'neutral'];
   const fit = fitMap[item.fit] || ['Fit unknown', 'neutral'];
   const progress = getScholarshipProgress(item.id);
   return `
@@ -114,16 +145,19 @@ function scholarshipCard(item) {
 }
 
 function renderOverview() {
-  const active = scholarships.filter(s => s.eligible && s.status !== 'upcoming').length;
-  const urgent = scholarships.filter(s => s.status === 'urgent' || (s.deadline && daysUntil(s.deadline) <= 25 && daysUntil(s.deadline) >= 0 && s.eligible)).length;
-  const best = [...scholarships].filter(s => s.eligible).sort((a,b) => a.priority - b.priority).slice(0,5);
+  const active = scholarships.filter(s => s.eligible && ['open','urgent','opens-soon'].includes(effectiveStatus(s))).length;
+  const urgent = scholarships.filter(s => s.eligible && effectiveStatus(s) === 'urgent').length;
+  const best = [...scholarships]
+    .filter(s => s.eligible && !['blocked','closed','watch'].includes(effectiveStatus(s)))
+    .sort((a,b) => a.priority - b.priority)
+    .slice(0,5);
   const progress = getOverallProgress();
 
   document.querySelector('#view-overview').innerHTML = `
     <div class="banner">
       <div>
         <strong>Application command center</strong>
-        <p>Data snapshot: 26 Sep 2026. This is a planning workspace, not a live scholarship feed. Always verify deadlines and funding terms on the official source before submission.</p>
+        <p>Scholarship evidence was verified on 26 Sep 2026. Deadline countdowns now use today's date automatically; future calls marked Watch still require official re-verification before you rely on them.</p>
       </div>
       <span class="pill info banner-badge">2027 Intake</span>
     </div>
@@ -173,11 +207,13 @@ function filteredScholarships() {
     const query = state.query.trim().toLowerCase();
     const haystack = `${s.name} ${s.country} ${s.provider} ${s.status} ${s.fit} ${s.route}`.toLowerCase();
     const matchesQuery = !query || haystack.includes(query);
+    const currentStatus = effectiveStatus(s);
     const matchesFilter = state.filter === 'all' ||
-      (state.filter === 'open' && ['open','urgent','opens-soon'].includes(s.status)) ||
-      (state.filter === 'priority' && s.priority <= 5) ||
-      (state.filter === 'full' && !s.funding.toLowerCase().includes('possible')) ||
-      (state.filter === 'blocked' && !s.eligible);
+      (state.filter === 'open' && ['open','urgent','opens-soon'].includes(currentStatus)) ||
+      (state.filter === 'priority' && s.priority <= 5 && !['closed','blocked'].includes(currentStatus)) ||
+      (state.filter === 'full' && !s.funding.toLowerCase().includes('possible') && currentStatus !== 'blocked') ||
+      (state.filter === 'watch' && ['watch','upcoming','closed'].includes(currentStatus)) ||
+      (state.filter === 'blocked' && currentStatus === 'blocked');
     return matchesQuery && matchesFilter;
   });
 }
@@ -186,13 +222,15 @@ function renderScholarships() {
   const items = filteredScholarships();
   document.querySelector('#view-scholarships').innerHTML = `
     <div class="filters" role="group" aria-label="Scholarship filters">
-      ${[['all','All'],['open','Open / opening'],['priority','Priority'],['full','Guaranteed / stated full'],['blocked','Ineligible']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
+      ${[['all','All'],['open','Open / opening'],['priority','Priority'],['full','Guaranteed / stated full'],['watch','Watch / upcoming'],['blocked','Ineligible']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
     </div>
     <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>`;
 }
 
 function renderPipeline() {
-  const ordered = [...scholarships].filter(s => s.eligible).sort((a,b) => a.priority - b.priority);
+  const ordered = [...scholarships]
+    .filter(s => s.eligible && !['closed','blocked','watch'].includes(effectiveStatus(s)))
+    .sort((a,b) => a.priority - b.priority);
   document.querySelector('#view-pipeline').innerHTML = `
     <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Local progress</span></div>
     <div class="section grid">
@@ -217,22 +255,82 @@ function renderPipeline() {
 
 function renderDocuments() {
   const done = documents.filter(d => state.progress[`doc-${d.id}`]).length;
+  const required = documents.filter(d => d.required);
+  const requiredDone = required.filter(d => state.progress[`doc-${d.id}`]).length;
   const pct = Math.round(done / documents.length * 100);
+  const groups = [...new Set(documents.map(d => d.group))];
+
+  const ieltsDone = englishPlan.steps.filter(step => state.progress[`ielts-${step.id}`]).length;
+  const refereeChecks = referees.length * refereeStages.length;
+  const refereeDone = referees.reduce((total, referee) => {
+    return total + refereeStages.filter(stage => state.progress[`ref-${referee.id}-${stage.id}`]).length;
+  }, 0);
+
   document.querySelector('#view-documents').innerHTML = `
-    <div class="grid grid-3">
-      <div class="card card-pad"><div class="metric-label">Documents ready</div><div class="metric-value">${done}/${documents.length}</div><div class="metric-sub">Master application packet</div></div>
-      <div class="card card-pad"><div class="metric-label">Packet completion</div><div class="metric-value">${pct}%</div><div class="metric-sub">Stored in local browser progress</div></div>
-      <div class="card card-pad"><div class="metric-label">Required docs</div><div class="metric-value">${documents.filter(d=>d.required).length}</div><div class="metric-sub">Core documents across most targets</div></div>
+    <div class="grid grid-4">
+      <div class="card card-pad"><div class="metric-label">Dossier items ready</div><div class="metric-value">${done}/${documents.length}</div><div class="metric-sub">Master evidence packet</div></div>
+      <div class="card card-pad"><div class="metric-label">Required items ready</div><div class="metric-value">${requiredDone}/${required.length}</div><div class="metric-sub">Critical cross-application material</div></div>
+      <div class="card card-pad"><div class="metric-label">IELTS plan</div><div class="metric-value">${ieltsDone}/${englishPlan.steps.length}</div><div class="metric-sub">${englishPlan.target}</div></div>
+      <div class="card card-pad"><div class="metric-label">Referee readiness</div><div class="metric-value">${refereeDone}/${refereeChecks}</div><div class="metric-sub">Three-person reference system</div></div>
     </div>
-    <section class="card card-pad section">
-      <div class="section-head"><div><div class="section-title">Master document packet</div><div class="section-sub">Prepare once; tailor the narrative layers per scholarship.</div></div></div>
-      <div class="checklist">
-        ${documents.map(d => {
-          const key = `doc-${d.id}`;
-          return `<div class="check-row"><input id="${key}" type="checkbox" data-progress-key="${key}" ${state.progress[key]?'checked':''}><label for="${key}">${d.label}</label><span class="meta">${d.required?'Required':'Optional'}</span></div>`;
-        }).join('')}
+
+    <section class="section">
+      <div class="section-head">
+        <div><div class="section-title">Master application dossier</div><div class="section-sub">Prepare once, then tailor the narrative and format for each scholarship.</div></div>
+        <span class="pill ${pct === 100 ? 'success' : 'neutral'}">${pct}% complete</span>
       </div>
-    </section>`;
+      <div class="document-groups">
+        ${groups.map(group => `
+          <section class="card card-pad document-group">
+            <div class="section-title">${group}</div>
+            <div class="checklist dossier-list">
+              ${documents.filter(d => d.group === group).map(d => {
+                const key = `doc-${d.id}`;
+                const priorityClass = d.priority === 'critical' ? 'danger' : d.priority === 'high' ? 'warn' : d.priority === 'watch' ? 'info' : 'neutral';
+                const priorityLabel = d.priority === 'critical' ? 'Critical' : d.priority === 'high' ? 'High' : d.priority === 'watch' ? 'Watch' : (d.required ? 'Required' : 'Optional');
+                return `<div class="check-row dossier-row">
+                  <input id="${key}" type="checkbox" data-progress-key="${key}" ${state.progress[key]?'checked':''}>
+                  <label for="${key}"><strong>${d.label}</strong><span class="doc-detail">${d.detail || ''}</span></label>
+                  <span class="pill ${priorityClass}">${priorityLabel}</span>
+                </div>`;
+              }).join('')}
+            </div>
+          </section>`).join('')}
+      </div>
+    </section>
+
+    <div class="grid grid-2 section">
+      <section class="card card-pad">
+        <div class="section-head"><div><div class="section-title">English-test strategy</div><div class="section-sub">${englishPlan.rationale}</div></div></div>
+        <div class="target-callout"><span>Portfolio target</span><strong>${englishPlan.target}</strong></div>
+        <div class="requirement-grid">
+          ${englishPlan.requirements.map(req => `<div class="requirement-card"><span>${req.programme}</span><strong>${req.score}</strong></div>`).join('')}
+        </div>
+        <div class="checklist" style="margin-top:14px">
+          ${englishPlan.steps.map((step, index) => {
+            const key = `ielts-${step.id}`;
+            return `<div class="check-row"><input id="${key}" type="checkbox" data-progress-key="${key}" ${state.progress[key]?'checked':''}><label for="${key}">${step.label}</label><span class="meta">Step ${index+1}</span></div>`;
+          }).join('')}
+        </div>
+      </section>
+
+      <section class="card card-pad">
+        <div class="section-head"><div><div class="section-title">Three-referee system</div><div class="section-sub">Track confirmation, briefing and submissions separately instead of one generic “references done” checkbox.</div></div></div>
+        <div class="referee-grid">
+          ${referees.map(referee => `
+            <div class="referee-card">
+              <div><span class="referee-id">Referee ${referee.id}</span><strong>${referee.role}</strong><p>${referee.purpose}</p></div>
+              <div class="referee-stages">
+                ${refereeStages.map(stage => {
+                  const key = `ref-${referee.id}-${stage.id}`;
+                  return `<label class="mini-check"><input type="checkbox" data-progress-key="${key}" ${state.progress[key]?'checked':''}><span>${stage.label}</span></label>`;
+                }).join('')}
+              </div>
+            </div>`).join('')}
+        </div>
+      </section>
+    </div>
+  `;
 }
 
 function renderProfile() {
@@ -299,7 +397,7 @@ function renderCurrentView() {
 function openScholarship(id) {
   const s = scholarships.find(x => x.id === id);
   if (!s) return;
-  const status = statusMap[s.status] || ['Unknown','neutral'];
+  const status = statusMap[effectiveStatus(s)] || ['Unknown','neutral'];
   const fit = fitMap[s.fit] || ['Fit unknown','neutral'];
   els.dialogContent.innerHTML = `
     <div class="dialog-body">
