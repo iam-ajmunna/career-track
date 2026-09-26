@@ -1,114 +1,118 @@
 ---
 version: alpha
-name: "MSc Scholarship Command Center"
-description: "A quiet, information-dense application workspace for navigating and executing fully funded MSc scholarship applications."
+name: "Career Track v2"
+description: "A calm academic operations workspace for persistent, profile-aware scholarship discovery and application management."
 colors:
-  background: "#f6f7f9"
+  background: "#f5f6f8"
   surface: "#ffffff"
   surfaceMuted: "#f0f2f5"
-  text: "#15171a"
-  muted: "#70757d"
-  border: "#e2e5e9"
-  success: "#1f7a4f"
-  warning: "#8f6a12"
-  danger: "#a43b3b"
-  info: "#3867a7"
+  text: "#11151b"
+  muted: "#6c7480"
+  border: "#dfe3e8"
+  success: "#19724a"
+  warning: "#9a6b10"
+  danger: "#a23e3e"
+  info: "#386aa8"
 typography:
   sans:
-    fontFamily: "Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
-  mono:
-    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, Menlo, monospace"
+    fontFamily: "Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif"
 rounded:
-  DEFAULT: "16px"
-  sm: "9px"
-  md: "11px"
-  lg: "16px"
+  DEFAULT: "18px"
+  sm: "10px"
+  md: "14px"
+  lg: "18px"
 spacing:
-  section-gap: "22px"
-  card-padding: "20px"
-  desktop-page-inline: "36px"
+  section-gap: "24px"
+  page-inline: "clamp(20px, 4vw, 54px)"
 components:
   button: {}
-  card: {}
-  status-pill: {}
+  panel: {}
+  scholarship-card: {}
+  status-control: {}
   search: {}
   dialog: {}
-  toast: {}
 ---
 
-# MSc Scholarship Command Center Design System
+# Career Track v2 Design System
 
 ## Overview
 
 ### Creative North Star
 
-A personal academic operations console: closer to a disciplined research workspace than a marketing dashboard. Dense information should feel calm, ordered, and immediately actionable.
+Career Track should feel like a personal academic operations desk: structured, evidence-led, calm under deadline pressure, and credible enough for students to trust with scholarship decisions.
 
 ### Product context and register
 
-- **Audience and primary job:** one scholarship applicant managing deadlines, fit, documents, and application execution.
-- **Target market(s) and evidence:** globally distributed MSc scholarships; the current portfolio is tailored to a Bangladeshi applicant.
-- **Locale(s) and language policy:** English UI; scholarship names and official-source terminology are preserved.
-- **Usage scene:** primarily desktop planning with responsive mobile review/check-off support.
-- **Register:** product UI. Utility, hierarchy, and consistency outrank decoration.
-- **Memorable signature:** monochrome operational surfaces with restrained semantic status chips and deadline-oriented data.
-- **Restraint:** cards, buttons, and navigation remain visually quiet; status color is used only to encode meaning.
-- **Anti-references:** no neon AI-dashboard styling, glass-heavy sci-fi chrome, oversized KPI theatrics, or marketing-style gradient CTAs.
-- **Token ownership/runtime mapping:** this document mirrors the canonical CSS custom properties in `assets/styles.css`; runtime CSS remains the implementation source of truth. Durable token changes must update both files together.
+- **Audience and primary job:** students researching, evaluating, saving, and executing scholarship applications.
+- **Target market(s):** global scholarship applicants; no geography-specific visual assumptions.
+- **Locale:** English in v2; localization must remain structurally possible.
+- **Usage scene:** desktop-first research and planning with fully usable mobile status/checklist updates.
+- **Register:** product application, not marketing dashboard.
+- **Memorable signature:** profile-aware scholarship cards pair one compact fit score with direct source evidence and application state.
+- **Restraint:** no decorative AI chrome, no fake certainty, no oversized gradients, no gamification around acceptance probability.
+- **Anti-references:** crypto dashboards, neon AI assistants, social feeds, and admissions sites that obscure source evidence.
+- **Token ownership:** runtime values live in `web/styles.css`; this file records intent and durable mapping.
 
 ## Colors
 
-The light theme uses neutral gray surfaces and near-black text. Semantic colors are reserved for scholarship status, warnings, danger, and information. Dark mode preserves the same semantic hierarchy with brighter semantic values and darker surfaces. Focus uses a dedicated blue focus token rather than overloading status colors.
+Neutral surfaces dominate. Semantic color is reserved for system state, warnings, success, and destructive actions. Scholarship fit is expressed numerically and textually, not through aggressive traffic-light coloring.
 
 ## Typography
 
-Inter is the interface and reading face. JetBrains Mono is reserved for deadlines, ranks, keyboard hints, and compact technical values. Hierarchy is achieved through weight, scale, and spacing rather than decorative type treatments.
+The system sans stack prioritizes availability and rendering stability. Small uppercase eyebrows are reserved for navigation/context labels. Scholarship titles use compact bold type. Dense metadata remains readable at 11–12px but never carries critical information exclusively.
 
 ## Layout
 
-Desktop uses a fixed navigation rail and fluid content column. All content grids use `minmax(0, 1fr)` to prevent long scholarship names or funding strings from forcing horizontal overflow. At 760px the sidebar becomes a horizontal navigation strip and the top bar returns to document flow. At 520px priority rows, cards, checklists, and dialog actions collapse deliberately instead of relying on accidental wrapping.
+A fixed desktop sidebar anchors global navigation. The content region uses fluid padding and minmax-based grids to avoid overflow. At tablet/mobile widths the sidebar becomes a horizontal navigation strip and content collapses to one column. Scholarship cards never require horizontal scrolling.
 
 ## Elevation & Depth
 
-Borders and tonal surfaces carry most hierarchy. Shadows remain subtle and are limited to cards, dialogs, and temporary feedback. Sticky surfaces use translucency only where it improves orientation; mobile removes the sticky top bar to preserve viewport space.
+Panels use thin borders plus one restrained shadow token. Modal dialogs may use stronger depth. Navigation and cards should remain visually quiet so deadlines, source evidence, and fit rationale carry attention.
 
 ## Shapes
 
-Cards use the 16px family. Controls use 9–11px radii. Pills are reserved for statuses and compact metadata; they must never stretch to fill a flex row or resemble primary action buttons.
+Panels use 18px radii, controls 10–14px, and metadata tags use compact rounded rectangles. Pill shapes are reserved for small filters/tags only.
 
 ## Components
 
 ### Foundational visual states
 
-All enabled controls expose hover, focus-visible, and pressed states. Focus-visible uses the dedicated focus token. Reduced-motion preference disables nonessential transitions and smooth scrolling. Disabled states retain geometry and reduce emphasis without becoming ambiguous.
+Every interactive control requires hover, focus-visible, active, disabled/busy states. Reduced-motion preference is respected. Async search uses a stable status row rather than replacing page geometry.
 
 ### Buttons and actions
 
-Primary actions are solid neutral controls. Secondary actions use bordered surfaces. Danger is reserved for destructive local-progress reset. Status pills are non-interactive and must not inherit button geometry.
+Primary actions represent explicit commits: sign in, create account, research, save profile, analyze CV. Secondary actions open detail or alter non-destructive tracking state. Destructive behavior is visually isolated.
 
 ### Navigation and data display
 
-The sidebar establishes global navigation. Scholarship filters are an `aria-pressed` button group. Priority scholarship rows are native buttons so pointer, keyboard, and focus behavior stay consistent. Long names, providers, funding text, and deadlines may wrap without changing container width.
+Dashboard summaries lead to scholarship cards rather than becoming decorative KPIs. Cards always expose source/provider, fit score, funding/deadline evidence when available, and persistent status controls.
 
 ### Forms and overlays
 
-Search owns an explicit clear control whenever non-empty. Dialogs use native `<dialog>` with accessible names and app-owned reset confirmation; browser `confirm()` is not used. Toasts acknowledge completed local actions through a polite live region.
+Forms use real labels and application-owned validation messaging. CV upload has a file-picker fallback. Scholarship details use native modal dialog semantics. Browser-native alert/confirm/prompt are prohibited.
 
 ### Iconography
 
-The interface uses minimal text/symbol controls rather than an icon library. Icon-only controls always have accessible names and tooltips.
+Minimal symbol usage. Icon-only actions require an accessible label and should not replace text where scholarship workflow meaning is ambiguous.
 
 ### Motion
 
-Motion is limited to brief hover/press feedback and toast entry. It communicates interactivity rather than adding ambient decoration.
+Motion is limited to spinner/status feedback, button state changes, and short toast entry. Reduced-motion disables animation.
 
 ### Content and data visualization
 
-Copy is concise, operational, and specific. Status labels describe state rather than quality claims. Fit scores are explicitly planning heuristics, not scholarship probabilities.
+The interface must distinguish:
+- source facts,
+- AI-extracted structured data,
+- profile-fit analysis,
+- user-maintained workflow state.
+
+A fit score is an evidence-fit heuristic, **not an admission probability**.
 
 ## Do's and Don'ts
 
-- **Do:** preserve the calm operations-console hierarchy and semantic status vocabulary.
-- **Do:** let content wrap inside stable grid tracks instead of widening cards or the page.
-- **Don't:** style informational badges as large action controls or allow flex stretching to change their meaning.
-- **Don't:** introduce decorative gradients, excessive elevation, or color without semantic purpose.
+- **Do:** keep every scholarship linked to a reviewable source.
+- **Do:** preserve user edits/status/checklists as server-backed state.
+- **Do:** clearly show when local AI is unavailable and fallback logic is active.
+- **Don't:** imply guaranteed eligibility, funding, or acceptance.
+- **Don't:** hide uncertainty behind polished visual scoring.
