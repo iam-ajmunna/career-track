@@ -90,6 +90,8 @@ Primary actions are solid neutral controls. Secondary actions use bordered surfa
 
 The sidebar establishes global navigation. Scholarship filters are an `aria-pressed` button group. Priority scholarship rows are native buttons so pointer, keyboard, and focus behavior stay consistent. Long names, providers, funding text, and deadlines may wrap without changing container width.
 
+The Documents view is a dossier workspace rather than a flat checklist. Evidence is grouped by Identity, Academic Records, CV Variants, Statements & Essays, References, Testing and Evidence. IELTS and referee readiness are separate operational trackers because they have independent deadlines and dependencies.
+
 ### Forms and overlays
 
 Search owns an explicit clear control whenever non-empty. Dialogs use native `<dialog>` with accessible names and app-owned reset confirmation; browser `confirm()` is not used. Toasts acknowledge completed local actions through a polite live region.
@@ -104,7 +106,7 @@ Motion is limited to brief hover/press feedback and toast entry. It communicates
 
 ### Content and data visualization
 
-Copy is concise, operational, and specific. Status labels describe state rather than quality claims. Fit scores are explicitly planning heuristics, not scholarship probabilities.
+Copy is concise, operational, and specific. Status labels distinguish Open, Opens soon, Urgent, Upcoming, Watch, Closed and Ineligible. Fit scores are explicitly planning heuristics, not scholarship probabilities. Future calls without an official timetable must remain Watch/Upcoming rather than receiving invented dates.
 
 ## Do's and Don'ts
 
