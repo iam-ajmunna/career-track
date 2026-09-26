@@ -1,0 +1,41 @@
+name: Version 2 CI
+
+on:
+  push:
+    branches: [version-2]
+  pull_request:
+    branches: [version-2]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements-dev.txt
+
+      - name: Compile Python
+        run: python -m compileall -q app tests
+
+      - name: Check frontend JavaScript syntax
+        run: node --check web/app.js
+
+      - name: Run API smoke tests
+        env:
+          AI_ENABLED: "false"
+          SECRET_KEY: ci-test-secret
+          DATABASE_URL: sqlite:///./data/ci.db
+        run: pytest -q
