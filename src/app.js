@@ -75,9 +75,14 @@ function daysUntil(date) {
 function effectiveStatus(item) {
   if (['blocked', 'closed', 'watch'].includes(item.status)) return item.status;
   if (item.deadline && daysUntil(item.deadline) < 0) return 'closed';
-  if (item.opens && daysUntil(item.opens) > 0) {
-    return daysUntil(item.opens) <= 45 ? 'opens-soon' : 'upcoming';
+
+  if (item.opens) {
+    const opensIn = daysUntil(item.opens);
+    if (opensIn > 0) return opensIn <= 45 ? 'opens-soon' : 'upcoming';
+    if (item.deadline && daysUntil(item.deadline) <= 14) return 'urgent';
+    return 'open';
   }
+
   if (item.deadline && daysUntil(item.deadline) <= 14) return 'urgent';
   return item.status === 'upcoming' ? 'upcoming' : 'open';
 }
@@ -211,7 +216,7 @@ function filteredScholarships() {
     const matchesFilter = state.filter === 'all' ||
       (state.filter === 'open' && ['open','urgent','opens-soon'].includes(currentStatus)) ||
       (state.filter === 'priority' && s.priority <= 5 && !['closed','blocked'].includes(currentStatus)) ||
-      (state.filter === 'full' && !s.funding.toLowerCase().includes('possible') && currentStatus !== 'blocked') ||
+      (state.filter === 'full' && !s.funding.toLowerCase().includes('possible') && !['blocked','closed'].includes(currentStatus)) ||
       (state.filter === 'watch' && ['watch','upcoming','closed'].includes(currentStatus)) ||
       (state.filter === 'blocked' && currentStatus === 'blocked');
     return matchesQuery && matchesFilter;
