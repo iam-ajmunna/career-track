@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import json
 import re
-import uuid
 from pathlib import Path
 from typing import Any
 
@@ -30,6 +29,7 @@ from .security import (
 )
 
 settings = get_settings()
+settings.validate_runtime()
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=settings.app_name, version="2.0.0")
@@ -271,8 +271,11 @@ async def upload_cv(
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     safe_suffix = Path(filename).suffix.lower()
-    stored_name = f"{user.id}-{uuid.uuid4().hex}{safe_suffix}"
-    (settings.upload_path / stored_name).write_bytes(content)
+    user_upload_dir = settings.upload_path / f"user-{user.id}"
+    user_upload_dir.mkdir(parents=True, exist_ok=True)
+    for old_cv in user_upload_dir.glob("cv.*"):
+        old_cv.unlink(missing_ok=True)
+    (user_upload_dir / f"cv{safe_suffix}").write_bytes(content)
 
     profile = get_or_create_profile(db, user)
     profile.cv_text = text
