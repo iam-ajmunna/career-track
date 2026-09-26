@@ -8,6 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    try {
+      const savedTheme = localStorage.getItem('scholarship-theme');
+      if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+    } catch (_) {}
+  </script>
   <link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body>
@@ -26,17 +32,17 @@
       </div>
 
       <nav class="nav" id="nav">
-        <button class="nav-item active" data-view="overview"><span>Overview</span><kbd>1</kbd></button>
-        <button class="nav-item" data-view="scholarships"><span>Scholarships</span><kbd>2</kbd></button>
-        <button class="nav-item" data-view="pipeline"><span>Application Pipeline</span><kbd>3</kbd></button>
-        <button class="nav-item" data-view="documents"><span>Documents</span><kbd>4</kbd></button>
-        <button class="nav-item" data-view="profile"><span>Profile Fit</span><kbd>5</kbd></button>
+        <button type="button" class="nav-item active" data-view="overview"><span>Overview</span><kbd>1</kbd></button>
+        <button type="button" class="nav-item" data-view="scholarships"><span>Scholarships</span><kbd>2</kbd></button>
+        <button type="button" class="nav-item" data-view="pipeline"><span>Application Pipeline</span><kbd>3</kbd></button>
+        <button type="button" class="nav-item" data-view="documents"><span>Documents</span><kbd>4</kbd></button>
+        <button type="button" class="nav-item" data-view="profile"><span>Profile Fit</span><kbd>5</kbd></button>
       </nav>
 
       <div class="sidebar-footer">
         <div class="status-dot-row"><span class="status-dot"></span><span>Dataset snapshot</span></div>
         <div class="muted small">26 Sep 2026</div>
-        <button id="resetProgress" class="text-button">Reset local progress</button>
+        <button type="button" id="resetProgress" class="text-button">Reset local progress</button>
       </div>
     </aside>
 
@@ -48,9 +54,10 @@
         </div>
         <div class="topbar-actions">
           <div class="search-wrap">
-            <input id="globalSearch" type="search" placeholder="Search scholarships, countries, status..." aria-label="Search scholarships" />
+            <input id="globalSearch" type="search" autocomplete="off" enterkeyhint="search" placeholder="Search scholarships, countries, status..." aria-label="Search scholarships" />
+            <button type="button" id="searchClear" class="search-clear" aria-label="Clear search" title="Clear search" hidden>×</button>
           </div>
-          <button id="themeToggle" class="icon-button" aria-label="Toggle theme" title="Toggle theme">◐</button>
+          <button type="button" id="themeToggle" class="icon-button" aria-label="Switch to dark theme" title="Switch to dark theme">◐</button>
         </div>
       </header>
 
@@ -62,16 +69,28 @@
     </main>
   </div>
 
-  <dialog id="scholarshipDialog" class="dialog">
-    <button class="dialog-close" id="dialogClose" aria-label="Close">×</button>
+  <dialog id="scholarshipDialog" class="dialog" aria-labelledby="scholarshipDialogTitle">
+    <button type="button" class="dialog-close" id="dialogClose" aria-label="Close scholarship details">×</button>
     <div id="dialogContent"></div>
+  </dialog>
+
+  <dialog id="resetDialog" class="dialog dialog--compact" aria-labelledby="resetDialogTitle" aria-describedby="resetDialogDescription">
+    <div class="dialog-body">
+      <p class="eyebrow">Local data</p>
+      <h2 id="resetDialogTitle" class="dialog-title dialog-title--compact">Reset progress?</h2>
+      <p id="resetDialogDescription" class="dialog-copy">This clears every scholarship and document checkbox saved in this browser. Scholarship data itself will not change.</p>
+      <div class="dialog-actions dialog-actions--end">
+        <button type="button" id="resetCancel" class="button secondary">Cancel</button>
+        <button type="button" id="resetConfirm" class="button danger">Reset progress</button>
+      </div>
+    </div>
   </dialog>
 
   <template id="toastTemplate">
     <div class="toast"></div>
   </template>
 
-  <div id="toastRoot" class="toast-root" aria-live="polite"></div>
+  <div id="toastRoot" class="toast-root" role="status" aria-live="polite" aria-atomic="true"></div>
 
   <script type="module" src="./src/app.js"></script>
 </body>
