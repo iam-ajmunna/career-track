@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A minimal, structured scholarship command center for fully funded MSc applications." />
+  <title>MSc Scholarship Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <noscript>
+    <div class="noscript">This dashboard needs JavaScript enabled to render scholarship data.</div>
+  </noscript>
+
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <div class="brand-mark">M</div>
+        <div>
+          <div class="brand-title">Scholarship OS</div>
+          <div class="brand-subtitle">MSc 2027 · Bangladesh</div>
+        </div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <button class="nav-item active" data-view="overview"><span>Overview</span><kbd>1</kbd></button>
+        <button class="nav-item" data-view="scholarships"><span>Scholarships</span><kbd>2</kbd></button>
+        <button class="nav-item" data-view="pipeline"><span>Application Pipeline</span><kbd>3</kbd></button>
+        <button class="nav-item" data-view="documents"><span>Documents</span><kbd>4</kbd></button>
+        <button class="nav-item" data-view="profile"><span>Profile Fit</span><kbd>5</kbd></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="status-dot-row"><span class="status-dot"></span><span>Dataset snapshot</span></div>
+        <div class="muted small">26 Sep 2026</div>
+        <button id="resetProgress" class="text-button">Reset local progress</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Fully Funded MSc Strategy</p>
+          <h1 id="pageTitle">Overview</h1>
+        </div>
+        <div class="topbar-actions">
+          <div class="search-wrap">
+            <input id="globalSearch" type="search" placeholder="Search scholarships, countries, status..." aria-label="Search scholarships" />
+          </div>
+          <button id="themeToggle" class="icon-button" aria-label="Toggle theme" title="Toggle theme">◐</button>
+        </div>
+      </header>
+
+      <section id="view-overview" class="view active-view"></section>
+      <section id="view-scholarships" class="view"></section>
+      <section id="view-pipeline" class="view"></section>
+      <section id="view-documents" class="view"></section>
+      <section id="view-profile" class="view"></section>
+    </main>
+  </div>
+
+  <dialog id="scholarshipDialog" class="dialog">
+    <button class="dialog-close" id="dialogClose" aria-label="Close">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+
+  <template id="toastTemplate">
+    <div class="toast"></div>
+  </template>
+
+  <div id="toastRoot" class="toast-root" aria-live="polite"></div>
+
+  <script type="module" src="./src/app.js"></script>
+</body>
+</html>
