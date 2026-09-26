@@ -6,7 +6,7 @@ import uuid
 from pathlib import Path
 from typing import Any
 
-from fastapi import Depends, FastAPI, File, HTTPException, UploadFile
+from fastapi import Depends, FastAPI, File, HTTPException, Response, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
@@ -179,8 +179,20 @@ async def health() -> dict[str, Any]:
     return {"ok": True, "ai_available": await local_ai.available(), "version": "2.0.0"}
 
 
+def set_session_cookie(response: Response, token: str) -> None:
+    response.set_cookie(
+        "career_track_session",
+        token,
+        max_age=settings.access_token_minutes * 60,
+        httponly=True,
+        secure=settings.cookie_secure,
+        samesite="lax",
+        path="/",
+    )
+
+
 @app.post("/api/auth/register")
-def register(payload: AuthIn, db: Session = Depends(get_db)) -> dict[str, Any]:
+def register(payload: AuthIn, response: Response, db: Session = Depends(get_db)) -> dict[str, Any]:
     email = validate_email(payload.email)
     validate_password(payload.password)
     if db.scalar(select(User).where(User.email == email)):
@@ -196,16 +208,26 @@ def register(payload: AuthIn, db: Session = Depends(get_db)) -> dict[str, Any]:
     db.add(Profile(user_id=user.id, full_name=user.display_name))
     db.commit()
     db.refresh(user)
-    return {"token": create_access_token(user.id), "user": {"id": user.id, "email": user.email, "display_name": user.display_name}}
+    token = create_access_token(user.id)
+    set_session_cookie(response, token)
+    return {"user": {"id": user.id, "email": user.email, "display_name": user.display_name}}
 
 
 @app.post("/api/auth/login")
-def login(payload: LoginIn, db: Session = Depends(get_db)) -> dict[str, Any]:
+def login(payload: LoginIn, response: Response, db: Session = Depends(get_db)) -> dict[str, Any]:
     email = validate_email(payload.email)
     user = db.scalar(select(User).where(User.email == email))
     if not user or not verify_password(payload.password, user.password_hash):
         raise HTTPException(status_code=401, detail="Invalid email or password.")
-    return {"token": create_access_token(user.id), "user": {"id": user.id, "email": user.email, "display_name": user.display_name}}
+    token = create_access_token(user.id)
+    set_session_cookie(response, token)
+    return {"user": {"id": user.id, "email": user.email, "display_name": user.display_name}}
+
+
+@app.post("/api/auth/logout")
+def logout(response: Response) -> dict[str, bool]:
+    response.delete_cookie("career_track_session", path="/")
+    return {"ok": True}
 
 
 @app.get("/api/me")
@@ -421,7 +443,7 @@ def update_tracking(
 
 
 @app.get("/api/dashboard")
-def dashboard(user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> dict[str, Any]:
+async def dashboard(user: User = Depends(get_current_user), db: Session = Depends(get_db)) -> dict[str, Any]:
     profile = get_or_create_profile(db, user)
     rows = db.execute(
         select(Scholarship, UserScholarship)
@@ -451,7 +473,7 @@ def dashboard(user: User = Depends(get_current_user), db: Session = Depends(get_
             {"id": s.id, "query": s.query, "result_count": s.result_count, "created_at": s.created_at}
             for s in recent_searches
         ],
-        "ai_available": False,
+        "ai_available": await local_ai.available(),
     }
 
 
