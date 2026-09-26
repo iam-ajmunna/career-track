@@ -423,6 +423,12 @@ function openOpportunity(id) {
       <div class="checklist">
         ${checklist.length ? checklist.map((x, i) => `<label class="check-item"><input type="checkbox" data-check-index="${i}" ${x.done ? "checked" : ""}><span>${escapeHTML(x.label || String(x))}</span></label>`).join("") : '<div class="empty">No checklist generated yet.</div>'}
       </div>
+      <h3>My notes</h3>
+      <div class="field">
+        <label class="sr-only" for="opNotes">Application notes</label>
+        <textarea id="opNotes" rows="4" placeholder="Contacts, essay ideas, document gaps, next actions…">${escapeHTML(t.notes || "")}</textarea>
+      </div>
+      <button class="btn secondary" type="button" data-save-notes="${item.id}">Save notes</button>
       <h3>Source evidence</h3>
       <p class="dialog-copy">${escapeHTML(item.eligibility || item.description || "Review the linked source for complete requirements.")}</p>
       <div class="op-actions">
@@ -553,6 +559,15 @@ document.addEventListener("click", async event => {
       const next = !item.tracking?.saved;
       await patchOpportunity(item.id, { saved: next, status: next && item.tracking?.status === "discovered" ? "saved" : item.tracking?.status });
       showToast(next ? "Scholarship saved" : "Scholarship unsaved");
+    } catch (error) { showToast(error.message); }
+    return;
+  }
+
+  const notes = event.target.closest("[data-save-notes]");
+  if (notes) {
+    try {
+      await patchOpportunity(notes.dataset.saveNotes, { notes: $("#opNotes")?.value || "" });
+      showToast("Notes saved");
     } catch (error) { showToast(error.message); }
     return;
   }
