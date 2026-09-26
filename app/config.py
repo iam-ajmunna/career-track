@@ -6,6 +6,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     app_name: str = "Career Track v2"
+    environment: str = "development"
     secret_key: str = "change-me"
     database_url: str = "sqlite:///./data/career_track.db"
     access_token_minutes: int = 10080
@@ -26,6 +27,13 @@ class Settings(BaseSettings):
     user_agent: str = "CareerTrackScholarshipResearch/2.0"
 
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+
+    def validate_runtime(self) -> None:
+        if self.environment.lower() == "production":
+            if self.secret_key in {"change-me", "ci-test-secret"} or len(self.secret_key) < 32:
+                raise RuntimeError("Production requires SECRET_KEY with at least 32 characters.")
+            if not self.cookie_secure:
+                raise RuntimeError("Production requires COOKIE_SECURE=true.")
 
     @property
     def cors_origin_list(self) -> list[str]:
