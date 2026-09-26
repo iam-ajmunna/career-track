@@ -1,6 +1,4 @@
 import os
-from pathlib import Path
-
 os.environ["DATABASE_URL"] = "sqlite:///./data/test-career-track.db"
 os.environ["AI_ENABLED"] = "false"
 os.environ["SECRET_KEY"] = "test-only-secret-key"
@@ -10,10 +8,6 @@ from fastapi.testclient import TestClient
 from app.main import app
 
 client = TestClient(app)
-
-
-def setup_module():
-    Path("data/test-career-track.db").unlink(missing_ok=True)
 
 
 def test_health():
