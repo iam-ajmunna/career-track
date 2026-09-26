@@ -35,6 +35,7 @@ jobs:
 
       - name: Run API smoke tests
         env:
+          PYTHONPATH: .
           AI_ENABLED: "false"
           SECRET_KEY: ci-test-secret
           DATABASE_URL: sqlite:///./data/ci.db
