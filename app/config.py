@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     secret_key: str = "change-me"
     database_url: str = "sqlite:///./data/career_track.db"
     access_token_minutes: int = 10080
+    cookie_secure: bool = False
     cors_origins: str = "http://localhost:8000,http://127.0.0.1:8000"
     upload_dir: str = "./data/uploads"
     max_upload_mb: int = 10
