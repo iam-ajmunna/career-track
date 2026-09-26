@@ -246,6 +246,7 @@ The container is cloud-ready. For a public deployment, use:
 Example production environment:
 
 ```env
+ENVIRONMENT=production
 SECRET_KEY=<long-random-secret>
 DATABASE_URL=postgresql+psycopg://user:password@postgres-host/careertrack
 COOKIE_SECURE=true
