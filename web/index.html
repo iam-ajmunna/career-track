@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Career Track helps students discover, evaluate and manage fully funded scholarship opportunities.">
+  <meta name="theme-color" content="#0c1016">
+  <title>Career Track — Scholarship OS</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <section id="authView" class="auth-shell">
+    <div class="auth-brand">
+      <div class="mark">CT</div>
+      <div>
+        <strong>Career Track</strong>
+        <span>Scholarship OS · Version 2</span>
+      </div>
+    </div>
+
+    <div class="auth-layout">
+      <div class="auth-intro">
+        <p class="eyebrow">Built for scholarship applicants</p>
+        <h1>Your scholarship search should remember you.</h1>
+        <p class="lede">Create a profile, upload your CV, discover opportunities such as MEXT, Erasmus Mundus, Commonwealth and university fellowships, then keep every application step in one persistent workspace.</p>
+        <div class="auth-points">
+          <div><b>01</b><span>Profile-aware discovery</span></div>
+          <div><b>02</b><span>Local AI fit analysis</span></div>
+          <div><b>03</b><span>Persistent application tracking</span></div>
+        </div>
+      </div>
+
+      <div class="auth-card">
+        <div class="segmented" aria-label="Authentication mode">
+          <button class="segment active" data-auth-mode="login" type="button">Sign in</button>
+          <button class="segment" data-auth-mode="register" type="button">Create account</button>
+        </div>
+
+        <form id="authForm" novalidate>
+          <div id="nameField" class="field" hidden>
+            <label for="authName">Name</label>
+            <input id="authName" autocomplete="name" placeholder="Your name">
+          </div>
+          <div class="field">
+            <label for="authEmail">Email</label>
+            <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+          </div>
+          <div class="field">
+            <label for="authPassword">Password</label>
+            <input id="authPassword" type="password" autocomplete="current-password" minlength="10" placeholder="At least 10 characters" required>
+          </div>
+          <p id="authError" class="form-error" hidden></p>
+          <button id="authSubmit" class="btn primary full" type="submit">Sign in</button>
+        </form>
+        <p class="fine-print">Local deployments keep your data on your own machine. Public deployments store data on the configured server database.</p>
+      </div>
+    </div>
+  </section>
+
+  <div id="appView" class="app" hidden>
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Career Track dashboard">
+        <span class="mark small">CT</span>
+        <span><strong>Career Track</strong><small>Scholarship OS</small></span>
+      </a>
+
+      <nav class="nav" aria-label="Main navigation">
+        <button type="button" class="nav-item active" data-view="dashboard">Dashboard</button>
+        <button type="button" class="nav-item" data-view="discover">Discover</button>
+        <button type="button" class="nav-item" data-view="applications">Applications</button>
+        <button type="button" class="nav-item" data-view="profile">Profile & CV</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div id="aiState" class="system-state"><span></span><div><b>AI status</b><small>Checking…</small></div></div>
+        <button id="logoutBtn" class="nav-item subtle" type="button">Sign out</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p id="sectionEyebrow" class="eyebrow">Your scholarship workspace</p>
+          <h1 id="sectionTitle">Dashboard</h1>
+        </div>
+        <div class="identity">
+          <div id="avatar" class="avatar">U</div>
+          <div><strong id="identityName">Student</strong><small id="identityEmail"></small></div>
+        </div>
+      </header>
+
+      <section id="view-dashboard" class="view active"></section>
+
+      <section id="view-discover" class="view">
+        <div class="discover-hero panel">
+          <div>
+            <p class="eyebrow">Profile-aware scholarship research</p>
+            <h2>Search the web for opportunities that fit you.</h2>
+            <p>Try a named program like <b>MEXT</b>, or a broader query such as <b>fully funded AI master's scholarships in Europe</b>. Career Track enriches the query using your profile and analyzes the results.</p>
+          </div>
+          <form id="searchForm" class="search-box">
+            <label class="sr-only" for="searchQuery">Scholarship search</label>
+            <input id="searchQuery" placeholder="e.g. MEXT master's scholarship 2027" required minlength="2">
+            <button id="searchBtn" class="btn primary" type="submit">Research</button>
+          </form>
+          <div class="query-chips">
+            <button type="button" data-query="MEXT master's scholarship">MEXT</button>
+            <button type="button" data-query="Erasmus Mundus fully funded master's">Erasmus Mundus</button>
+            <button type="button" data-query="Commonwealth master's scholarship">Commonwealth</button>
+            <button type="button" data-query="fully funded AI master's scholarship">AI / ML</button>
+          </div>
+        </div>
+        <div id="searchState"></div>
+        <div id="discoverResults" class="opportunity-grid"></div>
+      </section>
+
+      <section id="view-applications" class="view">
+        <div class="section-row">
+          <div><h2>Application pipeline</h2><p>Every change here is saved to your account.</p></div>
+          <div class="filter-row" id="applicationFilters">
+            <button class="filter active" data-status-filter="all" type="button">All</button>
+            <button class="filter" data-status-filter="saved" type="button">Saved</button>
+            <button class="filter" data-status-filter="preparing" type="button">Preparing</button>
+            <button class="filter" data-status-filter="applied" type="button">Applied</button>
+          </div>
+        </div>
+        <div id="applicationList" class="opportunity-grid"></div>
+      </section>
+
+      <section id="view-profile" class="view">
+        <div class="profile-grid">
+          <section class="panel">
+            <div class="section-row compact">
+              <div><p class="eyebrow">Source profile</p><h2>Academic profile</h2></div>
+              <span id="profileSaved" class="save-state">Saved</span>
+            </div>
+            <form id="profileForm" class="form-grid" novalidate>
+              <div class="field span-2"><label for="fullName">Full name</label><input id="fullName" name="full_name"></div>
+              <div class="field"><label for="nationality">Nationality</label><input id="nationality" name="nationality"></div>
+              <div class="field"><label for="residenceCountry">Residence country</label><input id="residenceCountry" name="residence_country"></div>
+              <div class="field span-2"><label for="degree">Current / completed degree</label><input id="degree" name="degree"></div>
+              <div class="field span-2"><label for="university">University</label><input id="university" name="university"></div>
+              <div class="field"><label for="cgpa">CGPA / GPA</label><input id="cgpa" name="cgpa"></div>
+              <div class="field"><label for="graduationYear">Graduation year</label><input id="graduationYear" name="graduation_year"></div>
+              <div class="field span-2"><label for="fields">Fields of interest <small>comma-separated</small></label><input id="fields" name="fields" placeholder="AI, Computer Vision, MLOps"></div>
+              <div class="field span-2"><label for="skills">Skills <small>comma-separated</small></label><textarea id="skills" name="skills" rows="3"></textarea></div>
+              <div class="field span-2"><label for="targetCountries">Target countries <small>optional, comma-separated</small></label><input id="targetCountries" name="target_countries"></div>
+              <div class="field span-2"><label for="englishTest">English test</label><input id="englishTest" name="english_test" placeholder="IELTS 7.5, planned, waived, etc."></div>
+              <div class="field span-2"><label for="profileNotes">Notes</label><textarea id="profileNotes" name="notes" rows="4"></textarea></div>
+              <div class="span-2 form-actions"><button class="btn primary" type="submit">Save profile</button></div>
+            </form>
+          </section>
+
+          <aside class="panel cv-panel">
+            <p class="eyebrow">AI-assisted setup</p>
+            <h2>CV intelligence</h2>
+            <p>Upload a PDF, DOCX or TXT CV. Career Track extracts readable text locally on the server and uses the configured AI model to suggest profile fields.</p>
+            <label class="upload-zone" for="cvFile">
+              <input id="cvFile" type="file" accept=".pdf,.docx,.txt" hidden>
+              <span class="upload-icon">↑</span>
+              <b>Choose your CV</b>
+              <small>PDF, DOCX or TXT · max 10 MB</small>
+            </label>
+            <button id="uploadCvBtn" class="btn secondary full" type="button">Analyze CV</button>
+            <div id="cvStatus" class="cv-status"></div>
+            <div class="privacy-note"><b>Privacy</b><p>CV text is stored only in the application database. Local mode keeps it on your machine; cloud mode uses your configured infrastructure.</p></div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="opportunityDialog" class="dialog">
+    <button id="dialogClose" class="dialog-close" type="button" aria-label="Close">×</button>
+    <div id="dialogBody"></div>
+  </dialog>
+
+  <script type="module" src="/static/app.js"></script>
+</body>
+</html>
