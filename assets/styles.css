@@ -412,3 +412,13 @@ button:disabled { opacity: .55; cursor: not-allowed; }
   .countdown-body { gap: 18px; }
 }
 .application-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 18px; }
+
+
+/* Safe preview mode: visible UI, no persistent edits until cloud auth is configured. */
+body[data-readonly-preview="true"] [data-progress-key],
+body[data-readonly-preview="true"] [data-application-status] {
+  opacity: .58;
+}
+body[data-readonly-preview="true"] .sync-message {
+  border-left-color: var(--info);
+}
