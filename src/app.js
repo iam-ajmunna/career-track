@@ -1,6 +1,7 @@
 import { scholarships, documents, englishPlan, referees, refereeStages, timeline, snapshotDate, countryOutlooks, screenedOut } from './data.js';
 import { escapeHtml } from './sync/model.js';
 import { createCountdowns, verifiedDeadlines, dateOnlyDeadlines } from './countdowns.js';
+import { buildScholarshipMasterPrompt, buildChatGptUrl } from './gpt-prompt.js';
 let progressStore;
 let lastState = '';
 
@@ -151,7 +152,10 @@ function scholarshipCard(item) {
       <div class="progress-track" title="Application checklist progress"><div class="progress-fill" style="width:${progress}%"></div></div>
       <div class="card-bottom">
         <div class="deadline">${deadlineLabel(item)}</div>
-        <button class="button secondary" data-open-scholarship="${item.id}">Open</button>
+        <div class="card-actions">
+          <button class="button secondary" data-open-scholarship="${item.id}">Open</button>
+          <button class="button secondary" data-open-gpt="${item.id}" title="Open a new ChatGPT chat with a scholarship-specific research prompt">Open GPT ↗</button>
+        </div>
       </div>
     </article>`;
 }
@@ -453,13 +457,35 @@ function openScholarship(id) {
       <ul>${s.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
       <p class="deadline-evidence">✓ Scholarship source verified ${verifiedOn}.${career ? ` Career rules last checked ${career.verifiedOn}.` : ''}</p>
       <div class="dialog-actions">
-        ${s.source ? `<a class="button" href="${s.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''}
+        <button class="button" data-open-gpt="${s.id}">Open GPT ↗</button>
+        ${s.source ? `<a class="button secondary" href="${s.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''}
         ${s.secondarySource ? `<a class="button secondary" href="${s.secondarySource}" target="_blank" rel="noopener noreferrer">Secondary official source ↗</a>` : ''}
         ${career?.source ? `<a class="button secondary" href="${career.source}" target="_blank" rel="noopener noreferrer">Career rules ↗</a>` : ''}
         <button class="button ghost" data-jump-pipeline="${s.id}">Open pipeline</button>
       </div>
     </div>`;
   els.dialog.showModal();
+}
+
+function openGptForScholarship(id) {
+  const scholarship = scholarships.find(item => item.id === id);
+  if (!scholarship) return;
+  const prompt = buildScholarshipMasterPrompt({
+    scholarship,
+    deadlineLabel: deadlineLabel(scholarship),
+    career: countryOutlooks[scholarship.country],
+    progress: state.progress,
+    applicationStatus: state.applications[scholarship.id] || 'preparing'
+  });
+  navigator.clipboard?.writeText(prompt).catch(() => {});
+  const anchor = document.createElement('a');
+  anchor.href = buildChatGptUrl(prompt);
+  anchor.target = '_blank';
+  anchor.rel = 'noopener noreferrer';
+  document.body.append(anchor);
+  anchor.click();
+  anchor.remove();
+  toast('Opened ChatGPT · master prompt copied as backup');
 }
 
 function toast(message) {
@@ -514,6 +540,9 @@ document.addEventListener('click', e => {
     catch { toast('Sign in again before editing.'); } return; }
   const filter = e.target.closest('[data-filter]');
   if (filter) { state.filter = filter.dataset.filter; renderCurrentView(); return; }
+
+  const gpt = e.target.closest('[data-open-gpt]');
+  if (gpt) { openGptForScholarship(gpt.dataset.openGpt); return; }
 
   const open = e.target.closest('[data-open-scholarship]');
   if (open) { openScholarship(open.dataset.openScholarship); return; }
