@@ -40,6 +40,8 @@ Tests cover PostgreSQL grants/RLS/CAS, stale edits, slow and failed saves, offli
 
 Nine exact deadline entries are sourced as of 28 September 2026, including ETH Zurich ESOP and the Bangladesh-specific DAAD all-disciplines Master's deadline. KAUST has a verified date with no verified closing time; other unannounced or unverified calls receive no precise timer. Oxford's two funding routes share one course deadline. Calendar content contains public facts only. A calendar client may discard alarms; phone verification is still required.
 
+Every scholarship also exposes an **Open GPT ↗** action. It creates a dedicated new-chat research prompt for that scholarship, includes the tracked official sources/deadline/checklist context, asks ChatGPT to re-verify the live 2027 rules, and copies the prompt as a fallback before opening ChatGPT.
+
 The visible scholarship list defaults to **Apply + Watch**. Closed routes stay available for context; misleading, ineligible or funding-mismatched social-media leads are kept in a collapsed **Screened out** register rather than polluting the working shortlist. Career information appears only in scholarship details and is factual planning context, not a PR score or guarantee. The dossier now includes an additive Europass CV item for European applications.
 
 Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. A public Supabase key is expected in the browser; a service/secret key must never be there. Source visibility does not authorize access to progress: PostgreSQL grants and row policies enforce it.
