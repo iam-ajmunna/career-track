@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import * as data from '../src/data.js';
 import catalog from '../deadlines.json' with { type: 'json' };
 import { enumerateLegacyKeys } from '../scripts/lib/legacy-progress.mjs';
+import { buildScholarshipMasterPrompt, buildChatGptUrl } from '../src/gpt-prompt.js';
 
 test('new scholarship intelligence is present and decision-scoped', () => {
   const expected = ['daad-master','eth-esop','mext-university','goi-ies','eiffel','si-sweden','erasmus-ai'];
@@ -43,4 +44,42 @@ test('ETH and DAAD have exact verified countdown evidence', () => {
   assert.equal(byId.get('eth-esop-2027')?.deadline_at, '2026-11-30T10:59:00Z');
   assert.equal(byId.get('daad-master-2027')?.deadline_at, '2026-12-01T23:00:00Z');
   assert.equal(catalog.verified_on, '2026-09-28');
+});
+
+
+test('Open GPT prompt is scholarship-specific, source-grounded and creates a ChatGPT deep link', () => {
+  const scholarship = data.scholarships.find(item => item.id === 'kaust');
+  const prompt = buildScholarshipMasterPrompt({
+    scholarship,
+    deadlineLabel: '3 Jan 2027 · Closing time unconfirmed',
+    career: data.countryOutlooks[scholarship.country],
+    progress: { 'sch-kaust-0': true },
+    applicationStatus: 'preparing'
+  });
+  assert.match(prompt, /KAUST MSc Fellowship/);
+  assert.match(prompt, /Primary official source:/);
+  assert.match(prompt, /Shortlist AI\/CV\/ML faculty and labs/);
+  assert.match(prompt, /Completed:\n- Shortlist AI\/CV\/ML faculty and labs/);
+  assert.match(prompt, /MY NEXT 5 ACTIONS/);
+  assert.match(prompt, /do NOT convert this into an admission probability/);
+
+  const url = new URL(buildChatGptUrl(prompt));
+  assert.equal(url.origin, 'https://chatgpt.com');
+  assert.equal(url.searchParams.get('q'), prompt);
+  assert.equal(url.searchParams.get('hints'), 'search');
+});
+
+test('every visible scholarship can generate an isolated GPT prompt', () => {
+  for (const scholarship of data.scholarships) {
+    const prompt = buildScholarshipMasterPrompt({
+      scholarship,
+      deadlineLabel: scholarship.deadline || scholarship.timing || 'Official timetable pending',
+      career: data.countryOutlooks[scholarship.country],
+      progress: {},
+      applicationStatus: 'preparing'
+    });
+    assert.ok(prompt.includes(scholarship.name), scholarship.id);
+    assert.ok(prompt.includes('for ONE scholarship only'), scholarship.id);
+    assert.ok(!prompt.includes('undefined'), scholarship.id);
+  }
 });
