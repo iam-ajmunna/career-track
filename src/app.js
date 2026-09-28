@@ -1,4 +1,4 @@
-import { scholarships, documents, englishPlan, referees, refereeStages, timeline, snapshotDate } from './data.js';
+import { scholarships, documents, englishPlan, referees, refereeStages, timeline, snapshotDate, countryOutlooks, screenedOut } from './data.js';
 import { escapeHtml } from './sync/model.js';
 import { createCountdowns, verifiedDeadlines, dateOnlyDeadlines } from './countdowns.js';
 let progressStore;
@@ -6,7 +6,7 @@ let lastState = '';
 
 const state = {
   view: 'overview',
-  filter: 'all',
+  filter: 'focus',
   query: '',
   progress: {}, applications: {}, profile: null, clockOffset: 0,
   theme: document.documentElement.dataset.theme || 'light'
@@ -52,6 +52,20 @@ const fitMap = {
   'extreme-reach': ['Extreme reach', 'danger'],
   ineligible: ['Ineligible', 'danger']
 };
+
+const decisionMap = {
+  apply: ['Apply', 'success'],
+  watch: ['Watch', 'info'],
+  closed: ['Closed', 'neutral']
+};
+
+function decisionOf(item) {
+  if (item.decision) return item.decision;
+  const status = effectiveStatus(item);
+  if (status === 'closed' || status === 'blocked') return 'closed';
+  if (status === 'watch' || status === 'upcoming') return 'watch';
+  return 'apply';
+}
 
 function daysUntil(date) {
   const current = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() + state.clockOffset));
@@ -103,7 +117,7 @@ function getScholarshipProgress(id) {
 }
 
 function getOverallProgress() {
-  const active = scholarships.filter(s => s.eligible && s.priority < 90);
+  const active = scholarships.filter(s => s.eligible && decisionOf(s) === 'apply');
   const totalActions = active.reduce((n, s) => n + s.actions.length, 0);
   const completed = active.reduce((n, s) => n + s.actions.filter((_, i) => state.progress[`sch-${s.id}-${i}`]).length, 0);
   return totalActions ? Math.round((completed / totalActions) * 100) : 0;
@@ -116,6 +130,7 @@ function badge([label, kind]) {
 function scholarshipCard(item) {
   const status = statusMap[effectiveStatus(item)] || ['Unknown', 'neutral'];
   const fit = fitMap[item.fit] || ['Fit unknown', 'neutral'];
+  const decision = decisionMap[decisionOf(item)] || ['Review', 'neutral'];
   const progress = getScholarshipProgress(item.id);
   return `
     <article class="card scholarship-card" data-scholarship-id="${item.id}">
@@ -127,6 +142,7 @@ function scholarshipCard(item) {
         ${badge(status)}
       </div>
       <div class="tag-row">
+        ${badge(decision)}
         ${badge(fit)}
         <span class="tag">${item.route}</span>
         <span class="tag">Fit ${item.fitScore}/100</span>
@@ -141,10 +157,10 @@ function scholarshipCard(item) {
 }
 
 function renderOverview() {
-  const active = scholarships.filter(s => s.eligible && ['open','urgent','opens-soon'].includes(effectiveStatus(s))).length;
-  const urgent = scholarships.filter(s => s.eligible && effectiveStatus(s) === 'urgent').length;
+  const active = scholarships.filter(s => s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s))).length;
+  const urgent = scholarships.filter(s => s.eligible && decisionOf(s) === 'apply' && effectiveStatus(s) === 'urgent').length;
   const best = [...scholarships]
-    .filter(s => s.eligible && !['blocked','closed','watch'].includes(effectiveStatus(s)))
+    .filter(s => s.eligible && decisionOf(s) === 'apply' && !['blocked','closed'].includes(effectiveStatus(s)))
     .sort((a,b) => a.priority - b.priority)
     .slice(0,5);
   const progress = getOverallProgress();
@@ -153,7 +169,7 @@ function renderOverview() {
     <div class="banner">
       <div>
         <strong>Application command center</strong>
-        <p>Scholarship evidence was verified on 26 Sep 2026. Deadline countdowns now use today's date automatically; future calls marked Watch still require official re-verification before you rely on them.</p>
+        <p>Scholarship evidence was last consolidated on ${snapshotDate}. Social-media leads are kept out until an official source is verified; Watch items never receive invented deadlines.</p>
       </div>
       <span class="pill info banner-badge">2027 Intake</span>
     </div>
@@ -201,31 +217,35 @@ function renderOverview() {
 function filteredScholarships() {
   return scholarships.filter(s => {
     const query = state.query.trim().toLowerCase();
-    const haystack = `${s.name} ${s.country} ${s.provider} ${s.status} ${s.fit} ${s.route}`.toLowerCase();
+    const decision = decisionOf(s);
+    const haystack = `${s.name} ${s.country} ${s.provider} ${s.status} ${s.fit} ${s.route} ${decision}`.toLowerCase();
     const matchesQuery = !query || haystack.includes(query);
-    const currentStatus = effectiveStatus(s);
-    const matchesFilter = state.filter === 'all' ||
-      (state.filter === 'open' && ['open','urgent','opens-soon'].includes(currentStatus)) ||
-      (state.filter === 'priority' && s.priority <= 5 && !['closed','blocked'].includes(currentStatus)) ||
-      (state.filter === 'full' && !s.funding.toLowerCase().includes('possible') && !['blocked','closed'].includes(currentStatus)) ||
-      (state.filter === 'watch' && ['watch','upcoming','closed'].includes(currentStatus)) ||
-      (state.filter === 'blocked' && currentStatus === 'blocked');
+    const matchesFilter = state.filter === 'focus' ? ['apply','watch'].includes(decision) : decision === state.filter;
     return matchesQuery && matchesFilter;
   });
 }
 
 function renderScholarships() {
   const items = filteredScholarships();
+  const screenedQuery = state.query.trim().toLowerCase();
+  const screened = screenedOut.filter(item => !screenedQuery || `${item.name} ${item.country} ${item.reason}`.toLowerCase().includes(screenedQuery));
   document.querySelector('#view-scholarships').innerHTML = `
-    <div class="filters" role="group" aria-label="Scholarship filters">
-      ${[['all','All'],['open','Open / opening'],['priority','Priority'],['full','Guaranteed / stated full'],['watch','Watch / upcoming'],['blocked','Ineligible']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
+    <div class="filters" role="group" aria-label="Scholarship decision filters">
+      ${[['focus','Apply + Watch'],['apply','Apply'],['watch','Watch'],['closed','Closed']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
     </div>
-    <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>`;
+    <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>
+    <details class="card card-pad section">
+      <summary class="section-title">Screened out (${screenedOut.length})</summary>
+      <p class="section-sub">Verified leads that do not currently deserve application time. Kept here so the same social-media claims are not researched repeatedly.</p>
+      <div class="timeline" style="margin-top:14px">
+        ${screened.length ? screened.map(item => `<div class="timeline-item"><div class="timeline-date">${escapeHtml(item.country)}</div><div class="timeline-content"><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.reason)} ${item.source ? `<a class="text-link" href="${item.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''}</p></div></div>`).join('') : '<div class="empty">No screened-out records match the current search.</div>'}
+      </div>
+    </details>`;
 }
 
 function renderPipeline() {
   const ordered = [...scholarships]
-    .filter(s => s.eligible && !['closed','blocked','watch'].includes(effectiveStatus(s)))
+    .filter(s => s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s)))
     .sort((a,b) => a.priority - b.priority);
   document.querySelector('#view-pipeline').innerHTML = `
     <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Cloud progress</span></div>
@@ -404,9 +424,12 @@ function openScholarship(id) {
   if (!s) return;
   const status = statusMap[effectiveStatus(s)] || ['Unknown','neutral'];
   const fit = fitMap[s.fit] || ['Fit unknown','neutral'];
+  const decision = decisionMap[decisionOf(s)] || ['Review','neutral'];
+  const career = countryOutlooks[s.country];
+  const verifiedOn = s.verifiedOn || snapshotDate;
   els.dialogContent.innerHTML = `
     <div class="dialog-body">
-      <div class="tag-row">${badge(status)} ${badge(fit)}</div>
+      <div class="tag-row">${badge(decision)} ${badge(status)} ${badge(fit)}</div>
       <h2 id="scholarshipDialogTitle" class="dialog-title">${s.name}</h2>
       <div class="muted">${s.country} · ${s.provider}</div>
       <div class="dialog-grid">
@@ -417,11 +440,22 @@ function openScholarship(id) {
       </div>
       <h3>Why it fits your profile</h3>
       <p class="muted" style="line-height:1.7;font-size:13px">${s.whyFit}</p>
+      <h3>Next action</h3>
+      <p class="muted" style="line-height:1.7;font-size:13px">${s.nextAction || s.actions[0]}</p>
+      ${career ? `<h3>Career outlook</h3>
+        <div class="dialog-grid">
+          <div class="info-box"><div class="info-label">During MSc</div><div class="info-value">${career.duringStudy}</div></div>
+          <div class="info-box"><div class="info-label">After MSc</div><div class="info-value">${career.postStudy}</div></div>
+          <div class="info-box"><div class="info-label">Long-term route</div><div class="info-value">${career.longTerm}</div></div>
+          <div class="info-box"><div class="info-label">Immigration check</div><div class="info-value">Verified ${career.verifiedOn}. Planning context only — not a PR guarantee.</div></div>
+        </div>` : ''}
       <h3>Execution checklist</h3>
       <ul>${s.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
+      <p class="deadline-evidence">✓ Scholarship source verified ${verifiedOn}.${career ? ` Career rules last checked ${career.verifiedOn}.` : ''}</p>
       <div class="dialog-actions">
         ${s.source ? `<a class="button" href="${s.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''}
         ${s.secondarySource ? `<a class="button secondary" href="${s.secondarySource}" target="_blank" rel="noopener noreferrer">Secondary official source ↗</a>` : ''}
+        ${career?.source ? `<a class="button secondary" href="${career.source}" target="_blank" rel="noopener noreferrer">Career rules ↗</a>` : ''}
         <button class="button ghost" data-jump-pipeline="${s.id}">Open pipeline</button>
       </div>
     </div>`;
