@@ -22,13 +22,14 @@ const draftStorage = {
   removeItem: key => localStorage.removeItem(key)
 };
 
-function gate(title, message, { login = false, retry = false, signout = false, pending = false } = {}) {
+function gate(title, message, { login = false, retry = false, signout = false, pending = false, preview = false } = {}) {
   $('appShell').hidden = true;
   $('authGate').hidden = false;
   $('authTitle').textContent = title;
   $('authMessage').textContent = message;
   $('googleSignIn').hidden = !login;
   $('googleSignIn').disabled = authenticating;
+  $('previewUi').hidden = !preview;
   $('authRetry').hidden = !retry;
   $('gateSignOut').hidden = !signout;
   $('gateExport').hidden = !pending;
@@ -92,7 +93,7 @@ async function activate(session) {
 }
 async function start() {
   if (!config.url || !config.key) {
-    gate('Workspace setup in progress', 'Cloud sign-in is not ready yet. Please return after setup is complete.');
+    gate('Workspace setup in progress', 'Cloud sign-in is not ready yet. You can still inspect the current interface in read-only preview mode.', { preview: true });
     return;
   }
   authKey = `career-track-auth:${new URL(config.url).host}`;
@@ -113,6 +114,39 @@ async function start() {
     }
   } catch { gate('Sign-in unavailable', 'Check your connection and try again. Any pending changes remain on this device.', { login: true, retry: true }); }
 }
+async function openReadOnlyPreview() {
+  try {
+    ui ??= await import('./app.js');
+    document.body.dataset.readonlyPreview = 'true';
+    const readOnlyStore = { change() { throw new Error('Read-only preview'); } };
+    $('authGate').hidden = true;
+    $('appShell').hidden = false;
+    ui.mountApp(readOnlyStore);
+    mounted = true;
+    ui.updateWorkspace({
+      status: 'saved',
+      authorized: true,
+      state: { progress: {}, applications: {}, profile: null },
+      clockOffset: 0,
+      pending: 0,
+      draftProblem: false,
+      storageFailed: false,
+      cacheProblem: '',
+      conflicts: []
+    });
+    $('syncLabel').textContent = 'Read-only preview · cloud setup pending';
+    $('syncBar').dataset.status = 'saved';
+    $('syncRetry').hidden = true;
+    $('syncMessage').textContent = 'Preview mode does not save progress. Cloud persistence will activate after Supabase and Google sign-in are configured.';
+    $('syncMessage').hidden = false;
+    $('exportProgress').hidden = true;
+    $('signOut').hidden = true;
+    document.title = 'Read-only Preview · Scholarship OS';
+  } catch {
+    gate('Preview unavailable', 'The interface preview could not open. Please try again.', { retry: true, preview: true });
+  }
+}
+
 async function signIn() {
   if (authenticating || !client) return;
   authenticating = true; $('googleSignIn').disabled = true;
@@ -157,6 +191,7 @@ async function requestSignOut() {
   } finally { $('signOut').disabled = false; $('gateSignOut').disabled = false; }
 }
 $('googleSignIn').addEventListener('click', signIn);
+$('previewUi').addEventListener('click', openReadOnlyPreview);
 $('authRetry').addEventListener('click', () => { if (store && ownerId) void store.sync(); else location.reload(); });
 $('syncRetry').addEventListener('click', () => { void store?.sync(); });
 $('exportProgress').addEventListener('click', exportProgress);
