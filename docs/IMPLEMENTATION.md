@@ -26,6 +26,8 @@ The premium static audit reports four actionless-button findings. These are pars
 
 The supported cloud browser returned `ERR_BLOCKED_BY_CLIENT` for the local fixture URL. No local UI screenshot or end-to-end pass is claimed. `tests/browser-fixture.mjs` is available for authorized local browser verification, with synthetic identities only, excluded from the deployment build.
 
+The free Supabase project is now active and the migration is applied. Live SQL owner/RLS/revision checks passed in a rolled-back transaction; both anonymous REST table and RPC access returned 401 / `42501`. Security and performance advisors returned no findings. The database remains empty. This checks the deployed database and anonymous API boundary; authenticated Google/PostgREST acceptance is still pending. See `CLOUD-VERIFICATION.md`.
+
 ## Release state
 
-**Not merged / not production-ready.** Cloud project creation, Google configuration, provider-level RLS checks, authenticated Vercel preview, two-device/phone acceptance and the remote recovery tag remain open. Vercel currently returns 403 for team `aj-81af`; Supabase awaits its mandatory organization/cost selection. See `DEPLOYMENT.md` for exact steps.
+**Not merged / not production-ready.** Google configuration, owner provisioning, Vercel environment setup, authenticated preview, two-device/phone acceptance and the remote recovery tag remain open. Vercel's GitHub integration built commit `a750129` successfully, but the connector still returns 403 for team `aj-81af` and the preview requires Vercel authentication. See `DEPLOYMENT.md` for exact steps.

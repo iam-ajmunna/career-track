@@ -2,15 +2,17 @@
 
 ## Current connection state — 28 September 2026
 
-- Supabase connection works. Organization `munspace` (`rlpbkpgjhisywvkmwchu`) is on the free plan; no projects exist. The connector explicitly requires the owner to select the organization, then see and confirm the cost before project creation. No project has been created and no charge has been accepted.
+- The owner approved organization `munspace` (`rlpbkpgjhisywvkmwchu`) and the confirmed $0/month project cost. Project `career-track` (`yqqcfonzkkrboghhfbdx`) is active in Singapore (`ap-southeast-1`), on the free plan. Use this existing project; do not create another one. Non-secret coordinates are in `supabase/project.json`.
+- Migration `202609280001_user_state.sql` is applied. Live SQL checks passed for owner access, other-account isolation, anonymous denial, immutable revisions and stale CAS rejection. Anonymous PostgREST table and RPC calls both return 401 / PostgreSQL `42501`. Security and performance advisors returned no findings. The verification transaction rolled back: zero workspace rows and zero auth users remain. See `CLOUD-VERIFICATION.md`.
+- Google authentication is not configured: the public Auth settings report Google disabled, email enabled and signups enabled. These defaults must be restricted before owner registration/release; no owner account is provisioned yet.
 - Vercel connection lists no teams. Reading existing project `career-track` under `aj-81af` returns 403: reauthenticate to that scope or use a connection with access. The known team ID is `team_8dlVozcPDxaR5ETsNuMrAr1W`. No permission bypass was attempted.
 - `main` is still the original static app. All implementation work belongs to `personal-dynamic` / draft PR #1.
 
 ## 1. Provision the free database
 
-1. Confirm `munspace` as the destination; obtain and confirm the connector's current project cost. Stop if it is not free. Create `career-track` in a suitable nearby region (Singapore is a reasonable default for Dhaka). Use the one project for this Express release; do not create a paid branch.
-2. Apply `supabase/migrations/202609280001_user_state.sql` to the new project. This creates no progress row and exposes no anonymous state access.
-3. Run database security/performance advisors. Verify owner reads/updates, anonymous denial, second-account isolation, no client inserts/deletes, revision preconditions and immutable owner. Local PGlite tests are supporting evidence, not a replacement for this check against Supabase/PostgREST.
+Completed on 28 September 2026. Project API origin: `https://yqqcfonzkkrboghhfbdx.supabase.co`. Keep the single free project for this Express release; no paid branch is needed.
+
+`supabase/verify-live-empty.sql` preserves the executed SQL verification. It refuses a populated workspace and always rolls back its synthetic identities/state. Do not run it after owner provisioning or remove its empty-workspace guard. Real owner Google/PostgREST acceptance remains separate from these database checks.
 
 ## 2. Google authentication and owner registration
 
