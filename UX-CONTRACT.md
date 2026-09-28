@@ -49,3 +49,6 @@ The old reset control is removed: a fresh start is an initialization decision, n
 - Exact countdowns require an official date, time and timezone. Date-only or unannounced calls must not receive invented times.
 - New vNext checklist/document items use additive keys with `legacy: false`; the original 102 progress keys and meanings remain frozen.
 - The Documents view includes **Europass CV for European applications** as a high-priority optional variant, without replacing the master academic/research CVs.
+- Every tracked scholarship exposes **Open GPT ↗** from its scholarship card/detail view and active pipeline block. It generates one scholarship-specific research/application prompt, opens a new ChatGPT tab with the prompt deep-linked, and copies the same prompt to the clipboard as a fallback.
+- The GPT prompt is limited to the selected scholarship, carries official-source/deadline/checklist context, instructs fresh official-source verification, and asks for a complete application playbook. It must not turn internal fit labels into admission probabilities.
+- Do not embed the private Supabase profile object in the ChatGPT URL. The launcher uses a minimal non-identifying applicant direction plus the selected scholarship's current tracker state.
