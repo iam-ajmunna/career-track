@@ -22,6 +22,7 @@ This file records the official/public source used for each time-sensitive item i
 | Chevening work-experience rules | Current eligibility basis | https://www.chevening.org/scholarships/who-can-apply/work-experience/ |
 | EDISS Intake 7 | Scholarship round 16 Nov 2026–12 Jan 2027 | https://www.master-ediss.eu/upcoming-application-rounds-ediss-intake-7/ |
 | EDISS admission / English requirement | IELTS 6.5, no band below 6.0 | https://www.master-ediss.eu/admission-requirements/ |
+| EDISS CV requirement | Applicants must use the programme's own EDISS CV template; Europass is not a replacement | https://www.master-ediss.eu/admission-requirements/ |
 | MEXT Research Student — Bangladesh | 2027 embassy-recommendation route closed | https://www.bd.emb-japan.go.jp/itpr_ja/00_000706.html |
 | Stipendium Hungaricum — Bangladesh | Bangladesh is a sending partner; full-degree Master's available in any field of interest | https://stipendiumhungaricum.hu/partners/ |
 | Türkiye Scholarships Graduate | Official programme states 10 Jan–20 Feb application window every year | https://www.turkiyeburslari.gov.tr/fulltimeprograms |
