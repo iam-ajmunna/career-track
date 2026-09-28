@@ -37,3 +37,15 @@ The old reset control is removed: a fresh start is an initialization decision, n
 - Checkbox updates preserve focus across render. Search remains immediate and in-memory as an explicit Express Track exception to URL routing; IME composition does not trigger shortcuts.
 - All changed surfaces consume existing tokens. Native buttons retain hover, pressed, focus-visible and disabled states; narrow screens preserve every action.
 - No authenticated UI appears before a successful owner read, except previously authorized owner cache while offline. Cache is device-local best effort, not authentication or durable server backup.
+
+
+## Scholarship intelligence rules — 28 Sep 2026
+
+- The Scholarships view defaults to **Apply + Watch**. The only decision filters are Apply + Watch, Apply, Watch and Closed.
+- Social-media posts are discovery leads only. An opportunity enters the working portfolio only after an official source is verified.
+- Rejected or misleading leads stay in one collapsed **Screened out** register with a short factual reason and official evidence where available.
+- Scholarship cards remain compact. Career/immigration context is shown only inside the detail dialog.
+- Career context uses three factual fields: **During MSc**, **After MSc**, and **Long-term route**. Do not produce PR probabilities, scores or guarantees.
+- Exact countdowns require an official date, time and timezone. Date-only or unannounced calls must not receive invented times.
+- New vNext checklist/document items use additive keys with `legacy: false`; the original 102 progress keys and meanings remain frozen.
+- The Documents view includes **Europass CV for European applications** as a high-priority optional variant, without replacing the master academic/research CVs.
