@@ -351,7 +351,7 @@ export const scholarships = [
       "Do not lock deadlines or document rules until the general 2027 GKS-G guide is released"
     ],
     source: "https://www.studyinkorea.go.kr/ko/notice/scholarshipsList.do?boardSort=3"
-  }
+  },
   {
     id: "daad-master",
     legacy: false,
