@@ -1,0 +1,30 @@
+{
+  "scope": "E-0 interim calendar: two near-term provider deadlines only, not the full portfolio",
+  "verified_on": "2026-09-28",
+  "deadlines": [
+    {
+      "id": "khs-2027",
+      "scholarship_id": "khs",
+      "title": "Knight-Hennessy Scholars application deadline",
+      "deadline_wall": "2026-10-06 13:00:00",
+      "deadline_tz": "America/Los_Angeles",
+      "deadline_at": "2026-10-06T20:00:00Z",
+      "precision": "exact",
+      "source_url": "https://knight-hennessy.stanford.edu/admission",
+      "verified_on": "2026-09-28",
+      "notes": "The Stanford graduate-program application is separate and may have its own deadline."
+    },
+    {
+      "id": "commonwealth-2027",
+      "scholarship_id": "commonwealth",
+      "title": "Commonwealth Master's CSC application deadline",
+      "deadline_wall": "2026-10-20 16:00:00",
+      "deadline_tz": "Europe/London",
+      "deadline_at": "2026-10-20T15:00:00Z",
+      "precision": "exact",
+      "source_url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
+      "verified_on": "2026-09-28",
+      "notes": "Bangladesh's nominating agency can set a separate earlier deadline; its date has not been verified. This event covers only the CSC deadline."
+    }
+  ]
+}

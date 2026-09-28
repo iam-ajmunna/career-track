@@ -1,0 +1,2 @@
+# RFC 5545 requires CRLF; folded content can contain significant edge spaces.
+*.ics -text -whitespace

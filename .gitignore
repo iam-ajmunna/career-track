@@ -1,0 +1,10 @@
+# Progress exports contain personal data; keep them outside this repository.
+career-track-legacy-*.json
+legacy-progress-*.json
+private-backups/
+.env
+.env.*
+!.env.example
+.DS_Store
+node_modules/
+test-results/

@@ -1,0 +1,689 @@
+{
+  "baseline_commit": "af53a4c34295a160217845465c33002b074e10d7",
+  "scope": "Existing positional/semantic key inventory; not a normalized action-key migration.",
+  "keys": [
+    {
+      "key": "sch-commonwealth-0",
+      "kind": "scholarship",
+      "entity": "commonwealth",
+      "index": 0,
+      "label": "Finalize four-part Bangladesh development-impact statement"
+    },
+    {
+      "key": "sch-commonwealth-1",
+      "kind": "scholarship",
+      "entity": "commonwealth",
+      "index": 1,
+      "label": "Lock eligible UK MSc choices and study-plan logic"
+    },
+    {
+      "key": "sch-commonwealth-2",
+      "kind": "scholarship",
+      "entity": "commonwealth",
+      "index": 2,
+      "label": "Confirm three referees and secure required uploaded references"
+    },
+    {
+      "key": "sch-commonwealth-3",
+      "kind": "scholarship",
+      "entity": "commonwealth",
+      "index": 3,
+      "label": "Complete CSC application and supporting evidence"
+    },
+    {
+      "key": "sch-commonwealth-4",
+      "kind": "scholarship",
+      "entity": "commonwealth",
+      "index": 4,
+      "label": "Complete Bangladesh UGC / nominating-agency requirements"
+    },
+    {
+      "key": "sch-kaust-0",
+      "kind": "scholarship",
+      "entity": "kaust",
+      "index": 0,
+      "label": "Shortlist AI/CV/ML faculty and labs"
+    },
+    {
+      "key": "sch-kaust-1",
+      "kind": "scholarship",
+      "entity": "kaust",
+      "index": 1,
+      "label": "Finalize research-oriented CV and ~750-word SOP"
+    },
+    {
+      "key": "sch-kaust-2",
+      "kind": "scholarship",
+      "entity": "kaust",
+      "index": 2,
+      "label": "Prepare transcript with grading scale and passport"
+    },
+    {
+      "key": "sch-kaust-3",
+      "kind": "scholarship",
+      "entity": "kaust",
+      "index": 3,
+      "label": "Confirm three strong academic/research referees"
+    },
+    {
+      "key": "sch-kaust-4",
+      "kind": "scholarship",
+      "entity": "kaust",
+      "index": 4,
+      "label": "Secure IELTS/accepted English evidence and submit early"
+    },
+    {
+      "key": "sch-mbzuai-0",
+      "kind": "scholarship",
+      "entity": "mbzuai",
+      "index": 0,
+      "label": "Target the strongest matching Computer Vision / ML pathway"
+    },
+    {
+      "key": "sch-mbzuai-1",
+      "kind": "scholarship",
+      "entity": "mbzuai",
+      "index": 1,
+      "label": "Emphasize publication + production AI combination"
+    },
+    {
+      "key": "sch-mbzuai-2",
+      "kind": "scholarship",
+      "entity": "mbzuai",
+      "index": 2,
+      "label": "Document your research contribution to each paper/project"
+    },
+    {
+      "key": "sch-mbzuai-3",
+      "kind": "scholarship",
+      "entity": "mbzuai",
+      "index": 3,
+      "label": "Prepare research statement and evidence package"
+    },
+    {
+      "key": "sch-mbzuai-4",
+      "kind": "scholarship",
+      "entity": "mbzuai",
+      "index": 4,
+      "label": "Verify assistantship/funding route during the application"
+    },
+    {
+      "key": "sch-weidenfeld-0",
+      "kind": "scholarship",
+      "entity": "weidenfeld",
+      "index": 0,
+      "label": "Build a 1–2 page Oxford-grade academic CV"
+    },
+    {
+      "key": "sch-weidenfeld-1",
+      "kind": "scholarship",
+      "entity": "weidenfeld",
+      "index": 1,
+      "label": "Prepare MSc Advanced Computer Science application"
+    },
+    {
+      "key": "sch-weidenfeld-2",
+      "kind": "scholarship",
+      "entity": "weidenfeld",
+      "index": 2,
+      "label": "Prepare Oxford SOP within the current word limit"
+    },
+    {
+      "key": "sch-weidenfeld-3",
+      "kind": "scholarship",
+      "entity": "weidenfeld",
+      "index": 3,
+      "label": "Frame a concrete public-impact and return-home case"
+    },
+    {
+      "key": "sch-weidenfeld-4",
+      "kind": "scholarship",
+      "entity": "weidenfeld",
+      "index": 4,
+      "label": "Select strongest academic/research referees and submit by funding deadline"
+    },
+    {
+      "key": "sch-clarendon-0",
+      "kind": "scholarship",
+      "entity": "clarendon",
+      "index": 0,
+      "label": "Maximize the Oxford course application rather than writing a separate Clarendon application"
+    },
+    {
+      "key": "sch-clarendon-1",
+      "kind": "scholarship",
+      "entity": "clarendon",
+      "index": 1,
+      "label": "Present publications and technical research contributions clearly"
+    },
+    {
+      "key": "sch-clarendon-2",
+      "kind": "scholarship",
+      "entity": "clarendon",
+      "index": 2,
+      "label": "Obtain high-specificity recommendation letters"
+    },
+    {
+      "key": "sch-clarendon-3",
+      "kind": "scholarship",
+      "entity": "clarendon",
+      "index": 3,
+      "label": "Ensure the academic statement demonstrates research maturity"
+    },
+    {
+      "key": "sch-gates-0",
+      "kind": "scholarship",
+      "entity": "gates",
+      "index": 0,
+      "label": "Target MPhil Advanced Computer Science by the funding deadline"
+    },
+    {
+      "key": "sch-gates-1",
+      "kind": "scholarship",
+      "entity": "gates",
+      "index": 1,
+      "label": "Prepare the required brief research-project proposal"
+    },
+    {
+      "key": "sch-gates-2",
+      "kind": "scholarship",
+      "entity": "gates",
+      "index": 2,
+      "label": "Identify real leadership evidence not currently emphasized in the CV"
+    },
+    {
+      "key": "sch-gates-3",
+      "kind": "scholarship",
+      "entity": "gates",
+      "index": 3,
+      "label": "Prepare Gates-specific case and Gates reference"
+    },
+    {
+      "key": "sch-gates-4",
+      "kind": "scholarship",
+      "entity": "gates",
+      "index": 4,
+      "label": "Meet the Cambridge English-language requirement"
+    },
+    {
+      "key": "sch-khs-0",
+      "kind": "scholarship",
+      "entity": "khs",
+      "index": 0,
+      "label": "Make an immediate go/no-go decision based on genuine leadership evidence"
+    },
+    {
+      "key": "sch-khs-1",
+      "kind": "scholarship",
+      "entity": "khs",
+      "index": 1,
+      "label": "Check Stanford graduate-program deadline alignment"
+    },
+    {
+      "key": "sch-khs-2",
+      "kind": "scholarship",
+      "entity": "khs",
+      "index": 2,
+      "label": "Prepare KHS-specific essays only if the evidence is strong enough"
+    },
+    {
+      "key": "sch-khs-3",
+      "kind": "scholarship",
+      "entity": "khs",
+      "index": 3,
+      "label": "Obtain highly specific recommendations"
+    },
+    {
+      "key": "sch-khs-4",
+      "kind": "scholarship",
+      "entity": "khs",
+      "index": 4,
+      "label": "Submit by 6 Oct 2026 if proceeding"
+    },
+    {
+      "key": "sch-chevening-0",
+      "kind": "scholarship",
+      "entity": "chevening",
+      "index": 0,
+      "label": "Do not invest application time this cycle"
+    },
+    {
+      "key": "sch-chevening-1",
+      "kind": "scholarship",
+      "entity": "chevening",
+      "index": 1,
+      "label": "Build post-graduation leadership and professional evidence"
+    },
+    {
+      "key": "sch-chevening-2",
+      "kind": "scholarship",
+      "entity": "chevening",
+      "index": 2,
+      "label": "Revisit in a future eligible year"
+    },
+    {
+      "key": "sch-ediss-0",
+      "kind": "scholarship",
+      "entity": "ediss",
+      "index": 0,
+      "label": "Prepare EDISS CV template and motivation package"
+    },
+    {
+      "key": "sch-ediss-1",
+      "kind": "scholarship",
+      "entity": "ediss",
+      "index": 1,
+      "label": "Map coursework to programme prerequisites"
+    },
+    {
+      "key": "sch-ediss-2",
+      "kind": "scholarship",
+      "entity": "ediss",
+      "index": 2,
+      "label": "Prepare two academic recommendation letters"
+    },
+    {
+      "key": "sch-ediss-3",
+      "kind": "scholarship",
+      "entity": "ediss",
+      "index": 3,
+      "label": "Collect certified/attested academic and experience evidence"
+    },
+    {
+      "key": "sch-ediss-4",
+      "kind": "scholarship",
+      "entity": "ediss",
+      "index": 4,
+      "label": "Prepare 2-minute ±30-second motivation video and apply from 16 Nov"
+    },
+    {
+      "key": "sch-commonwealth-shared-0",
+      "kind": "scholarship",
+      "entity": "commonwealth-shared",
+      "index": 0,
+      "label": "Watch the November 2026 eligible-course publication"
+    },
+    {
+      "key": "sch-commonwealth-shared-1",
+      "kind": "scholarship",
+      "entity": "commonwealth-shared",
+      "index": 1,
+      "label": "Shortlist AI/CS/data-intensive courses immediately after publication"
+    },
+    {
+      "key": "sch-commonwealth-shared-2",
+      "kind": "scholarship",
+      "entity": "commonwealth-shared",
+      "index": 2,
+      "label": "Reuse and adapt Commonwealth development-impact evidence"
+    },
+    {
+      "key": "sch-commonwealth-shared-3",
+      "kind": "scholarship",
+      "entity": "commonwealth-shared",
+      "index": 3,
+      "label": "Apply separately to the participating university course where required"
+    },
+    {
+      "key": "sch-mext-0",
+      "kind": "scholarship",
+      "entity": "mext",
+      "index": 0,
+      "label": "Do not treat the closed 2027 embassy route as an active application"
+    },
+    {
+      "key": "sch-mext-1",
+      "kind": "scholarship",
+      "entity": "mext",
+      "index": 1,
+      "label": "Build a reusable Field of Study & Research Plan"
+    },
+    {
+      "key": "sch-mext-2",
+      "kind": "scholarship",
+      "entity": "mext",
+      "index": 2,
+      "label": "Map Japanese AI/CV labs and supervisors"
+    },
+    {
+      "key": "sch-mext-3",
+      "kind": "scholarship",
+      "entity": "mext",
+      "index": 3,
+      "label": "Watch the next Bangladesh embassy cycle and university-recommendation opportunities"
+    },
+    {
+      "key": "sch-stipendium-0",
+      "kind": "scholarship",
+      "entity": "stipendium",
+      "index": 0,
+      "label": "Watch the official 2027/28 call and Bangladesh sending-partner notice"
+    },
+    {
+      "key": "sch-stipendium-1",
+      "kind": "scholarship",
+      "entity": "stipendium",
+      "index": 1,
+      "label": "Identify English-taught CS/AI/Data Science Master's programmes"
+    },
+    {
+      "key": "sch-stipendium-2",
+      "kind": "scholarship",
+      "entity": "stipendium",
+      "index": 2,
+      "label": "Prepare the general academic packet now"
+    },
+    {
+      "key": "sch-stipendium-3",
+      "kind": "scholarship",
+      "entity": "stipendium",
+      "index": 3,
+      "label": "Verify programme-specific admission and language requirements after publication"
+    },
+    {
+      "key": "sch-turkiye-0",
+      "kind": "scholarship",
+      "entity": "turkiye",
+      "index": 0,
+      "label": "Watch for the specific 2027 announcement"
+    },
+    {
+      "key": "sch-turkiye-1",
+      "kind": "scholarship",
+      "entity": "turkiye",
+      "index": 1,
+      "label": "Prepare the academic/CV/reference packet before January"
+    },
+    {
+      "key": "sch-turkiye-2",
+      "kind": "scholarship",
+      "entity": "turkiye",
+      "index": 2,
+      "label": "Research AI/CS programmes likely to appear in the application system"
+    },
+    {
+      "key": "sch-turkiye-3",
+      "kind": "scholarship",
+      "entity": "turkiye",
+      "index": 3,
+      "label": "Tailor motivation and career-impact narrative for the centralized application"
+    },
+    {
+      "key": "sch-gks-0",
+      "kind": "scholarship",
+      "entity": "gks",
+      "index": 0,
+      "label": "Monitor the official GKS scholarship notice board"
+    },
+    {
+      "key": "sch-gks-1",
+      "kind": "scholarship",
+      "entity": "gks",
+      "index": 1,
+      "label": "Prepare apostille/certification strategy once the 2027 guide is published"
+    },
+    {
+      "key": "sch-gks-2",
+      "kind": "scholarship",
+      "entity": "gks",
+      "index": 2,
+      "label": "Build a shortlist of AI/CV universities for embassy vs university track"
+    },
+    {
+      "key": "sch-gks-3",
+      "kind": "scholarship",
+      "entity": "gks",
+      "index": 3,
+      "label": "Do not lock deadlines or document rules until the general 2027 GKS-G guide is released"
+    },
+    {
+      "key": "doc-passport",
+      "kind": "document",
+      "entity": "passport",
+      "label": "Valid passport color scan / national ID backup"
+    },
+    {
+      "key": "doc-photo",
+      "kind": "document",
+      "entity": "photo",
+      "label": "Professional passport-style photograph"
+    },
+    {
+      "key": "doc-transcript",
+      "kind": "document",
+      "entity": "transcript",
+      "label": "Official academic transcript"
+    },
+    {
+      "key": "doc-certificate",
+      "kind": "document",
+      "entity": "certificate",
+      "label": "Graduation / provisional certificate"
+    },
+    {
+      "key": "doc-gradingScale",
+      "kind": "document",
+      "entity": "gradingScale",
+      "label": "Transcript grading scale / CGPA explanation"
+    },
+    {
+      "key": "doc-certifiedAcademic",
+      "kind": "document",
+      "entity": "certifiedAcademic",
+      "label": "Certified / attested academic-copy packet"
+    },
+    {
+      "key": "doc-cv",
+      "kind": "document",
+      "entity": "cv",
+      "label": "Scholarship-optimized master academic CV"
+    },
+    {
+      "key": "doc-cvResearch",
+      "kind": "document",
+      "entity": "cvResearch",
+      "label": "Research / technical CV variant"
+    },
+    {
+      "key": "doc-cvOxford",
+      "kind": "document",
+      "entity": "cvOxford",
+      "label": "Oxford 1–2 page CV variant"
+    },
+    {
+      "key": "doc-cvEdiss",
+      "kind": "document",
+      "entity": "cvEdiss",
+      "label": "EDISS CV template"
+    },
+    {
+      "key": "doc-sopResearch",
+      "kind": "document",
+      "entity": "sopResearch",
+      "label": "Research-focused SOP master draft"
+    },
+    {
+      "key": "doc-sopKaust",
+      "kind": "document",
+      "entity": "sopKaust",
+      "label": "KAUST research SOP (~750 words)"
+    },
+    {
+      "key": "doc-sopOxford",
+      "kind": "document",
+      "entity": "sopOxford",
+      "label": "Oxford MSc Advanced CS statement"
+    },
+    {
+      "key": "doc-impactEssay",
+      "kind": "document",
+      "entity": "impactEssay",
+      "label": "Development / public-impact narrative"
+    },
+    {
+      "key": "doc-commonwealthImpact",
+      "kind": "document",
+      "entity": "commonwealthImpact",
+      "label": "Commonwealth four-part development-impact response"
+    },
+    {
+      "key": "doc-careerPlan",
+      "kind": "document",
+      "entity": "careerPlan",
+      "label": "2-year / 5-year / long-term career plan"
+    },
+    {
+      "key": "doc-leadershipEssay",
+      "kind": "document",
+      "entity": "leadershipEssay",
+      "label": "Leadership / civic-impact evidence bank"
+    },
+    {
+      "key": "doc-mextPlan",
+      "kind": "document",
+      "entity": "mextPlan",
+      "label": "MEXT Field of Study & Research Plan draft"
+    },
+    {
+      "key": "doc-references",
+      "kind": "document",
+      "entity": "references",
+      "label": "Core three-referee panel confirmed"
+    },
+    {
+      "key": "doc-refereePackets",
+      "kind": "document",
+      "entity": "refereePackets",
+      "label": "Referee evidence packets"
+    },
+    {
+      "key": "doc-english",
+      "kind": "document",
+      "entity": "english",
+      "label": "IELTS Academic plan or valid score"
+    },
+    {
+      "key": "doc-publications",
+      "kind": "document",
+      "entity": "publications",
+      "label": "Publication package"
+    },
+    {
+      "key": "doc-portfolio",
+      "kind": "document",
+      "entity": "portfolio",
+      "label": "GitHub / project evidence cleaned for admissions"
+    },
+    {
+      "key": "doc-evidenceArchive",
+      "kind": "document",
+      "entity": "evidenceArchive",
+      "label": "Employment / teaching / achievement evidence archive"
+    },
+    {
+      "key": "doc-edissVideo",
+      "kind": "document",
+      "entity": "edissVideo",
+      "label": "EDISS motivation video"
+    },
+    {
+      "key": "doc-finance",
+      "kind": "document",
+      "entity": "finance",
+      "label": "Financial-need/supporting documents where requested"
+    },
+    {
+      "key": "ielts-book",
+      "kind": "ielts",
+      "entity": "book",
+      "label": "Book an IELTS Academic test date with enough retake margin"
+    },
+    {
+      "key": "ielts-baseline",
+      "kind": "ielts",
+      "entity": "baseline",
+      "label": "Take a full timed baseline mock and record section scores"
+    },
+    {
+      "key": "ielts-prep",
+      "kind": "ielts",
+      "entity": "prep",
+      "label": "Run targeted preparation until every section is consistently ≥7.0"
+    },
+    {
+      "key": "ielts-sit",
+      "kind": "ielts",
+      "entity": "sit",
+      "label": "Sit the official test"
+    },
+    {
+      "key": "ielts-report",
+      "kind": "ielts",
+      "entity": "report",
+      "label": "Store TRF/score details and map reporting requirements per university"
+    },
+    {
+      "key": "ref-A-confirmed",
+      "kind": "referee",
+      "entity": "A",
+      "stage": "confirmed",
+      "label": "Confirmed"
+    },
+    {
+      "key": "ref-A-briefed",
+      "kind": "referee",
+      "entity": "A",
+      "stage": "briefed",
+      "label": "Evidence packet sent"
+    },
+    {
+      "key": "ref-A-submitted",
+      "kind": "referee",
+      "entity": "A",
+      "stage": "submitted",
+      "label": "Submitted where required"
+    },
+    {
+      "key": "ref-B-confirmed",
+      "kind": "referee",
+      "entity": "B",
+      "stage": "confirmed",
+      "label": "Confirmed"
+    },
+    {
+      "key": "ref-B-briefed",
+      "kind": "referee",
+      "entity": "B",
+      "stage": "briefed",
+      "label": "Evidence packet sent"
+    },
+    {
+      "key": "ref-B-submitted",
+      "kind": "referee",
+      "entity": "B",
+      "stage": "submitted",
+      "label": "Submitted where required"
+    },
+    {
+      "key": "ref-C-confirmed",
+      "kind": "referee",
+      "entity": "C",
+      "stage": "confirmed",
+      "label": "Confirmed"
+    },
+    {
+      "key": "ref-C-briefed",
+      "kind": "referee",
+      "entity": "C",
+      "stage": "briefed",
+      "label": "Evidence packet sent"
+    },
+    {
+      "key": "ref-C-submitted",
+      "kind": "referee",
+      "entity": "C",
+      "stage": "submitted",
+      "label": "Submitted where required"
+    }
+  ]
+}

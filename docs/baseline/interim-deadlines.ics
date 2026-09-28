@@ -1,0 +1,77 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Career Track//E0 Interim Deadlines//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Career Track interim deadlines
+BEGIN:VEVENT
+UID:khs-2027@career-track
+DTSTAMP:20260928T000000Z
+DTSTART:20261006T200000Z
+DURATION:PT1M
+SEQUENCE:0
+SUMMARY:Knight-Hennessy Scholars application deadline
+URL:https://knight-hennessy.stanford.edu/admission
+DESCRIPTION:Official: 2026-10-06 13:00:00 America/Los_Angeles. Dhaka: 2026-
+ 10-07 02:00:00. Verified 2026-09-28. The Stanford graduate-program applica
+ tion is separate and may have its own deadline.\nSource: https://knight-he
+ nnessy.stanford.edu/admission
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P7D
+DESCRIPTION:Knight-Hennessy Scholars application deadline
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P3D
+DESCRIPTION:Knight-Hennessy Scholars application deadline
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Knight-Hennessy Scholars application deadline
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT3H
+DESCRIPTION:Knight-Hennessy Scholars application deadline
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:commonwealth-2027@career-track
+DTSTAMP:20260928T000000Z
+DTSTART:20261020T150000Z
+DURATION:PT1M
+SEQUENCE:0
+SUMMARY:Commonwealth Master's CSC application deadline
+URL:https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarship
+ s/
+DESCRIPTION:Official: 2026-10-20 16:00:00 Europe/London. Dhaka: 2026-10-20 
+ 21:00:00. Verified 2026-09-28. Bangladesh's nominating agency can set a se
+ parate earlier deadline\; its date has not been verified. This event cover
+ s only the CSC deadline.\nSource: https://cscuk.fcdo.gov.uk/scholarships/c
+ ommonwealth-masters-scholarships/
+TRANSP:TRANSPARENT
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P7D
+DESCRIPTION:Commonwealth Master's CSC application deadline
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P3D
+DESCRIPTION:Commonwealth Master's CSC application deadline
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-P1D
+DESCRIPTION:Commonwealth Master's CSC application deadline
+END:VALARM
+BEGIN:VALARM
+ACTION:DISPLAY
+TRIGGER:-PT3H
+DESCRIPTION:Commonwealth Master's CSC application deadline
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,56 @@
+{
+  "repository": "iam-ajmunna/career-track",
+  "branch": "main",
+  "commit": "af53a4c34295a160217845465c33002b074e10d7",
+  "tree": "e5a60e600f7850f8cea71da022b4a3b8ac6af327",
+  "audited_on": "2026-09-28",
+  "production_url": "https://muncareer.vercel.app/",
+  "vercel_deployment_dashboard": "https://vercel.com/aj-81af/career-track/BiwXf6qVViRkfcpDoZNVbbYdzBRY",
+  "tag": {
+    "name": "pre-migration",
+    "local": "created-and-verified",
+    "remote": "pending-authenticated-git-push"
+  },
+  "files": [
+    {
+      "path": "DESIGN.md",
+      "sha": "a1580918fd7a7861ab16c0b0602df54b47f159c5",
+      "size": 6394
+    },
+    {
+      "path": "LICENSE",
+      "sha": "854938522820b9824bdea756d6acf5d7d36bb561",
+      "size": 1075
+    },
+    {
+      "path": "README.md",
+      "sha": "4a0061055a39381c788ed3a09c835408e6831d45",
+      "size": 3747
+    },
+    {
+      "path": "SCHOLARSHIP-SOURCES.md",
+      "sha": "52fa801d3d7b10b681a8cb972dcc09cf167c983d",
+      "size": 3797
+    },
+    {
+      "path": "assets/styles.css",
+      "sha": "689f2d0b758999dff96516589692c63cf37863e3",
+      "size": 21502
+    },
+    {
+      "path": "index.html",
+      "sha": "cc02726faae8532d6cdf70c50d16fcad5b3813ce",
+      "size": 4629
+    },
+    {
+      "path": "src/app.js",
+      "sha": "38d0f161358d6cac34979a7df4ca7b3e853f7f79",
+      "size": 26644
+    },
+    {
+      "path": "src/data.js",
+      "sha": "749ca8c807cad24bc9a585b8054507c1af388e65",
+      "size": 26632
+    }
+  ]
+}
