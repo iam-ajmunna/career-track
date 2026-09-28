@@ -84,7 +84,7 @@ All enabled controls expose hover, focus-visible, and pressed states. Focus-visi
 
 ### Buttons and actions
 
-Primary actions are solid neutral controls. Secondary actions use bordered surfaces. Danger is reserved for destructive local-progress reset. Status pills are non-interactive and must not inherit button geometry.
+Primary actions are solid neutral controls. Secondary actions use bordered surfaces. Danger indicates critical deadlines and failures that need attention. Status pills are non-interactive and must not inherit button geometry.
 
 ### Navigation and data display
 
@@ -94,7 +94,7 @@ The Documents view is a dossier workspace rather than a flat checklist. Evidence
 
 ### Forms and overlays
 
-Search owns an explicit clear control whenever non-empty. Dialogs use native `<dialog>` with accessible names and app-owned reset confirmation; browser `confirm()` is not used. Toasts acknowledge completed local actions through a polite live region.
+Search owns an explicit clear control whenever non-empty. Dialogs use native `<dialog>` with accessible names and app-owned pending-change sign-out confirmation; browser `confirm()` is not used. Toasts acknowledge non-critical actions through a polite live region.
 
 ### Iconography
 
@@ -114,3 +114,9 @@ Copy is concise, operational, and specific. Status labels distinguish Open, Open
 - **Do:** let content wrap inside stable grid tracks instead of widening cards or the page.
 - **Don't:** style informational badges as large action controls or allow flex stretching to change their meaning.
 - **Don't:** introduce decorative gradients, excessive elevation, or color without semantic purpose.
+
+### Account and synchronization surfaces
+
+The login gate uses the existing card, neutral primary button, typography and spacing. Authenticated content stays hidden until owner state is available. Save status and persistent recovery messages sit below the top bar. Missing setup, forbidden access and expired sessions have distinct copy.
+
+Countdowns use tabular monospace numerals, provider/Dhaka time labels, semantic urgency borders and quiet source links. Seconds update timer nodes only; screen readers receive urgency changes and final-day minute updates. Compact cards wrap at existing responsive breakpoints. The export/sign-out controls replace local reset.

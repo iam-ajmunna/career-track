@@ -8,12 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <script>
-    try {
-      const savedTheme = localStorage.getItem('scholarship-theme');
-      if (savedTheme) document.documentElement.dataset.theme = savedTheme;
-    } catch (_) {}
-  </script>
+  <script type="module" src="/assets/theme.js"></script>
   <link rel="stylesheet" href="./assets/styles.css" />
 </head>
 <body>
@@ -21,7 +16,23 @@
     <div class="noscript">This dashboard needs JavaScript enabled to render scholarship data.</div>
   </noscript>
 
-  <div class="app-shell">
+  <main id="authGate" class="auth-gate" aria-labelledby="authTitle">
+    <section class="auth-card card">
+      <div class="brand-mark" aria-hidden="true">M</div>
+      <p class="eyebrow">Scholarship OS · MSc 2027</p>
+      <h1 id="authTitle">Opening your workspace</h1>
+      <p id="authMessage" class="auth-message" role="status" aria-live="polite">Checking your sign-in…</p>
+      <div class="auth-actions">
+        <button type="button" id="googleSignIn" class="button" hidden>Continue with Google</button>
+        <button type="button" id="authRetry" class="button secondary" hidden>Retry</button>
+        <button type="button" id="gateExport" class="button secondary" hidden>Export pending changes</button>
+        <button type="button" id="gateSignOut" class="button secondary" hidden>Sign out</button>
+      </div>
+      <p class="small muted">A private workspace for your applications, documents and deadlines.</p>
+    </section>
+  </main>
+
+  <div class="app-shell" id="appShell" hidden>
     <aside class="sidebar" aria-label="Primary navigation">
       <div class="brand">
         <div class="brand-mark">M</div>
@@ -42,7 +53,8 @@
       <div class="sidebar-footer">
         <div class="status-dot-row"><span class="status-dot"></span><span>Dataset snapshot</span></div>
         <div class="muted small">26 Sep 2026</div>
-        <button type="button" id="resetProgress" class="text-button">Reset local progress</button>
+        <div class="account-actions"><button type="button" id="exportProgress" class="text-button">Export progress</button>
+        <button type="button" id="signOut" class="text-button">Sign out</button></div>
       </div>
     </aside>
 
@@ -61,6 +73,11 @@
         </div>
       </header>
 
+      <div id="syncBar" class="sync-bar" data-status="loading">
+        <span id="syncLabel" role="status" aria-live="polite">Opening workspace…</span>
+        <button type="button" id="syncRetry" class="text-button" hidden>Retry</button>
+      </div>
+      <p id="syncMessage" class="sync-message" role="status" hidden></p>
       <section id="view-overview" class="view active-view"></section>
       <section id="view-scholarships" class="view"></section>
       <section id="view-pipeline" class="view"></section>
@@ -74,14 +91,14 @@
     <div id="dialogContent"></div>
   </dialog>
 
-  <dialog id="resetDialog" class="dialog dialog--compact" aria-labelledby="resetDialogTitle" aria-describedby="resetDialogDescription">
+  <dialog id="signOutDialog" class="dialog dialog--compact" aria-labelledby="signOutTitle" aria-describedby="signOutDescription">
     <div class="dialog-body">
-      <p class="eyebrow">Local data</p>
-      <h2 id="resetDialogTitle" class="dialog-title dialog-title--compact">Reset progress?</h2>
-      <p id="resetDialogDescription" class="dialog-copy">This clears scholarship, dossier, IELTS and referee progress saved in this browser. Scholarship data itself will not change.</p>
+      <p class="eyebrow">Pending changes</p>
+      <h2 id="signOutTitle" class="dialog-title dialog-title--compact">Save before signing out</h2>
+      <p id="signOutDescription" class="dialog-copy"></p>
       <div class="dialog-actions dialog-actions--end">
-        <button type="button" id="resetCancel" class="button secondary">Cancel</button>
-        <button type="button" id="resetConfirm" class="button danger">Reset progress</button>
+        <button type="button" id="signOutCancel" class="button secondary">Stay and retry</button>
+        <button type="button" id="exportSignOut" class="button">Export and sign out</button>
       </div>
     </div>
   </dialog>
@@ -92,6 +109,6 @@
 
   <div id="toastRoot" class="toast-root" role="status" aria-live="polite" aria-atomic="true"></div>
 
-  <script type="module" src="./src/app.js"></script>
+  <script type="module" src="/assets/app.js"></script>
 </body>
 </html>

@@ -1,0 +1,16 @@
+{
+  "name": "career-track",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.18.0" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/dev.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "check:keys": "node scripts/check-legacy-contract.mjs",
+    "provision:owner": "node --env-file-if-exists=.env scripts/provision-owner.mjs"
+  },
+  "dependencies": { "@supabase/supabase-js": "2.117.2" },
+  "devDependencies": { "@electric-sql/pglite": "0.5.8", "esbuild": "0.28.2" }
+}

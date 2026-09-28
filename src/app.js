@@ -1,11 +1,15 @@
-import { scholarships, profile, documents, englishPlan, referees, refereeStages, timeline, snapshotDate } from './data.js';
+import { scholarships, documents, englishPlan, referees, refereeStages, timeline, snapshotDate } from './data.js';
+import { escapeHtml } from './sync/model.js';
+import { createCountdowns, verifiedDeadlines, dateOnlyDeadlines } from './countdowns.js';
+let progressStore;
+let lastState = '';
 
 const state = {
   view: 'overview',
   filter: 'all',
   query: '',
-  progress: JSON.parse(localStorage.getItem('scholarship-progress') || '{}'),
-  theme: localStorage.getItem('scholarship-theme') || 'light'
+  progress: {}, applications: {}, profile: null, clockOffset: 0,
+  theme: document.documentElement.dataset.theme || 'light'
 };
 
 document.documentElement.dataset.theme = state.theme;
@@ -16,13 +20,9 @@ const els = {
   search: document.querySelector('#globalSearch'),
   searchClear: document.querySelector('#searchClear'),
   themeToggle: document.querySelector('#themeToggle'),
-  resetProgress: document.querySelector('#resetProgress'),
   dialog: document.querySelector('#scholarshipDialog'),
   dialogContent: document.querySelector('#dialogContent'),
   dialogClose: document.querySelector('#dialogClose'),
-  resetDialog: document.querySelector('#resetDialog'),
-  resetCancel: document.querySelector('#resetCancel'),
-  resetConfirm: document.querySelector('#resetConfirm'),
   toastRoot: document.querySelector('#toastRoot')
 };
 
@@ -53,28 +53,16 @@ const fitMap = {
   ineligible: ['Ineligible', 'danger']
 };
 
-function saveProgress() {
-  localStorage.setItem('scholarship-progress', JSON.stringify(state.progress));
-}
-
-function localDate(date) {
-  const [year, month, day] = date.split('-').map(Number);
-  return new Date(year, month - 1, day);
-}
-
-function todayStart() {
-  const now = new Date();
-  return new Date(now.getFullYear(), now.getMonth(), now.getDate());
-}
-
 function daysUntil(date) {
-  const end = localDate(date);
-  return Math.ceil((end - todayStart()) / 86400000);
+  const current = new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Dhaka', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date(Date.now() + state.clockOffset));
+  return Math.ceil((Date.parse(date + 'T00:00:00Z') - Date.parse(current + 'T00:00:00Z')) / 86400000);
 }
 
 function effectiveStatus(item) {
   if (['blocked', 'closed', 'watch'].includes(item.status)) return item.status;
-  if (item.deadline && daysUntil(item.deadline) < 0) return 'closed';
+  const exact = verifiedDeadlines.find(deadline => deadline.scholarship_id === item.id);
+  if (exact && Date.parse(exact.deadline_at) <= Date.now() + state.clockOffset) return 'closed';
+  if (!exact && item.deadline && daysUntil(item.deadline) < 0) return 'closed';
 
   if (item.opens) {
     const opensIn = daysUntil(item.opens);
@@ -88,6 +76,10 @@ function effectiveStatus(item) {
 }
 
 function deadlineLabel(item) {
+  const exact = verifiedDeadlines.find(deadline => deadline.scholarship_id === item.id);
+  if (exact) return new Intl.DateTimeFormat('en-GB', {timeZone:'Asia/Dhaka', dateStyle:'medium', timeStyle:'short'}).format(new Date(exact.deadline_at)) + ' · Dhaka';
+  const dateOnly = dateOnlyDeadlines.find(deadline => deadline.scholarship_id === item.id);
+  if (dateOnly) return `${dateOnly.deadline_date} · Closing time unconfirmed`;
   const status = effectiveStatus(item);
   if (status === 'blocked') return 'Not eligible this cycle';
   if (status === 'closed') return item.timing || 'Closed for this cycle';
@@ -98,8 +90,7 @@ function deadlineLabel(item) {
     return `Opens ${item.opens} · ${openDays} days${closing}`;
   }
   if (item.deadline) {
-    const days = daysUntil(item.deadline);
-    return `${item.deadline} · ${days} day${days === 1 ? '' : 's'} remaining`;
+    return `${item.deadline} · Date needs re-verification`;
   }
   return item.timing || 'Official timetable pending';
 }
@@ -158,7 +149,7 @@ function renderOverview() {
     .slice(0,5);
   const progress = getOverallProgress();
 
-  document.querySelector('#view-overview').innerHTML = `
+  document.querySelector('#view-overview').innerHTML = `<div id="deadlineHub"></div>
     <div class="banner">
       <div>
         <strong>Application command center</strong>
@@ -171,7 +162,7 @@ function renderOverview() {
       <div class="card card-pad"><div class="metric-label">Priority targets</div><div class="metric-value">${best.length}</div><div class="metric-sub">Best allocation of application effort</div></div>
       <div class="card card-pad"><div class="metric-label">Open / actionable</div><div class="metric-value">${active}</div><div class="metric-sub">Includes open and immediately opening routes</div></div>
       <div class="card card-pad"><div class="metric-label">Urgent deadlines</div><div class="metric-value">${urgent}</div><div class="metric-sub">Within 25 days of snapshot</div></div>
-      <div class="card card-pad"><div class="metric-label">Pipeline completion</div><div class="metric-value">${progress}%</div><div class="metric-sub">Saved locally in this browser</div></div>
+      <div class="card card-pad"><div class="metric-label">Pipeline completion</div><div class="metric-value">${progress}%</div><div class="metric-sub">Synced to your private workspace</div></div>
     </div>
 
     <section class="section">
@@ -237,7 +228,7 @@ function renderPipeline() {
     .filter(s => s.eligible && !['closed','blocked','watch'].includes(effectiveStatus(s)))
     .sort((a,b) => a.priority - b.priority);
   document.querySelector('#view-pipeline').innerHTML = `
-    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Local progress</span></div>
+    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Cloud progress</span></div>
     <div class="section grid">
       ${ordered.map(s => {
         const progress = getScholarshipProgress(s.id);
@@ -253,6 +244,7 @@ function renderPipeline() {
               return `<div class="check-row"><input id="${key}" type="checkbox" data-progress-key="${key}" ${state.progress[key]?'checked':''}><label for="${key}">${action}</label><span class="meta">Step ${i+1}</span></div>`;
             }).join('')}
           </div>
+          <div class="application-controls"><span class="pill neutral">${state.applications[s.id] === 'submitted' ? 'Submitted' : 'Preparing'}</span><button class="button secondary" data-application-id="${s.id}" data-application-status="${state.applications[s.id] === 'submitted' ? 'preparing' : 'submitted'}">${state.applications[s.id] === 'submitted' ? 'Resume preparation' : 'Mark submitted'}</button></div>
         </section>`;
       }).join('')}
     </div>`;
@@ -339,6 +331,9 @@ function renderDocuments() {
 }
 
 function renderProfile() {
+  if (!state.profile) { document.querySelector('#view-profile').innerHTML = '<div class="empty">Your profile has not been configured yet.</div>'; return; }
+  const profile = { ...state.profile, positioning: Object.fromEntries(['engineering','research','academics','developmentImpact','leadership'].map(key => [key, Math.max(0,Math.min(100,Number(state.profile.positioning?.[key]) || 0))])), highlights: Array.isArray(state.profile.highlights) ? state.profile.highlights.map(escapeHtml) : [] };
+  for (const key of ['name','degree','university','cgpa']) profile[key] = escapeHtml(profile[key]);
   const avg = Math.round(Object.values(profile.positioning).reduce((a,b)=>a+b,0) / Object.values(profile.positioning).length);
   const dims = [
     ['Engineering depth', profile.positioning.engineering],
@@ -379,7 +374,10 @@ function renderProfile() {
     </div>`;
 }
 
+const countdowns = createCountdowns({ state, readiness: getScholarshipProgress, onHeroChange: renderCurrentView });
+
 function renderCurrentView() {
+  const focusedKey = document.activeElement?.dataset?.progressKey;
   renderOverview();
   renderScholarships();
   renderPipeline();
@@ -397,6 +395,8 @@ function renderCurrentView() {
   });
   els.search.value = state.query;
   els.searchClear.hidden = !state.query;
+  countdowns.render();
+  if (focusedKey) document.querySelector(`[data-progress-key="${CSS.escape(focusedKey)}"]`)?.focus({ preventScroll: true });
 }
 
 function openScholarship(id) {
@@ -467,29 +467,17 @@ function syncThemeToggle() {
 els.themeToggle.addEventListener('click', () => {
   state.theme = state.theme === 'light' ? 'dark' : 'light';
   document.documentElement.dataset.theme = state.theme;
-  localStorage.setItem('scholarship-theme', state.theme);
+  try { localStorage.setItem('scholarship-theme', state.theme); } catch { toast('Theme will apply until this tab closes.'); }
   syncThemeToggle();
 });
 
 els.dialogClose.addEventListener('click', () => els.dialog.close());
 els.dialog.addEventListener('click', e => { if (e.target === els.dialog) els.dialog.close(); });
 
-els.resetProgress.addEventListener('click', () => {
-  els.resetDialog.showModal();
-  els.resetCancel.focus();
-});
-
-els.resetCancel.addEventListener('click', () => els.resetDialog.close());
-els.resetConfirm.addEventListener('click', () => {
-  state.progress = {};
-  saveProgress();
-  els.resetDialog.close();
-  renderCurrentView();
-  toast('Progress reset');
-});
-els.resetDialog.addEventListener('click', e => { if (e.target === els.resetDialog) els.resetDialog.close(); });
-
 document.addEventListener('click', e => {
+  const status = e.target.closest('[data-application-status]');
+  if (status) { try { progressStore.change('applications', status.dataset.applicationId, status.dataset.applicationStatus); }
+    catch { toast('Sign in again before editing.'); } return; }
   const filter = e.target.closest('[data-filter]');
   if (filter) { state.filter = filter.dataset.filter; renderCurrentView(); return; }
 
@@ -509,12 +497,12 @@ document.addEventListener('click', e => {
 document.addEventListener('change', e => {
   const key = e.target.dataset.progressKey;
   if (!key) return;
-  state.progress[key] = e.target.checked;
-  saveProgress();
-  renderCurrentView();
+  try { progressStore.change('progress', key, e.target.checked); } catch { renderCurrentView(); toast('Sign in again before editing.'); }
 });
 
 document.addEventListener('keydown', e => {
+  if (document.querySelector('#appShell').hidden) return;
+  if (e.isComposing || e.keyCode === 229) return;
   if (/^[1-5]$/.test(e.key) && !document.querySelector('dialog[open]') && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
     const views = ['overview','scholarships','pipeline','documents','profile'];
     state.view = views[Number(e.key)-1];
@@ -526,5 +514,11 @@ document.addEventListener('keydown', e => {
   }
 });
 
-syncThemeToggle();
-renderCurrentView();
+export function mountApp(store) { progressStore = store; lastState = ''; syncThemeToggle(); countdowns.start(); }
+export function updateWorkspace(event) {
+  if (!event.state) return;
+  state.progress = event.state.progress; state.applications = event.state.applications; state.profile = event.state.profile; state.clockOffset = event.clockOffset;
+  const signature = JSON.stringify(event.state);
+  if (signature !== lastState) { lastState = signature; renderCurrentView(); } else countdowns.tick();
+}
+export function hideWorkspace() { countdowns.stop(); lastState = ''; state.progress = {}; state.applications = {}; state.profile = null; els.dialog.close(); els.dialogContent.replaceChildren(); document.querySelectorAll('.view').forEach(node => node.replaceChildren()); }

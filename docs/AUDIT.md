@@ -1,5 +1,7 @@
 # Career Track — Express Track baseline audit
 
+> Historical baseline audit. The owner's 28 September fresh-start decision waives legacy exports/import. Current implementation and remaining cloud gates are recorded in [IMPLEMENTATION.md](IMPLEMENTATION.md) and [DEPLOYMENT.md](DEPLOYMENT.md). The baseline findings below describe commit `af53a4c`, not the new branch state.
+
 Audited: **28 September 2026**. Scope: **E-0 / E-1**, following architecture addenda 27.8–27.9.
 
 **Gate 1: GO on repository feasibility.** Progress can be centralized without a UI rewrite: one initialization read, one save function, two mutation call sites. **E-0 is not complete:** actual owner-browser exports and the remote annotated recovery tag remain outstanding. This is not a release approval or a claim that persistence is implemented.

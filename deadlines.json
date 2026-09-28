@@ -1,0 +1,100 @@
+{
+  "scope": "Verified exact portfolio deadlines; date-only and unannounced calls are excluded from timers and ICS.",
+  "verified_on": "2026-09-28",
+  "deadlines": [
+    {
+      "id": "khs-2027",
+      "scholarship_id": "khs",
+      "title": "Knight-Hennessy Scholars application deadline",
+      "deadline_wall": "2026-10-06 13:00:00",
+      "deadline_tz": "America/Los_Angeles",
+      "deadline_at": "2026-10-06T20:00:00Z",
+      "precision": "exact",
+      "source_url": "https://knight-hennessy.stanford.edu/admission",
+      "verified_on": "2026-09-28",
+      "notes": "The Stanford graduate-program application is separate and may have its own deadline."
+    },
+    {
+      "id": "commonwealth-2027",
+      "scholarship_id": "commonwealth",
+      "title": "Commonwealth Master's CSC application deadline",
+      "deadline_wall": "2026-10-20 16:00:00",
+      "deadline_tz": "Europe/London",
+      "deadline_at": "2026-10-20T15:00:00Z",
+      "precision": "exact",
+      "source_url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
+      "verified_on": "2026-09-28",
+      "notes": "Bangladesh's nominating agency can set a separate earlier deadline; its date has not been verified. This event covers only the CSC deadline."
+    },
+    {
+      "id": "gates-2027",
+      "scholarship_id": "gates",
+      "title": "Cambridge Advanced CS funding application deadline",
+      "deadline_wall": "2026-12-08 23:59:00",
+      "deadline_tz": "Europe/London",
+      "deadline_at": "2026-12-08T23:59:00Z",
+      "precision": "exact",
+      "source_url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/cscsmpacs",
+      "verified_on": "2026-09-28",
+      "notes": "International funding round. Course date plus the university 23:59 UK rule at https://www.postgraduate.study.cam.ac.uk/apply/application-deadlines. References must also arrive in time. The US Gates round is separate."
+    },
+    {
+      "id": "mbzuai-2027",
+      "scholarship_id": "mbzuai",
+      "title": "MBZUAI MSc Computer Science application deadline",
+      "deadline_wall": "2026-12-15 17:00:00",
+      "deadline_tz": "Asia/Dubai",
+      "deadline_at": "2026-12-15T13:00:00Z",
+      "precision": "exact",
+      "source_url": "https://mbzuai.ac.ae/academics/msc-programs/masters-in-computer-science",
+      "verified_on": "2026-09-28",
+      "notes": "Deadline for the MSc Computer Science route; other programmes may differ. Admission and scholarship decisions are separate."
+    },
+    {
+      "id": "weidenfeld-2027",
+      "scholarship_id": "weidenfeld",
+      "title": "Oxford Advanced CS deadline \u2014 Weidenfeld route",
+      "deadline_wall": "2027-01-06 12:00:00",
+      "deadline_tz": "Europe/London",
+      "deadline_at": "2027-01-06T12:00:00Z",
+      "precision": "exact",
+      "source_url": "https://www.ox.ac.uk/admissions/graduate/courses/msc-advanced-computer-science",
+      "verified_on": "2026-09-28",
+      "notes": "Course deadline. Complete the additional Weidenfeld scholarship requirements; this event does not establish funding eligibility."
+    },
+    {
+      "id": "clarendon-2027",
+      "scholarship_id": "clarendon",
+      "title": "Oxford Advanced CS deadline \u2014 Clarendon route",
+      "deadline_wall": "2027-01-06 12:00:00",
+      "deadline_tz": "Europe/London",
+      "deadline_at": "2027-01-06T12:00:00Z",
+      "precision": "exact",
+      "source_url": "https://www.ox.ac.uk/admissions/graduate/courses/msc-advanced-computer-science",
+      "verified_on": "2026-09-28",
+      "notes": "Same Advanced Computer Science course deadline as the Weidenfeld route. Funding consideration is not a funding guarantee."
+    },
+    {
+      "id": "ediss-2027",
+      "scholarship_id": "ediss",
+      "title": "EDISS Erasmus Mundus scholarship application deadline",
+      "deadline_wall": "2027-01-12 15:00:00",
+      "deadline_tz": "Europe/Helsinki",
+      "deadline_at": "2027-01-12T13:00:00Z",
+      "precision": "exact",
+      "source_url": "https://www.master-ediss.eu/upcoming-application-rounds-ediss-intake-7/",
+      "verified_on": "2026-09-28",
+      "notes": "Intake 7 scholarship round opens 16 November 2026. Later tuition-waiver and self-funded rounds are separate."
+    }
+  ],
+  "date_only": [
+    {
+      "scholarship_id": "kaust",
+      "deadline_date": "2027-01-03",
+      "precision": "date",
+      "source_url": "https://admissions.kaust.edu.sa/how-to-apply/admission-timelines",
+      "verified_on": "2026-09-28",
+      "notes": "Fall 2027 Round 2. Provider labels dates tentative and does not state a closing time. Confirm in the application portal."
+    }
+  ]
+}

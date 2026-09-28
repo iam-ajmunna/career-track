@@ -25,7 +25,7 @@ export function wallTime(instant, zone) {
 
 export function validateDeadline(item) {
   if (!/^[a-z0-9-]+$/.test(item.id) || item.precision !== 'exact' || !item.title) {
-    throw new Error('Interim calendar accepts identified, exact, verified deadlines only.');
+    throw new Error('Calendar accepts identified, exact, verified deadlines only.');
   }
   if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(item.deadline_at) ||
       !Number.isFinite(Date.parse(item.deadline_at)) ||
@@ -45,8 +45,8 @@ export function validateDeadline(item) {
 
 export function buildCalendar(deadlines) {
   const seen = new Set();
-  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Career Track//E0 Interim Deadlines//EN',
-    'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Career Track interim deadlines'];
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Career Track//Verified Deadlines//EN',
+    'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'X-WR-CALNAME:Career Track verified deadlines'];
   for (const item of deadlines) {
     validateDeadline(item);
     if (seen.has(item.id)) throw new Error(`Duplicate calendar ID ${item.id}.`);

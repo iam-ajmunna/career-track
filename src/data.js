@@ -1,29 +1,5 @@
 export const snapshotDate = "2026-09-26";
 
-export const profile = {
-  name: "Assaduzzaman Munna",
-  country: "Bangladesh",
-  degree: "BSc in Computer Science & Engineering",
-  university: "North South University",
-  cgpa: "3.74 / 4.00",
-  specialization: "AI/ML · Computer Vision · GenAI Systems",
-  highlights: [
-    "Production AI engineering experience",
-    "IEEE conference publication",
-    "Multimodal research submission",
-    "Knowledge distillation / edge AI manuscript",
-    "Undergraduate teaching experience",
-    "NVIDIA DeepStream / TensorRT / PyTorch stack"
-  ],
-  positioning: {
-    research: 88,
-    engineering: 94,
-    academics: 82,
-    leadership: 61,
-    developmentImpact: 68
-  }
-};
-
 export const scholarships = [
   {
     id: "commonwealth",

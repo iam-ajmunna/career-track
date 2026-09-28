@@ -1,85 +1,45 @@
-# MSc Scholarship Command Center — Personal 2027 Portfolio
+# Career Track — Scholarship OS
 
-A dependency-free scholarship planning dashboard tailored to **Assaduzzaman Munna's 2027 fully funded MSc applications**.
+A private scholarship workspace with Google sign-in, Supabase progress persistence, verified deadline countdowns and calendar alarms. The Express Track preserves the existing vanilla JavaScript interface and all 102 checklist keys.
 
-Scholarship information was last manually verified against official sources on **26 Sep 2026**. Deadline countdowns are calculated from the current browser date; calls marked **Watch** still require official re-verification before relying on them.
+Progress starts empty, as requested. Supabase is authoritative; account-scoped device caches retain pending work through connectivity failures. The old browser progress key is never imported. This branch is a release candidate: live Google/device/phone acceptance remains required before production cutover.
 
-## Current portfolio
+## Run
 
-### Active / opening
-- Commonwealth Master's Scholarship
-- KAUST MSc Fellowship
-- MBZUAI MSc + merit-funding route
-- Oxford MSc Advanced Computer Science + Weidenfeld-Hoffmann
-- Oxford Clarendon Fund
-- Cambridge MPhil Advanced Computer Science + Gates Cambridge
-- Knight-Hennessy Scholars
-
-### Scheduled / upcoming
-- Erasmus Mundus EDISS — opens 16 Nov 2026
-- Commonwealth Shared Scholarship — expected early Nov 2026; exact candidate dates/course list pending
-- Türkiye Scholarships Graduate — official programme uses a recurring 10 Jan–20 Feb window; confirm the 2027 announcement
-
-### Watch / next cycle
-- Stipendium Hungaricum — Bangladesh is an eligible sending partner; 2027/28 call pending
-- Global Korea Scholarship Graduate (GKS-G) — general 2027 graduate call pending
-- MEXT Research Student Scholarship — 2027 Bangladesh embassy-recommendation route already closed; prepare for the next relevant route
-
-### Not eligible this cycle
-- Chevening — retain for a later cycle after satisfying the applicable post-degree experience/timing rules
-
-## Application operating system
-
-The dashboard now tracks four layers:
-
-1. **Scholarship portfolio** — status, funding, deadline, fit, official sources and scholarship-specific execution steps.
-2. **Master dossier** — identity, academic records, CV variants, statements, references, testing and evidence.
-3. **English-test strategy** — portfolio target of IELTS Academic 7.5+ overall with no component below 7.0, chosen to satisfy the highest published threshold among the currently tracked KAUST/Cambridge/EDISS routes.
-4. **Three-referee system** — confirmation, evidence briefing and submission tracking for three core referees.
-
-## Master narrative architecture
-
-- **Research / technical:** KAUST, MBZUAI, Oxford, Cambridge, EDISS.
-- **Development impact:** Commonwealth Master's, Commonwealth Shared, Weidenfeld-Hoffmann.
-- **Leadership / civic:** Gates Cambridge and Knight-Hennessy only where authentic evidence supports the case.
-- **Future research-plan route:** MEXT.
-
-Do not send one generic SOP to every scholarship. Build from one evidence bank and tailor the selection logic, research fit, development impact and leadership emphasis.
-
-## Progress persistence
-
-Progress remains stored locally in the browser using `localStorage`.
-
-Existing progress keys from the original dashboard were preserved. New dossier, IELTS and referee milestones add new keys without invalidating previously checked Commonwealth/KAUST/document steps.
-
-Clearing browser storage or using **Reset local progress** will reset that device's progress.
-
-## Run locally
-
-Because the app uses ES modules, serve the repository rather than opening `index.html` directly:
+Use Node 22.18+ (tested with 24.19.0).
 
 ```bash
-python3 -m http.server 8080
+npm ci
+cp .env.example .env
+# Configure the two PUBLIC_SUPABASE_* values locally; never commit credentials.
+npm run dev
 ```
 
-Then open:
+Open `http://localhost:8080`. Missing cloud configuration shows a setup gate and permits no edits. `npm run build` reads environment variables, builds only deployable browser assets into `dist`, and generates `dist/deadlines.ics`. It does not load `.env` automatically; use `node --env-file=.env scripts/build.mjs` locally when needed. Vercel injects build variables.
 
-```text
-http://localhost:8080
+```bash
+npm test
+npm run check:keys
+npm run build
 ```
 
-## Architecture
+Tests cover PostgreSQL grants/RLS/CAS, stale edits, slow and failed saves, offline reopen, recovery, clock boundaries/DST, ICS and frozen checklist compatibility. `node tests/browser-fixture.mjs` starts a synthetic local UI fixture on port 8081, excluded from `dist`. It is not real Google/Supabase acceptance.
 
-```text
-index.html
-assets/
-  styles.css
-src/
-  data.js   # profile, scholarship portfolio, dossier, IELTS/referee plan, timeline
-  app.js    # derived statuses, rendering, filtering, progress persistence
-DESIGN.md
-```
+## Structure
 
-## Important
+| Path | Responsibility |
+|---|---|
+| `src/bootstrap.js` | Google session, owner gate, sign-out/export and recovery |
+| `src/sync/` | Revision checks, pending patches, account cache and Supabase requests |
+| `src/app.js`, `src/data.js` | Existing portfolio, checklists and rendering |
+| `src/domain/time.ts`, `src/countdowns.js` | Exact time, urgency and isolated timer updates |
+| `deadlines.json` | Verified instants and date-only evidence |
+| `supabase/` | Owner-only migration and private profile seed |
+| `api/keepalive.js`, `vercel.json` | Protected daily database activity and deployment settings |
+| `docs/DEPLOYMENT.md` | Provisioning, acceptance and rollback |
 
-This branch is the **personal portfolio**. Scholarship rules, eligible courses, funding terms and deadlines can change. Always use the linked official source before submitting or spending money on application-related services.
+Seven exact deadline entries are sourced as of 28 September 2026. KAUST has a verified date with no verified closing time; other unannounced or unverified calls receive no precise timer. Oxford's two funding routes share one course deadline. Calendar content contains public facts only. A calendar client may discard alarms; phone verification is still required.
+
+Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. A public Supabase key is expected in the browser; a service/secret key must never be there. Source visibility does not authorize access to progress: PostgreSQL grants and row policies enforce it.
+
+Design and interactions are documented in `DESIGN.md` and `UX-CONTRACT.md`. Do not reorder or rewrite checklist items until the positional-key migration is separately implemented.

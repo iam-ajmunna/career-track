@@ -8,3 +8,5 @@ private-backups/
 .DS_Store
 node_modules/
 test-results/
+dist/
+.local-test/
