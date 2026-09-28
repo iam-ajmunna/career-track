@@ -259,7 +259,10 @@ function renderPipeline() {
         return `<section class="card card-pad">
           <div class="section-head">
             <div><div class="section-title">${s.name}</div><div class="section-sub">${s.country} · ${deadlineLabel(s)}</div></div>
-            <span class="pill ${progress===100?'success':'neutral'}">${progress}% complete</span>
+            <div class="card-actions">
+              <span class="pill ${progress===100?'success':'neutral'}">${progress}% complete</span>
+              <button class="button secondary" data-open-gpt="${s.id}">Open GPT ↗</button>
+            </div>
           </div>
           <div class="progress-track" style="margin-bottom:12px"><div class="progress-fill" style="width:${progress}%"></div></div>
           <div class="checklist">
