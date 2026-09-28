@@ -11,12 +11,18 @@ The fresh-start instruction is implemented: no legacy progress reads/import, emp
 - Seven exact deadline entries, one date-only KAUST record, provider/Dhaka displays, urgency and hero selection excluding submitted applications. One visibility-aware timer updates timer nodes. Clock skew uses server time.
 - Build-time public ICS with stable UIDs, UTF-8 folding, UTC instants and alarms at 7d/3d/24h/3h. Oxford's two funding routes share the same underlying course deadline.
 - Bundled browser build, pinned dependencies/lockfile, public-key validation, private profile exclusion, CSP/security headers, authenticated daily Vercel keepalive.
+- Minimal scholarship intelligence layer: Apply/Watch/Closed decisions, collapsed screened-out research, official-source provenance and country career-outlook context only in detail views.
+- Added profile-matched opportunities: DAAD all-disciplines Master's, ETH Zurich ESOP, MEXT University Recommendation, GOI-IES, France Excellence Eiffel, Swedish Institute watch and broader Erasmus Mundus AI/CS discovery.
+- Added exact ETH Zurich and Bangladesh-specific DAAD deadline timers/ICS events where official time evidence exists.
+- Added an additive Europass CV dossier item for European applications without changing any frozen legacy key.
 
 ## Verification
 
-`npm test`: **23 passed** using Node 24.19.0. Includes a real PostgreSQL-compatible PGlite engine for grants/RLS/schema/CAS and deterministic failure/concurrency simulations for sync. It does not exercise a deployed Supabase service or real Google OAuth.
+`npm test`: **27 passed** using Node 24.x in CI. Includes a real PostgreSQL-compatible PGlite engine for grants/RLS/schema/CAS and deterministic failure/concurrency simulations for sync. It does not exercise a deployed Supabase service or real Google OAuth.
 
 `npm run check:keys`: **102/102 keys and meanings match** baseline `af53a4c`.
+
+`tests/intelligence.test.mjs`: verifies the seven new opportunity records, screened-out registry, career-context provenance, ETH/DAAD deadline instants and additive Europass item.
 
 `npm run build`: succeeds; initial browser entry approximately 63 KB gzip, dashboard code loaded separately after sign-in. Build output contains no `.env`, profile seed, migration, docs or fixtures.
 
