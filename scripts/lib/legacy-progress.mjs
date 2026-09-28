@@ -81,10 +81,10 @@ export function inspectProgress(progress, inventory) {
 
 export function enumerateLegacyKeys({ scholarships, documents, englishPlan, referees, refereeStages }) {
   return [
-    ...scholarships.flatMap(scholarship => scholarship.actions.map((label, index) => ({
+    ...scholarships.filter(scholarship => scholarship.legacy !== false).flatMap(scholarship => scholarship.actions.map((label, index) => ({
       key: `sch-${scholarship.id}-${index}`, kind: 'scholarship', entity: scholarship.id, index, label
     }))),
-    ...documents.map(item => ({ key: `doc-${item.id}`, kind: 'document', entity: item.id, label: item.label })),
+    ...documents.filter(item => item.legacy !== false).map(item => ({ key: `doc-${item.id}`, kind: 'document', entity: item.id, label: item.label })),
     ...englishPlan.steps.map(item => ({ key: `ielts-${item.id}`, kind: 'ielts', entity: item.id, label: item.label })),
     ...referees.flatMap(referee => refereeStages.map(stage => ({
       key: `ref-${referee.id}-${stage.id}`, kind: 'referee', entity: referee.id, stage: stage.id, label: stage.label
