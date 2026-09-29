@@ -25,7 +25,7 @@ export function createCache({ storage, namespace, ownerId, randomId = () => cryp
     for (const key of keys().filter(key => key.startsWith(prefix + 'op:'))) {
       try {
         const item = JSON.parse(read(key));
-        if (!item || !['progress', 'applications'].includes(item.bucket) || typeof item.key !== 'string' ||
+        if (!item || !['progress', 'applications', 'profile'].includes(item.bucket) || typeof item.key !== 'string' ||
             !Number.isSafeInteger(item.baseRev) || item.baseRev < 0 || !Number.isSafeInteger(item.order) ||
             typeof item.id !== 'string' || key !== prefix + 'op:' + item.id) throw new Error();
         reconcile({ state: EMPTY_STATE, rev: item.baseRev }, [item]);

@@ -92,3 +92,22 @@ test('state validation rejects malformed values and prototype keys', () => {
   assert.throws(() => validateState({ ...EMPTY_STATE, progress: { 'doc-passport': 'true' } }));
   assert.throws(() => reconcile({ state: EMPTY_STATE, rev: 0 }, [{ bucket: 'progress', key: '__proto__', value: true, baseRev: 0 }]));
 });
+
+test('profile updates are validated and persisted through store operations', async () => {
+  const profile = {
+    name: 'AJ',
+    degree: 'BSc CSE',
+    university: 'NSU',
+    cgpa: '3.74/4.00',
+    highlights: ['AI', 'CV'],
+    positioning: { engineering: 95, research: 90, academics: 82, developmentImpact: 75, leadership: 65 }
+  };
+  const f = fixture(); await f.store.load();
+  f.store.change('profile', 'current', profile); await f.store.sync();
+  assert.equal(f.row().state.profile.name, 'AJ');
+  assert.equal(f.row().state.profile.positioning.engineering, 95);
+  const reopened = fixture({ disk: f.disk, backend: f.service }); await reopened.store.load();
+  assert.equal(reopened.store.get().state.profile.highlights[1], 'CV');
+  assert.throws(() => validateState({ ...EMPTY_STATE, profile: { name: 'AJ', positioning: {} } }));
+  f.store.stop(); reopened.store.stop();
+});

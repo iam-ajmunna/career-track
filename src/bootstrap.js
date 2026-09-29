@@ -75,8 +75,12 @@ function createLocalProgressStore(onChange) {
       return Promise.resolve();
     },
     change(bucket, key, value) {
-      if (!['progress', 'applications'].includes(bucket)) throw new Error('Unsupported local change.');
-      state = validateState({ ...state, [bucket]: { ...state[bucket], [key]: value } });
+      if (bucket === 'profile') {
+        state = validateState({ ...state, profile: value });
+      } else {
+        if (!['progress', 'applications'].includes(bucket)) throw new Error('Unsupported local change.');
+        state = validateState({ ...state, [bucket]: { ...state[bucket], [key]: value } });
+      }
       persist();
       emit();
     },

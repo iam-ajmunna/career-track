@@ -87,6 +87,7 @@ export function createProgressStore({ ownerId, backend, cache, isOnline = () => 
     },
     change(bucket, key, value) {
       if (stopped || !snapshot || !authorized || cache.draftProblem || ['forbidden', 'reauth'].includes(status)) throw new Error('Sign in before editing.');
+      if (bucket === 'profile') key = 'current';
       const change = { bucket, key, value, baseRev: snapshot.rev };
       reconcile(snapshot, [change]);
       cache.append(change);

@@ -386,23 +386,88 @@ function renderDocuments() {
   `;
 }
 
+
+const profileDimensions = [
+  ['engineering', 'Engineering depth'],
+  ['research', 'Research readiness'],
+  ['academics', 'Academic strength'],
+  ['developmentImpact', 'Development impact'],
+  ['leadership', 'Leadership evidence']
+];
+
+function normalizeProfileInput(value) {
+  const source = value || defaultProfile;
+  const positioning = Object.fromEntries(profileDimensions.map(([key]) => [key, Math.max(0, Math.min(100, Math.round(Number(source.positioning?.[key]) || 0)))]));
+  return {
+    name: String(source.name || defaultProfile.name).trim().slice(0, 80),
+    degree: String(source.degree || defaultProfile.degree).trim().slice(0, 120),
+    university: String(source.university || defaultProfile.university).trim().slice(0, 120),
+    cgpa: String(source.cgpa || defaultProfile.cgpa).trim().slice(0, 32),
+    highlights: (Array.isArray(source.highlights) ? source.highlights : defaultProfile.highlights)
+      .map(item => String(item || '').trim().slice(0, 56))
+      .filter(Boolean)
+      .slice(0, 8),
+    positioning
+  };
+}
+
+function profileFromForm(form) {
+  const data = new FormData(form);
+  return normalizeProfileInput({
+    name: data.get('name'),
+    degree: data.get('degree'),
+    university: data.get('university'),
+    cgpa: data.get('cgpa'),
+    highlights: String(data.get('highlights') || '').split('\n'),
+    positioning: Object.fromEntries(profileDimensions.map(([key]) => [key, data.get(key)]))
+  });
+}
+
+function escapeAttr(value) {
+  return escapeHtml(value).replace(/\n/g, '&#10;');
+}
+
+function renderProfileEditor(sourceProfile) {
+  const profile = normalizeProfileInput(sourceProfile);
+  return `
+    <form class="card card-pad profile-editor" id="profileEditor">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Editable profile setup</div>
+          <div class="section-sub">Update the applicant evidence used by the fit dashboard. Saves to this browser.</div>
+        </div>
+        <div class="card-actions">
+          <button class="button secondary" type="submit">Save profile</button>
+          <button class="button ghost" type="button" data-reset-profile>Reset baseline</button>
+        </div>
+      </div>
+      <div class="profile-form-grid">
+        <label class="field"><span>Name</span><input name="name" maxlength="80" value="${escapeAttr(profile.name)}" autocomplete="name"></label>
+        <label class="field"><span>Degree / positioning</span><input name="degree" maxlength="120" value="${escapeAttr(profile.degree)}"></label>
+        <label class="field"><span>University</span><input name="university" maxlength="120" value="${escapeAttr(profile.university)}"></label>
+        <label class="field"><span>CGPA</span><input name="cgpa" maxlength="32" value="${escapeAttr(profile.cgpa)}"></label>
+      </div>
+      <label class="field field-full"><span>Highlights, one per line</span><textarea name="highlights" rows="4" maxlength="480">${escapeHtml(profile.highlights.join('\n'))}</textarea></label>
+      <div class="profile-slider-grid">
+        ${profileDimensions.map(([key, label]) => `
+          <label class="score-field">
+            <span><strong>${label}</strong><output data-score-output="${key}">${profile.positioning[key]}</output></span>
+            <input class="profile-score-input" type="range" name="${key}" min="0" max="100" step="1" value="${profile.positioning[key]}" data-score-input="${key}">
+          </label>`).join('')}
+      </div>
+    </form>`;
+}
+
 function renderProfile() {
-  const sourceProfile = state.profile || defaultProfile;
+  const sourceProfile = normalizeProfileInput(state.profile || defaultProfile);
   const isConfiguredProfile = Boolean(state.profile);
-  const positioning = Object.fromEntries(['engineering','research','academics','developmentImpact','leadership'].map(key => [key, Math.max(0, Math.min(100, Number(sourceProfile.positioning?.[key]) || 0))]));
-  const profile = { ...sourceProfile, positioning, highlights: Array.isArray(sourceProfile.highlights) ? sourceProfile.highlights.map(escapeHtml) : [] };
+  const profile = { ...sourceProfile, highlights: sourceProfile.highlights.map(escapeHtml) };
   for (const key of ['name','degree','university','cgpa']) profile[key] = escapeHtml(profile[key] || '');
-  const avg = Math.round(Object.values(profile.positioning).reduce((a,b)=>a+b,0) / Object.values(profile.positioning).length);
-  const dims = [
-    ['Engineering depth', profile.positioning.engineering],
-    ['Research readiness', profile.positioning.research],
-    ['Academic strength', profile.positioning.academics],
-    ['Development impact', profile.positioning.developmentImpact],
-    ['Leadership evidence', profile.positioning.leadership]
-  ];
+  const avg = Math.round(Object.values(sourceProfile.positioning).reduce((a,b)=>a+b,0) / Object.values(sourceProfile.positioning).length);
+  const dims = profileDimensions.map(([key, label]) => [label, sourceProfile.positioning[key]]);
 
   document.querySelector('#view-profile').innerHTML = `
-    ${!isConfiguredProfile ? `<div class="profile-note"><strong>Baseline profile loaded.</strong><span>This page now uses the current scholarship evidence profile instead of going empty. Later profile imports can override these planning scores.</span></div>` : ''}
+    <div class="profile-note"><strong>${isConfiguredProfile ? 'Custom profile saved.' : 'Baseline profile loaded.'}</strong><span>${isConfiguredProfile ? 'Your editable profile is saved in this browser and drives this fit dashboard.' : 'This page uses the current scholarship evidence profile until you save your own version.'}</span></div>
     <section class="card card-pad profile-score">
       <div class="score-ring" style="--score:${avg}"><div class="score-inner"><div class="score-number">${avg}</div><div class="score-caption">portfolio readiness</div></div></div>
       <div>
@@ -448,7 +513,9 @@ function renderProfile() {
           <div class="timeline-item"><div class="timeline-date">Track C</div><div class="timeline-content"><h3>Leadership / civic impact</h3><p>Only use where you have authentic evidence of initiative, influence, mentorship and community outcomes. Primary: Gates, Knight-Hennessy.</p></div></div>
         </div>
       </section>
-    </div>`;
+    </div>
+
+    <div class="section">${renderProfileEditor(sourceProfile)}</div>`;
 }
 
 const countdowns = createCountdowns({ state, readiness: getScholarshipProgress, onHeroChange: renderCurrentView });
@@ -587,7 +654,36 @@ els.themeToggle.addEventListener('click', () => {
 els.dialogClose.addEventListener('click', () => els.dialog.close());
 els.dialog.addEventListener('click', e => { if (e.target === els.dialog) els.dialog.close(); });
 
+document.addEventListener('submit', e => {
+  const form = e.target.closest('#profileEditor');
+  if (!form) return;
+  e.preventDefault();
+  try {
+    progressStore.change('profile', 'current', profileFromForm(form));
+    toast('Profile saved in this browser');
+  } catch {
+    toast('Profile could not be saved. Export progress and retry.');
+  }
+});
+
+document.addEventListener('input', e => {
+  const slider = e.target.closest('[data-score-input]');
+  if (!slider) return;
+  document.querySelector(`[data-score-output="${CSS.escape(slider.dataset.scoreInput)}"]`)?.replaceChildren(String(slider.value));
+});
+
 document.addEventListener('click', e => {
+  const resetProfile = e.target.closest('[data-reset-profile]');
+  if (resetProfile) {
+    try {
+      progressStore.change('profile', 'current', null);
+      toast('Profile reset to baseline');
+    } catch {
+      toast('Profile could not be reset.');
+    }
+    return;
+  }
+
   const status = e.target.closest('[data-application-status]');
   if (status) { try { progressStore.change('applications', status.dataset.applicationId, status.dataset.applicationStatus); }
     catch { toast('Sign in again before editing.'); } return; }

@@ -1,6 +1,28 @@
 export const EMPTY_STATE = Object.freeze({ schema_version: 1, progress: {}, applications: {}, profile: null });
 const prohibited = new Set(['__proto__', 'constructor', 'prototype']);
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
+const text = (value, max = 160) => String(value ?? '').trim().slice(0, max);
+const score = value => Math.max(0, Math.min(100, Math.round(Number(value) || 0)));
+export function validateProfile(value) {
+  if (value === null) return null;
+  if (!record(value) || !record(value.positioning)) throw new Error('The saved profile is invalid.');
+  const profile = {
+    name: text(value.name, 80),
+    degree: text(value.degree, 120),
+    university: text(value.university, 120),
+    cgpa: text(value.cgpa, 32),
+    highlights: Array.isArray(value.highlights) ? value.highlights.map(item => text(item, 56)).filter(Boolean).slice(0, 8) : [],
+    positioning: {
+      engineering: score(value.positioning.engineering),
+      research: score(value.positioning.research),
+      academics: score(value.positioning.academics),
+      developmentImpact: score(value.positioning.developmentImpact),
+      leadership: score(value.positioning.leadership)
+    }
+  };
+  if (!profile.name || !profile.degree || !profile.university || !profile.cgpa) throw new Error('The saved profile is incomplete.');
+  return profile;
+}
 export function validateState(value) {
   if (!record(value) || value.schema_version !== 1 || !record(value.progress) || !record(value.applications)) {
     throw new Error('The saved workspace has an unsupported format.');
@@ -16,8 +38,9 @@ export function validateState(value) {
       throw new Error('The workspace contains an invalid application status.');
     }
   }
-  if (value.profile !== null && !record(value.profile)) throw new Error('The saved profile is invalid.');
-  return structuredClone(value);
+  const next = structuredClone(value);
+  next.profile = validateProfile(next.profile);
+  return next;
 }
 export function validateSnapshot(value, ownerId) {
   if (!record(value) || value.owner_id !== ownerId || !Number.isSafeInteger(value.rev) || value.rev < 0 ||
@@ -29,6 +52,11 @@ export function reconcile(snapshot, operations) {
   const conflicts = [];
   for (const operation of operations) {
     const { bucket, key, value, baseRev } = operation;
+    if (bucket === 'profile') {
+      if (key !== 'current') throw new Error('Invalid pending change.');
+      next.profile = validateProfile(value);
+      continue;
+    }
     if (!['progress', 'applications'].includes(bucket) || prohibited.has(key)) throw new Error('Invalid pending change.');
     const current = next[bucket][key];
     const stale = baseRev !== snapshot.rev;
