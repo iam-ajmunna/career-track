@@ -11,11 +11,10 @@ Use Node 22.18+ (tested with 24.19.0).
 ```bash
 npm ci
 cp .env.example .env
-# Configure the two PUBLIC_SUPABASE_* values locally; never commit credentials.
 npm run dev
 ```
 
-Open `http://localhost:8080`. Missing cloud configuration shows a setup gate and permits no edits. `npm run build` reads environment variables, builds only deployable browser assets into `dist`, and generates `dist/deadlines.ics`. It does not load `.env` automatically; use `node --env-file=.env scripts/build.mjs` locally when needed. Vercel injects build variables.
+Open `http://localhost:8080`. The public Supabase URL and publishable browser key are committed in `supabase/project.json`, so a normal build opens against the configured project without extra Vercel setup. `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY` may still override those values locally. `npm run build` builds only deployable browser assets into `dist` and generates `dist/deadlines.ics`. It does not load `.env` automatically; use `node --env-file=.env scripts/build.mjs` locally when testing overrides.
 
 ```bash
 npm test
@@ -44,6 +43,6 @@ Every scholarship also exposes an **Open GPT ↗** action. It creates a dedicate
 
 The visible scholarship list defaults to **Apply + Watch**. Closed routes stay available for context; misleading, ineligible or funding-mismatched social-media leads are kept in a collapsed **Screened out** register rather than polluting the working shortlist. Career information appears only in scholarship details and is factual planning context, not a PR score or guarantee. The dossier now includes an additive Europass CV item for European applications.
 
-Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. A public Supabase key is expected in the browser; a service/secret key must never be there. Source visibility does not authorize access to progress: PostgreSQL grants and row policies enforce it.
+Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. The committed Supabase key is publishable browser configuration; a service/secret key must never be there, and the build rejects one. Source visibility does not authorize access to progress: PostgreSQL grants and row policies enforce it.
 
 Design and interactions are documented in `DESIGN.md` and `UX-CONTRACT.md`. Do not reorder or rewrite checklist items until the positional-key migration is separately implemented.

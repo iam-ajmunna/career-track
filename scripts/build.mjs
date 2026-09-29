@@ -3,9 +3,19 @@ import { readFile, writeFile, mkdir, rm, cp } from 'node:fs/promises';
 import { gzipSync } from 'node:zlib';
 import { buildCalendar } from './lib/interim-calendar.mjs';
 
+async function publicConfigFallback() {
+  try {
+    const project = JSON.parse(await readFile('supabase/project.json', 'utf8'));
+    return { url: project.api_url ?? '', key: project.publishable_key ?? '' };
+  } catch {
+    return { url: '', key: '' };
+  }
+}
+
 export async function buildSite({ outdir = 'dist', env = process.env } = {}) {
-  const url = env.PUBLIC_SUPABASE_URL ?? '';
-  const key = env.PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '';
+  const fallback = await publicConfigFallback();
+  const url = (env.PUBLIC_SUPABASE_URL ?? '').trim() || fallback.url;
+  const key = (env.PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? '').trim() || fallback.key;
   if (url) {
     const parsed = new URL(url);
     if (parsed.origin !== url || !(parsed.protocol === 'https:' ||

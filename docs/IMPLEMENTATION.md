@@ -8,9 +8,9 @@ The fresh-start instruction is implemented: no legacy progress reads/import, emp
 - Administrator-provisioned single-owner JSON state, grants limited to SELECT/UPDATE(state), RLS, immutable owner and database-controlled revisions/timestamps.
 - Remote-read-before-save CAS with bounded retries; independent pending operation keys avoid whole-cache overwrites. Stale completions union, unrelated state survives, and intentional current-revision unchecks work. Later same-tab edits rebase only after that tab's successful write.
 - Saving/Saved/error state, persistent Retry, owner-scoped recovery/export, storage-failure warning and save-or-export sign-out.
-- Seven exact deadline entries, one date-only KAUST record, provider/Dhaka displays, urgency and hero selection excluding submitted applications. One visibility-aware timer updates timer nodes. Clock skew uses server time.
+- Nine exact deadline entries, one date-only KAUST record, provider/Dhaka displays, urgency and hero selection excluding submitted applications. One visibility-aware timer updates timer nodes. Clock skew uses server time.
 - Build-time public ICS with stable UIDs, UTF-8 folding, UTC instants and alarms at 7d/3d/24h/3h. Oxford's two funding routes share the same underlying course deadline.
-- Bundled browser build, pinned dependencies/lockfile, public-key validation, private profile exclusion, CSP/security headers, authenticated daily Vercel keepalive.
+- Bundled browser build, pinned dependencies/lockfile, public-key validation, committed public Supabase project fallback, private profile exclusion, CSP/security headers, authenticated daily Vercel keepalive.
 - Minimal scholarship intelligence layer: Apply/Watch/Closed decisions, collapsed screened-out research, official-source provenance and country career-outlook context only in detail views.
 - Added profile-matched opportunities: DAAD all-disciplines Master's, ETH Zurich ESOP, MEXT University Recommendation, GOI-IES, France Excellence Eiffel, Swedish Institute watch and broader Erasmus Mundus AI/CS discovery.
 - Added exact ETH Zurich and Bangladesh-specific DAAD deadline timers/ICS events where official time evidence exists.
@@ -24,7 +24,7 @@ The fresh-start instruction is implemented: no legacy progress reads/import, emp
 
 `tests/intelligence.test.mjs`: verifies the seven new opportunity records, screened-out registry, career-context provenance, ETH/DAAD deadline instants and additive Europass item.
 
-`npm run build`: succeeds; initial browser entry approximately 63 KB gzip, dashboard code loaded separately after sign-in. Build output contains no `.env`, profile seed, migration, docs or fixtures.
+`npm run build`: succeeds; initial browser entry approximately 63 KB gzip, dashboard code loaded separately after sign-in. Build output contains no `.env`, profile seed, migration, docs or fixtures. Missing `PUBLIC_SUPABASE_*` environment variables now fall back to `supabase/project.json`; secret/service-role keys are still rejected.
 
 `git diff --check`: clean. DESIGN.md lint: 0 errors; 9 warnings about the existing token/component mapping.
 
@@ -36,4 +36,4 @@ The free Supabase project is now active and the migration is applied. Live SQL o
 
 ## Release state
 
-**Not merged / not production-ready.** Google configuration, owner provisioning, Vercel environment setup, authenticated preview, two-device/phone acceptance and the remote recovery tag remain open. Vercel's GitHub integration built commit `a750129` successfully, but the connector still returns 403 for team `aj-81af` and the preview requires Vercel authentication. See `DEPLOYMENT.md` for exact steps.
+**Not merged yet.** The webpage implementation, build, tests and live empty Supabase security checks are complete for the Express Track. Google configuration, owner provisioning, authenticated preview, two-device/phone acceptance and the remote recovery tag remain open if strict private-workspace acceptance is required. See `DEPLOYMENT.md` for those follow-up gates.

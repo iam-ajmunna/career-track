@@ -32,8 +32,8 @@ Reconnect Vercel with access to `aj-81af/career-track`. Retain the existing GitH
 
 | Variable | Scope | Purpose |
 |---|---|---|
-| `PUBLIC_SUPABASE_URL` | Preview + Production build | Exact project API origin |
-| `PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Preview + Production build | Publishable key; legacy anon accepted |
+| `PUBLIC_SUPABASE_URL` | Optional Preview + Production override | Exact project API origin; falls back to `supabase/project.json` |
+| `PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Optional Preview + Production override | Publishable key; falls back to `supabase/project.json`; legacy anon accepted |
 | `SUPABASE_URL` | Production server only | Daily keepalive query |
 | `SUPABASE_SECRET_KEY` | Production server only | Privileged server query; never PUBLIC-prefixed |
 | `CRON_SECRET` | Production server only | Random bearer secret for Vercel cron |

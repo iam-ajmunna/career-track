@@ -30,7 +30,7 @@ Requests used only the project's modern publishable key, with no user session:
 | `POST /rest/v1/rpc/get_career_state` | HTTP 401, SQLSTATE `42501`, permission denied for function |
 | `GET /auth/v1/settings` | Google disabled; email enabled; signup disabled = false |
 
-No credential, secret key or token is stored in this evidence. Public project identifiers are in `supabase/project.json`; the build continues to require its explicit environment variables.
+No credential, secret key or token is stored in this evidence. Public project identifiers and the publishable browser key are in `supabase/project.json`; explicit build environment variables may override them.
 
 ## Remaining acceptance
 

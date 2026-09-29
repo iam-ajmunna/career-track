@@ -14,6 +14,6 @@ Implementation proceeds on `personal-dynamic`. The baseline commit and local ann
 - Online intentional unchecks apply when the base revision is current. Conflict/offline recovery unions completions; a stale uncheck never clears a remotely completed task. The UI reports when an uncheck needs to be repeated after synchronization.
 - Pending local changes are account-scoped and durably cached separately from the last confirmed snapshot. Explicit sign-out first requires pending work to be saved or exported, then clears account caches. Expired sessions retain safe progress drafts until the same owner signs in again.
 - Private profile data is seeded into authenticated state and excluded from the public build output.
-- Missing cloud configuration fails closed at the sign-in screen; no fake success or anonymous editable mode.
+- If both committed public config and explicit build overrides are missing, the app fails closed at the sign-in screen; no fake success or anonymous editable mode.
 
 See `UX-CONTRACT.md` for observable behavior and `docs/DEPLOYMENT.md` for cloud setup and release gates.
