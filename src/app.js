@@ -60,6 +60,21 @@ const decisionMap = {
   closed: ['Closed', 'neutral']
 };
 
+const defaultProfile = {
+  name: 'Assaduzzaman Munna',
+  degree: 'BSc CSE | AI / Computer Vision systems',
+  university: 'North South University',
+  cgpa: '3.74/4.00',
+  highlights: ['Production AI engineering', 'Computer vision', 'Edge inference', 'Research publications'],
+  positioning: {
+    engineering: 92,
+    research: 86,
+    academics: 82,
+    developmentImpact: 70,
+    leadership: 58
+  }
+};
+
 function decisionOf(item) {
   if (item.decision) return item.decision;
   const status = effectiveStatus(item);
@@ -153,8 +168,8 @@ function scholarshipCard(item) {
       <div class="card-bottom">
         <div class="deadline">${deadlineLabel(item)}</div>
         <div class="card-actions">
-          <button class="button secondary" data-open-scholarship="${item.id}">Open</button>
-          <button class="button secondary" data-open-gpt="${item.id}" title="Open a new ChatGPT chat with a scholarship-specific research prompt">Open GPT ↗</button>
+          <button class="button secondary" data-open-scholarship="${item.id}">Details</button>
+          <button class="button ghost" data-open-gpt="${item.id}" title="Open a new ChatGPT chat with a scholarship-specific research prompt">GPT prompt ↗</button>
         </div>
       </div>
     </article>`;
@@ -182,8 +197,10 @@ function renderOverview() {
       <div class="card card-pad"><div class="metric-label">Priority targets</div><div class="metric-value">${best.length}</div><div class="metric-sub">Best allocation of application effort</div></div>
       <div class="card card-pad"><div class="metric-label">Open / actionable</div><div class="metric-value">${active}</div><div class="metric-sub">Includes open and immediately opening routes</div></div>
       <div class="card card-pad"><div class="metric-label">Urgent deadlines</div><div class="metric-value">${urgent}</div><div class="metric-sub">Within 25 days of snapshot</div></div>
-      <div class="card card-pad"><div class="metric-label">Pipeline completion</div><div class="metric-value">${progress}%</div><div class="metric-sub">Synced to your private workspace</div></div>
+      <div class="card card-pad"><div class="metric-label">Pipeline completion</div><div class="metric-value">${progress}%</div><div class="metric-sub">Saved locally in this browser</div></div>
     </div>
+
+    <div class="save-assurance"><strong>Browser-local memory is active.</strong><span>Your checklist state persists on this device. Export progress before clearing browser data or switching machines.</span></div>
 
     <section class="section">
       <div class="section-head"><div><div class="section-title">Recommended execution order</div><div class="section-sub">Profile-fit ordering, not an official acceptance ranking.</div></div></div>
@@ -252,27 +269,39 @@ function renderPipeline() {
     .filter(s => s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s)))
     .sort((a,b) => a.priority - b.priority);
   document.querySelector('#view-pipeline').innerHTML = `
-    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Cloud progress</span></div>
-    <div class="section grid">
-      ${ordered.map(s => {
+    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Browser memory</span></div>
+    <div class="section pipeline-list">
+      ${ordered.map((s, index) => {
         const progress = getScholarshipProgress(s.id);
-        return `<section class="card card-pad">
-          <div class="section-head">
-            <div><div class="section-title">${s.name}</div><div class="section-sub">${s.country} · ${deadlineLabel(s)}</div></div>
-            <div class="card-actions">
+        const open = progress > 0 || index < 2 ? 'open' : '';
+        const nextAction = s.nextAction || s.actions.find((_, i) => !state.progress[`sch-${s.id}-${i}`]) || s.actions[0];
+        return `<details class="card card-pad pipeline-card" ${open}>
+          <summary class="pipeline-summary">
+            <span class="pipeline-heading">
+              <span class="section-title">${s.name}</span>
+              <span class="section-sub">${s.country} · ${deadlineLabel(s)}</span>
+            </span>
+            <span class="pipeline-status">
               <span class="pill ${progress===100?'success':'neutral'}">${progress}% complete</span>
-              <button class="button secondary" data-open-gpt="${s.id}">Open GPT ↗</button>
+              <span class="pill neutral pipeline-state"></span>
+            </span>
+          </summary>
+          <div class="pipeline-content">
+            <div class="pipeline-next"><span>Next action</span><strong>${nextAction}</strong></div>
+            <div class="progress-track" style="margin-bottom:12px"><div class="progress-fill" style="width:${progress}%"></div></div>
+            <div class="checklist">
+              ${s.actions.map((action, i) => {
+                const key = `sch-${s.id}-${i}`;
+                return `<div class="check-row"><input id="${key}" type="checkbox" data-progress-key="${key}" ${state.progress[key]?'checked':''}><label for="${key}">${action}</label><span class="meta">Step ${i+1}</span></div>`;
+              }).join('')}
+            </div>
+            <div class="application-controls">
+              <span class="pill neutral">${state.applications[s.id] === 'submitted' ? 'Submitted' : 'Preparing'}</span>
+              <button class="button secondary" data-application-id="${s.id}" data-application-status="${state.applications[s.id] === 'submitted' ? 'preparing' : 'submitted'}">${state.applications[s.id] === 'submitted' ? 'Resume preparation' : 'Mark submitted'}</button>
+              <button class="button ghost" data-open-gpt="${s.id}">GPT prompt ↗</button>
             </div>
           </div>
-          <div class="progress-track" style="margin-bottom:12px"><div class="progress-fill" style="width:${progress}%"></div></div>
-          <div class="checklist">
-            ${s.actions.map((action, i) => {
-              const key = `sch-${s.id}-${i}`;
-              return `<div class="check-row"><input id="${key}" type="checkbox" data-progress-key="${key}" ${state.progress[key]?'checked':''}><label for="${key}">${action}</label><span class="meta">Step ${i+1}</span></div>`;
-            }).join('')}
-          </div>
-          <div class="application-controls"><span class="pill neutral">${state.applications[s.id] === 'submitted' ? 'Submitted' : 'Preparing'}</span><button class="button secondary" data-application-id="${s.id}" data-application-status="${state.applications[s.id] === 'submitted' ? 'preparing' : 'submitted'}">${state.applications[s.id] === 'submitted' ? 'Resume preparation' : 'Mark submitted'}</button></div>
-        </section>`;
+        </details>`;
       }).join('')}
     </div>`;
 }
@@ -358,9 +387,11 @@ function renderDocuments() {
 }
 
 function renderProfile() {
-  if (!state.profile) { document.querySelector('#view-profile').innerHTML = '<div class="empty">Your profile has not been configured yet.</div>'; return; }
-  const profile = { ...state.profile, positioning: Object.fromEntries(['engineering','research','academics','developmentImpact','leadership'].map(key => [key, Math.max(0,Math.min(100,Number(state.profile.positioning?.[key]) || 0))])), highlights: Array.isArray(state.profile.highlights) ? state.profile.highlights.map(escapeHtml) : [] };
-  for (const key of ['name','degree','university','cgpa']) profile[key] = escapeHtml(profile[key]);
+  const sourceProfile = state.profile || defaultProfile;
+  const isConfiguredProfile = Boolean(state.profile);
+  const positioning = Object.fromEntries(['engineering','research','academics','developmentImpact','leadership'].map(key => [key, Math.max(0, Math.min(100, Number(sourceProfile.positioning?.[key]) || 0))]));
+  const profile = { ...sourceProfile, positioning, highlights: Array.isArray(sourceProfile.highlights) ? sourceProfile.highlights.map(escapeHtml) : [] };
+  for (const key of ['name','degree','university','cgpa']) profile[key] = escapeHtml(profile[key] || '');
   const avg = Math.round(Object.values(profile.positioning).reduce((a,b)=>a+b,0) / Object.values(profile.positioning).length);
   const dims = [
     ['Engineering depth', profile.positioning.engineering],
@@ -371,6 +402,7 @@ function renderProfile() {
   ];
 
   document.querySelector('#view-profile').innerHTML = `
+    ${!isConfiguredProfile ? `<div class="profile-note"><strong>Baseline profile loaded.</strong><span>This page now uses the current scholarship evidence profile instead of going empty. Later profile imports can override these planning scores.</span></div>` : ''}
     <section class="card card-pad profile-score">
       <div class="score-ring" style="--score:${avg}"><div class="score-inner"><div class="score-number">${avg}</div><div class="score-caption">portfolio readiness</div></div></div>
       <div>
@@ -380,6 +412,24 @@ function renderProfile() {
         <p class="muted" style="font-size:13px;line-height:1.7">Your strongest positioning is for research- and engineering-intensive scholarships. Leadership-heavy schemes require more explicit evidence than the current CV exposes.</p>
       </div>
     </section>
+
+    <div class="grid grid-3 section profile-action-grid">
+      <section class="card card-pad">
+        <div class="metric-label">Highest leverage</div>
+        <div class="section-title">Research / engineering MSc routes</div>
+        <p class="metric-sub">KAUST, MBZUAI, DAAD, ETH, Oxford and EDISS should get the strongest technical evidence first.</p>
+      </section>
+      <section class="card card-pad">
+        <div class="metric-label">Primary gap</div>
+        <div class="section-title">Leadership + public-impact proof</div>
+        <p class="metric-sub">Gates, Knight-Hennessy, Commonwealth and Weidenfeld need concrete outcomes, not generic ambition.</p>
+      </section>
+      <section class="card card-pad">
+        <div class="metric-label">Next build block</div>
+        <div class="section-title">Three SOP tracks</div>
+        <p class="metric-sub">Keep separate research, development-impact and leadership narratives to avoid one weak generic SOP.</p>
+      </section>
+    </div>
 
     <div class="grid grid-2 section">
       <section class="card card-pad">
@@ -393,7 +443,7 @@ function renderProfile() {
         <div class="section-title">Narrative architecture</div>
         <div class="section-sub">Do not use one generic SOP for every scholarship.</div>
         <div class="timeline" style="margin-top:16px">
-          <div class="timeline-item"><div class="timeline-date">Track A</div><div class="timeline-content"><h3>Research / technical</h3><p>AI systems, computer vision, efficient inference, publications, production-scale engineering. Primary targets: KAUST, Oxford, Cambridge, MBZUAI.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">Track A</div><div class="timeline-content"><h3>Research / technical</h3><p>AI systems, computer vision, efficient inference, publications, production-scale engineering. Primary targets: KAUST, Oxford, Cambridge, MBZUAI, DAAD, ETH.</p></div></div>
           <div class="timeline-item"><div class="timeline-date">Track B</div><div class="timeline-content"><h3>Development impact</h3><p>Use AI engineering to address measurable Bangladesh-relevant constraints in safety, healthcare, infrastructure or public-sector capability. Primary: Commonwealth, Weidenfeld.</p></div></div>
           <div class="timeline-item"><div class="timeline-date">Track C</div><div class="timeline-content"><h3>Leadership / civic impact</h3><p>Only use where you have authentic evidence of initiative, influence, mentorship and community outcomes. Primary: Gates, Knight-Hennessy.</p></div></div>
         </div>
