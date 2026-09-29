@@ -1,8 +1,8 @@
 # Career Track — Scholarship OS
 
-A private scholarship workspace with Google sign-in, Supabase progress persistence, verified deadline countdowns, calendar alarms and a small evidence-led scholarship decision layer. The Express Track preserves the existing vanilla JavaScript interface and all 102 legacy checklist keys while allowing additive vNext items.
+A scholarship workspace with browser-saved progress, verified deadline countdowns, calendar alarms and a small evidence-led scholarship decision layer. The Express Track preserves the existing vanilla JavaScript interface and all 102 legacy checklist keys while allowing additive vNext items.
 
-Progress starts empty, as requested. Supabase is authoritative; account-scoped device caches retain pending work through connectivity failures. The old browser progress key is never imported. This branch is a release candidate: live Google/device/phone acceptance remains required before production cutover.
+Progress starts empty, as requested, then saves automatically in the current browser using localStorage. There is no Google sign-in gate and no cloud account requirement. The old browser progress key is never imported.
 
 ## Run
 
@@ -14,7 +14,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Open `http://localhost:8080`. The public Supabase URL and publishable browser key are committed in `supabase/project.json`, so a normal build opens against the configured project without extra Vercel setup. Signed-out users can inspect the interface through read-only preview mode; saving still requires the private owner session. `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY` may still override those values locally. `npm run build` builds only deployable browser assets into `dist` and generates `dist/deadlines.ics`. It does not load `.env` automatically; use `node --env-file=.env scripts/build.mjs` locally when testing overrides.
+Open `http://localhost:8080`. The app opens directly into the editable workspace and saves progress in this browser. `npm run build` builds only deployable browser assets into `dist` and generates `dist/deadlines.ics`.
 
 ```bash
 npm test
@@ -28,8 +28,8 @@ Tests cover PostgreSQL grants/RLS/CAS, stale edits, slow and failed saves, offli
 
 | Path | Responsibility |
 |---|---|
-| `src/bootstrap.js` | Google session, owner gate, sign-out/export and recovery |
-| `src/sync/` | Revision checks, pending patches, account cache and Supabase requests |
+| `src/bootstrap.js` | Browser-local progress store, export and recovery |
+| `src/sync/` | State validation plus the retained cloud sync modules |
 | `src/app.js`, `src/data.js` | Apply/Watch/Closed portfolio, career context, screened-out evidence, dossier and rendering |
 | `src/domain/time.ts`, `src/countdowns.js` | Exact time, urgency and isolated timer updates |
 | `deadlines.json` | Verified instants and date-only evidence |
@@ -43,6 +43,6 @@ Every scholarship also exposes an **Open GPT ↗** action. It creates a dedicate
 
 The visible scholarship list defaults to **Apply + Watch**. Closed routes stay available for context; misleading, ineligible or funding-mismatched social-media leads are kept in a collapsed **Screened out** register rather than polluting the working shortlist. Career information appears only in scholarship details and is factual planning context, not a PR score or guarantee. The dossier now includes an additive Europass CV item for European applications.
 
-Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. The committed Supabase key is publishable browser configuration; a service/secret key must never be there, and the build rejects one. Source visibility does not authorize access to progress: PostgreSQL grants and row policies enforce it.
+Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. Current progress is browser-local: use the export button for a portable backup or before clearing browser data.
 
 Design and interactions are documented in `DESIGN.md` and `UX-CONTRACT.md`. Do not reorder or rewrite checklist items until the positional-key migration is separately implemented.

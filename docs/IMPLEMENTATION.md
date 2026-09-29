@@ -1,16 +1,16 @@
 # Express implementation checkpoint — 28 September 2026
 
-The fresh-start instruction is implemented: no legacy progress reads/import, empty owner progress, no reset control. The existing vanilla UI and all 102 checklist definitions remain intact.
+The fresh-start instruction is implemented: no legacy progress reads/import, browser-local saved progress starts empty, and the existing vanilla UI plus all 102 legacy checklist definitions remain intact.
 
 ## Implemented
 
-- Google PKCE sign-in/session recovery; explicit signed-out, setup, forbidden, unavailable and offline gates.
+- Google sign-in removed from the active app path; the workspace opens directly and saves progress in browser localStorage.
 - Administrator-provisioned single-owner JSON state, grants limited to SELECT/UPDATE(state), RLS, immutable owner and database-controlled revisions/timestamps.
 - Remote-read-before-save CAS with bounded retries; independent pending operation keys avoid whole-cache overwrites. Stale completions union, unrelated state survives, and intentional current-revision unchecks work. Later same-tab edits rebase only after that tab's successful write.
-- Saving/Saved/error state, persistent Retry, owner-scoped recovery/export, storage-failure warning and save-or-export sign-out.
+- Saving/Saved/error state, persistent Retry, JSON export and storage-failure warning for browser-local progress.
 - Nine exact deadline entries, one date-only KAUST record, provider/Dhaka displays, urgency and hero selection excluding submitted applications. One visibility-aware timer updates timer nodes. Clock skew uses server time.
 - Build-time public ICS with stable UIDs, UTF-8 folding, UTC instants and alarms at 7d/3d/24h/3h. Oxford's two funding routes share the same underlying course deadline.
-- Bundled browser build, pinned dependencies/lockfile, public-key validation, committed public Supabase project fallback, private profile exclusion, CSP/security headers, authenticated daily Vercel keepalive.
+- Bundled browser build, pinned dependencies/lockfile, private profile exclusion, CSP/security headers and browser-local persistence.
 - Minimal scholarship intelligence layer: Apply/Watch/Closed decisions, collapsed screened-out research, official-source provenance and country career-outlook context only in detail views.
 - Added profile-matched opportunities: DAAD all-disciplines Master's, ETH Zurich ESOP, MEXT University Recommendation, GOI-IES, France Excellence Eiffel, Swedish Institute watch and broader Erasmus Mundus AI/CS discovery.
 - Added exact ETH Zurich and Bangladesh-specific DAAD deadline timers/ICS events where official time evidence exists.
@@ -24,7 +24,7 @@ The fresh-start instruction is implemented: no legacy progress reads/import, emp
 
 `tests/intelligence.test.mjs`: verifies the seven new opportunity records, screened-out registry, career-context provenance, ETH/DAAD deadline instants and additive Europass item.
 
-`npm run build`: succeeds; initial browser entry approximately 63 KB gzip, dashboard code loaded separately after sign-in. Build output contains no `.env`, profile seed, migration, docs or fixtures. Missing `PUBLIC_SUPABASE_*` environment variables now fall back to `supabase/project.json`; secret/service-role keys are still rejected.
+`npm run build`: succeeds; dashboard code opens without sign-in and saves to localStorage. Build output contains no `.env`, profile seed, migration, docs or fixtures.
 
 `git diff --check`: clean. DESIGN.md lint: 0 errors; 9 warnings about the existing token/component mapping.
 
@@ -36,4 +36,4 @@ The free Supabase project is now active and the migration is applied. Live SQL o
 
 ## Release state
 
-**Not merged yet.** The webpage implementation, build, tests and live empty Supabase security checks are complete for the Express Track. Google configuration, owner provisioning, authenticated preview, two-device/phone acceptance and the remote recovery tag remain open if strict private-workspace acceptance is required. See `DEPLOYMENT.md` for those follow-up gates.
+**Published.** The webpage implementation is live as a browser-local workspace. Google configuration, owner provisioning and two-device cloud sync are no longer required for this mode; they remain optional future work if cross-device sync becomes important.
