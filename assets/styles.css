@@ -416,6 +416,82 @@ button:disabled { opacity: .55; cursor: not-allowed; }
 }
 .application-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-top: 18px; }
 
+/* UX completion refinements */
+.save-assurance {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--success) 22%, var(--line));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--success) 7%, var(--surface));
+  font-size: 12px;
+}
+.save-assurance span { color: var(--muted); line-height: 1.5; text-align: right; }
+
+.pipeline-list { display: grid; gap: 14px; }
+.pipeline-card { box-shadow: none; transition: box-shadow 140ms ease, border-color 140ms ease; }
+.pipeline-card[open] { box-shadow: var(--shadow); }
+.pipeline-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  cursor: pointer;
+  list-style: none;
+}
+.pipeline-summary::-webkit-details-marker { display: none; }
+.pipeline-heading { min-width: 0; display: grid; gap: 4px; }
+.pipeline-status { display: flex; align-items: center; gap: 8px; }
+.pipeline-state::before { content: "Expand"; }
+.pipeline-card[open] .pipeline-state::before { content: "Collapse"; }
+.pipeline-content { margin-top: 14px; }
+.pipeline-next {
+  display: grid;
+  gap: 5px;
+  padding: 12px 13px;
+  margin-bottom: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.pipeline-next span {
+  color: var(--muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+.pipeline-next strong { font-size: 13px; line-height: 1.45; }
+
+.profile-note {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface-2);
+  font-size: 12px;
+}
+.profile-note span { color: var(--muted); line-height: 1.5; text-align: right; }
+.profile-action-grid .card { box-shadow: none; }
+
+@media (max-width: 760px) {
+  .save-assurance,
+  .profile-note {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .pipeline-summary { grid-template-columns: 1fr; align-items: flex-start; }
+  .save-assurance span,
+  .profile-note span { text-align: left; }
+  .pipeline-status { justify-content: space-between; width: 100%; }
+}
+
 
 /* Safe preview mode: visible UI, no persistent edits until cloud auth is configured. */
 body[data-readonly-preview="true"] [data-progress-key],
