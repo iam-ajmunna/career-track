@@ -14,7 +14,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Open `http://localhost:8080`. The public Supabase URL and publishable browser key are committed in `supabase/project.json`, so a normal build opens against the configured project without extra Vercel setup. `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY` may still override those values locally. `npm run build` builds only deployable browser assets into `dist` and generates `dist/deadlines.ics`. It does not load `.env` automatically; use `node --env-file=.env scripts/build.mjs` locally when testing overrides.
+Open `http://localhost:8080`. The public Supabase URL and publishable browser key are committed in `supabase/project.json`, so a normal build opens against the configured project without extra Vercel setup. Signed-out users can inspect the interface through read-only preview mode; saving still requires the private owner session. `PUBLIC_SUPABASE_URL` and `PUBLIC_SUPABASE_PUBLISHABLE_KEY` may still override those values locally. `npm run build` builds only deployable browser assets into `dist` and generates `dist/deadlines.ics`. It does not load `.env` automatically; use `node --env-file=.env scripts/build.mjs` locally when testing overrides.
 
 ```bash
 npm test

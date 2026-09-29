@@ -68,8 +68,8 @@ async function activate(session) {
     generation++;
     store?.stop();
     ownerId = null;
-    gate('Your scholarship workspace', 'Sign in with your Google account to save and reopen your progress across devices.',
-      { login: true, pending: Boolean(lastEvent?.pending || lastEvent?.draftProblem) });
+    gate('Your scholarship workspace', 'Sign in with your Google account to save and reopen your progress across devices, or inspect the interface in read-only preview mode.',
+      { login: true, preview: true, pending: Boolean(lastEvent?.pending || lastEvent?.draftProblem) });
     return;
   }
   const id = session.user.id;
