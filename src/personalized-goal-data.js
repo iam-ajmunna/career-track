@@ -127,7 +127,7 @@ export const goalProgrammes = [
     "goal": "Research-centric visual AI, deep learning and a dedicated internship align with your ViT, segmentation and production CV experience. Propose vision-language foundation models, temporal reasoning or efficient perception as a thesis direction after confirming partner supervision.",
     "careerKey": "mobility",
     "careerExtra": "For the last semester, actively pursue the internship in a lab/company with foundation-model or GPU-systems research. If relying on Spain's graduate job-search residence, verify qualifying Spanish-study/status conditions: it is up to 24 months but does NOT authorize working during job search.",
-    "language": "Official 2027 requirements to recheck; previous criteria permit accepted proof of English-taught degree/MOI or IELTS route.",
+    "language": "Published admission baseline: English at CEFR B2, e.g. IELTS 6.5 or TOEFL 90. Do not assume an NSU MOI substitute without the 2027 consortium confirming acceptance.",
     "docs": [
       "Programme application and scholarship form",
       "Proof of English per current call; NSU MOI if expressly accepted",
@@ -296,6 +296,7 @@ export const goalProgrammes = [
     "language": "IELTS Academic ≥6.5 overall, Writing ≥6.0 in published 2027 admission materials.",
     "docs": [
       "Consortium admission form and preferences for home/host tracks",
+      "Bachelor's course descriptions or official course-page links for prerequisite evaluation",
       "Motivation video",
       "Recommendation letters as specified by application portal",
       "Official IELTS results by January 12, 2027",
@@ -530,9 +531,9 @@ export const goalProgrammes = [
     "category": "Conditional / watch",
     "institution": "Mohamed bin Zayed University of Artificial Intelligence",
     "location": "Abu Dhabi, United Arab Emirates",
-    "starts": null,
+    "starts": "2026-09-07",
     "ends": "2026-12-15",
-    "dateQuality": "2027 application timeline must be rechecked for the chosen MSc and round; prior planning date is a checkpoint, NOT guaranteed current final deadline",
+    "dateQuality": "Official Fall 2027 postgraduate applications: portal opened 7 Sep 2026 (08:00 GST); MSc deadline 15 Dec 2026 (17:00 GST). Funding is separate and not guaranteed.",
     "funding": "NOT automatic; full only with confirmed faculty-sponsored RA/TA or approved government scholarship",
     "cover": "A funded MSc offer can include tuition waiver, stipend (published international funded MSc category AED 15,500/month), insurance and eligible residence/airfare benefits. Without sponsorship MSc charges apply. Fee-paying MAAI is ineligible for these university/faculty funds.",
     "goal": "Direct AI university with relevant research faculty. Investigate only a thesis-based and fully sponsored faculty opportunity, not a fee-paying taught programme.",
@@ -540,11 +541,11 @@ export const goalProgrammes = [
     "careerExtra": "Written full-funding confirmation is a hard requirement before committing; sponsored work residence or another eligible status needed after study.",
     "language": "Check selected MSc 2027 English requirement, entrance screening and permitted updated results. IELTS plan alone does not secure funding.",
     "docs": [
-      "Research-oriented CV and complete MSc application",
-      "Professor/faculty funding inquiry with specific AI research concept",
-      "Official transcript/degree and passport",
-      "English proof and programme screening documents",
-      "Written sponsorship and full-cost breakdown before accepting"
+      "Fall 2027 research MSc portal application, IELTS/accepted English proof and 200 AED screening/application fee",
+      "Two academic/professional referee recommendations as allowed by the MSc portal",
+      "Statement of purpose, research-oriented CV, official transcript/degree and passport",
+      "White-background photograph and relevant screening examination; prepare for possible interview",
+      "Written research/teaching assistantship or merit-funding decision (do not treat admission as funding)"
     ],
     "levers": [
       "Prioritize a faculty member with funded work in multimodal / foundation-model efficiency.",
