@@ -46,7 +46,7 @@ export function goalVerifyCatalog() {
 }
 export function renderPersonalizedGoal(progress={}) {
   const e=escapeHtml;
-  const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Dhaka',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+  const today=new Date(Date.now()+6*60*60*1000).toISOString().slice(0,10); // Dhaka is UTC+06 without DST.
   const matches=p=> (goalActiveFilter==='All'||p.category===goalActiveFilter) &&
     `${p.name} ${p.full} ${p.institution} ${p.location} ${p.goal} ${p.category}`.toLowerCase().includes(goalActiveQuery.toLowerCase().trim());
   const visible=goalProgrammes.filter(matches);
