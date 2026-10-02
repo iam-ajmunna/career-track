@@ -29,7 +29,7 @@ export function validateState(value) {
   }
   if (new TextEncoder().encode(JSON.stringify(value)).length > 131072) throw new Error('The workspace exceeds its size limit.');
   for (const [key, flag] of Object.entries(value.progress)) {
-    if (prohibited.has(key) || !/^(sch-[a-z0-9-]+-\d+|doc-[a-zA-Z0-9]+|ielts-[a-z0-9]+|ref-[ABC]-(confirmed|briefed|submitted))$/.test(key) || typeof flag !== 'boolean') {
+    if (prohibited.has(key) || !/^(sch-[a-z0-9-]+-\d+|doc-[a-zA-Z0-9]+|ielts-[a-z0-9]+|ref-[ABC]-(confirmed|briefed|submitted)|goal-[a-z0-9-]+-\d+)$/.test(key) || typeof flag !== 'boolean') {
       throw new Error('The workspace contains invalid progress.');
     }
   }
