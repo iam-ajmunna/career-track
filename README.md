@@ -46,3 +46,9 @@ The visible scholarship list defaults to **Apply + Watch**. Closed routes stay a
 Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. Current progress is browser-local: use the export button for a portable backup or before clearing browser data.
 
 Design and interactions are documented in `DESIGN.md` and `UX-CONTRACT.md`. Do not reorder or rewrite checklist items until the positional-key migration is separately implemented.
+
+## Personalized Goal — frontier AI career campaign
+
+The sixth navigation tab is an evidence-led 2027/29 scholarship campaign for multimodal foundation-model and efficient Generative AI research. Its curated catalogue is maintained in `src/personalized-goal-data.js` and rendered by `src/personalized-goal.js`. It includes confirmed full-award competitions, funding-conditional/watch cases, dates with explicit precision, core/programme-specific document requirements, employment and country-dependent post-study settlement context, and directly linked institutional/immigration sources.
+
+New `goal-*` checklist keys are additive to browser-local progress; no legacy scholarship/doc/IELTS/ref key is reordered or repurposed. Legal information is planning context and must be verified again before a visa/PR decision. See `tests/personalized-goal.test.mjs` for catalogue/status/key regression tests. As-of-date: 2026-10-03.
