@@ -2,6 +2,7 @@ import { scholarships, documents, englishPlan, referees, refereeStages, timeline
 import { escapeHtml } from './sync/model.js';
 import { createCountdowns, verifiedDeadlines, dateOnlyDeadlines } from './countdowns.js';
 import { buildScholarshipMasterPrompt, buildChatGptUrl } from './gpt-prompt.js';
+import { renderPersonalizedGoal, setGoalFilter, setGoalSelection, setGoalQuery, getGoalQuery } from './personalized-goal.js';
 let progressStore;
 let lastState = '';
 
@@ -32,7 +33,8 @@ const viewTitles = {
   scholarships: 'Scholarships',
   pipeline: 'Application Pipeline',
   documents: 'Documents',
-  profile: 'Profile Fit'
+  profile: 'Profile Fit',
+  goal: 'Personalized Goal'
 };
 
 const statusMap = {
@@ -527,6 +529,7 @@ function renderCurrentView() {
   renderPipeline();
   renderDocuments();
   renderProfile();
+  document.querySelector('#view-goal').innerHTML = renderPersonalizedGoal(state.progress);
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active-view'));
   document.querySelector(`#view-${state.view}`).classList.add('active-view');
   els.pageTitle.textContent = viewTitles[state.view];
@@ -667,12 +670,25 @@ document.addEventListener('submit', e => {
 });
 
 document.addEventListener('input', e => {
+  if (e.target.id === 'goalSearch') {
+    const pos=e.target.selectionStart;
+    setGoalQuery(e.target.value);
+    document.querySelector('#view-goal').innerHTML=renderPersonalizedGoal(state.progress);
+    const next=document.querySelector('#goalSearch');
+    next?.focus({preventScroll:true});
+    try { next?.setSelectionRange(pos,pos); } catch { /* Input selection unsupported. */ }
+    return;
+  }
   const slider = e.target.closest('[data-score-input]');
   if (!slider) return;
   document.querySelector(`[data-score-output="${CSS.escape(slider.dataset.scoreInput)}"]`)?.replaceChildren(String(slider.value));
 });
 
 document.addEventListener('click', e => {
+  const goalSelect=e.target.closest('[data-goal-select]');
+  if (goalSelect) { setGoalSelection(goalSelect.dataset.goalSelect); renderCurrentView(); return; }
+  const goalFilter=e.target.closest('[data-goal-filter]');
+  if (goalFilter) { setGoalFilter(goalFilter.dataset.goalFilter); renderCurrentView(); return; }
   const resetProfile = e.target.closest('[data-reset-profile]');
   if (resetProfile) {
     try {
@@ -715,8 +731,8 @@ document.addEventListener('change', e => {
 document.addEventListener('keydown', e => {
   if (document.querySelector('#appShell').hidden) return;
   if (e.isComposing || e.keyCode === 229) return;
-  if (/^[1-5]$/.test(e.key) && !document.querySelector('dialog[open]') && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
-    const views = ['overview','scholarships','pipeline','documents','profile'];
+  if (/^[1-6]$/.test(e.key) && !document.querySelector('dialog[open]') && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    const views = ['overview','scholarships','pipeline','documents','profile','goal'];
     state.view = views[Number(e.key)-1];
     renderCurrentView();
   }
