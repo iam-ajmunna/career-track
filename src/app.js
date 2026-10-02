@@ -2,7 +2,7 @@ import { scholarships, documents, englishPlan, referees, refereeStages, timeline
 import { escapeHtml } from './sync/model.js';
 import { createCountdowns, verifiedDeadlines, dateOnlyDeadlines } from './countdowns.js';
 import { buildScholarshipMasterPrompt, buildChatGptUrl } from './gpt-prompt.js';
-import { renderPersonalizedGoal, setGoalFilter, setGoalSelection, setGoalQuery, getGoalQuery } from './personalized-goal.js';
+import { renderPersonalizedGoal, setGoalFilter, setGoalSelection, setGoalQuery } from './personalized-goal.js';
 let progressStore;
 let lastState = '';
 
@@ -541,6 +541,7 @@ function renderCurrentView() {
     else b.removeAttribute('aria-current');
   });
   els.search.value = state.query;
+  els.search.closest('.search-wrap').hidden = state.view === 'goal';
   els.searchClear.hidden = !state.query;
   countdowns.render();
   if (focusedKey) document.querySelector(`[data-progress-key="${CSS.escape(focusedKey)}"]`)?.focus({ preventScroll: true });
