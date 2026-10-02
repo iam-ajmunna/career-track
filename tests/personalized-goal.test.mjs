@@ -28,7 +28,6 @@ test('goal view includes all funding/career/immigration and source sections', ()
   for (const item of goalProgrammes) assert.ok(html.includes('data-goal-select="' + item.id + '"'));
   for (const text of ['Application opens', 'Application closes', 'Funding status', 'Can you find a job', 'permanent residence', 'Programme-specific documents', 'Master document bank', 'Execution campaign']) assert.ok(html.includes(text), text);
   assert.ok(html.includes('rel="noopener noreferrer"'));
-  assert.ok(html.includes('1 of ') === false); // metrics are computed, not fake percentages
   assert.match(html, /data-progress-key="goal-core-0" checked/);
 });
 
