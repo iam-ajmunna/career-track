@@ -468,33 +468,84 @@ export const goalProgrammes = [
     "goal": "A continuous research-lab MSc is useful for GPU-intensive experiments, efficient foundation models and substantive paper contributions. Concentrate on matching a currently active CS/ML/Vision research advisor.",
     "careerKey": "saudi",
     "careerExtra": "Do not assume your scholarship covers a post-graduation Saudi job search; pursue offers early and verify employer authorization.",
-    "language": "Review KAUST's currently accepted test/MOI evidence; proceed with IELTS Academic and obtain MOI as backup.",
+    "language": "IELTS Academic minimum 7.0 overall AND minimum 6.5 in EVERY band (official Fall 2027 entry rules). Official MOI certificates are explicitly NOT accepted; GRE/PGAT optional. You may initially submit without an IELTS result, but an admitted student must meet the test requirement before enrolment.",
     "docs": [
-      "KAUST graduate online application",
-      "Statement of purpose and aligned faculty interests",
-      "Academic transcripts, degree, passport and grading scale",
-      "Academic references according to current portal",
-      "English proof according to entry requirements"
+      "KAUST Fall 2027 MS Computer Science online application (portal opens 28 Sep 2026)",
+      "Approximately 750-word statement of purpose: previous AI work, intended research, programme rationale and future goals",
+      "Full NSU official transcript with institutional grading scale, degree proof (or accepted interim evidence) and passport biodata page",
+      "Enter THREE referees with academic/institutional email addresses; academic referees normally expected for a recent 2026 graduate",
+      "IELTS Academic target ≥7.0 overall with EACH band ≥6.5; not mandatory at initial submission, mandatory before enrolment if admitted; MOI NOT accepted",
+      "Research-led CV with genuine dates, measurable production AI contributions and accurately labelled publications",
+      "Optional: include GRE/PGAT only if you already have a strong score; neither is compulsory"
     ],
     "levers": [
-      "Contact relevant labs with a specific research question and reproducible prior results.",
-      "Explain why MSc research adds methodological depth beyond your production AI work.",
-      "Select a thesis pathway and assess genuine available GPU resources with the professor."
+      "Book IELTS Academic and target 7.0 overall / at least 6.5 in each band; MOI does not replace a score for KAUST.",
+      "Confirm THREE academic/research referees with institutional emails, and brief them on evidence of independent research ability.",
+      "Write a approximately 750-word SOP that connects your CSE/ViT/CV/TensorRT background to one grounded multimodal or efficient-foundation-model research question.",
+      "Identify relevant active KAUST AI/ML systems research labs, confirm available MSc supervision and prepare a reproducible benchmark or non-confidential technical artifact.",
+      "Upload transcript with official NSU grading scale; distinguish published, accepted, and submitted papers."
     ],
     "sources": [
       [
-        "Fall 2027 calendar",
+        "2027 admissions window and tentative deadline",
         "https://admissions.kaust.edu.sa/how-to-apply/admission-timelines"
       ],
       [
-        "Fellowship terms",
-        "https://admissions.kaust.edu.sa/fees-funding"
+        "Official Fall 2027 graduate application portal",
+        "https://apply.kaust.edu.sa/apply/"
       ],
       [
-        "Entry requirements",
+        "Current MSc entry, IELTS & reference requirements",
         "https://admissions.kaust.edu.sa/how-to-apply/entry-requirements"
+      ],
+      [
+        "Full KAUST Fellowship terms",
+        "https://admissions.kaust.edu.sa/fees-funding"
       ]
-    ]
+    ],
+    "eligibilityAudit": {
+      "checkedOn": "2026-10-03",
+      "verdict": "Academic baseline appears met; language evidence still outstanding. Application can begin now.",
+      "items": [
+        {
+          "name": "Nationality",
+          "assessment": "No published Bangladesh exclusion identified",
+          "evidence": "KAUST admits international applicants to its English-medium MS programmes; nationality-based exclusion does not appear in its published baseline."
+        },
+        {
+          "name": "Bachelor's field",
+          "assessment": "Meets field requirement subject to recognition",
+          "evidence": "NSU four-year BSc in CSE is directly relevant to MS Computer Science; KAUST must verify that the issuing institution/degree is recognised."
+        },
+        {
+          "name": "Academic GPA",
+          "assessment": "Meets numeric minimum",
+          "evidence": "Your stated CGPA is 3.74/4.00; KAUST minimum is 3.0/4.0, with a holistic competitive assessment."
+        },
+        {
+          "name": "English proficiency",
+          "assessment": "Required score outstanding",
+          "evidence": "IELTS Academic ≥7.0 overall AND ≥6.5 in all four sections. An NSU MOI certificate is NOT accepted. KAUST accepts initial applications without scores, but conditional admits must submit compliant results before enrolling."
+        },
+        {
+          "name": "GRE / PGAT",
+          "assessment": "Not required",
+          "evidence": "An optional strong GRE/PGAT score can be uploaded, but it is not a mandatory entry gate."
+        },
+        {
+          "name": "References",
+          "assessment": "Preparation required",
+          "evidence": "Three institutional-email referees; a recent 2026 graduate is normally expected to use academic rather than entirely professional referees."
+        },
+        {
+          "name": "Funding",
+          "assessment": "Full fellowship with stated exceptions",
+          "evidence": "For eligible admitted MS students: tuition/bench fees, approximately US$20,000/year stipend, base housing, health insurance, and initial/return travel/relocation. External sponsors can change fellowship eligibility."
+        }
+      ],
+      "blocker": "IELTS 7.0 overall / 6.5 each section still needs to be achieved before enrolment; confirm institutional recognition, three academic referees, and chosen CS research supervisors.",
+      "nextAction": "Start KAUST Fall 2027 MS Computer Science application now using existing transcript, CV and passport. Book IELTS Academic for late October/early November; prepare a ~750-word research SOP and three academic referee contacts."
+    }
   },
   {
     "id": "cambridge",
@@ -548,7 +599,7 @@ export const goalProgrammes = [
     "location": "Oxford, United Kingdom",
     "starts": null,
     "ends": "2027-01-06",
-    "dateQuality": "Published course & Clarendon consideration deadline; applications currently open, opening date not explicitly published in cited course notice; 12:00 noon UK time",
+    "dateQuality": "2027-28 MSc course is officially OPEN as of 3 October 2026; application and Clarendon consideration deadline 6 Jan 2027 at 12:00 UK local time.",
     "funding": "Full if Clarendon awarded",
     "cover": "Clarendon covers full course fees and a living grant for the period of fee liability. Travel/airfare not a separately guaranteed line item.",
     "goal": "Broad advanced CS with mathematically rigorous study and AI-related elective possibilities. Choose a substantive ML/GenAI dissertation topic; verify available supervision and modules.",
@@ -576,7 +627,8 @@ export const goalProgrammes = [
         "Clarendon funding",
         "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon/applicants"
       ]
-    ]
+    ],
+    "applicationOpenConfirmed": true
   },
   {
     "id": "mbzuai",
