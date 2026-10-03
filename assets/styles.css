@@ -673,3 +673,15 @@ body[data-readonly-preview="true"] .sync-message {
  .goal-directory-header .goal-search { width:100%; }
 }
 @media(prefers-reduced-motion:reduce) { .goal-programme { transition:none; } }
+
+
+/* Per-programme sourced applicant-eligibility audit. */
+.goal-audit { display:grid; gap:10px; }
+.goal-audit .goal-section-heading { margin:0; }
+.goal-audit-verdict { padding:11px 13px; background:var(--surface-2); border-radius:10px; font-weight:600; font-size:12px; line-height:1.6; }
+.goal-audit-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+.goal-audit-item { padding:11px; border:1px solid var(--line); border-radius:10px; min-width:0; }
+.goal-audit-item strong { display:block; font-size:11px; margin-bottom:5px; }
+.goal-audit-item span { display:block; font-size:10px; color:var(--muted); margin-bottom:6px; }
+.goal-audit-item p { font-size:11px; line-height:1.55; margin:0; color:var(--text); }
+@media(max-width:600px) { .goal-audit-grid { grid-template-columns:1fr; } }
