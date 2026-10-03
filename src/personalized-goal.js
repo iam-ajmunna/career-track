@@ -1,7 +1,7 @@
 import { goalSnapshot,goalCoreDocuments,goalCampaign,goalPathways,goalProgrammes } from './personalized-goal-data.js';
 import { escapeHtml } from './sync/model.js';
 let goalSelected='ipcvai';
-let goalActiveFilter='All';
+let goalActiveFilter='Open now';
 let goalActiveQuery='';
 function goalDate(value) {
   if (!value) return 'Not yet published';
@@ -11,7 +11,7 @@ function goalStage(item, today) {
   if (!item.ends) return 'Watch for call';
   if (today > item.ends) return 'Closed';
   if (item.starts && today < item.starts) return 'Opens soon';
-  if (!item.starts) return 'Deadline set';
+  if (!item.starts) return item.applicationOpenConfirmed ? 'Open' : 'Deadline set';
   return 'Open';
 }
 function goalProgress(progress, prefix, items) {
@@ -29,7 +29,7 @@ export function setGoalSelection(id) {
   if (goalProgrammes.some(p=>p.id===id)) goalSelected=id;
 }
 export function setGoalFilter(next) {
-  if (['All','Erasmus Mundus','Other fully funded','Conditional / watch'].includes(next)) goalActiveFilter=next;
+  if (['Open now','All','Erasmus Mundus','Other fully funded','Conditional / watch'].includes(next)) goalActiveFilter=next;
 }
 export function setGoalQuery(next) { goalActiveQuery=String(next).slice(0,120); }
 export function getGoalQuery() {return goalActiveQuery;}
@@ -47,7 +47,7 @@ export function goalVerifyCatalog() {
 export function renderPersonalizedGoal(progress={}) {
   const e=escapeHtml;
   const today=new Date(Date.now()+6*60*60*1000).toISOString().slice(0,10); // Dhaka is UTC+06 without DST.
-  const matches=p=> (goalActiveFilter==='All'||p.category===goalActiveFilter) &&
+  const matches=p=> (goalActiveFilter==='All'||(goalActiveFilter==='Open now' ? goalStage(p,today)==='Open' : p.category===goalActiveFilter)) &&
     `${p.name} ${p.full} ${p.institution} ${p.location} ${p.goal} ${p.category}`.toLowerCase().includes(goalActiveQuery.toLowerCase().trim());
   const visible=goalProgrammes.filter(matches);
   const current=visible.find(p=>p.id===goalSelected)||visible[0];
@@ -111,7 +111,7 @@ export function renderPersonalizedGoal(progress={}) {
     <section class="goal-directory" aria-label="Scholarship explorer">
       <div class="goal-directory-header"><div><h2>Scholarship intelligence</h2><p>Select a programme to inspect funding, deadlines, mobility, career/PR rules and requirements.</p></div><label class="goal-search"><span class="sr-only">Search Personalized Goal programmes</span><input id="goalSearch" type="search" placeholder="Search programme, country, topic…" value="${e(goalActiveQuery)}" autocomplete="off"></label></div>
       <div class="goal-filters" role="group" aria-label="Filter scholarships">
-      ${['All','Erasmus Mundus','Other fully funded','Conditional / watch'].map(name=>`<button class="goal-filter ${goalActiveFilter===name?'active':''}" type="button" data-goal-filter="${e(name)}" aria-pressed="${goalActiveFilter===name}">${e(name)}</button>`).join('')}
+      ${['Open now','All','Erasmus Mundus','Other fully funded','Conditional / watch'].map(name=>`<button class="goal-filter ${goalActiveFilter===name?'active':''}" type="button" data-goal-filter="${e(name)}" aria-pressed="${goalActiveFilter===name}">${e(name)}</button>`).join('')}
       </div>
       <div class="goal-two-col"><div class="goal-programmes" aria-label="Available programmes"><div class="goal-programmes-caption">${visible.length} programme${visible.length===1?'':'s'} · Select to expand</div>${list||'<p class="goal-fine">No results.</p>'}</div>${details}</div>
     </section>
