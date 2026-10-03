@@ -53,7 +53,8 @@ const fitMap = {
   'strong-reach': ['Strong reach', 'warn'],
   reach: ['Reach', 'warn'],
   'extreme-reach': ['Extreme reach', 'danger'],
-  ineligible: ['Ineligible', 'danger']
+  ineligible: ['Ineligible', 'danger'],
+  unverified: ['Eligibility unverified', 'warn']
 };
 
 const decisionMap = {
@@ -163,7 +164,7 @@ function scholarshipCard(item) {
         ${badge(decision)}
         ${badge(fit)}
         <span class="tag">${item.route}</span>
-        <span class="tag">Fit ${item.fitScore}/100</span>
+        ${Number.isFinite(item.fitScore) ? `<span class="tag">Fit ${item.fitScore}/100</span>` : ''}
       </div>
       <p>${item.whyFit}</p>
       <div class="progress-track" title="Application checklist progress"><div class="progress-fill" style="width:${progress}%"></div></div>
@@ -563,7 +564,7 @@ function openScholarship(id) {
       <div class="dialog-grid">
         <div class="info-box"><div class="info-label">Funding</div><div class="info-value">${s.funding}</div></div>
         <div class="info-box"><div class="info-label">Deadline</div><div class="info-value">${deadlineLabel(s)}</div></div>
-        <div class="info-box"><div class="info-label">Profile fit</div><div class="info-value">${s.fitScore}/100 · ${fit[0]}</div></div>
+        <div class="info-box"><div class="info-label">Profile fit</div><div class="info-value">${Number.isFinite(s.fitScore) ? `${s.fitScore}/100 · ` : ''}${fit[0]}</div></div>
         <div class="info-box"><div class="info-label">Primary risk</div><div class="info-value">${s.keyRisk}</div></div>
       </div>
       <h3>Why it fits your profile</h3>
