@@ -121,38 +121,92 @@ export const goalProgrammes = [
     "location": "Budapest, Hungary → Madrid, Spain → Bordeaux, France; final internship in academia or industry",
     "starts": "2026-11-01",
     "ends": "2027-02-02",
-    "dateQuality": "Published 2027 call; exact submission hour must be checked in portal",
+    "dateQuality": "Official 2027–29 scholarship call. Closes 2 Feb 2027 at 12:00 noon Paris local time (17:00 Bangladesh time).",
     "funding": "Full if awarded",
     "cover": "Full EMJM awards waive participation costs and provide €1,400/month for the eligible programme duration (typically up to 24 months) to contribute to living, travel, visa and installation costs; insurance is arranged by the consortium. Airfare is not a separate unlimited ticket benefit.",
     "goal": "Research-centric visual AI, deep learning and a dedicated internship align with your ViT, segmentation and production CV experience. Propose vision-language foundation models, temporal reasoning or efficient perception as a thesis direction after confirming partner supervision.",
     "careerKey": "mobility",
     "careerExtra": "For the last semester, actively pursue the internship in a lab/company with foundation-model or GPU-systems research. If relying on Spain's graduate job-search residence, verify qualifying Spanish-study/status conditions: it is up to 24 months but does NOT authorize working during job search.",
-    "language": "Published admission baseline: English at CEFR B2, e.g. IELTS 6.5 or TOEFL 90. Do not assume an NSU MOI substitute without the 2027 consortium confirming acceptance.",
+    "language": "2027 admission explicitly accepts IELTS Academic overall ≥6.5 with no band below 6.0, OR an official NSU statement confirming that the entire bachelor’s programme was taught in English. CEFR B2 required.",
     "docs": [
-      "Programme application and scholarship form",
-      "Proof of English per current call; NSU MOI if expressly accepted",
-      "Programme-specific motivation statement and preferred internship interest",
-      "Two academic/research references, if required by the 2027 portal"
+      "Programme admission and parallel Erasmus Mundus scholarship request via official eMundus portal",
+      "English proof: IELTS Academic ≥6.5 (no component below 6.0), OR signed/sealed official NSU English MOI certificate",
+      "Programme-specific motivation letter of no more than 1,000 words",
+      "Two suitable academic/scientific referees briefed; letters requested only if shortlisted for round two",
+      "Official BSc CSE certificate (English and original language, where different) or university completion letter if degree certificate pending",
+      "Full official NSU transcript including grading scale (English and original language, where different)",
+      "Europass-format academic CV; distinguish submitted papers from published research",
+      "Passport identification pages covering the intended two-year study period, plus passport-style photograph",
+      "Employment certificates if claiming AI engineering experience",
+      "Second round only: prepare motivation video and ensure both referees upload signed institutional letters themselves"
     ],
     "levers": [
-      "Show controlled experiments on a visual foundation model rather than CV-only production screenshots.",
-      "Describe the specific research contribution and use the fourth-semester internship strategically.",
-      "Provide defensible metrics for segmentation, throughput and multimodal research."
+      "Obtain a signed, institutionally sealed NSU MOI statement; still complete IELTS for other Erasmus Mundus programmes.",
+      "Add NSU official grading-scale/degree-duration evidence; ask the consortium to confirm recognition of the 4-year Bangladeshi BSc as equivalent to 180 ECTS, instead of paying for third-party WES without a request.",
+      "Show controlled experiments on visual foundation models: baselines, dataset splits, metrics and failure analysis.",
+      "In your ≤1,000-word motivation letter, connect CSE, ViT, SAM segmentation, efficient inference and real-time production CV to a focused IPCVAI research thesis and its 4th-semester internship.",
+      "Get two research-capable academic/scientific referees ready for stage two and prepare for an oral technical interview."
     ],
     "sources": [
       [
-        "2027 programme call",
-        "https://ipcv.eu/"
+        "Official 2027 eligibility and deadline",
+        "https://ipcv.eu/application-and-selection/application/"
       ],
       [
-        "Admissions and criteria",
-        "https://ipcv.eu/how-to-apply/admission/"
+        "Official 2027 document list and portal",
+        "https://ipcv.eu/application-and-selection/apply-now/"
       ],
       [
-        "Spain post-study permit",
+        "2027 full scholarship coverage",
+        "https://ipcv.eu/about-ipcv-program-2/costs-and-funding-2/"
+      ],
+      [
+        "FAQ: IELTS bands, MOI and second-round references",
+        "https://ipcv.eu/how-to-apply/faq/"
+      ],
+      [
+        "Spain post-study status (conditional)",
         "https://www.inclusion.gob.es/en/web/migraciones/w/20.-autorizacion-de-residencia-para-busqueda-de-empleo-o-inicio-de-proyecto-empresarial"
       ]
-    ]
+    ],
+    "eligibilityAudit": {
+      "checkedOn": "2026-10-03",
+      "verdict": "Provisionally eligible to apply; no documented nationality or subject-degree exclusion. Final decision rests with consortium.",
+      "items": [
+        {
+          "name": "Citizenship",
+          "assessment": "Meets published rule",
+          "evidence": "Applications open to all countries, including Bangladesh."
+        },
+        {
+          "name": "Degree subject",
+          "assessment": "Meets published rule",
+          "evidence": "NSU BSc Computer Science and Engineering matches accepted Computer Science/Engineering areas."
+        },
+        {
+          "name": "Degree level / 180 ECTS equivalent",
+          "assessment": "Confirmation recommended",
+          "evidence": "A first higher-education bachelor’s degree or recognised equivalent is required. Consortium must evaluate the specific 4-year Bangladeshi qualification; WES is not requested in the official checklist."
+        },
+        {
+          "name": "Academic results",
+          "assessment": "Appears to meet minimum",
+          "evidence": "3.74/4.00 is consistent with the stated Good-or-better criterion; provide NSU grading scale for consortium decision."
+        },
+        {
+          "name": "English",
+          "assessment": "Documentation outstanding",
+          "evidence": "IELTS Academic 6.5 with each band ≥6.0, or an institutionally issued certificate that the entire degree was taught in English."
+        },
+        {
+          "name": "EMJM scholarship history",
+          "assessment": "Self-declaration required",
+          "evidence": "Prior recipients of an Erasmus Mundus Joint Master scholarship are ineligible for a second IPCVAI EMJM award."
+        }
+      ],
+      "blocker": "No published hard blocker identified. Confirm formal degree equivalency, obtain signed/sealed NSU MOI or qualifying IELTS, and declare previous EMJM scholarship history truthfully.",
+      "nextAction": "Request official NSU degree certificate, transcript with grading scale and MOI. Ask IPCVAI admissions to confirm that NSU’s four-year BSc CSE is a recognised equivalent to the 180-ECTS bachelor’s criterion."
+    }
   },
   {
     "id": "ediss",
