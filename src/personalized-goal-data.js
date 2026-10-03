@@ -465,7 +465,7 @@ export const goalProgrammes = [
     "dateQuality": "Published Fall 2027 Round 2; dates marked tentative by university; exact closing hour unannounced",
     "funding": "Full for eligible admitted MSc students",
     "cover": "Full tuition/bench fees, MS stipend approximately USD 20,000 per year, base on-campus accommodation, medical insurance, initial/return relocation and travel support; external sponsorship exceptions exist.",
-    "goal": "A continuous research-lab MSc is useful for GPU-intensive experiments, efficient foundation models and substantive paper contributions. Concentrate on matching a currently active CS/ML/Vision research advisor.",
+    "goal": "KAUST's officially listed GenAI Factory undertakes ongoing work on multimodal foundation models, efficient GenAI inference and distributed model training. This connects directly with your TensorRT/DeepStream and CV research history while supporting your goal of becoming a frontier-model research engineer. Supervisor availability and MS Computer Science thesis suitability must be confirmed.",
     "careerKey": "saudi",
     "careerExtra": "Do not assume your scholarship covers a post-graduation Saudi job search; pursue offers early and verify employer authorization.",
     "language": "IELTS Academic minimum 7.0 overall AND minimum 6.5 in EVERY band (official Fall 2027 entry rules). Official MOI certificates are explicitly NOT accepted; GRE/PGAT optional. You may initially submit without an IELTS result, but an admitted student must meet the test requirement before enrolment.",
@@ -482,7 +482,7 @@ export const goalProgrammes = [
       "Book IELTS Academic and target 7.0 overall / at least 6.5 in each band; MOI does not replace a score for KAUST.",
       "Confirm THREE academic/research referees with institutional emails, and brief them on evidence of independent research ability.",
       "Write a approximately 750-word SOP that connects your CSE/ViT/CV/TensorRT background to one grounded multimodal or efficient-foundation-model research question.",
-      "Identify relevant active KAUST AI/ML systems research labs, confirm available MSc supervision and prepare a reproducible benchmark or non-confidential technical artifact.",
+      "Read KAUST GenAI Factory and Vision-CAIR research; investigate Mohamed Elhoseiny, Bernard Ghanem, Marco Canini and Peter Richtarik as research-alignment leads, verifying current MS supervision and exact programme affiliation.",
       "Upload transcript with official NSU grading scale; distinguish published, accepted, and submitted papers."
     ],
     "sources": [
@@ -501,6 +501,14 @@ export const goalProgrammes = [
       [
         "Full KAUST Fellowship terms",
         "https://admissions.kaust.edu.sa/fees-funding"
+      ],
+      [
+        "GenAI Factory: current research themes and faculty",
+        "https://www.kaust.edu.sa/en/research/generative-ai/gen-ai-factory"
+      ],
+      [
+        "Vision-CAIR faculty and multimodal work",
+        "https://cemse.kaust.edu.sa/profiles/mohamed-elhoseiny"
       ]
     ],
     "eligibilityAudit": {
