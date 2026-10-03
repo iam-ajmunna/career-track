@@ -72,6 +72,13 @@ export function renderPersonalizedGoal(progress={}) {
       <div class="goal-detail-header"><div><span class="goal-eyebrow">${e(current.category)} · 2027 intake</span><h2>${e(current.name)}</h2><p>${e(current.full)}</p></div><span class="pill ${statusCls(current)}">${e(stage(current))}</span></div>
       <div class="goal-university"><strong>University / consortium</strong><span>${e(current.institution)}</span><strong>Study location</strong><span>${e(current.location)}</span></div>
       ${dateInfo}
+      ${current.eligibilityAudit ? `<section class="goal-section goal-audit" aria-label="Personal eligibility audit">
+        <div class="goal-section-heading"><div><h3>Verified eligibility audit</h3><span class="goal-minor">Checked ${e(current.eligibilityAudit.checkedOn)} · Based on current published admission criteria and your documented academic profile</span></div><span class="goal-status info">Personal eligibility</span></div>
+        <p class="goal-audit-verdict">${e(current.eligibilityAudit.verdict)}</p>
+        <div class="goal-audit-grid">${current.eligibilityAudit.items.map(item=>`<div class="goal-audit-item"><strong>${e(item.name)}</strong><span>${e(item.assessment)}</span><p>${e(item.evidence)}</p></div>`).join('')}</div>
+        <p class="goal-fine"><strong>Remaining verification:</strong> ${e(current.eligibilityAudit.blocker)}</p>
+        <p class="goal-fine"><strong>Next administrative action:</strong> ${e(current.eligibilityAudit.nextAction)}</p>
+      </section>` : ''}
       <section class="goal-section"><h3>Full coverage — what the offer actually pays</h3><p>${e(current.cover)}</p><p class="goal-fine">Full funding means only when the named competitive scholarship/fellowship is awarded. Admission alone must never be treated as a full-funding offer.</p></section>
       <section class="goal-section"><h3>Why this connects to your frontier-AI career</h3><p>${e(current.goal)}</p></section>
       <section class="goal-section"><h3>Can you find a job after the MSc?</h3><span class="goal-minor">${e(career.label)}</span><p>${e(career.work)}</p><p>${e(current.careerExtra)}</p><h3>Can it lead to permanent residence?</h3><p>${e(career.pr)}</p><p class="goal-fine">Immigration is nationality-, degree- and residence-specific; no scholarship provides an automatic job offer, post-study work permission or PR. Verify rules again near graduation in 2028–29.</p></section>
