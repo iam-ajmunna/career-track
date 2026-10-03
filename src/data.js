@@ -177,7 +177,9 @@ export const scholarships = [
       "Budget for WES Document-by-Document ICAP ONLY after accepting admission (Stanford January 2026 estimate: minimum USD 220; fee may change)",
       "Submit by 6 Oct 2026 if proceeding"
     ],
-    source: "https://knight-hennessy.stanford.edu/admission"
+    source: "https://knight-hennessy.stanford.edu/admission",
+    secondarySource: "https://gradadmissions.stanford.edu/apply/eligibility",
+    verifiedOn: "2026-10-03"
   },
   {
     id: "chevening",
