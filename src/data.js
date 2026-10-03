@@ -3,7 +3,7 @@ export const snapshotDate = "2026-09-28";
 export const scholarships = [
   {
     id: "commonwealth",
-    decision: "apply",
+    decision: "watch",
     name: "Commonwealth Master's Scholarship",
     country: "United Kingdom",
     provider: "Commonwealth Scholarship Commission",
@@ -11,12 +11,12 @@ export const scholarships = [
     deadline: "2026-10-20",
     funding: "Full tuition + airfare + living stipend",
     fit: "strong",
-    priority: 2,
+    priority: 85,
     fitScore: 86,
     route: "Government / development impact",
     eligible: true,
-    keyRisk: "Development-impact narrative must be specific, measurable and Bangladesh-focused.",
-    whyFit: "Strong technical record plus a credible route to resource-efficient AI capacity and deployment impact in Bangladesh.",
+    keyRisk: "Mandatory return-home obligation conflicts with current objective of taking a job abroad immediately after the MSc. CSC does not support transition under UK Graduate immigration route; a qualifying fully funded PhD exception can apply. Its application is open, but participation must be an informed separate choice.",
+    whyFit: "Academically possible and fully funded, but the CSC award contract requires return to Bangladesh on completion, making it a lower-priority route for immediate overseas industry employment.",
     actions: [
       "Finalize four-part Bangladesh development-impact statement",
       "Lock eligible UK MSc choices and study-plan logic",
@@ -25,7 +25,8 @@ export const scholarships = [
       "Complete Bangladesh UGC / nominating-agency requirements"
     ],
     source: "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
-    secondarySource: "https://ugc.gov.bd/notice/application-form-for-commonwealth-scholarships-uk-2027"
+    secondarySource: "https://ugc.gov.bd/notice/application-form-for-commonwealth-scholarships-uk-2027",
+    verifiedOn: "2026-10-03"
   },
   {
     id: "kaust",
@@ -33,7 +34,7 @@ export const scholarships = [
     name: "KAUST MSc Fellowship",
     country: "Saudi Arabia",
     provider: "King Abdullah University of Science and Technology",
-    status: "opens-soon",
+    status: "open",
     opens: "2026-09-28",
     deadline: "2027-01-03",
     funding: "Full tuition + stipend + housing + insurance + relocation",
@@ -42,7 +43,7 @@ export const scholarships = [
     fitScore: 93,
     route: "Research / engineering",
     eligible: true,
-    keyRisk: "Research fit, faculty/lab alignment and English evidence need to be explicit.",
+    keyRisk: "IELTS Academic 7.0 overall and minimum 6.5 in EACH band is required by enrolment; NSU MOI is not accepted. Initial application can be submitted without IELTS. Three institutional-email academic referees are normally expected for a recent graduate; GRE is optional.",
     whyFit: "Your production AI, computer vision, efficient inference, model-compression and research experience map closely to KAUST's technical environment.",
     actions: [
       "Shortlist AI/CV/ML faculty and labs",
@@ -52,11 +53,12 @@ export const scholarships = [
       "Secure IELTS/accepted English evidence and submit early"
     ],
     source: "https://admissions.kaust.edu.sa/how-to-apply/admission-timelines",
-    secondarySource: "https://admissions.kaust.edu.sa/how-to-apply/entry-requirements"
+    secondarySource: "https://admissions.kaust.edu.sa/how-to-apply/entry-requirements",
+    verifiedOn: "2026-10-03"
   },
   {
     id: "mbzuai",
-    decision: "apply",
+    decision: "watch",
     name: "MBZUAI MSc + Merit Funding",
     country: "United Arab Emirates",
     provider: "Mohamed bin Zayed University of Artificial Intelligence",
@@ -68,7 +70,7 @@ export const scholarships = [
     fitScore: 91,
     route: "AI research",
     eligible: true,
-    keyRisk: "MSc admission does not automatically imply full funding.",
+    keyRisk: "Fall 2027 MSc admission is fee-paying by default. Full funding depends on confirmed merit/faculty-sponsored RA/TA or applicable government sponsorship; do not treat admission alone as a scholarship offer.",
     whyFit: "Computer vision, multimodal AI, edge inference, deployment and research publications align directly with MBZUAI's domain focus.",
     actions: [
       "Target the strongest matching Computer Vision / ML pathway",
@@ -77,7 +79,8 @@ export const scholarships = [
       "Prepare research statement and evidence package",
       "Verify assistantship/funding route during the application"
     ],
-    source: "https://mbzuai.ac.ae/"
+    source: "https://mbzuai.ac.ae/admissions/graduate-masters-admissions",
+    verifiedOn: "2026-10-03"
   },
   {
     id: "weidenfeld",
