@@ -210,35 +210,35 @@
       "kind": "scholarship",
       "entity": "khs",
       "index": 0,
-      "label": "Make an immediate go/no-go decision based on genuine leadership evidence"
+      "label": "Review Stanford-linked minimum-level-of-study/WES preview for NSU; if Bangladesh is absent, request written Stanford programme confirmation of degree equivalency"
     },
     {
       "key": "sch-khs-1",
       "kind": "scholarship",
       "entity": "khs",
       "index": 1,
-      "label": "Check Stanford graduate-program deadline alignment"
+      "label": "Confirm intended Stanford graduate-program eligibility IN WRITING; initial application normally uses transcript without paid WES evaluation"
     },
     {
       "key": "sch-khs-2",
       "kind": "scholarship",
       "entity": "khs",
       "index": 2,
-      "label": "Prepare KHS-specific essays only if the evidence is strong enough"
+      "label": "Only if eligibility is resolved before deadline, prepare separate KHS essays and concurrent Stanford graduate application"
     },
     {
       "key": "sch-khs-3",
       "kind": "scholarship",
       "entity": "khs",
       "index": 3,
-      "label": "Obtain highly specific recommendations"
+      "label": "Budget for WES Document-by-Document ICAP ONLY after accepting admission (Stanford January 2026 estimate: minimum USD 220; fee may change)"
     },
     {
       "key": "sch-khs-4",
       "kind": "scholarship",
       "entity": "khs",
       "index": 4,
-      "label": "Submit by 6 Oct 2026 if proceeding"
+      "label": "6 Oct 2026 is the 2027 KHS cut-off; treat this route as on hold unless Stanford verifies entry eligibility"
     },
     {
       "key": "sch-chevening-0",
@@ -685,5 +685,6 @@
       "stage": "submitted",
       "label": "Submitted where required"
     }
-  ]
+  ],
+  "reconciliation_note": "Existing production KHS action descriptions had changed prior to scholarship lifecycle implementation; baseline labels reconciled to current deployed data without changing keys."
 }

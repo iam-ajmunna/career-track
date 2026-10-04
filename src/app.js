@@ -329,11 +329,18 @@ function renderPipeline() {
 }
 
 function renderDocuments() {
-  const done = documents.filter(d => state.progress[`doc-${d.id}`]).length;
-  const required = documents.filter(d => d.required);
+  const relevant = {
+    sopKaust: ['kaust'], sopOxford: ['clarendon', 'weidenfeld'],
+    commonwealthImpact: ['commonwealth', 'commonwealth-shared'],
+    mextPlan: ['mext'], edissVideo: ['ediss']
+  };
+  const visibleDocuments = documents.filter(item => !relevant[item.id] ||
+    relevant[item.id].some(id => isScholarshipVisible(state.lifecycle, id)));
+  const done = visibleDocuments.filter(d => state.progress[`doc-${d.id}`]).length;
+  const required = visibleDocuments.filter(d => d.required);
   const requiredDone = required.filter(d => state.progress[`doc-${d.id}`]).length;
-  const pct = Math.round(done / documents.length * 100);
-  const groups = [...new Set(documents.map(d => d.group))];
+  const pct = visibleDocuments.length ? Math.round(done / visibleDocuments.length * 100) : 0;
+  const groups = [...new Set(visibleDocuments.map(d => d.group))];
 
   const ieltsDone = englishPlan.steps.filter(step => state.progress[`ielts-${step.id}`]).length;
   const refereeChecks = referees.length * refereeStages.length;
@@ -343,7 +350,7 @@ function renderDocuments() {
 
   document.querySelector('#view-documents').innerHTML = `
     <div class="grid grid-4">
-      <div class="card card-pad"><div class="metric-label">Dossier items ready</div><div class="metric-value">${done}/${documents.length}</div><div class="metric-sub">Master evidence packet</div></div>
+      <div class="card card-pad"><div class="metric-label">Dossier items ready</div><div class="metric-value">${done}/${visibleDocuments.length}</div><div class="metric-sub">Master evidence packet</div></div>
       <div class="card card-pad"><div class="metric-label">Required items ready</div><div class="metric-value">${requiredDone}/${required.length}</div><div class="metric-sub">Critical cross-application material</div></div>
       <div class="card card-pad"><div class="metric-label">IELTS plan</div><div class="metric-value">${ieltsDone}/${englishPlan.steps.length}</div><div class="metric-sub">${englishPlan.target}</div></div>
       <div class="card card-pad"><div class="metric-label">Referee readiness</div><div class="metric-value">${refereeDone}/${refereeChecks}</div><div class="metric-sub">Three-person reference system</div></div>
@@ -359,7 +366,7 @@ function renderDocuments() {
           <section class="card card-pad document-group">
             <div class="section-title">${group}</div>
             <div class="checklist dossier-list">
-              ${documents.filter(d => d.group === group).map(d => {
+              ${visibleDocuments.filter(d => d.group === group).map(d => {
                 const key = `doc-${d.id}`;
                 const priorityClass = d.priority === 'critical' ? 'danger' : d.priority === 'high' ? 'warn' : d.priority === 'watch' ? 'info' : 'neutral';
                 const priorityLabel = d.priority === 'critical' ? 'Critical' : d.priority === 'high' ? 'High' : d.priority === 'watch' ? 'Watch' : (d.required ? 'Required' : 'Optional');
@@ -376,10 +383,10 @@ function renderDocuments() {
 
     <div class="grid grid-2 section">
       <section class="card card-pad">
-        <div class="section-head"><div><div class="section-title">English-test strategy</div><div class="section-sub">${englishPlan.rationale}</div></div></div>
+        <div class="section-head"><div><div class="section-title">English-test strategy</div><div class="section-sub">Portfolio English plan; verify the thresholds for the scholarship routes you have kept.</div></div></div>
         <div class="target-callout"><span>Portfolio target</span><strong>${englishPlan.target}</strong></div>
         <div class="requirement-grid">
-          ${englishPlan.requirements.map(req => `<div class="requirement-card"><span>${req.programme}</span><strong>${req.score}</strong></div>`).join('')}
+          ${englishPlan.requirements.filter(req => isScholarshipVisible(state.lifecycle, req.programme.startsWith('Cambridge') ? 'gates' : req.programme === 'KAUST' ? 'kaust' : 'ediss')).map(req => `<div class="requirement-card"><span>${req.programme}</span><strong>${req.score}</strong></div>`).join('')}
         </div>
         <div class="checklist" style="margin-top:14px">
           ${englishPlan.steps.map((step, index) => {
@@ -504,12 +511,12 @@ function renderProfile() {
       <section class="card card-pad">
         <div class="metric-label">Highest leverage</div>
         <div class="section-title">Research / engineering MSc routes</div>
-        <p class="metric-sub">KAUST, MBZUAI, DAAD, ETH, Oxford and EDISS should get the strongest technical evidence first.</p>
+        <p class="metric-sub">Apply the strongest technical evidence to your active research/engineering scholarship routes.</p>
       </section>
       <section class="card card-pad">
         <div class="metric-label">Primary gap</div>
         <div class="section-title">Leadership + public-impact proof</div>
-        <p class="metric-sub">Gates, Knight-Hennessy, Commonwealth and Weidenfeld need concrete outcomes, not generic ambition.</p>
+        <p class="metric-sub">Leadership and public-impact awards need concrete outcomes, not generic ambition.</p>
       </section>
       <section class="card card-pad">
         <div class="metric-label">Next build block</div>
@@ -530,9 +537,9 @@ function renderProfile() {
         <div class="section-title">Narrative architecture</div>
         <div class="section-sub">Do not use one generic SOP for every scholarship.</div>
         <div class="timeline" style="margin-top:16px">
-          <div class="timeline-item"><div class="timeline-date">Track A</div><div class="timeline-content"><h3>Research / technical</h3><p>AI systems, computer vision, efficient inference, publications, production-scale engineering. Primary targets: KAUST, Oxford, Cambridge, MBZUAI, DAAD, ETH.</p></div></div>
-          <div class="timeline-item"><div class="timeline-date">Track B</div><div class="timeline-content"><h3>Development impact</h3><p>Use AI engineering to address measurable Bangladesh-relevant constraints in safety, healthcare, infrastructure or public-sector capability. Primary: Commonwealth, Weidenfeld.</p></div></div>
-          <div class="timeline-item"><div class="timeline-date">Track C</div><div class="timeline-content"><h3>Leadership / civic impact</h3><p>Only use where you have authentic evidence of initiative, influence, mentorship and community outcomes. Primary: Gates, Knight-Hennessy.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">Track A</div><div class="timeline-content"><h3>Research / technical</h3><p>AI systems, computer vision, efficient inference, publications, production-scale engineering. Prioritise the applicable routes currently retained in your scholarship directory.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">Track B</div><div class="timeline-content"><h3>Development impact</h3><p>Use AI engineering to address measurable Bangladesh-relevant constraints in safety, healthcare, infrastructure or public-sector capability. Apply only to retained, eligible development-impact routes.</p></div></div>
+          <div class="timeline-item"><div class="timeline-date">Track C</div><div class="timeline-content"><h3>Leadership / civic impact</h3><p>Only use where you have authentic evidence of initiative, influence, mentorship and community outcomes. Apply only to retained, eligible leadership-based routes.</p></div></div>
         </div>
       </section>
     </div>
@@ -576,7 +583,7 @@ function exportVisibleCalendar() {
   const icalEscape = text => String(text).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');
   const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Career Track//Personal Deadlines//EN', ...rows.flatMap(item => [
     'BEGIN:VEVENT', `UID:${icalEscape(item.id)}@career-track`,
-    `DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').replace(/\\.\\d{3}/,'')}`,
+    `DTSTAMP:${new Date().toISOString().split('.')[0].replace(/[-:]/g,'')}Z`,
     `DTSTART:${item.deadline_at.replace(/[-:]/g,'')}`,
     `SUMMARY:${icalEscape(item.title)}`, `URL:${item.source_url}`, 'END:VEVENT'
   ]), 'END:VCALENDAR'];
