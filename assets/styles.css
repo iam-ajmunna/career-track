@@ -685,3 +685,16 @@ body[data-readonly-preview="true"] .sync-message {
 .goal-audit-item span { display:block; font-size:10px; color:var(--muted); margin-bottom:6px; }
 .goal-audit-item p { font-size:11px; line-height:1.55; margin:0; color:var(--text); }
 @media(max-width:600px) { .goal-audit-grid { grid-template-columns:1fr; } }
+
+/* Shared scholarship lifecycle controls and a compact retention/history library. */
+.danger-outline { background: transparent; border: 1px solid var(--danger, #b55252); color: var(--danger, #b55252); border-radius: 8px; padding: 8px 12px; cursor: pointer; font: inherit; }
+.danger-outline:hover, .danger-outline:focus-visible { background: color-mix(in srgb, var(--danger, #b55252) 9%, transparent); }
+.lifecycle-btn { font-size: 12px; white-space: nowrap; }
+.scholarship-card .card-actions { flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
+.goal-detail-actions { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+.lifecycle-list { display: grid; gap: 10px; margin-top: 14px; }
+.lifecycle-record { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 18px; }
+.lifecycle-record > div:first-child { display: grid; gap: 5px; }
+.lifecycle-record > div:first-child span, .lifecycle-record > span { color: var(--text-muted, #6b7280); font-size: 12px; }
+.lifecycle-record .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+@media (max-width: 650px) { .lifecycle-record { align-items: flex-start; flex-direction: column; } .scholarship-card .card-actions { justify-content: flex-start; } }

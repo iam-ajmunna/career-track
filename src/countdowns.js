@@ -7,15 +7,16 @@ export const dateOnlyDeadlines = catalog.date_only ?? [];
 const labels = { normal: 'Upcoming', attention: 'Attention', high: 'High priority', urgent: 'Urgent',
   critical: 'Critical', final: 'Final hours', closed: 'Closed' };
 
-export function createCountdowns({ state, readiness, onHeroChange = () => {} }) {
+export function createCountdowns({ state, readiness, isVisible = () => true, onHeroChange = () => {}, onTick = () => {} }) {
   let timer;
   let previousHero;
   let previousAnnouncement;
   const now = () => Date.now() + (state.clockOffset ?? 0);
+  const activeDeadlines = () => verifiedDeadlines.filter(item => isVisible(item.scholarship_id));
   function render() {
     const root = document.querySelector('#deadlineHub');
     if (!root) return;
-    const hero = selectHero(verifiedDeadlines, state.applications, now(), readiness);
+    const hero = selectHero(activeDeadlines(), state.applications, now(), readiness);
     previousHero = hero?.id;
     const remaining = hero ? Date.parse(hero.deadline_at) - now() : 0;
     root.innerHTML = hero ? `
@@ -29,18 +30,19 @@ export function createCountdowns({ state, readiness, onHeroChange = () => {} }) 
             <span>${html(formatZoned(hero.deadline_at, hero.deadline_tz))} · ${html(hero.deadline_tz)}</span>
             <span>${readiness(hero.scholarship_id)}% of checklist complete</span></div></div>
         <div class="countdown-actions"><button class="button" data-open-scholarship="${html(hero.scholarship_id)}">Open application</button>
-          <a class="button secondary" href="/deadlines.ics" download>Calendar alarms</a>
+          <button type="button" class="button secondary" data-export-visible-calendar>Calendar alarms</button>
           <a class="text-link" href="${html(hero.source_url)}" target="_blank" rel="noopener noreferrer">Official source</a></div>
-      </section>` : `<section class="card card-pad"><h2 class="section-title">No active verified deadlines</h2><p class="muted">Review the scholarship list for upcoming calls.</p><a href="/deadlines.ics" class="text-link" download>Download calendar deadlines</a></section>`;
-    root.innerHTML += `<div class="compact-deadlines">${verifiedDeadlines.filter(item => item.id !== hero?.id &&
+      </section>` : `<section class="card card-pad"><h2 class="section-title">No active verified deadlines</h2><p class="muted">Review the scholarship list for upcoming calls.</p><button type="button" class="button secondary" data-export-visible-calendar>Export available deadlines</button></section>`;
+    root.innerHTML += `<div class="compact-deadlines">${activeDeadlines().filter(item => item.id !== hero?.id &&
       !['submitted', 'skipped'].includes(state.applications[item.scholarship_id])).map(item => `
       <button class="card compact-deadline" data-open-scholarship="${html(item.scholarship_id)}"><span>${html(item.title)}</span>
         <strong data-deadline-at="${html(item.deadline_at)}">${countdown(item.deadline_at, now(), true)}</strong></button>`).join('')}</div>
-      <p class="deadline-evidence">${verifiedDeadlines.length} deadlines verified on ${html(catalog.verified_on)}. Check each programme's separate nomination or admission requirements.</p>
+      <p class="deadline-evidence">${activeDeadlines().length} visible deadlines verified on ${html(catalog.verified_on)}. Check each programme's separate nomination or admission requirements.</p>
       <span class="sr-only" id="deadlineAnnouncement" aria-live="polite"></span>`;
   }
   function tick() {
-    const hero = selectHero(verifiedDeadlines, state.applications, now(), readiness);
+    onTick();
+    const hero = selectHero(activeDeadlines(), state.applications, now(), readiness);
     if (previousHero !== hero?.id) { render(); onHeroChange(); }
     if (hero) {
       const remaining = Date.parse(hero.deadline_at) - now();

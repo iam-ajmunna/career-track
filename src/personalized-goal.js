@@ -1,5 +1,6 @@
 import { goalSnapshot,goalCoreDocuments,goalCampaign,goalPathways,goalProgrammes } from './personalized-goal-data.js';
 import { escapeHtml } from './sync/model.js';
+import { isScholarshipVisible } from './scholarship-lifecycle.js';
 let goalSelected='ipcvai';
 let goalActiveFilter='Open now';
 let goalActiveQuery='';
@@ -44,18 +45,19 @@ export function goalVerifyCatalog() {
   }
   return true;
 }
-export function renderPersonalizedGoal(progress={}) {
+export function renderPersonalizedGoal(progress={}, lifecycle={}) {
   const e=escapeHtml;
   const today=new Date(Date.now()+6*60*60*1000).toISOString().slice(0,10); // Dhaka is UTC+06 without DST.
+  const active=goalProgrammes.filter(p=>isScholarshipVisible(lifecycle,p.id));
   const matches=p=> (goalActiveFilter==='All'||(goalActiveFilter==='Open now' ? goalStage(p,today)==='Open' : p.category===goalActiveFilter)) &&
     `${p.name} ${p.full} ${p.institution} ${p.location} ${p.goal} ${p.category}`.toLowerCase().includes(goalActiveQuery.toLowerCase().trim());
-  const visible=goalProgrammes.filter(matches);
+  const visible=active.filter(matches);
   const current=visible.find(p=>p.id===goalSelected)||visible[0];
   const globalTotal=goalCoreDocuments.length+goalCampaign.length;
   const globalDone=goalProgress(progress,'goal-core',goalCoreDocuments)+goalProgress(progress,'goal-campaign',goalCampaign);
   const pct=Math.round(globalDone*100/globalTotal);
-  const funded=goalProgrammes.filter(p=>p.category!=='Conditional / watch').length;
-  const confirmation=goalProgrammes.filter(p=>p.category==='Erasmus Mundus'&&p.starts&&p.ends).length;
+  const funded=active.filter(p=>p.category!=='Conditional / watch').length;
+  const confirmation=active.filter(p=>p.category==='Erasmus Mundus'&&p.starts&&p.ends).length;
   const stage=p=>goalStage(p,today);
   const statusCls=p=>stage(p)==='Open'?'success':stage(p)==='Closed'?'neutral':stage(p)==='Watch for call'?'info':'warn';
   const dateInfo=current?`<div class="goal-fact-grid">
@@ -72,6 +74,10 @@ export function renderPersonalizedGoal(progress={}) {
       <div class="goal-detail-header"><div><span class="goal-eyebrow">${e(current.category)} · 2027 intake</span><h2>${e(current.name)}</h2><p>${e(current.full)}</p></div><span class="pill ${statusCls(current)}">${e(stage(current))}</span></div>
       <div class="goal-university"><strong>University / consortium</strong><span>${e(current.institution)}</span><strong>Study location</strong><span>${e(current.location)}</span></div>
       ${dateInfo}
+      <div class="goal-detail-actions">
+        <button type="button" class="button secondary" data-life-action="archive" data-life-id="${e(current.id)}">Archive</button>
+        <button type="button" class="button danger-outline" data-life-action="delete" data-life-id="${e(current.id)}">Delete</button>
+      </div>
       ${current.eligibilityAudit ? `<section class="goal-section goal-audit" aria-label="Personal eligibility audit">
         <div class="goal-section-heading"><div><h3>Verified eligibility audit</h3><span class="goal-minor">Checked ${e(current.eligibilityAudit.checkedOn)} · Based on current published admission criteria and your documented academic profile</span></div><span class="goal-status info">Personal eligibility</span></div>
         <p class="goal-audit-verdict">${e(current.eligibilityAudit.verdict)}</p>
@@ -100,7 +106,7 @@ export function renderPersonalizedGoal(progress={}) {
   return `<div class="goal-workspace">
     <section class="goal-hero card">
       <div><span class="goal-eyebrow">PERSONALIZED GOAL · 2027–2029</span><h2>Build frontier-AI capability.<br>Make the work discoverable.</h2><p>Scholarships are the funding mechanism. The career objective is multimodal foundation-model research, efficient generative AI systems, publishable results and industry-grade engineering that attracts research teams.</p><span class="goal-evidence">Evidence snapshot: ${goalSnapshot} · Bangladeshi applicant · IELTS Academic plan</span></div>
-      <div class="goal-hero-side"><span>Scholarship campaign</span><strong>${funded} research / funding routes</strong><small>+ ${goalProgrammes.length-funded} conditional funding or watch records</small><a href="#goal-campaign" class="button secondary">Open preparation plan ↓</a></div>
+      <div class="goal-hero-side"><span>Scholarship campaign</span><strong>${funded} research / funding routes</strong><small>+ ${active.length-funded} conditional funding or watch records</small><a href="#goal-campaign" class="button secondary">Open preparation plan ↓</a></div>
     </section>
     <section class="goal-metrics">
       <div class="card"><span>EMJM calls with dates</span><strong>${confirmation}</strong><small>Verify each source before final submission</small></div>

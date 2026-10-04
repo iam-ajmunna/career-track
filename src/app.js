@@ -3,6 +3,7 @@ import { escapeHtml } from './sync/model.js';
 import { createCountdowns, verifiedDeadlines, dateOnlyDeadlines } from './countdowns.js';
 import { buildScholarshipMasterPrompt, buildChatGptUrl } from './gpt-prompt.js';
 import { renderPersonalizedGoal, setGoalFilter, setGoalSelection, setGoalQuery } from './personalized-goal.js';
+import { isScholarshipVisible, archivedRecords, trashedRecords, expiredRecords, screenedSuggestions } from './scholarship-lifecycle.js';
 let progressStore;
 let lastState = '';
 
@@ -10,7 +11,7 @@ const state = {
   view: 'overview',
   filter: 'focus',
   query: '',
-  progress: {}, applications: {}, profile: null, clockOffset: 0,
+  progress: {}, applications: {}, profile: null, lifecycle: {}, history: {}, clockOffset: 0,
   theme: document.documentElement.dataset.theme || 'light'
 };
 
@@ -34,7 +35,8 @@ const viewTitles = {
   pipeline: 'Application Pipeline',
   documents: 'Documents',
   profile: 'Profile Fit',
-  goal: 'Personalized Goal'
+  goal: 'Personalized Goal',
+  library: 'Archive & History'
 };
 
 const statusMap = {
@@ -136,7 +138,7 @@ function getScholarshipProgress(id) {
 }
 
 function getOverallProgress() {
-  const active = scholarships.filter(s => s.eligible && decisionOf(s) === 'apply');
+  const active = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply');
   const totalActions = active.reduce((n, s) => n + s.actions.length, 0);
   const completed = active.reduce((n, s) => n + s.actions.filter((_, i) => state.progress[`sch-${s.id}-${i}`]).length, 0);
   return totalActions ? Math.round((completed / totalActions) * 100) : 0;
@@ -173,16 +175,18 @@ function scholarshipCard(item) {
         <div class="card-actions">
           <button class="button secondary" data-open-scholarship="${item.id}">Details</button>
           <button class="button ghost" data-open-gpt="${item.id}" title="Open a new ChatGPT chat with a scholarship-specific research prompt">GPT prompt ↗</button>
+          <button class="button ghost lifecycle-btn" data-life-action="archive" data-life-id="${item.id}" aria-label="Archive ${escapeHtml(item.name)}">Archive</button>
+          <button class="button danger-outline lifecycle-btn" data-life-action="delete" data-life-id="${item.id}" aria-label="Delete ${escapeHtml(item.name)}">Delete</button>
         </div>
       </div>
     </article>`;
 }
 
 function renderOverview() {
-  const active = scholarships.filter(s => s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s))).length;
-  const urgent = scholarships.filter(s => s.eligible && decisionOf(s) === 'apply' && effectiveStatus(s) === 'urgent').length;
+  const active = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s))).length;
+  const urgent = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && effectiveStatus(s) === 'urgent').length;
   const best = [...scholarships]
-    .filter(s => s.eligible && decisionOf(s) === 'apply' && !['blocked','closed'].includes(effectiveStatus(s)))
+    .filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && !['blocked','closed'].includes(effectiveStatus(s)))
     .sort((a,b) => a.priority - b.priority)
     .slice(0,5);
   const progress = getOverallProgress();
@@ -221,7 +225,7 @@ function renderOverview() {
       <section class="card card-pad">
         <div class="section-head"><div><div class="section-title">Next 30 days</div><div class="section-sub">Time-critical execution sequence.</div></div></div>
         <div class="timeline">
-          ${timeline.slice(0,5).map(t => `<div class="timeline-item"><div class="timeline-date">${t.date}</div><div class="timeline-content"><h3>${t.title}</h3><p>${t.detail}</p></div></div>`).join('')}
+          ${timeline.filter(timelineItemVisible).slice(0,5).map(t => `<div class="timeline-item"><div class="timeline-date">${t.date}</div><div class="timeline-content"><h3>${t.title}</h3><p>${t.detail}</p></div></div>`).join('')}
         </div>
       </section>
       <section class="card card-pad">
@@ -238,8 +242,23 @@ function renderOverview() {
     </div>`;
 }
 
+// Timeline notes should never reintroduce a suppressed recommendation.
+function timelineItemVisible(item) {
+  const title = item.title.toLowerCase();
+  const groups = [
+    [['knight-hennessy'], ['khs']], [['commonwealth shared'], ['commonwealth-shared']],
+    [['commonwealth'], ['commonwealth']], [['kaust'], ['kaust']], [['eth zurich'], ['eth-esop']],
+    [['daad'], ['daad-master']], [['ediss'], ['ediss']], [['cambridge'], ['gates']],
+    [['oxford'], ['clarendon', 'weidenfeld']], [['mbzuai'], ['mbzuai']],
+    [['türkiye'], ['turkiye']], [['mext / stipendium / gks'], ['mext','stipendium','gks']]
+  ];
+  const found = groups.find(([words]) => words.some(word => title.includes(word)));
+  return !found || found[1].some(id => isScholarshipVisible(state.lifecycle, id));
+}
+
 function filteredScholarships() {
   return scholarships.filter(s => {
+    if (!isScholarshipVisible(state.lifecycle, s.id)) return false;
     const query = state.query.trim().toLowerCase();
     const decision = decisionOf(s);
     const haystack = `${s.name} ${s.country} ${s.provider} ${s.status} ${s.fit} ${s.route} ${decision}`.toLowerCase();
@@ -252,27 +271,27 @@ function filteredScholarships() {
 function renderScholarships() {
   const items = filteredScholarships();
   const screenedQuery = state.query.trim().toLowerCase();
-  const screened = screenedOut.filter(item => !screenedQuery || `${item.name} ${item.country} ${item.reason}`.toLowerCase().includes(screenedQuery));
+  const screened = screenedSuggestions.filter(item => isScholarshipVisible(state.lifecycle, item.id) && (!screenedQuery || `${item.name} ${item.country} ${item.reason}`.toLowerCase().includes(screenedQuery)));
   document.querySelector('#view-scholarships').innerHTML = `
     <div class="filters" role="group" aria-label="Scholarship decision filters">
       ${[['focus','Apply + Watch'],['apply','Apply'],['watch','Watch'],['closed','Closed']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
     </div>
     <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>
     <details class="card card-pad section">
-      <summary class="section-title">Screened out (${screenedOut.length})</summary>
+      <summary class="section-title">Screened out (${screened.length})</summary>
       <p class="section-sub">Verified leads that do not currently deserve application time. Kept here so the same social-media claims are not researched repeatedly.</p>
       <div class="timeline" style="margin-top:14px">
-        ${screened.length ? screened.map(item => `<div class="timeline-item"><div class="timeline-date">${escapeHtml(item.country)}</div><div class="timeline-content"><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.reason)} ${item.source ? `<a class="text-link" href="${item.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''}</p></div></div>`).join('') : '<div class="empty">No screened-out records match the current search.</div>'}
+        ${screened.length ? screened.map(item => `<div class="timeline-item"><div class="timeline-date">${escapeHtml(item.country)}</div><div class="timeline-content"><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.reason)} ${item.source ? `<a class="text-link" href="${item.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''} <span class="card-actions"><button type="button" class="button ghost lifecycle-btn" data-life-action="archive" data-life-id="${item.id}">Archive</button><button type="button" class="button danger-outline lifecycle-btn" data-life-action="delete" data-life-id="${item.id}">Delete</button></span></p></div></div>`).join('') : '<div class="empty">No screened-out records match the current search.</div>'}
       </div>
     </details>`;
 }
 
 function renderPipeline() {
   const ordered = [...scholarships]
-    .filter(s => s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s)))
+    .filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s)))
     .sort((a,b) => a.priority - b.priority);
   document.querySelector('#view-pipeline').innerHTML = `
-    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Research-first: KAUST/Oxford/Cambridge/MBZUAI. Development-impact: Commonwealth/Weidenfeld. Leadership-heavy: Gates/Knight-Hennessy.</p></div><span class="pill neutral banner-badge">Browser memory</span></div>
+    <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Tailor your evidence for research-focused, development-impact and leadership-heavy programmes using only the scholarships currently in your workspace.</p></div><span class="pill neutral banner-badge">Browser memory</span></div>
     <div class="section pipeline-list">
       ${ordered.map((s, index) => {
         const progress = getScholarshipProgress(s.id);
@@ -521,7 +540,53 @@ function renderProfile() {
     <div class="section">${renderProfileEditor(sourceProfile)}</div>`;
 }
 
-const countdowns = createCountdowns({ state, readiness: getScholarshipProgress, onHeroChange: renderCurrentView });
+function readableDate(value) {
+  return new Intl.DateTimeFormat('en-GB', { dateStyle: 'medium', timeZone: 'Asia/Dhaka' }).format(new Date(value));
+}
+function renderLibrary() {
+  const snapshot = { lifecycle: state.lifecycle, history: state.history };
+  const archived = archivedRecords(snapshot);
+  const trashed = trashedRecords(snapshot);
+  const expired = expiredRecords(snapshot);
+  document.querySelector('#view-library').innerHTML = `
+    <div class="banner"><div><strong>One workspace, one scholarship lifecycle</strong>
+      <p>Archived recommendations can be restored. Deleted recommendations remain recoverable for 10 days and are permanently suppressed after that period. Expired scholarships leave only their name and deadline in History.</p>
+      <p>Cleanup runs while this browser is open or on your next visit. Progress is stored on this browser; export before clearing its data.</p></div></div>
+    <section class="section"><div class="section-head"><div class="section-title">Archive (${archived.length})</div></div>
+      <div class="lifecycle-list">${archived.length ? archived.map(item => `<article class="card lifecycle-record">
+        <div><strong>${escapeHtml(item.name)}</strong><span>Saved for later · ${escapeHtml(item.deadline || 'Deadline not published')}</span></div>
+        <div class="card-actions"><button class="button secondary" data-life-action="restore" data-life-id="${item.id}">Restore</button>
+        <button class="button danger-outline" data-life-action="delete" data-life-id="${item.id}">Delete</button></div></article>`).join('') : '<div class="empty">Nothing archived.</div>'}</div>
+    </section>
+    <section class="section"><div class="section-head"><div class="section-title">Recently deleted (${trashed.length})</div></div>
+      <p class="section-sub">Restore before the deletion date. After 10 days, the record and its application checklist are purged; a minimal internal ID prevents it returning from the static catalogue.</p>
+      <div class="lifecycle-list">${trashed.length ? trashed.map(item => `<article class="card lifecycle-record">
+        <div><strong>${escapeHtml(item.name)}</strong><span>Permanent deletion: ${readableDate(item.purgeAt)}</span></div>
+        <button class="button secondary" data-life-action="restore" data-life-id="${item.id}">Restore</button></article>`).join('') : '<div class="empty">Trash is empty.</div>'}</div>
+    </section>
+    <section class="section"><div class="section-head"><div class="section-title">Deadline history (${expired.length})</div></div>
+      <p class="section-sub">Only the programme name and closing deadline are retained for reference. Full details, actions and application progress are removed.</p>
+      <div class="lifecycle-list">${expired.length ? expired.map(item => `<div class="card lifecycle-record">
+        <strong>${escapeHtml(item.name)}</strong><span>Deadline: ${readableDate(item.deadline)}</span></div>`).join('') : '<div class="empty">No deadlines have elapsed yet.</div>'}</div>
+    </section>`;
+}
+function exportVisibleCalendar() {
+  const rows = verifiedDeadlines.filter(item => isScholarshipVisible(state.lifecycle, item.scholarship_id));
+  if (!rows.length) { toast('No active verified deadlines to export.'); return; }
+  const icalEscape = text => String(text).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');
+  const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Career Track//Personal Deadlines//EN', ...rows.flatMap(item => [
+    'BEGIN:VEVENT', `UID:${icalEscape(item.id)}@career-track`,
+    `DTSTAMP:${new Date().toISOString().replace(/[-:]/g,'').replace(/\\.\\d{3}/,'')}`,
+    `DTSTART:${item.deadline_at.replace(/[-:]/g,'')}`,
+    `SUMMARY:${icalEscape(item.title)}`, `URL:${item.source_url}`, 'END:VEVENT'
+  ]), 'END:VCALENDAR'];
+  const url = URL.createObjectURL(new Blob([lines.join('\r\n')+'\r\n'], { type: 'text/calendar' }));
+  const anchor = document.createElement('a'); anchor.href = url; anchor.download = 'career-track-active-deadlines.ics';
+  document.body.append(anchor); anchor.click(); anchor.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+const countdowns = createCountdowns({ state, readiness: getScholarshipProgress,
+  isVisible: id => isScholarshipVisible(state.lifecycle, id),
+  onHeroChange: renderCurrentView, onTick: () => progressStore?.reap?.() });
 
 function renderCurrentView() {
   const focusedKey = document.activeElement?.dataset?.progressKey;
@@ -530,7 +595,8 @@ function renderCurrentView() {
   renderPipeline();
   renderDocuments();
   renderProfile();
-  document.querySelector('#view-goal').innerHTML = renderPersonalizedGoal(state.progress);
+  renderLibrary();
+  document.querySelector('#view-goal').innerHTML = renderPersonalizedGoal(state.progress, state.lifecycle);
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active-view'));
   document.querySelector(`#view-${state.view}`).classList.add('active-view');
   els.pageTitle.textContent = viewTitles[state.view];
@@ -542,7 +608,7 @@ function renderCurrentView() {
     else b.removeAttribute('aria-current');
   });
   els.search.value = state.query;
-  els.search.closest('.search-wrap').hidden = state.view === 'goal';
+  els.search.closest('.search-wrap').hidden = ['goal','library'].includes(state.view);
   els.searchClear.hidden = !state.query;
   countdowns.render();
   if (focusedKey) document.querySelector(`[data-progress-key="${CSS.escape(focusedKey)}"]`)?.focus({ preventScroll: true });
@@ -550,7 +616,7 @@ function renderCurrentView() {
 
 function openScholarship(id) {
   const s = scholarships.find(x => x.id === id);
-  if (!s) return;
+  if (!s || !isScholarshipVisible(state.lifecycle, id)) return;
   const status = statusMap[effectiveStatus(s)] || ['Unknown','neutral'];
   const fit = fitMap[s.fit] || ['Fit unknown','neutral'];
   const decision = decisionMap[decisionOf(s)] || ['Review','neutral'];
@@ -587,6 +653,8 @@ function openScholarship(id) {
         ${s.secondarySource ? `<a class="button secondary" href="${s.secondarySource}" target="_blank" rel="noopener noreferrer">Secondary official source ↗</a>` : ''}
         ${career?.source ? `<a class="button secondary" href="${career.source}" target="_blank" rel="noopener noreferrer">Career rules ↗</a>` : ''}
         <button class="button ghost" data-jump-pipeline="${s.id}">Open pipeline</button>
+        <button class="button ghost" data-life-action="archive" data-life-id="${s.id}">Archive</button>
+        <button class="button danger-outline" data-life-action="delete" data-life-id="${s.id}">Delete</button>
       </div>
     </div>`;
   els.dialog.showModal();
@@ -594,7 +662,7 @@ function openScholarship(id) {
 
 function openGptForScholarship(id) {
   const scholarship = scholarships.find(item => item.id === id);
-  if (!scholarship) return;
+  if (!scholarship || !isScholarshipVisible(state.lifecycle, id)) return;
   const prompt = buildScholarshipMasterPrompt({
     scholarship,
     deadlineLabel: deadlineLabel(scholarship),
@@ -675,7 +743,7 @@ document.addEventListener('input', e => {
   if (e.target.id === 'goalSearch') {
     const pos=e.target.selectionStart;
     setGoalQuery(e.target.value);
-    document.querySelector('#view-goal').innerHTML=renderPersonalizedGoal(state.progress);
+    document.querySelector('#view-goal').innerHTML=renderPersonalizedGoal(state.progress, state.lifecycle);
     const next=document.querySelector('#goalSearch');
     next?.focus({preventScroll:true});
     try { next?.setSelectionRange(pos,pos); } catch { /* Input selection unsupported. */ }
@@ -687,6 +755,19 @@ document.addEventListener('input', e => {
 });
 
 document.addEventListener('click', e => {
+  const lifecycleControl = e.target.closest('[data-life-action]');
+  if (lifecycleControl) {
+    const action = lifecycleControl.dataset.lifeAction;
+    const id = lifecycleControl.dataset.lifeId;
+    if (action === 'delete' && !window.confirm('Move this scholarship to Trash? It will disappear from all sections immediately and be permanently deleted after 10 days unless restored.')) return;
+    try {
+      progressStore.lifecycle(action, id);
+      if (els.dialog.open) els.dialog.close();
+      toast(action === 'restore' ? 'Scholarship restored.' : action === 'archive' ? 'Archived. Retrieve it from Archive & History.' : 'Moved to Trash. Restore within 10 days.');
+    } catch { toast('Action unavailable. The deadline or recovery window may have passed.'); }
+    return;
+  }
+  if (e.target.closest('[data-export-visible-calendar]')) { exportVisibleCalendar(); return; }
   const goalSelect=e.target.closest('[data-goal-select]');
   if (goalSelect) { setGoalSelection(goalSelect.dataset.goalSelect); renderCurrentView(); return; }
   const goalFilter=e.target.closest('[data-goal-filter]');
@@ -733,8 +814,8 @@ document.addEventListener('change', e => {
 document.addEventListener('keydown', e => {
   if (document.querySelector('#appShell').hidden) return;
   if (e.isComposing || e.keyCode === 229) return;
-  if (/^[1-6]$/.test(e.key) && !document.querySelector('dialog[open]') && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
-    const views = ['overview','scholarships','pipeline','documents','profile','goal'];
+  if (/^[1-7]$/.test(e.key) && !document.querySelector('dialog[open]') && !['INPUT','TEXTAREA'].includes(document.activeElement.tagName)) {
+    const views = ['overview','scholarships','pipeline','documents','profile','goal','library'];
     state.view = views[Number(e.key)-1];
     renderCurrentView();
   }
@@ -747,8 +828,9 @@ document.addEventListener('keydown', e => {
 export function mountApp(store) { progressStore = store; lastState = ''; syncThemeToggle(); countdowns.start(); }
 export function updateWorkspace(event) {
   if (!event.state) return;
-  state.progress = event.state.progress; state.applications = event.state.applications; state.profile = event.state.profile; state.clockOffset = event.clockOffset;
+  state.progress = event.state.progress; state.applications = event.state.applications; state.profile = event.state.profile;
+  state.lifecycle = event.state.lifecycle || {}; state.history = event.state.history || {}; state.clockOffset = event.clockOffset;
   const signature = JSON.stringify(event.state);
   if (signature !== lastState) { lastState = signature; renderCurrentView(); } else countdowns.tick();
 }
-export function hideWorkspace() { countdowns.stop(); lastState = ''; state.progress = {}; state.applications = {}; state.profile = null; els.dialog.close(); els.dialogContent.replaceChildren(); document.querySelectorAll('.view').forEach(node => node.replaceChildren()); }
+export function hideWorkspace() { countdowns.stop(); lastState = ''; state.progress = {}; state.applications = {}; state.profile = null; state.lifecycle = {}; state.history = {}; els.dialog.close(); els.dialogContent.replaceChildren(); document.querySelectorAll('.view').forEach(node => node.replaceChildren()); }

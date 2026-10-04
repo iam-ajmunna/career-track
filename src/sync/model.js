@@ -1,4 +1,4 @@
-export const EMPTY_STATE = Object.freeze({ schema_version: 1, progress: {}, applications: {}, profile: null });
+export const EMPTY_STATE = Object.freeze({ schema_version: 1, progress: {}, applications: {}, profile: null, lifecycle: {}, history: {} });
 const prohibited = new Set(['__proto__', 'constructor', 'prototype']);
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const text = (value, max = 160) => String(value ?? '').trim().slice(0, max);
@@ -40,6 +40,23 @@ export function validateState(value) {
   }
   const next = structuredClone(value);
   next.profile = validateProfile(next.profile);
+  const validId = key => /^[a-z0-9-]+$/.test(key) && !prohibited.has(key);
+  const validStamp = stamp => typeof stamp === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(stamp) && Number.isFinite(Date.parse(stamp));
+  next.lifecycle = {};
+  if (value.lifecycle !== undefined && !record(value.lifecycle)) throw Error('Invalid scholarship lifecycle.');
+  for (const [id, item] of Object.entries(value.lifecycle || {})) {
+    if (!validId(id) || !record(item) || !['archived','trash','purged','expired'].includes(item.status) || !validStamp(item.at)) throw Error('Invalid scholarship lifecycle.');
+    if (item.status === 'trash' && (!validStamp(item.purgeAt) || Date.parse(item.purgeAt) <= Date.parse(item.at))) throw Error('Invalid deletion date.');
+    next.lifecycle[id] = item.status === 'trash' ? { status: item.status, at: item.at, purgeAt: item.purgeAt } : { status: item.status, at: item.at };
+  }
+  next.history = {};
+  if (value.history !== undefined && !record(value.history)) throw Error('Invalid deadline history.');
+  for (const [id, item] of Object.entries(value.history || {})) {
+    if (!validId(id) || !record(item) || typeof item.name !== 'string' || !item.name.trim() || item.name.length > 180 ||
+        typeof item.deadline !== 'string' || !/^(\d{4}-\d\d-\d\d|\d{4}-\d\d-\d\dT\d\d:\d\d:\d\dZ)$/.test(item.deadline) ||
+        !validStamp(item.expiredAt) || next.lifecycle[id]?.status !== 'expired') throw Error('Invalid deadline history.');
+    next.history[id] = { name: item.name.trim(), deadline: item.deadline, expiredAt: item.expiredAt };
+  }
   return next;
 }
 export function validateSnapshot(value, ownerId) {

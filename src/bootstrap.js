@@ -1,4 +1,5 @@
 import { EMPTY_STATE, validateState } from './sync/model.js';
+import { transitionScholarship, advanceScholarshipLifecycle } from './scholarship-lifecycle.js';
 
 const STORAGE_KEY = 'career-track:local-state:v1';
 const $ = id => document.getElementById(id);
@@ -66,6 +67,20 @@ function createLocalProgressStore(onChange) {
   return {
     get: event,
     load() {
+      state = validateState(advanceScholarshipLifecycle(state));
+      persist();
+      emit();
+    },
+    reap() {
+      const next = advanceScholarshipLifecycle(state);
+      if (next === state) return;
+      state = validateState(next);
+      persist();
+      emit();
+    },
+    lifecycle(action, id) {
+      state = validateState(advanceScholarshipLifecycle(state));
+      state = validateState(transitionScholarship(state, id, action));
       persist();
       emit();
     },
@@ -95,7 +110,7 @@ function createLocalProgressStore(onChange) {
     },
     reloadFromBrowser() {
       const next = readLocalState();
-      state = next.state;
+      state = validateState(advanceScholarshipLifecycle(next.state));
       storageProblem = next.problem;
       storageFailed = false;
       emit();
