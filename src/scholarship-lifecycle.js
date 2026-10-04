@@ -3,7 +3,8 @@ import { goalProgrammes } from './personalized-goal-data.js';
 import catalog from '../deadlines.json' with { type: 'json' };
 
 // These are two directory representations of the same funding suggestions.
-const aliases = Object.freeze({ oxford: 'clarendon', cambridge: 'gates' });
+// Only true duplicates are aliases: Cambridge general funding and Gates are separate opportunities.
+const aliases = Object.freeze({ oxford: 'clarendon' });
 const TEN_DAYS = 10 * 24 * 60 * 60 * 1000;
 export const canonicalScholarshipId = id => aliases[id] || id;
 export const scholarshipAliases = id => [canonicalScholarshipId(id), ...Object.keys(aliases).filter(key => aliases[key] === canonicalScholarshipId(id))];
@@ -27,13 +28,10 @@ export const lifecycleStatus = (lifecycle = {}, id) => lifecycle[canonicalSchola
 export const isScholarshipVisible = (lifecycle = {}, id) => lifecycleStatus(lifecycle, id) === 'active';
 export const isScholarshipKnown = id => catalogEntries.has(canonicalScholarshipId(id));
 
-function dhakaDay(milliseconds) {
-  return new Date(milliseconds + 6 * 60 * 60 * 1000).toISOString().slice(0, 10);
-}
 function isPastDeadline(item, now) {
   if (item.exact) return Date.parse(item.exact) <= now;
-  // Date-only deadlines remain actionable throughout the advertised calendar day in Dhaka.
-  return Boolean(item.deadline && dhakaDay(now) > item.deadline);
+  // Without a confirmed timezone, never expire before the last global timezone (UTC-12) has passed the listed day.
+  return Boolean(item.deadline && now >= Date.parse(item.deadline + 'T00:00:00Z') + 36 * 60 * 60 * 1000);
 }
 function removePrivateScholarshipState(next, id) {
   const aliases = scholarshipAliases(id);

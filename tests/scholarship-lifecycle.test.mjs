@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { EMPTY_STATE, validateState } from '../src/sync/model.js';
+import { renderPersonalizedGoal, setGoalFilter, setGoalQuery } from '../src/personalized-goal.js';
 import {
   canonicalScholarshipId, isScholarshipVisible, isScholarshipKnown, screenedSuggestions,
   transitionScholarship, advanceScholarshipLifecycle, archivedRecords, trashedRecords, expiredRecords
@@ -19,7 +20,8 @@ test('existing local workspace loads additively without losing previous progress
 
 test('archive and restore immediately affect the main and Personalized Goal views', () => {
   assert.equal(canonicalScholarshipId('oxford'), 'clarendon');
-  assert.equal(canonicalScholarshipId('cambridge'), 'gates');
+  assert.equal(canonicalScholarshipId('cambridge'), 'cambridge');
+  assert.notEqual(canonicalScholarshipId('cambridge'), canonicalScholarshipId('gates'));
   const archived = transitionScholarship(fresh(), 'oxford', 'archive', OCT_4);
   assert.equal(isScholarshipVisible(archived.lifecycle, 'clarendon'), false);
   assert.equal(isScholarshipVisible(archived.lifecycle, 'oxford'), false);
@@ -82,9 +84,9 @@ test('exact deadline expiry retains only minimal history and removes the checkli
 test('date-only calls close after the entire Dhaka deadline day, including Goal-only programmes', () => {
   const state = fresh();
   state.progress['goal-ipcvai-0'] = true;
-  const duringLastDay = advanceScholarshipLifecycle(state, Date.parse('2027-02-02T17:30:00Z'));
+  const duringLastDay = advanceScholarshipLifecycle(state, Date.parse('2027-02-03T11:59:59Z'));
   assert.equal(isScholarshipVisible(duringLastDay.lifecycle, 'ipcvai'), true);
-  const nextDay = advanceScholarshipLifecycle(state, Date.parse('2027-02-02T18:00:00Z'));
+  const nextDay = advanceScholarshipLifecycle(state, Date.parse('2027-02-03T12:00:00Z'));
   assert.equal(nextDay.lifecycle.ipcvai.status, 'expired');
   assert.equal(nextDay.history.ipcvai.deadline, '2027-02-02');
   assert.equal(nextDay.progress['goal-ipcvai-0'], undefined);
@@ -104,4 +106,13 @@ test('malformed lifecycle and history payloads are rejected before local storage
   assert.throws(() => validateState({ ...fresh(), lifecycle: { '__proto__': { status:'archived', at:now }, constructor: { status:'archived', at:now } } }), /Invalid scholarship lifecycle/);
   assert.throws(() => validateState({ ...fresh(), lifecycle: { kaust: { status:'trash', at:now, purgeAt:'bad' } } }), /Invalid deletion date/);
   assert.throws(() => validateState({ ...fresh(), history: { kaust: { name:'X',deadline:'2027-01-03',expiredAt:now } } }), /Invalid deadline history/);
+});
+
+test('Personalized Goal directory suppresses the archived counterpart but preserves distinct funding routes', () => {
+  setGoalFilter('All'); setGoalQuery('');
+  const archived = transitionScholarship(fresh(), 'clarendon', 'archive', OCT_4);
+  const html = renderPersonalizedGoal({}, archived.lifecycle);
+  assert.equal(html.includes('data-goal-select="oxford"'), false);
+  assert.equal(html.includes('data-goal-select="cambridge"'), true);
+  assert.equal(html.includes('data-goal-select="kaust"'), true);
 });

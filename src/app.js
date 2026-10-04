@@ -248,7 +248,7 @@ function timelineItemVisible(item) {
   const groups = [
     [['knight-hennessy'], ['khs']], [['commonwealth shared'], ['commonwealth-shared']],
     [['commonwealth'], ['commonwealth']], [['kaust'], ['kaust']], [['eth zurich'], ['eth-esop']],
-    [['daad'], ['daad-master']], [['ediss'], ['ediss']], [['cambridge'], ['gates']],
+    [['daad'], ['daad-master']], [['ediss'], ['ediss']], [['cambridge'], ['gates', 'cambridge']],
     [['oxford'], ['clarendon', 'weidenfeld']], [['mbzuai'], ['mbzuai']],
     [['türkiye'], ['turkiye']], [['mext / stipendium / gks'], ['mext','stipendium','gks']]
   ];
@@ -386,7 +386,7 @@ function renderDocuments() {
         <div class="section-head"><div><div class="section-title">English-test strategy</div><div class="section-sub">Portfolio English plan; verify the thresholds for the scholarship routes you have kept.</div></div></div>
         <div class="target-callout"><span>Portfolio target</span><strong>${englishPlan.target}</strong></div>
         <div class="requirement-grid">
-          ${englishPlan.requirements.filter(req => isScholarshipVisible(state.lifecycle, req.programme.startsWith('Cambridge') ? 'gates' : req.programme === 'KAUST' ? 'kaust' : 'ediss')).map(req => `<div class="requirement-card"><span>${req.programme}</span><strong>${req.score}</strong></div>`).join('')}
+          ${englishPlan.requirements.filter(req => isScholarshipVisible(state.lifecycle, req.programme.startsWith('Cambridge') ? (isScholarshipVisible(state.lifecycle, 'gates') ? 'gates' : 'cambridge') : req.programme === 'KAUST' ? 'kaust' : 'ediss')).map(req => `<div class="requirement-card"><span>${req.programme}</span><strong>${req.score}</strong></div>`).join('')}
         </div>
         <div class="checklist" style="margin-top:14px">
           ${englishPlan.steps.map((step, index) => {
