@@ -1,4 +1,4 @@
-export const EMPTY_STATE = Object.freeze({ schema_version: 1, progress: {}, applications: {}, profile: null, lifecycle: {}, history: {} });
+export const EMPTY_STATE = Object.freeze({ schema_version: 1, progress: {}, applications: {}, tracking: {}, profile: null, lifecycle: {}, history: {} });
 const prohibited = new Set(['__proto__', 'constructor', 'prototype']);
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const text = (value, max = 160) => String(value ?? '').trim().slice(0, max);
@@ -39,6 +39,16 @@ export function validateState(value) {
     }
   }
   const next = structuredClone(value);
+  const validTrackingId = id => /^[a-z0-9-]+$/.test(id) && !prohibited.has(id);
+  if (value.tracking !== undefined && !record(value.tracking)) throw new Error('Invalid research tracking data.');
+  next.tracking = {};
+  if (Object.keys(value.tracking || {}).length > 150) throw new Error('Too many tracked scholarships.');
+  for (const [id, status] of Object.entries(value.tracking || {})) {
+    if (!validTrackingId(id) || !['researching', 'completed'].includes(status)) {
+      throw new Error('Invalid research tracking data.');
+    }
+    next.tracking[id] = status;
+  }
   next.profile = validateProfile(next.profile);
   const validId = key => /^[a-z0-9-]+$/.test(key) && !prohibited.has(key);
   const validStamp = stamp => typeof stamp === 'string' && /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(stamp) && Number.isFinite(Date.parse(stamp));
