@@ -132,7 +132,7 @@ export function renderPersonalizedGoal(progress={}, lifecycle={}, tracking={}, s
         <span>${Object.values(tracking).filter(x=>x==='researching').length} researching · ${Object.values(tracking).filter(x=>x==='completed').length} completed</span>
         <small>Select one or more programmes, then update status. Completed is not the same as submitted.</small></div>
       <div class="tracking-toolbar-actions"><span class="track-selected-count">${selectedTracking.size} selected</span>
-        <button type="button" class="button secondary" data-track-select-visible ${active.length?'':'disabled'}>Select shown</button>
+        <button type="button" class="button secondary" data-track-select-visible ${visible.length?'':'disabled'}>Select shown</button>
         <button type="button" class="button secondary" data-track-bulk="researching" ${selectedTracking.size?'':'disabled'}>Researching</button>
         <button type="button" class="button secondary" data-track-bulk="completed" ${selectedTracking.size?'':'disabled'}>Mark completed</button>
         <button type="button" class="button ghost" data-track-bulk="none" ${selectedTracking.size?'':'disabled'}>Clear status</button>
