@@ -3,15 +3,18 @@ import { escapeHtml } from './sync/model.js';
 import { createCountdowns, verifiedDeadlines, dateOnlyDeadlines } from './countdowns.js';
 import { buildScholarshipMasterPrompt, buildChatGptUrl } from './gpt-prompt.js';
 import { renderPersonalizedGoal, setGoalFilter, setGoalSelection, setGoalQuery } from './personalized-goal.js';
-import { isScholarshipVisible, archivedRecords, trashedRecords, expiredRecords, screenedSuggestions } from './scholarship-lifecycle.js';
+import { isScholarshipVisible, archivedRecords, trashedRecords, expiredRecords, screenedSuggestions, canonicalScholarshipId } from './scholarship-lifecycle.js';
+import { trackingStatus } from './tracking.js';
+import { goalProgrammes } from './personalized-goal-data.js';
 let progressStore;
 let lastState = '';
+const selectedTracking = new Set();
 
 const state = {
   view: 'overview',
   filter: 'focus',
   query: '',
-  progress: {}, applications: {}, profile: null, lifecycle: {}, history: {}, clockOffset: 0,
+  progress: {}, applications: {}, tracking: {}, profile: null, lifecycle: {}, history: {}, clockOffset: 0,
   theme: document.documentElement.dataset.theme || 'light'
 };
 
@@ -138,7 +141,7 @@ function getScholarshipProgress(id) {
 }
 
 function getOverallProgress() {
-  const active = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply');
+  const active = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && trackingStatus(state.tracking, s.id) !== 'completed');
   const totalActions = active.reduce((n, s) => n + s.actions.length, 0);
   const completed = active.reduce((n, s) => n + s.actions.filter((_, i) => state.progress[`sch-${s.id}-${i}`]).length, 0);
   return totalActions ? Math.round((completed / totalActions) * 100) : 0;
@@ -146,6 +149,42 @@ function getOverallProgress() {
 
 function badge([label, kind]) {
   return `<span class="pill ${kind}">${label}</span>`;
+}
+
+function trackBadge(id) {
+  const status = trackingStatus(state.tracking, id);
+  return status === 'none' ? '' : badge([status === 'researching' ? 'Researching' : 'Completed', status === 'researching' ? 'info' : 'success']);
+}
+function trackSelection(id, label) {
+  const canonical = canonicalScholarshipId(id);
+  return `<label class="track-picker" title="Select for a bulk tracking action">
+    <input type="checkbox" data-track-select="${canonical}" aria-label="Select ${escapeHtml(label)}" ${selectedTracking.has(canonical) ? 'checked' : ''}>
+    <span>Select</span></label>`;
+}
+function trackStatusControl(id, label) {
+  const status = trackingStatus(state.tracking, id);
+  return `<label class="track-status-control">
+    <span class="sr-only">Research tracking status of ${escapeHtml(label)}</span>
+    <select data-track-status-id="${canonicalScholarshipId(id)}" aria-label="Research tracking status of ${escapeHtml(label)}">
+      <option value="none" ${status === 'none' ? 'selected' : ''}>Not tracked</option>
+      <option value="researching" ${status === 'researching' ? 'selected' : ''}>Researching</option>
+      <option value="completed" ${status === 'completed' ? 'selected' : ''}>Completed</option>
+    </select></label>`;
+}
+function trackingToolbar(visibleIds = []) {
+  const count = selectedTracking.size;
+  return `<section class="card tracking-toolbar" aria-label="Bulk scholarship tracking">
+    <div class="tracking-toolbar-copy"><strong>Research & completion tracker</strong>
+    <span>${Object.values(state.tracking).filter(x => x === 'researching').length} researching · ${Object.values(state.tracking).filter(x => x === 'completed').length} completed</span>
+    <small>Completed means you've finished work on this scholarship; it does not mark an application as submitted.</small></div>
+    <div class="tracking-toolbar-actions"><span class="track-selected-count">${count} selected</span>
+      <button class="button secondary" type="button" data-track-select-visible ${visibleIds.length ? '' : 'disabled'}>Select shown</button>
+      <button class="button secondary" type="button" data-track-bulk="researching" ${count ? '' : 'disabled'}>Researching</button>
+      <button class="button secondary" type="button" data-track-bulk="completed" ${count ? '' : 'disabled'}>Mark completed</button>
+      <button class="button ghost" type="button" data-track-bulk="none" ${count ? '' : 'disabled'}>Clear status</button>
+      <button class="button ghost" type="button" data-track-clear-selection ${count ? '' : 'disabled'}>Deselect</button>
+    </div>
+  </section>`;
 }
 
 function scholarshipCard(item) {
@@ -162,6 +201,7 @@ function scholarshipCard(item) {
         </div>
         ${badge(status)}
       </div>
+      <div class="tracking-card-row">${trackSelection(item.id, item.name)} ${trackBadge(item.id)} ${trackStatusControl(item.id, item.name)}</div>
       <div class="tag-row">
         ${badge(decision)}
         ${badge(fit)}
@@ -183,10 +223,10 @@ function scholarshipCard(item) {
 }
 
 function renderOverview() {
-  const active = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s))).length;
-  const urgent = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && effectiveStatus(s) === 'urgent').length;
+  const active = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && trackingStatus(state.tracking, s.id) !== 'completed' && !['closed','blocked'].includes(effectiveStatus(s))).length;
+  const urgent = scholarships.filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && trackingStatus(state.tracking, s.id) !== 'completed' && effectiveStatus(s) === 'urgent').length;
   const best = [...scholarships]
-    .filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && !['blocked','closed'].includes(effectiveStatus(s)))
+    .filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && trackingStatus(state.tracking, s.id) !== 'completed' && !['blocked','closed'].includes(effectiveStatus(s)))
     .sort((a,b) => a.priority - b.priority)
     .slice(0,5);
   const progress = getOverallProgress();
@@ -208,6 +248,10 @@ function renderOverview() {
     </div>
 
     <div class="save-assurance"><strong>Browser-local memory is active.</strong><span>Your checklist state persists on this device. Export progress before clearing browser data or switching machines.</span></div>
+    <section class="tracking-overview section" aria-label="Research tracking summary">
+      <button class="card tracking-overview-card" data-open-track-filter="researching" type="button"><span>Currently researching</span><strong>${Object.values(state.tracking).filter(x => x === 'researching').length}</strong><small>Open your active shortlist →</small></button>
+      <button class="card tracking-overview-card" data-open-track-filter="completed" type="button"><span>Completed scholarships</span><strong>${Object.values(state.tracking).filter(x => x === 'completed').length}</strong><small>Review finished scholarship work →</small></button>
+    </section>
 
     <section class="section">
       <div class="section-head"><div><div class="section-title">Recommended execution order</div><div class="section-sub">Profile-fit ordering, not an official acceptance ranking.</div></div></div>
@@ -263,20 +307,40 @@ function filteredScholarships() {
     const decision = decisionOf(s);
     const haystack = `${s.name} ${s.country} ${s.provider} ${s.status} ${s.fit} ${s.route} ${decision}`.toLowerCase();
     const matchesQuery = !query || haystack.includes(query);
-    const matchesFilter = state.filter === 'focus' ? ['apply','watch'].includes(decision) : decision === state.filter;
+    const tracked = trackingStatus(state.tracking, s.id);
+    const matchesFilter = ['researching', 'completed'].includes(state.filter)
+      ? tracked === state.filter
+      : tracked !== 'completed' && (state.filter === 'focus' ? ['apply','watch'].includes(decision) : decision === state.filter);
     return matchesQuery && matchesFilter;
   });
 }
 
 function renderScholarships() {
   const items = filteredScholarships();
+  const trackedGoals = ['researching', 'completed'].includes(state.filter)
+    ? goalProgrammes.filter(p => isScholarshipVisible(state.lifecycle, p.id) &&
+      trackingStatus(state.tracking, p.id) === state.filter &&
+      !scholarships.some(s => canonicalScholarshipId(s.id) === canonicalScholarshipId(p.id)) &&
+      (!state.query.trim() || [p.name, p.full, p.institution, p.location].join(' ').toLowerCase().includes(state.query.trim().toLowerCase())))
+    : [];
+  const visibleIds = [...new Set([...items.map(x => canonicalScholarshipId(x.id)), ...trackedGoals.map(x => canonicalScholarshipId(x.id))])];
   const screenedQuery = state.query.trim().toLowerCase();
   const screened = screenedSuggestions.filter(item => isScholarshipVisible(state.lifecycle, item.id) && (!screenedQuery || `${item.name} ${item.country} ${item.reason}`.toLowerCase().includes(screenedQuery)));
   document.querySelector('#view-scholarships').innerHTML = `
-    <div class="filters" role="group" aria-label="Scholarship decision filters">
-      ${[['focus','Apply + Watch'],['apply','Apply'],['watch','Watch'],['closed','Closed']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
+    ${trackingToolbar(visibleIds)}
+    <div class="filters" role="group" aria-label="Scholarship filters">
+      ${[['focus','Apply + Watch'],['apply','Apply'],['watch','Watch'],['closed','Closed'],['researching','Researching'],['completed','Completed']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
     </div>
-    <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>
+    <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : trackedGoals.length ? '' : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>
+    ${trackedGoals.length ? `<section class="section"><div class="section-head"><div class="section-title">Personalized Goal programmes</div><div class="section-sub">Tracked programmes from the extended funding catalogue</div></div>
+      <div class="scholarship-grid">${trackedGoals.map(p => `<article class="card scholarship-card">
+        <div class="scholarship-name">${escapeHtml(p.name)}</div>
+        <div class="country">${escapeHtml(p.institution)}</div>
+        <div class="tracking-card-row">${trackSelection(p.id,p.name)} ${trackBadge(p.id)} ${trackStatusControl(p.id,p.name)}</div>
+        <p>${escapeHtml(p.full)}</p>
+        <div class="card-bottom"><span class="deadline">${escapeHtml(p.location)}</span>
+        <button type="button" class="button secondary" data-open-goal-programme="${escapeHtml(p.id)}">View programme</button></div>
+      </article>`).join('')}</div></section>` : ''}
     <details class="card card-pad section">
       <summary class="section-title">Screened out (${screened.length})</summary>
       <p class="section-sub">Verified leads that do not currently deserve application time. Kept here so the same social-media claims are not researched repeatedly.</p>
@@ -288,7 +352,7 @@ function renderScholarships() {
 
 function renderPipeline() {
   const ordered = [...scholarships]
-    .filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s)))
+    .filter(s => isScholarshipVisible(state.lifecycle, s.id) && s.eligible && decisionOf(s) === 'apply' && !['closed','blocked'].includes(effectiveStatus(s)) && trackingStatus(state.tracking, s.id) !== 'completed')
     .sort((a,b) => a.priority - b.priority);
   document.querySelector('#view-pipeline').innerHTML = `
     <div class="banner"><div><strong>Use one master evidence bank, then tailor by scholarship archetype.</strong><p>Tailor your evidence for research-focused, development-impact and leadership-heavy programmes using only the scholarships currently in your workspace.</p></div><span class="pill neutral banner-badge">Browser memory</span></div>
@@ -318,6 +382,7 @@ function renderPipeline() {
               }).join('')}
             </div>
             <div class="application-controls">
+              ${trackBadge(s.id)} ${trackStatusControl(s.id, s.name)}
               <span class="pill neutral">${state.applications[s.id] === 'submitted' ? 'Submitted' : 'Preparing'}</span>
               <button class="button secondary" data-application-id="${s.id}" data-application-status="${state.applications[s.id] === 'submitted' ? 'preparing' : 'submitted'}">${state.applications[s.id] === 'submitted' ? 'Resume preparation' : 'Mark submitted'}</button>
               <button class="button ghost" data-open-gpt="${s.id}">GPT prompt ↗</button>
@@ -603,7 +668,7 @@ function renderCurrentView() {
   renderDocuments();
   renderProfile();
   renderLibrary();
-  document.querySelector('#view-goal').innerHTML = renderPersonalizedGoal(state.progress, state.lifecycle);
+  document.querySelector('#view-goal').innerHTML = renderPersonalizedGoal(state.progress, state.lifecycle, state.tracking, selectedTracking);
   document.querySelectorAll('.view').forEach(v => v.classList.remove('active-view'));
   document.querySelector(`#view-${state.view}`).classList.add('active-view');
   els.pageTitle.textContent = viewTitles[state.view];
@@ -651,6 +716,9 @@ function openScholarship(id) {
           <div class="info-box"><div class="info-label">Long-term route</div><div class="info-value">${career.longTerm}</div></div>
           <div class="info-box"><div class="info-label">Immigration check</div><div class="info-value">Verified ${career.verifiedOn}. Planning context only — not a PR guarantee.</div></div>
         </div>` : ''}
+      <h3>Research / completion status</h3>
+      <div class="tracking-card-row">${trackBadge(s.id)} ${trackStatusControl(s.id,s.name)}</div>
+      <p class="muted small">This manual status is separate from application submission and checklist progress.</p>
       <h3>Execution checklist</h3>
       <ul>${s.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
       <p class="deadline-evidence">✓ Scholarship source verified ${verifiedOn}.${career ? ` Career rules last checked ${career.verifiedOn}.` : ''}</p>
@@ -750,7 +818,7 @@ document.addEventListener('input', e => {
   if (e.target.id === 'goalSearch') {
     const pos=e.target.selectionStart;
     setGoalQuery(e.target.value);
-    document.querySelector('#view-goal').innerHTML=renderPersonalizedGoal(state.progress, state.lifecycle);
+    document.querySelector('#view-goal').innerHTML=renderPersonalizedGoal(state.progress, state.lifecycle, state.tracking, selectedTracking);
     const next=document.querySelector('#goalSearch');
     next?.focus({preventScroll:true});
     try { next?.setSelectionRange(pos,pos); } catch { /* Input selection unsupported. */ }
@@ -762,6 +830,27 @@ document.addEventListener('input', e => {
 });
 
 document.addEventListener('click', e => {
+  const trackedFilter = e.target.closest('[data-open-track-filter]');
+  if (trackedFilter) { state.view = 'scholarships'; state.filter = trackedFilter.dataset.openTrackFilter; renderCurrentView(); return; }
+  const openGoal = e.target.closest('[data-open-goal-programme]');
+  if (openGoal) { setGoalSelection(openGoal.dataset.openGoalProgramme); setGoalFilter('All'); state.view = 'goal'; renderCurrentView(); return; }
+  if (e.target.closest('[data-track-select-visible]')) {
+    document.querySelectorAll('.active-view [data-track-select]').forEach(node => selectedTracking.add(node.dataset.trackSelect));
+    renderCurrentView(); return;
+  }
+  if (e.target.closest('[data-track-clear-selection]')) { selectedTracking.clear(); renderCurrentView(); return; }
+  const bulk = e.target.closest('[data-track-bulk]');
+  if (bulk) {
+    const status = bulk.dataset.trackBulk === 'none' ? null : bulk.dataset.trackBulk;
+    if (!selectedTracking.size) return;
+    try {
+      progressStore.bulkTrack([...selectedTracking], status);
+      selectedTracking.clear();
+      renderCurrentView();
+      toast(status === 'researching' ? 'Scholarships marked researching.' : status === 'completed' ? 'Scholarships marked completed.' : 'Tracking status cleared.');
+    } catch { toast('Could not update selection. Review archived or expired entries.'); }
+    return;
+  }
   const lifecycleControl = e.target.closest('[data-life-action]');
   if (lifecycleControl) {
     const action = lifecycleControl.dataset.lifeAction;
@@ -769,6 +858,7 @@ document.addEventListener('click', e => {
     if (action === 'delete' && !window.confirm('Move this scholarship to Trash? It will disappear from all sections immediately and be permanently deleted after 10 days unless restored.')) return;
     try {
       progressStore.lifecycle(action, id);
+      selectedTracking.delete(canonicalScholarshipId(id));
       if (els.dialog.open) els.dialog.close();
       toast(action === 'restore' ? 'Scholarship restored.' : action === 'archive' ? 'Archived. Retrieve it from Archive & History.' : 'Moved to Trash. Restore within 10 days.');
     } catch { toast('Action unavailable. The deadline or recovery window may have passed.'); }
@@ -813,6 +903,21 @@ document.addEventListener('click', e => {
 });
 
 document.addEventListener('change', e => {
+  const select = e.target.closest('[data-track-select]');
+  if (select) {
+    if (select.checked) selectedTracking.add(select.dataset.trackSelect);
+    else selectedTracking.delete(select.dataset.trackSelect);
+    renderCurrentView();
+    return;
+  }
+  const tracker = e.target.closest('[data-track-status-id]');
+  if (tracker) {
+    try {
+      progressStore.bulkTrack([tracker.dataset.trackStatusId], tracker.value === 'none' ? null : tracker.value);
+      toast('Research tracking saved.');
+    } catch { renderCurrentView(); toast('Could not save tracking status.'); }
+    return;
+  }
   const key = e.target.dataset.progressKey;
   if (!key) return;
   try { progressStore.change('progress', key, e.target.checked); } catch { renderCurrentView(); toast('Sign in again before editing.'); }
@@ -835,9 +940,9 @@ document.addEventListener('keydown', e => {
 export function mountApp(store) { progressStore = store; lastState = ''; syncThemeToggle(); countdowns.start(); }
 export function updateWorkspace(event) {
   if (!event.state) return;
-  state.progress = event.state.progress; state.applications = event.state.applications; state.profile = event.state.profile;
+  state.progress = event.state.progress; state.applications = event.state.applications; state.tracking = event.state.tracking || {}; state.profile = event.state.profile;
   state.lifecycle = event.state.lifecycle || {}; state.history = event.state.history || {}; state.clockOffset = event.clockOffset;
   const signature = JSON.stringify(event.state);
   if (signature !== lastState) { lastState = signature; renderCurrentView(); } else countdowns.tick();
 }
-export function hideWorkspace() { countdowns.stop(); lastState = ''; state.progress = {}; state.applications = {}; state.profile = null; state.lifecycle = {}; state.history = {}; els.dialog.close(); els.dialogContent.replaceChildren(); document.querySelectorAll('.view').forEach(node => node.replaceChildren()); }
+export function hideWorkspace() { countdowns.stop(); lastState = ''; selectedTracking.clear(); state.progress = {}; state.applications = {}; state.tracking = {}; state.profile = null; state.lifecycle = {}; state.history = {}; els.dialog.close(); els.dialogContent.replaceChildren(); document.querySelectorAll('.view').forEach(node => node.replaceChildren()); }

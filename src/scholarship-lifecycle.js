@@ -38,13 +38,14 @@ function removePrivateScholarshipState(next, id) {
   for (const key of Object.keys(next.progress)) {
     if (aliases.some(alias => key.startsWith(`sch-${alias}-`) || key.startsWith(`goal-${alias}-`))) delete next.progress[key];
   }
-  for (const alias of aliases) delete next.applications[alias];
+  for (const alias of aliases) { delete next.applications[alias]; delete next.tracking?.[alias]; }
 }
 function clonedState(state) {
   return {
     ...state,
     progress: { ...state.progress },
     applications: { ...state.applications },
+    tracking: { ...(state.tracking || {}) },
     lifecycle: { ...(state.lifecycle || {}) },
     history: { ...(state.history || {}) }
   };
@@ -54,7 +55,7 @@ export function transitionScholarship(state, rawId, action, now = Date.now()) {
   if (!catalogEntries.has(id)) throw Error('Unknown scholarship suggestion.');
   const current = lifecycleStatus(state.lifecycle, id);
   const item = catalogEntries.get(id);
-  if ((current === 'expired' || current === 'purged') || (current === 'trash' && Date.parse(state.lifecycle[id].purgeAt) <= now) || (action === 'restore' && isPastDeadline(item, now))) {
+  if ((current === 'expired' || current === 'purged') || (current === 'trash' && Date.parse(state.lifecycle[id].purgeAt) <= now) || (action === 'restore' && isPastDeadline(item, now) && state.tracking?.[id] !== 'completed')) {
     throw Error('This record is no longer recoverable.');
   }
   if (!['archive', 'delete', 'restore'].includes(action)) throw Error('Unsupported scholarship action.');
@@ -79,7 +80,9 @@ export function advanceScholarshipLifecycle(state, now = Date.now()) {
   }
   for (const [id, item] of catalogEntries) {
     const status = lifecycleStatus(next?.lifecycle || state.lifecycle, id);
-    if (['trash', 'purged', 'expired'].includes(status) || !isPastDeadline(item, now)) continue;
+    // A manually completed scholarship is retained as a portfolio record after its deadline.
+    // Untagged and still-researching opportunities keep the existing expiry/privacy behavior.
+    if (['trash', 'purged', 'expired'].includes(status) || (state.tracking?.[id] === 'completed') || !isPastDeadline(item, now)) continue;
     const destination = result();
     destination.lifecycle[id] = { status: 'expired', at: new Date(now).toISOString() };
     destination.history[id] = {

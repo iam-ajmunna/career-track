@@ -8,3 +8,9 @@ The site is currently a browser-local workspace. All scholarship views share a c
 - Manual deletion takes precedence over automatic expiry during the ten-day recovery window. A past-deadline item cannot be restored.
 - Housekeeping occurs at site startup, when browser storage is reloaded, and while the site remains open. Without an online backend, it cannot run on a closed device. This is a **local workspace**, not cross-device account syncing or cryptographic erasure of the bundled static source catalogue. For portability, use Export progress; clearing browser data removes the recovery/history/tombstone state.
 - Static source data and the bundled /deadlines.ics continue to exist in the deployed build; the visible dashboard and its *personalized calendar export* enforce the user's lifecycle state. No external source or other website is changed by local deletion.
+
+## User-managed research and completion status
+
+The Researching and Completed flags are separate from scholarship action checklists and the `Submitted` application status. They can be assigned to one or several scholarships and apply to canonical programme IDs across the main directory and Personalized Goal.
+
+**Completed exception:** a manually completed scholarship remains available as a personal completed-work record after the scholarship deadline instead of being moved to Deadline History. Clear its status to reapply ordinary housekeeping; archive it to hide it, or delete it to enter the existing 10-day recovery workflow. A scholarship still tagged Researching is automatically expired and its stored progress/tracking is erased after the deadline, as before. Already-expired records remain non-restorable. This is browser-local metadata and is included in a progress export.
