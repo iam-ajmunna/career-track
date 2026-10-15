@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Career Track — Scholarships tab preview (sample data)</title>
+<link rel="stylesheet" href="../src/styles/countries.css">
+<style>body{font-family:system-ui,sans-serif;margin:0;padding:1.25rem;max-width:1100px;margin-inline:auto;background:var(--ct-surface);color:var(--ct-text)}
+h1{font-size:1.2rem} .note{padding:.6rem .8rem;border:1px dashed var(--ct-border);border-radius:10px;margin-bottom:1rem}</style>
+</head><body>
+<h1>Scholarships tab — preview with SAMPLE data</h1>
+<p class="note">Sample scholarships and provisional country ratings. Not real advice or real deadlines. Pin a scholarship on a country page, then return to see the “Currently working on” tray.</p>
+<main id="root"></main>
+<script type="module">
+import { createStore } from '../src/lib/store.js';
+import { buildCountries, normalizeScholarship } from '../src/lib/normalize.js';
+import { mountScholarshipsScreen } from '../src/views/scholarships-screen.js';
+const [iso, seed] = await Promise.all(['../src/data/iso-codes.json','../src/data/countries.seed.json'].map(u => fetch(u).then(r => r.json())));
+const RAW = [
+  { id:'cw',    name:'Commonwealth Master’s (sample)', provider:'CSC', country:'UK', funding:'Fully funded', deadlineAt:new Date(Date.now()+22*864e5).toISOString(), deadlineTz:'Europe/London' },
+  { id:'gates', name:'Gates Cambridge (sample)', provider:'Gates', country:'United Kingdom', funding:'Fully funded', deadlineAt:new Date(Date.now()+70*864e5).toISOString(), deadlineTz:'Europe/London' },
+  { id:'kaust', name:'KAUST MSc Fellowship (sample)', provider:'KAUST', country:'Saudi Arabia', funding:'Fully funded', deadlineAt:new Date(Date.now()+95*864e5).toISOString(), deadlineTz:'Asia/Riyadh', spouse:{level:'met',reason:'Sample: family housing'} },
+  { id:'mbzuai',name:'MBZUAI MSc (sample)', provider:'MBZUAI', country:'UAE', funding:'Fully funded', deadlineAt:new Date(Date.now()+77*864e5).toISOString(), deadlineTz:'Asia/Dubai' },
+  { id:'khs',   name:'Knight-Hennessy (sample)', provider:'Stanford', country:'USA', funding:'Fully funded', deadlineAt:new Date(Date.now()+8*864e5).toISOString(), deadlineTz:'America/Los_Angeles' },
+  { id:'daad',  name:'DAAD (sample)', provider:'DAAD', country:'Germany', funding:'Partially funded', deadlineAt:new Date(Date.now()+120*864e5).toISOString(), deadlineTz:'Europe/Berlin' },
+  { id:'nl',    name:'Orange-style grant (sample)', provider:'NL', country:'Netherlands', funding:'Fully funded' },
+];
+const scholarships = RAW.map(r => normalizeScholarship(r, iso));
+const countries = buildCountries(iso, seed);
+const store = createStore(); await store.init();
+mountScholarshipsScreen(document.getElementById('root'), { countries, scholarships, store, progressFor: slug => ({cw:48,khs:10,kaust:12}[slug] ?? 0) });
+if (!location.hash) location.hash = '#/scholarships';
+</script></body></html>

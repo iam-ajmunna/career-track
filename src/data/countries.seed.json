@@ -1,0 +1,458 @@
+[
+  {
+    "code": "GB",
+    "confidence": "provisional",
+    "note": "Starting hypothesis only. Verify every line on gov.uk before removing the 'Provisional' badge.",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "Eligible degree students can work within visa conditions; the Graduate route lasts 18 months for applications from 1 January 2027. Government scholarship return-home terms can restrict using this route.",
+        "source": "https://www.gov.uk/graduate-visa",
+        "verified_on": "2026-10-15",
+        "sources": [
+          "https://www.gov.uk/student-visa"
+        ]
+      },
+      "career": {
+        "level": "met",
+        "reason": "Large engineering/AI/research job market and strong university brand.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Dependants are restricted to qualifying research degrees or government-sponsored courses longer than six months; a typical taught MSc is not sufficient. Extra maintenance funds are required.",
+        "source": "https://www.gov.uk/student-visa/family-members",
+        "verified_on": "2026-10-15"
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Settlement route exists but qualifying period/rules were under reform. Verify.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "DE",
+    "confidence": "provisional",
+    "note": "Verify on make-it-in-germany.com and DAAD.",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "Student employment permits 140 full days/280 half days or 20 hours weekly; eligible German graduates can seek skilled work for up to 18 months.",
+        "source": "https://www.make-it-in-germany.com/en/visa-residence/types/studying",
+        "verified_on": "2026-10-15"
+      },
+      "career": {
+        "level": "met",
+        "reason": "Strong engineering/industrial/AI sector.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Family reunification possible with financial/language conditions. Verify.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "met",
+        "reason": "German graduates can qualify after at least two years on a skilled-worker permit with 24 months of pension contributions, B1 German, adequate housing and other conditions. This is an available route, not a guarantee.",
+        "source": "https://www.make-it-in-germany.com/en/visa-residence/living-permanently/settlement-permit",
+        "verified_on": "2026-10-15"
+      }
+    }
+  },
+  {
+    "code": "US",
+    "confidence": "provisional",
+    "note": "Verify on travel.state.gov and uscis.gov. Policies changed frequently in 2025-2026.",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "F-1 students have restricted on-campus/authorized work, normally up to 20 hours during term; eligible graduates may receive 12 months of OPT. Off-campus work needs specific authorization.",
+        "source": "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/optional-practical-training-opt-for-f-1-students",
+        "verified_on": "2026-10-15",
+        "sources": [
+          "https://www.uscis.gov/working-in-the-united-states/students-and-exchange-visitors/students-and-employment"
+        ]
+      },
+      "career": {
+        "level": "met",
+        "reason": "Largest AI/tech job market.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "An F-2 dependent spouse can accompany an eligible F-1 student but is not authorized to work.",
+        "source": "https://www.uscis.gov/policy-manual/volume-2-part-f-chapter-9",
+        "verified_on": "2026-10-15"
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Employment-based route exists but is long and uncertain.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "CA",
+    "confidence": "provisional",
+    "note": "Verify on canada.ca. Study-permit and spousal rules were tightened in 2024-2025.",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "Post-graduation work permit and on-campus/part-time work.",
+        "source": null,
+        "verified_on": null
+      },
+      "career": {
+        "level": "met",
+        "reason": "Growing AI sector.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Spousal open work permit only for qualifying programmes. Verify.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Points-based routes exist but are competitive and capped.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "AU",
+    "confidence": "provisional",
+    "note": "Verify on immi.homeaffairs.gov.au.",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "Post-study temporary graduate visa and part-time work.",
+        "source": null,
+        "verified_on": null
+      },
+      "career": {
+        "level": "partial",
+        "reason": "Good market but smaller AI/research sector.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Partner can accompany; work rights depend on course level. Verify.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Points-tested pathways; occupation lists change.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "SA",
+    "confidence": "provisional",
+    "note": "KAUST-specific benefits (family housing) belong on the scholarship record as spouse override.",
+    "requirements": {
+      "work": {
+        "level": "partial",
+        "reason": "Research/industry roles exist, post-study stay is employer-tied.",
+        "source": null,
+        "verified_on": null
+      },
+      "career": {
+        "level": "partial",
+        "reason": "Growing research and AI investment.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Depends on institution housing and sponsorship rules. Verify.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "unmet",
+        "reason": "No conventional PR pathway for most graduates. Verify premium residency terms.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "AE",
+    "confidence": "provisional",
+    "note": "MBZUAI-specific benefits belong on the scholarship record.",
+    "requirements": {
+      "work": {
+        "level": "partial",
+        "reason": "The published jobseeker visit visa is 60, 90 or 120 days; it does not establish the rubric’s 12-month post-study route. Student employment needs separate authorization.",
+        "source": "https://u.ae/en/information-and-services/visa-and-emirates-id/Types-of-visas/Visit-visa/jobseeker-visit-visa",
+        "verified_on": "2026-10-15"
+      },
+      "career": {
+        "level": "partial",
+        "reason": "Growing AI hub; verify depth of research roles.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "met",
+        "reason": "Residents can generally sponsor spouses. Verify student/scholar conditions.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Long-term residency visas exist but are not classic PR. Verify eligibility.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "JP",
+    "confidence": "provisional",
+    "note": "Verify on MEXT and Immigration Services Agency of Japan.",
+    "requirements": {
+      "work": {
+        "level": "partial",
+        "reason": "Part-time work requires separate permission and is capped at 28 hours weekly in term. Post-study job-search duration and sponsor recommendations need separate confirmation.",
+        "source": "https://www.studyinjapan.go.jp/en/faq/active/",
+        "verified_on": "2026-10-15"
+      },
+      "career": {
+        "level": "partial",
+        "reason": "Strong industry; Japanese language often required.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Dependant status possible; work limited.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Points-based fast-track for highly skilled professionals; language helps.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "KR",
+    "confidence": "provisional",
+    "note": "Verify on studyinkorea.go.kr and hikorea.go.kr.",
+    "requirements": {
+      "work": {
+        "level": "partial",
+        "reason": "Eligible students may change to D-10 job-seeking status. Language, permission, working hours and current duration need an individual check; this is not automatic employment permission.",
+        "source": "https://studyinkorea.go.kr/ko/work/aboutForeignerEmploymentSystem.do",
+        "verified_on": "2026-10-15"
+      },
+      "career": {
+        "level": "partial",
+        "reason": "Strong tech industry; language barrier.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Dependant status possible; verify rules for scholarship students.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Points-based residency routes exist. Verify.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "NL",
+    "confidence": "provisional",
+    "note": "Verify on ind.nl.",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "Orientation-year visa after graduation; limited student work hours.",
+        "source": null,
+        "verified_on": null
+      },
+      "career": {
+        "level": "met",
+        "reason": "Strong tech/semiconductor/research sector.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "met",
+        "reason": "Partner can usually join and work. Verify income requirements.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "met",
+        "reason": "Long-term residence typically after ~5 years. Verify.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "SE",
+    "confidence": "provisional",
+    "note": "Verify on migrationsverket.se and Swedish Institute.",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "Residence extension to seek work after study.",
+        "source": null,
+        "verified_on": null
+      },
+      "career": {
+        "level": "met",
+        "reason": "Strong tech/engineering sector.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "met",
+        "reason": "Family members can usually accompany. Verify.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "met",
+        "reason": "Permanent residence after qualifying years of work permit. Verify.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "SG",
+    "confidence": "provisional",
+    "note": "Verify on mom.gov.sg and ica.gov.sg.",
+    "requirements": {
+      "work": {
+        "level": "partial",
+        "reason": "Employment pass needed; competitive.",
+        "source": null,
+        "verified_on": null
+      },
+      "career": {
+        "level": "met",
+        "reason": "Regional tech/finance hub.",
+        "source": null,
+        "verified_on": null
+      },
+      "spouse": {
+        "level": "partial",
+        "reason": "Dependant pass depends on pass type/salary.",
+        "source": null,
+        "verified_on": null
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "PR is discretionary.",
+        "source": null,
+        "verified_on": null
+      }
+    }
+  },
+  {
+    "code": "FI",
+    "confidence": "provisional",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "A study permit allows work averaging 30 hours weekly; qualifying Finnish graduates can obtain up to two years to seek work or start a business. Joint-degree residence and completion conditions still apply.",
+        "source": "https://migri.fi/en/residence-permit-to-look-for-work",
+        "verified_on": "2026-10-15",
+        "sources": [
+          "https://migri.fi/en/studying-in-finland"
+        ]
+      },
+      "pr": {
+        "level": "partial",
+        "reason": "Permanent residence has distinct qualifying pathways and integration requirements after the January 2026 law changes. A short consortium stay does not automatically qualify.",
+        "source": "https://migri.fi/en/permanent-residence-permit",
+        "verified_on": "2026-10-15"
+      }
+    }
+  },
+  {
+    "code": "HU",
+    "confidence": "provisional",
+    "requirements": {
+      "spouse": {
+        "level": "unmet",
+        "reason": "The family-reunification route excludes sponsors holding study permits, including the study-to-job-search category; do not assume a spouse can accompany on that route.",
+        "source": "https://oif.gov.hu/factsheets/residence-permit-for-the-purpose-of-family-reunification",
+        "verified_on": "2026-10-15"
+      },
+      "work": {
+        "level": "partial",
+        "reason": "Study-permit graduates may apply to seek a job or start a business. The applicable permit duration and study-work limits must be checked before treating this as a 12-month work route.",
+        "source": "https://oif.gov.hu/factsheets/residence-permit-for-the-purpose-of-seeking-a-job-or-starting-a-business",
+        "verified_on": "2026-10-15"
+      }
+    }
+  },
+  {
+    "code": "FR",
+    "confidence": "provisional",
+    "requirements": {
+      "work": {
+        "level": "met",
+        "reason": "Foreign students may work 964 hours a year. Qualifying French graduates may apply for the job-seeker/new-business-creator permit; eligibility depends on the diploma and residence history.",
+        "source": "https://www.campusfrance.org/en/working-student",
+        "verified_on": "2026-10-15",
+        "sources": [
+          "https://www.campusfrance.org/en/job-seeker-business-creator-residence-permit"
+        ]
+      }
+    }
+  },
+  {
+    "code": "IE",
+    "confidence": "provisional",
+    "requirements": {
+      "work": {
+        "level": "partial",
+        "reason": "Eligible level-9 graduates can receive 12 months under Stamp 1G and a further 12 months subject to conditions. Study-work conditions need a separate current check.",
+        "source": "https://www.irishimmigration.ie/registering-your-immigration-permission/information-on-registering/immigration-permission-stamps/",
+        "verified_on": "2026-10-15"
+      }
+    }
+  },
+  {
+    "code": "TR",
+    "confidence": "provisional",
+    "requirements": {
+      "spouse": {
+        "level": "partial",
+        "reason": "Family residence exists subject to sponsor and maintenance conditions. A student permit is not an automatic work entitlement for a spouse.",
+        "source": "https://en.goc.gov.tr/residence-permit-types",
+        "verified_on": "2026-10-15"
+      }
+    }
+  }
+]

@@ -10,3 +10,8 @@ node_modules/
 test-results/
 dist/
 .local-test/
+
+supabase/.temp/
+# Raw capture intermediates; identical lossless WebP review images are tracked.
+docs/upgrade/baseline/*.png
+docs/upgrade/ux/*.png

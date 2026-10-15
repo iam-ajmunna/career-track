@@ -1,60 +1,41 @@
-# Career Track — Scholarship OS
+# Career Track v2
 
-A scholarship workspace with browser-saved progress, verified deadline countdowns, calendar alarms and a small evidence-led scholarship decision layer. The Express Track preserves the existing vanilla JavaScript interface and all 102 legacy checklist keys while allowing additive vNext items.
+A personal scholarship workspace for the 2027 MSc intake. Vanilla ES modules and esbuild, hosted on Vercel. The active app needs no account or cloud configuration.
 
-Progress starts empty, as requested, then saves automatically in the current browser using localStorage. There is no Google sign-in gate and no cloud account requirement. The old browser progress key is never imported.
+## Workflow
 
-## Run
+- **Overview:** nearest verified deadline, currently working on, up to five next actions and three summary tiles.
+- **Scholarships:** country names first, grouped by five personal requirements with explicit compromises. Every current country/territory is listed; unresearched entries are collapsed. Provisional means the evidence has not been fully verified.
+- **Country details:** editable checklist, notes, submission, single/bulk research and completion tracking, official evidence and a pin toggle. Tray links restore the country and focused scholarship.
+- **Pipeline / Documents / Profile Fit:** existing application preparation, evidence and profile workflows.
+- **Settings:** JSON backup export/import, explicit idempotent browser-progress import and typed reset with a backup first.
+- **Personalized Goal / Archive & History:** existing extended programme research and recoverable archive/trash.
 
-Use Node 22.18+ (tested with 24.19.0).
+Shortcuts: 1–5 retain the original tabs; Settings=6, Goal=7, Archive=8. `/` opens country search. Navigation is keyboard accessible and becomes a bottom rail on mobile.
 
-```bash
+## Persistence
+
+The app opens directly with **Saved on this device** and stores progress under `career-track:v2`. There is no Google sign-in or automatic cross-device sync. The browser bundle does not load the Supabase client or read OAuth sessions. Offline changes save locally while the page is open; this is not an offline-installable PWA.
+
+Use **Settings → Import progress from this browser** to migrate previous local work without changing either legacy key. Use **Export progress** and **Import a backup file** to transfer between browsers, devices or website origins. Imports validate the file, preview changes and preserve existing notes, priorities and profile details. Storage failures retain an exportable draft and expose Retry; corrupt bytes are preserved for recovery. Export before clearing browser data.
+
+Publication and usage are documented in [RELEASE](docs/upgrade/RELEASE.md). Google/Supabase activation is deferred. Existing database protections and backend tooling are preserved but are not used by this release; the scheduled keepalive is removed. No service secret belongs in browser configuration or source control.
+
+## Development and checks
+
+```sh
 npm ci
-cp .env.example .env
 npm run dev
-```
-
-Open `http://localhost:8080`. The app opens directly into the editable workspace and saves progress in this browser. `npm run build` builds only deployable browser assets into `dist` and generates `dist/deadlines.ics`.
-
-```bash
 npm test
+npm run check:data
 npm run check:keys
 npm run build
 ```
 
-Tests cover PostgreSQL grants/RLS/CAS, stale edits, slow and failed saves, offline reopen, recovery, clock boundaries/DST, ICS and frozen checklist compatibility. `node tests/browser-fixture.mjs` starts a synthetic local UI fixture on port 8081, excluded from `dist`. It is not real Google/Supabase acceptance.
+Node 22.18+ is required. Unit tests run serially to bound PGlite memory; retained backend tests use isolated synthetic data. Browser verification uses a development Playwright installation (the supplied execution runtime also provides one); set `CT_CHROMIUM_PATH` to an existing Chromium binary when needed, then run `npm run test:browser`. It exercises the actual device-mode entry without a live database or OAuth identity.
 
-## Structure
+Exact deadlines retain source, UTC instant and provider timezone. The calendar uses four alarms per event; date-only/unannounced deadlines never receive invented exact times. Country lists contain 249 ISO entries plus Kosovo, with a separate regional Europe collection; historical CLDR aliases are removed.
 
-| Path | Responsibility |
-|---|---|
-| `src/bootstrap.js` | Browser-local progress store, export and recovery |
-| `src/sync/` | State validation plus the retained cloud sync modules |
-| `src/app.js`, `src/data.js` | Apply/Watch/Closed portfolio, career context, screened-out evidence, dossier and rendering |
-| `src/domain/time.ts`, `src/countdowns.js` | Exact time, urgency and isolated timer updates |
-| `deadlines.json` | Verified instants and date-only evidence |
-| `supabase/` | Owner-only migration and private profile seed |
-| `api/keepalive.js`, `vercel.json` | Protected daily database activity and deployment settings |
-| `docs/DEPLOYMENT.md` | Provisioning, acceptance and rollback |
+Implementation/audit/acceptance evidence: [STATUS](docs/upgrade/STATUS.md), [UI review](docs/upgrade/UI-REVIEW.md), [design](DESIGN.md), [interaction contract](UX-CONTRACT.md). Original kit/specs remain under `docs/upgrade/`.
 
-Nine exact deadline entries are sourced as of 28 September 2026, including ETH Zurich ESOP and the Bangladesh-specific DAAD all-disciplines Master's deadline. KAUST has a verified date with no verified closing time; other unannounced or unverified calls receive no precise timer. Oxford's two funding routes share one course deadline. Calendar content contains public facts only. A calendar client may discard alarms; phone verification is still required.
-
-Every scholarship also exposes an **Open GPT ↗** action. It creates a dedicated new-chat research prompt for that scholarship, includes the tracked official sources/deadline/checklist context, asks ChatGPT to re-verify the live 2027 rules, and copies the prompt as a fallback before opening ChatGPT.
-
-The visible scholarship list defaults to **Apply + Watch**. Closed routes stay available for context; misleading, ineligible or funding-mismatched social-media leads are kept in a collapsed **Screened out** register rather than polluting the working shortlist. Career information appears only in scholarship details and is factual planning context, not a PR score or guarantee. The dossier now includes an additive Europass CV item for European applications.
-
-Private profile seed, migrations, documentation, tests and `.env` files are excluded from public static output. Current progress is browser-local: use the export button for a portable backup or before clearing browser data.
-
-Design and interactions are documented in `DESIGN.md` and `UX-CONTRACT.md`. Do not reorder or rewrite checklist items until the positional-key migration is separately implemented.
-
-## Personalized Goal — frontier AI career campaign
-
-The sixth navigation tab is an evidence-led 2027/29 scholarship campaign for multimodal foundation-model and efficient Generative AI research. Its curated catalogue is maintained in `src/personalized-goal-data.js` and rendered by `src/personalized-goal.js`. It includes confirmed full-award competitions, funding-conditional/watch cases, dates with explicit precision, core/programme-specific document requirements, employment and country-dependent post-study settlement context, and directly linked institutional/immigration sources.
-
-New `goal-*` checklist keys are additive to browser-local progress; no legacy scholarship/doc/IELTS/ref key is reordered or repurposed. Legal information is planning context and must be verified again before a visa/PR decision. See `tests/personalized-goal.test.mjs` for catalogue/status/key regression tests. As-of-date: 2026-10-03.
-
-## Research and scholarship completion tracking
-
-Use **Scholarships → Researching / Completed** to view the scholarships being actively researched or manually marked finished. Each scholarship card has a status selector for single edits and a checkbox for selection. **Select shown** and bulk **Researching**, **Mark completed**, **Clear status** support multi-selection. The **Personalized Goal** programme directory uses the same tracking registry, so duplicate representations share one status.
-
-The separate tracking state is saved in browser-local `tracking`, validated alongside the existing workspace and included in **Export progress**. Old exports without `tracking` migrate to an empty tracker without resetting checklists. The **Completed** status means the scholarship work is finished by the user; it neither implies admission nor automatically sets the application status to **Submitted**. Completed records are retained after the listed deadline until intentionally cleared, archived or deleted. Records still **Researching** follow the existing deadline-expiry housekeeping, and permanently deleted records purge their tracking metadata.
+Work is on `personal-dynamic`; the owner reviews and merges the PR to `main`.

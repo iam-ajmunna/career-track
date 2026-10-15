@@ -10,23 +10,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script type="module" src="/assets/theme.js"></script>
   <link rel="stylesheet" href="./assets/styles.css" />
+  <link rel="stylesheet" href="./assets/countries.css" />
 </head>
 <body>
   <noscript>
     <div class="noscript">This dashboard needs JavaScript enabled to render scholarship data.</div>
   </noscript>
 
-  <main id="authGate" class="auth-gate" aria-labelledby="authTitle">
+  <main id="workspaceGate" class="auth-gate" aria-labelledby="workspaceTitle">
     <section class="auth-card card">
       <div class="brand-mark" aria-hidden="true">M</div>
       <p class="eyebrow">Scholarship OS · MSc 2027</p>
-      <h1 id="authTitle">Opening your workspace</h1>
-      <p id="authMessage" class="auth-message" role="status" aria-live="polite">Opening saved progress…</p>
+      <h1 id="workspaceTitle">Opening your workspace</h1>
+      <p id="workspaceMessage" class="auth-message" role="status" aria-live="polite">Opening saved progress…</p>
       <div class="auth-actions">
-        <button type="button" id="authRetry" class="button secondary" hidden>Retry</button>
+        <button type="button" id="workspaceRetry" class="button secondary" hidden>Retry</button>
         <button type="button" id="gateExport" class="button secondary" hidden>Export saved progress</button>
       </div>
-      <p class="small muted">Progress is saved in this browser.</p>
+      <p class="small muted">No account needed. Progress stays in this browser; export a backup to keep a separate copy.</p>
     </section>
   </main>
 
@@ -46,8 +47,9 @@
         <button type="button" class="nav-item" data-view="pipeline"><span>Application Pipeline</span><kbd>3</kbd></button>
         <button type="button" class="nav-item" data-view="documents"><span>Documents</span><kbd>4</kbd></button>
         <button type="button" class="nav-item" data-view="profile"><span>Profile Fit</span><kbd>5</kbd></button>
-        <button type="button" class="nav-item" data-view="goal"><span>Personalized Goal</span><kbd>6</kbd></button>
-        <button type="button" class="nav-item" data-view="library"><span>Archive &amp; History</span><kbd>7</kbd></button>
+        <button type="button" class="nav-item" data-view="settings"><span>Settings</span><kbd>6</kbd></button>
+        <button type="button" class="nav-item" data-view="goal"><span>Personalized Goal</span><kbd>7</kbd></button>
+        <button type="button" class="nav-item" data-view="library"><span>Archive &amp; History</span><kbd>8</kbd></button>
       </nav>
 
       <div class="sidebar-footer">
@@ -58,10 +60,11 @@
     </aside>
 
     <main class="main">
+      <div class="sticky-chrome">
       <header class="topbar">
         <div>
           <p class="eyebrow">Fully Funded MSc Strategy</p>
-          <h1 id="pageTitle">Overview</h1>
+          <h1 id="pageTitle">Overview</h1><p id="pageSubtitle" class="page-subtitle">What should I do next?</p>
         </div>
         <div class="topbar-actions">
           <div class="search-wrap">
@@ -77,6 +80,7 @@
         <button type="button" id="syncRetry" class="text-button" hidden>Retry</button>
       </div>
       <p id="syncMessage" class="sync-message" role="status" hidden></p>
+      </div>
       <section id="view-overview" class="view active-view"></section>
       <section id="view-scholarships" class="view"></section>
       <section id="view-pipeline" class="view"></section>
@@ -84,6 +88,7 @@
       <section id="view-profile" class="view"></section>
       <section id="view-goal" class="view"></section>
       <section id="view-library" class="view"></section>
+      <section id="view-settings" class="view"></section>
     </main>
   </div>
 
@@ -92,18 +97,7 @@
     <div id="dialogContent"></div>
   </dialog>
 
-  <dialog id="signOutDialog" class="dialog dialog--compact" aria-labelledby="signOutTitle" aria-describedby="signOutDescription">
-    <div class="dialog-body">
-      <p class="eyebrow">Pending changes</p>
-      <h2 id="signOutTitle" class="dialog-title dialog-title--compact">Save before signing out</h2>
-      <p id="signOutDescription" class="dialog-copy"></p>
-      <div class="dialog-actions dialog-actions--end">
-        <button type="button" id="signOutCancel" class="button secondary">Stay and retry</button>
-        <button type="button" id="exportSignOut" class="button">Export and sign out</button>
-      </div>
-    </div>
-  </dialog>
-
+  <dialog id="confirmDialog" class="dialog dialog--compact" aria-labelledby="confirmTitle" aria-describedby="confirmDescription"><form method="dialog" class="dialog-body" novalidate><h2 id="confirmTitle" class="dialog-title dialog-title--compact"></h2><p id="confirmDescription"></p><div class="dialog-actions"><button type="submit" value="cancel" class="button secondary" autofocus>Cancel</button><button type="button" id="confirmAction" class="button danger-outline">Move to Trash</button></div></form></dialog>
   <template id="toastTemplate">
     <div class="toast"></div>
   </template>
@@ -113,3 +107,4 @@
   <script type="module" src="/assets/app.js"></script>
 </body>
 </html>
+

@@ -1,7 +1,7 @@
 import { EMPTY_STATE, reconcile, validateSnapshot } from './model.js';
 
-export function createCache({ storage, namespace, ownerId, randomId = () => crypto.randomUUID() }) {
-  const prefix = `career-track:v1:${namespace}:${ownerId}:`;
+export function createCache({ storage, namespace, ownerId, randomId = () => crypto.randomUUID(), version = 'v1' }) {
+  const prefix = `career-track:${version}:${namespace}:${ownerId}:`;
   const memory = new Map();
   const localIds = new Set();
   let storageFailed = false;
@@ -25,10 +25,12 @@ export function createCache({ storage, namespace, ownerId, randomId = () => cryp
     for (const key of keys().filter(key => key.startsWith(prefix + 'op:'))) {
       try {
         const item = JSON.parse(read(key));
-        if (!item || !['progress', 'applications', 'profile'].includes(item.bucket) || typeof item.key !== 'string' ||
+        if (!item || !['progress','applications','profile','pins','preferences','ui','notes','tracking','lifecycle','history'].includes(item.bucket) || typeof item.key !== 'string' ||
             !Number.isSafeInteger(item.baseRev) || item.baseRev < 0 || !Number.isSafeInteger(item.order) ||
             typeof item.id !== 'string' || key !== prefix + 'op:' + item.id) throw new Error();
-        reconcile({ state: EMPTY_STATE, rev: item.baseRev }, [item]);
+        const validationState=structuredClone(EMPTY_STATE);
+        if(item.bucket==='history' && item.value!==null)validationState.lifecycle={[item.key]:{status:'expired',at:item.value?.expiredAt}};
+        reconcile({state:validationState,rev:item.baseRev},[item]);
         result.push(item);
       } catch { draftProblem = true; problem = 'A local draft could not be read. Export your local data before continuing.'; }
     }
@@ -71,3 +73,4 @@ export function createCache({ storage, namespace, ownerId, randomId = () => cryp
     rawBackup() { return Object.fromEntries(keys().filter(key => key.startsWith(prefix)).map(key => [key, read(key)])); }
   };
 }
+

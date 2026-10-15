@@ -38,7 +38,7 @@ function removePrivateScholarshipState(next, id) {
   for (const key of Object.keys(next.progress)) {
     if (aliases.some(alias => key.startsWith(`sch-${alias}-`) || key.startsWith(`goal-${alias}-`))) delete next.progress[key];
   }
-  for (const alias of aliases) { delete next.applications[alias]; delete next.tracking?.[alias]; }
+  for (const alias of aliases) { delete next.applications[alias]; delete next.tracking?.[alias]; delete next.pins?.[alias]; delete next.notes?.[alias]; }
 }
 function clonedState(state) {
   return {
@@ -47,7 +47,7 @@ function clonedState(state) {
     applications: { ...state.applications },
     tracking: { ...(state.tracking || {}) },
     lifecycle: { ...(state.lifecycle || {}) },
-    history: { ...(state.history || {}) }
+    history: { ...(state.history || {}) }, pins:{...(state.pins||{})}, notes:{...(state.notes||{})}
   };
 }
 export function transitionScholarship(state, rawId, action, now = Date.now()) {
@@ -68,7 +68,7 @@ export function transitionScholarship(state, rawId, action, now = Date.now()) {
   else next.lifecycle[id] = { status: 'trash', at: new Date(now).toISOString(), purgeAt: new Date(now + TEN_DAYS).toISOString() };
   return next;
 }
-export function advanceScholarshipLifecycle(state, now = Date.now()) {
+export function advanceScholarshipLifecycle(state, now = Date.now(), { expire = true } = {}) {
   let next = null;
   const result = () => next || (next = clonedState(state));
   // Manual deletion takes precedence over expiry. Its complete record is destroyed after 10 days.
@@ -78,11 +78,12 @@ export function advanceScholarshipLifecycle(state, now = Date.now()) {
       removePrivateScholarshipState(result(), id);
     }
   }
+  if(!expire)return next || state;
   for (const [id, item] of catalogEntries) {
     const status = lifecycleStatus(next?.lifecycle || state.lifecycle, id);
     // A manually completed scholarship is retained as a portfolio record after its deadline.
     // Untagged and still-researching opportunities keep the existing expiry/privacy behavior.
-    if (['trash', 'purged', 'expired'].includes(status) || (state.tracking?.[id] === 'completed') || !isPastDeadline(item, now)) continue;
+    if (['trash', 'purged', 'expired'].includes(status) || (state.tracking?.[id] === 'completed') || state.pins?.[id] || !isPastDeadline(item, now)) continue;
     const destination = result();
     destination.lifecycle[id] = { status: 'expired', at: new Date(now).toISOString() };
     destination.history[id] = {
@@ -107,3 +108,4 @@ export function expiredRecords(state) {
   return Object.entries(state.history || {}).map(([id, item]) => ({ id, ...item }))
     .sort((a, b) => b.expiredAt.localeCompare(a.expiredAt));
 }
+

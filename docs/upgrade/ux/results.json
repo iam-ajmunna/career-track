@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-15T09:53:56.790Z",
+  "checks": [
+    {
+      "name": "Workspace opens without login, ignores obsolete sessions and makes no auth requests",
+      "status": "PASS"
+    },
+    {
+      "name": "Countries first; unrated collapsed; empty country shows evidence",
+      "status": "PASS"
+    },
+    {
+      "name": "Pin, checklist and escaped notes survive reload; unpin preserves progress",
+      "status": "PASS"
+    },
+    {
+      "name": "Country selection supports bulk research and completion without changing submission",
+      "status": "PASS"
+    },
+    {
+      "name": "Priority/order persistence, shortcuts, country search and invalid routes",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy import is explicit, idempotent and preserves original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Calendar download has exact UTC deadline and four alarms per event",
+      "status": "PASS"
+    },
+    {
+      "name": "Eight tabs and country detail: desktop/mobile, both themes, no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Deletion dialog focuses Cancel; Escape preserves scholarship",
+      "status": "PASS"
+    },
+    {
+      "name": "Export and previewed JSON import restore progress in a clean browser without login",
+      "status": "PASS"
+    },
+    {
+      "name": "Malformed backup shows an inline error and preserves existing progress",
+      "status": "PASS"
+    },
+    {
+      "name": "Offline local writes and another tab preserve the same browser workspace",
+      "status": "PASS"
+    },
+    {
+      "name": "Local quota failure retains an exportable draft and Retry saves it",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrupt browser state is exportable and cannot be silently overwritten",
+      "status": "PASS"
+    },
+    {
+      "name": "Blocked storage still opens an editable workspace with export and inline import recovery",
+      "status": "PASS"
+    }
+  ],
+  "consoleErrors": [],
+  "scope": "No-account device release; no real OAuth or live database needed."
+}

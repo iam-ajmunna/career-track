@@ -3,14 +3,23 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22.18.0" },
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "scripts": {
     "build": "node scripts/build.mjs",
     "dev": "node scripts/dev.mjs",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test --test-concurrency=1 tests/*.test.mjs",
     "check:keys": "node scripts/check-legacy-contract.mjs",
-    "provision:owner": "node --env-file-if-exists=.env scripts/provision-owner.mjs"
+    "provision:owner": "node --env-file-if-exists=.env scripts/provision-owner.mjs",
+    "test:browser": "node tests/browser-v2.mjs",
+    "check:data": "node scripts/check-normalized-data.mjs"
   },
-  "dependencies": { "@supabase/supabase-js": "2.117.2" },
-  "devDependencies": { "@electric-sql/pglite": "0.5.8", "esbuild": "0.28.2" }
+  "dependencies": {
+    "@supabase/supabase-js": "2.117.2"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.5.8",
+    "esbuild": "0.28.2"
+  }
 }
