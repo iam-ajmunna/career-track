@@ -1,5 +1,7 @@
 # Owner activation and release
 
+**Deferred — no action required for the current release.** The owner requested continuing without Google Auth on 15 October 2026. The app now opens directly in device mode and does not initialize any cloud session. Use [RELEASE.md](RELEASE.md) for publication, browser import and JSON backup transfer. Google provider setup, owner provisioning, real OAuth acceptance and keepalive verification are no longer release gates. The instructions below document the earlier cloud proposal and apply only if that feature is explicitly restored in a future implementation.
+
 The code, additive database migration and synthetic cloud-sync checks are complete. These account-bound steps remain before real cross-device use:
 
 1. In the existing free Supabase project `yqqcfonzkkrboghhfbdx`, configure the Google provider using your own Google Cloud OAuth client. Add the Supabase callback to Google, and allow `https://muncareer.vercel.app` plus the exact Vercel preview origin as redirects. Do not paste the OAuth secret into chat or client code.

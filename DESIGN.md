@@ -94,7 +94,7 @@ The Documents view is a dossier workspace rather than a flat checklist. Evidence
 
 ### Forms and overlays
 
-Search owns an explicit clear control whenever non-empty. Dialogs use native `<dialog>` with accessible names and app-owned pending-change sign-out confirmation; browser `confirm()` is not used. Toasts acknowledge non-critical actions through a polite live region.
+Search owns an explicit clear control whenever non-empty. Dialogs use native `<dialog>` with accessible names and app-owned deletion confirmation; browser `confirm()` is not used. Toasts acknowledge non-critical actions through a polite live region. Backup import uses a semantic file-picker button, an explicit preview/commit and persistent inline validation.
 
 ### Iconography
 
@@ -115,11 +115,11 @@ Copy is concise, operational, and specific. Status labels distinguish Open, Open
 - **Don't:** style informational badges as large action controls or allow flex stretching to change their meaning.
 - **Don't:** introduce decorative gradients, excessive elevation, or color without semantic purpose.
 
-### Account and synchronization surfaces
+### Workspace and save surfaces
 
-The login gate uses the existing card, neutral primary button, typography and spacing. Authenticated content stays hidden until owner state is available. Save status and persistent recovery messages sit below the top bar. Missing setup, forbidden access and expired sessions have distinct copy.
+The startup/recovery gate uses the existing card, neutral primary button, typography and spacing. The device workspace opens without authentication. **Saved on this device** appears only while the current local state has no failed write. Persistent recovery messages sit below the top bar; blocked storage and unreadable data have distinct copy. The active interface has no sign-in controls.
 
-Countdowns use tabular monospace numerals, provider/Dhaka time labels, semantic urgency borders and quiet source links. Seconds update timer nodes only; screen readers receive urgency changes and final-day minute updates. Compact cards wrap at existing responsive breakpoints. The export/sign-out controls replace local reset.
+Countdowns use tabular monospace numerals, provider/Dhaka time labels, semantic urgency borders and quiet source links. Seconds update timer nodes only; screen readers receive urgency changes and final-day minute updates. Compact cards wrap at existing responsive breakpoints. Settings owns JSON export/import and backup-first typed reset.
 
 
 ### Country navigation and v2 surfaces

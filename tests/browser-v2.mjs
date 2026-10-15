@@ -1,4 +1,4 @@
-// Uses a local synthetic backend only. Supply CT_CHROMIUM_PATH for an existing Chromium binary.
+// Exercises the no-account device release. Supply CT_CHROMIUM_PATH for an existing Chromium binary.
 import {spawn} from 'node:child_process';
 import {mkdir,readFile,writeFile} from 'node:fs/promises';
 import {createRequire} from 'node:module';
@@ -11,10 +11,20 @@ async function start(script,port){const child=spawn(process.execPath,[script],{e
 async function check(name,fn){try{await fn();}catch(error){if(diagnosticPage&&!diagnosticPage.isClosed()){await diagnosticPage.screenshot({path:evidence+'/failure.png',fullPage:true});console.error((await diagnosticPage.locator('body').innerText()).slice(0,7000));console.error('Browser errors:',errors);}throw error;}checks.push({name,status:'PASS'});console.log('PASS '+name);}
 const browser=await chromium.launch({executablePath:process.env.CT_CHROMIUM_PATH||undefined,headless:true,args:['--no-sandbox','--disable-dev-shm-usage','--disable-gpu']});
 try{
- const localServer=await start('scripts/dev.mjs',8084);
+ await start('scripts/dev.mjs',8084);
  const context=await browser.newContext({viewport:{width:1440,height:960},reducedMotion:'reduce'});
+ await context.addInitScript(()=>{
+  localStorage.setItem('career-track-auth:yqqcfonzkkrboghhfbdx.supabase.co',JSON.stringify({access_token:'obsolete-session',refresh_token:'obsolete-refresh'}));
+ });
+ const authRequests=[];
+ context.on('request',request=>{if(/\.supabase\.co$|^accounts\.google\.com$/.test(new URL(request.url()).hostname))authRequests.push(request.url());});
  const page=await context.newPage();diagnosticPage=page;page.on('pageerror',e=>{errors.push(e.message);console.error('PAGE ERROR:',e.message);});
  await page.goto('http://127.0.0.1:8084');await page.waitForSelector('#appShell:not([hidden])');
+ await check('Workspace opens without login, ignores obsolete sessions and makes no auth requests',async()=>{
+  assert.equal(await page.locator('#syncLabel').innerText(),'Saved on this device');
+  assert.equal(await page.getByRole('button',{name:/sign in|sign out/i}).count(),0);
+  assert.deepEqual(authRequests,[]);
+ });
  await check('Countries first; unrated collapsed; empty country shows evidence',async()=>{
   await page.locator('#nav [data-view="scholarships"]').click();await page.waitForURL('**/#/scholarships');await page.waitForSelector('#view-scholarships.active-view .country-card');
   assert.ok(await page.locator('.country-card').count()>10);assert.equal(await page.locator('[data-unrated]').getAttribute('open'),null);
@@ -58,20 +68,79 @@ try{
  await check('Deletion dialog focuses Cancel; Escape preserves scholarship',async()=>{
   await page.goto('http://127.0.0.1:8084/#/scholarships/country/SA?focus=kaust');await page.waitForSelector('#sch-kaust[open]');await page.locator('.active-view [data-life-action="delete"][data-life-id="kaust"]').click();assert.ok(await page.locator('#confirmDialog').isVisible());assert.equal(await page.locator('#confirmDialog button').first().evaluate(n=>n===document.activeElement),true);await page.keyboard.press('Escape');assert.equal(await page.locator('#confirmDialog').isVisible(),false);
  });
- await context.close();localServer.kill();
- await start('tests/browser-fixture.mjs',8085);
- const cloud=await browser.newContext({viewport:{width:1440,height:960},reducedMotion:'reduce'}),p=await cloud.newPage();diagnosticPage=p;p.on('pageerror',e=>{errors.push(e.message);console.error('PAGE ERROR:',e.message);});
- await p.goto('http://127.0.0.1:8085/fixture');await p.locator('#owner').click();await p.waitForFunction(()=>document.querySelector('#syncLabel')?.textContent==='Saved');
- await check('Cloud pins and ticks survive refresh and a clean second browser',async()=>{
-  await p.goto('http://127.0.0.1:8085/#/scholarships/country/SA?focus=kaust');await p.waitForSelector('#sch-kaust[open]');await p.locator('[data-toggle-working="kaust"]').click();await p.locator('[data-progress-key="sch-kaust-0"]').check();await p.waitForFunction(()=>document.querySelector('#syncLabel').textContent==='Saved');await p.reload();await p.waitForSelector('#sch-kaust[open]');assert.ok(await p.locator('[data-progress-key="sch-kaust-0"]').isChecked());
-  const c=await browser.newContext({reducedMotion:'reduce'}),other=await c.newPage();await other.goto('http://127.0.0.1:8085/fixture');await other.locator('#owner').click();await other.waitForSelector('#appShell:not([hidden])');await other.goto('http://127.0.0.1:8085/#/scholarships/country/SA?focus=kaust');await other.waitForSelector('#sch-kaust[open]');assert.ok(await other.locator('[data-progress-key="sch-kaust-0"]').isChecked());assert.equal(await other.locator('[data-toggle-working="kaust"]').getAttribute('aria-pressed'),'true');await c.close();
+ await check('Export and previewed JSON import restore progress in a clean browser without login',async()=>{
+  await page.locator('#nav [data-view="settings"]').click();
+  const downloaded=page.waitForEvent('download');await page.locator('[data-export-state]').click();
+  const backup=await readFile(await(await downloaded).path());
+  const c=await browser.newContext({viewport:{width:390,height:960},reducedMotion:'reduce'}),other=await c.newPage();
+  other.on('pageerror',e=>errors.push(e.message));
+  await other.goto('http://127.0.0.1:8084/#/settings');await other.waitForSelector('#backupFile',{state:'attached'});
+  await other.locator('#backupFile').setInputFiles({name:'career-track-backup.json',mimeType:'application/json',buffer:backup});
+  await other.waitForSelector('[data-commit-backup]');
+  assert.equal(await other.evaluate(()=>localStorage.getItem('career-track:v2')),null,'Preview makes no write');
+  await other.screenshot({path:evidence+'/backup-preview-mobile.png',fullPage:true});
+  await other.locator('[data-commit-backup]').click();assert.match(await other.locator('#backupReport').innerText(),/saved on this device/);
+  await other.goto('http://127.0.0.1:8084/#/scholarships/country/SA?focus=kaust');await other.waitForSelector('#sch-kaust[open]');
+  assert.ok(await other.locator('[data-progress-key="sch-kaust-0"]').isChecked());
+  assert.equal(await other.locator('[data-toggle-working="kaust"]').getAttribute('aria-pressed'),'true');
+  assert.equal(await other.locator('[data-note="kaust"]').inputValue(),'<img src=x onerror=alert(1)> private note');
+  await other.reload();await other.waitForSelector('#sch-kaust[open]');assert.ok(await other.locator('[data-progress-key="sch-kaust-0"]').isChecked());
+  await other.goto('http://127.0.0.1:8084/#/settings');await other.waitForSelector('#backupFile',{state:'attached'});
+  await other.locator('#backupFile').setInputFiles({name:'again.json',mimeType:'application/json',buffer:backup});await other.waitForFunction(()=>document.querySelector('#backupReport').textContent.includes('already up to date'));
+  assert.equal(await other.locator('[data-commit-backup]').count(),0);
+  await c.close();
  });
- await check('Failed write retains pending tick; Retry confirms save',async()=>{
-  await p.request.post('http://127.0.0.1:8085/fixture/failure',{form:{mode:'fail'}});await p.locator('[data-progress-key="sch-kaust-1"]').check();await p.waitForFunction(()=>document.querySelector('#syncLabel').textContent==='Failed — Retry');assert.ok(await p.locator('#syncRetry').isVisible());await p.request.post('http://127.0.0.1:8085/fixture/failure',{form:{mode:'success'}});await p.locator('#syncRetry').click();await p.waitForFunction(()=>document.querySelector('#syncLabel').textContent==='Saved');
+ await check('Malformed backup shows an inline error and preserves existing progress',async()=>{
+  const before=await page.evaluate(()=>localStorage.getItem('career-track:v2'));
+  await page.locator('#backupFile').setInputFiles({name:'broken.json',mimeType:'application/json',buffer:Buffer.from('{bad')});
+  await page.waitForFunction(()=>document.querySelector('#backupReport').textContent.includes('not valid JSON'));
+  assert.equal(await page.locator('[data-commit-backup]').count(),0);
+  assert.equal(await page.evaluate(()=>localStorage.getItem('career-track:v2')),before);
+  assert.equal(await page.locator('[data-pick-backup]').evaluate(n=>n===document.activeElement),true);
  });
- await check('Other account cannot read owner workspace',async()=>{
-  const c=await browser.newContext(),other=await c.newPage();await other.goto('http://127.0.0.1:8085/fixture');await other.locator('#other').click();await other.waitForFunction(()=>document.querySelector('#authTitle')?.textContent==='Account not provisioned');assert.ok(await other.locator('#appShell').isHidden());await c.close();
+ await check('Offline local writes and another tab preserve the same browser workspace',async()=>{
+  const other=await context.newPage();await other.goto('http://127.0.0.1:8084/#/scholarships/country/SA?focus=kaust');await other.waitForSelector('#sch-kaust[open]');
+  await context.setOffline(true);await other.locator('[data-progress-key="sch-kaust-2"]').check();
+  await page.waitForFunction(()=>JSON.parse(localStorage.getItem('career-track:v2')).progress['sch-kaust-2']===true);
+  assert.equal(await other.locator('#syncLabel').innerText(),'Saved on this device');
+  await context.setOffline(false);await other.close();
  });
- await cloud.close();assert.deepEqual(errors,[],'No uncaught browser errors');
- await writeFile(evidence+'/results.json',JSON.stringify({date:new Date().toISOString(),checks,consoleErrors:errors,scope:'Synthetic local fixture; real owner OAuth/device acceptance is separate.'},null,2)+'\n');console.log(checks.length+' browser checks passed');
+ await check('Local quota failure retains an exportable draft and Retry saves it',async()=>{
+  await page.goto('http://127.0.0.1:8084/#/scholarships/country/SA?focus=kaust');await page.waitForSelector('#sch-kaust[open]');
+  await page.evaluate(()=>{window.ctFailWrites=true;const original=Storage.prototype.setItem;Storage.prototype.setItem=function(key,value){if(key==='career-track:v2'&&window.ctFailWrites)throw new DOMException('Quota exceeded','QuotaExceededError');return original.call(this,key,value);};});
+  await page.locator('[data-progress-key="sch-kaust-3"]').check();
+  assert.equal(await page.locator('#syncLabel').innerText(),'Not saved — Retry');assert.ok(await page.locator('[data-progress-key="sch-kaust-3"]').isChecked());
+  const downloaded=page.waitForEvent('download');await page.locator('#exportProgress').evaluate(n=>n.click());
+  const backup=JSON.parse(await readFile(await(await downloaded).path(),'utf8'));assert.equal(backup.state.progress['sch-kaust-3'],true);
+  await page.screenshot({path:evidence+'/storage-retry-mobile.png',fullPage:true});
+  await page.evaluate(()=>window.ctFailWrites=false);await page.locator('#syncRetry').click();
+  assert.equal(await page.locator('#syncLabel').innerText(),'Saved on this device');
+  await page.reload();await page.waitForSelector('#sch-kaust[open]');assert.ok(await page.locator('[data-progress-key="sch-kaust-3"]').isChecked());
+ });
+ await check('Corrupt browser state is exportable and cannot be silently overwritten',async()=>{
+  const c=await browser.newContext({reducedMotion:'reduce'});await c.addInitScript(()=>localStorage.setItem('career-track:v2','{corrupt'));
+  const other=await c.newPage();other.on('pageerror',e=>errors.push(e.message));
+  await other.goto('http://127.0.0.1:8084/#/scholarships/country/SA?focus=kaust');await other.waitForSelector('#sch-kaust[open]');
+  assert.ok(await other.locator('[data-progress-key="sch-kaust-0"]').isDisabled());
+  const downloaded=other.waitForEvent('download');await other.locator('#exportProgress').click();
+  const backup=JSON.parse(await readFile(await(await downloaded).path(),'utf8'));assert.equal(backup.raw_recovery,'{corrupt');
+  assert.equal(await other.evaluate(()=>localStorage.getItem('career-track:v2')),'{corrupt');await c.close();
+ });
+ await check('Blocked storage still opens an editable workspace with export and inline import recovery',async()=>{
+  const c=await browser.newContext({reducedMotion:'reduce'});
+  await c.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Storage blocked','SecurityError');}}));
+  const other=await c.newPage();other.on('pageerror',e=>errors.push(e.message));
+  await other.goto('http://127.0.0.1:8084/#/scholarships/country/SA?focus=kaust');await other.waitForSelector('#sch-kaust[open]');
+  await other.locator('[data-progress-key="sch-kaust-0"]').check();assert.ok(await other.locator('[data-progress-key="sch-kaust-0"]').isChecked());
+  assert.equal(await other.locator('#syncLabel').innerText(),'Not saved — Retry');
+  const downloaded=other.waitForEvent('download');await other.locator('#exportProgress').click();
+  const backup=JSON.parse(await readFile(await(await downloaded).path(),'utf8'));assert.equal(backup.state.progress['sch-kaust-0'],true);
+  await other.locator('#nav [data-view="settings"]').click();await other.locator('[data-preview-import]').click();
+  assert.match(await other.locator('#importReport').innerText(),/Browser storage is unavailable/);
+  const chooser=other.waitForEvent('filechooser');await other.locator('[data-pick-backup]').click();assert.ok(await chooser);
+  await c.close();
+ });
+ assert.deepEqual(authRequests,[],'No Google or Supabase requests in device mode');
+ await context.close();assert.deepEqual(errors,[],'No uncaught browser errors');
+ await writeFile(evidence+'/results.json',JSON.stringify({date:new Date().toISOString(),checks,consoleErrors:errors,scope:'No-account device release; no real OAuth or live database needed.'},null,2)+'\n');console.log(checks.length+' browser checks passed');
 }finally{await browser.close();servers.forEach(p=>p.kill());}

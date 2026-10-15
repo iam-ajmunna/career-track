@@ -1,6 +1,6 @@
 # Career Track v2
 
-A personal scholarship workspace for the 2027 MSc intake. Vanilla ES modules, esbuild and the Supabase JS client; Vercel Hobby and an existing Supabase Free project.
+A personal scholarship workspace for the 2027 MSc intake. Vanilla ES modules and esbuild, hosted on Vercel. The active app needs no account or cloud configuration.
 
 ## Workflow
 
@@ -8,16 +8,18 @@ A personal scholarship workspace for the 2027 MSc intake. Vanilla ES modules, es
 - **Scholarships:** country names first, grouped by five personal requirements with explicit compromises. Every current country/territory is listed; unresearched entries are collapsed. Provisional means the evidence has not been fully verified.
 - **Country details:** editable checklist, notes, submission, single/bulk research and completion tracking, official evidence and a pin toggle. Tray links restore the country and focused scholarship.
 - **Pipeline / Documents / Profile Fit:** existing application preparation, evidence and profile workflows.
-- **Settings:** export, explicit idempotent browser-progress import and typed reset with a backup first.
+- **Settings:** JSON backup export/import, explicit idempotent browser-progress import and typed reset with a backup first.
 - **Personalized Goal / Archive & History:** existing extended programme research and recoverable archive/trash.
 
 Shortcuts: 1–5 retain the original tabs; Settings=6, Goal=7, Archive=8. `/` opens country search. Navigation is keyboard accessible and becomes a bottom rail on mobile.
 
 ## Persistence
 
-Device mode uses a new `career-track:v2` key and is clearly labeled local-only. Sign in with the provisioned Google owner to synchronize through the existing owner-only table and compare-and-swap revision engine. Failures retain queued work and expose Retry. Concurrent removals/text replacements report a conflict; completions and added pins survive recovery. Settings import can transfer prior browser work without changing either legacy key or overwriting newer cloud notes.
+The app opens directly with **Saved on this device** and stores progress under `career-track:v2`. There is no Google sign-in or automatic cross-device sync. The browser bundle does not load the Supabase client or read OAuth sessions. Offline changes save locally while the page is open; this is not an offline-installable PWA.
 
-Cloud account activation is documented in [CLOUD-ACTIVATION](docs/upgrade/CLOUD-ACTIVATION.md). The existing database migration is applied; real owner OAuth/provisioning and the first production cron run need account configuration. No service secret belongs in browser configuration or source control.
+Use **Settings → Import progress from this browser** to migrate previous local work without changing either legacy key. Use **Export progress** and **Import a backup file** to transfer between browsers, devices or website origins. Imports validate the file, preview changes and preserve existing notes, priorities and profile details. Storage failures retain an exportable draft and expose Retry; corrupt bytes are preserved for recovery. Export before clearing browser data.
+
+Publication and usage are documented in [RELEASE](docs/upgrade/RELEASE.md). Google/Supabase activation is deferred. Existing database protections and backend tooling are preserved but are not used by this release; the scheduled keepalive is removed. No service secret belongs in browser configuration or source control.
 
 ## Development and checks
 
@@ -30,7 +32,7 @@ npm run check:keys
 npm run build
 ```
 
-Node 22.18+ is required. Unit tests run serially to bound PGlite memory. Browser verification uses a development Playwright installation (the supplied execution runtime also provides one); set `CT_CHROMIUM_PATH` to an existing Chromium binary when needed, then run `npm run test:browser`. The synthetic HTTP fixture never uses the live database and is excluded from deployment.
+Node 22.18+ is required. Unit tests run serially to bound PGlite memory; retained backend tests use isolated synthetic data. Browser verification uses a development Playwright installation (the supplied execution runtime also provides one); set `CT_CHROMIUM_PATH` to an existing Chromium binary when needed, then run `npm run test:browser`. It exercises the actual device-mode entry without a live database or OAuth identity.
 
 Exact deadlines retain source, UTC instant and provider timezone. The calendar uses four alarms per event; date-only/unannounced deadlines never receive invented exact times. Country lists contain 249 ISO entries plus Kosovo, with a separate regional Europe collection; historical CLDR aliases are removed.
 

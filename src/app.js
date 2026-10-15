@@ -1,5 +1,6 @@
 import { buildCalendar } from '../scripts/lib/interim-calendar.mjs';
 import { inspectLegacy } from './sync/import.js';
+import { inspectBackup, parseBackup, MAX_BACKUP_BYTES } from './sync/backup.js';
 import { countries, scholarships as normalizedScholarships } from './data/normalized.js';
 import { buildCountryView, evaluateCountry } from './lib/scoring.js';
 import { mergePrefs } from './lib/requirements.js';
@@ -604,7 +605,7 @@ function renderLibrary() {
   document.querySelector('#view-library').innerHTML = `
     <div class="banner"><div><strong>One workspace, one scholarship lifecycle</strong>
       <p>Archived recommendations can be restored. Deleted recommendations remain recoverable for 10 days and are permanently suppressed after that period. Older expired entries remain in History; v2 closed scholarships keep their progress.</p>
-      <p>Trash cleanup runs while this workspace is open. Deadlines close applications without erasing v2 progress. Sign in to sync or export a backup.</p></div></div>
+      <p>Trash cleanup runs while this workspace is open. Deadlines close applications without erasing v2 progress. Export a backup to keep a separate copy.</p></div></div>
     <section class="section"><div class="section-head"><div class="section-title">Archive (${archived.length})</div></div>
       <div class="lifecycle-list">${archived.length ? archived.map(item => `<article class="card lifecycle-record">
         <div><strong>${escapeHtml(item.name)}</strong><span>Saved for later · ${escapeHtml(item.deadline || 'Deadline not published')}</span></div>
@@ -635,11 +636,44 @@ const countdowns = createCountdowns({ state, readiness: getScholarshipProgress,
   onHeroChange: renderCurrentView, onTick: () => progressStore?.reap?.() });
 
 function renderSettings() {
-  document.querySelector('#view-settings').innerHTML=`<section class="card card-pad section"><h2>Sync and backups</h2><p>Sign in with your Google owner account to keep checklists, pins, priorities and notes available across devices. Until then, changes stay on this device.</p><div class="dialog-actions"><button type="button" class="button" data-sign-in>Sign in with Google</button><button type="button" class="button secondary" data-export-state>Export progress</button><a class="button secondary" href="/deadlines.ics">Subscribe / download calendar</a></div><p class="muted">Calendar alarms use verified exact times only. Add the calendar to your phone for reminders.</p></section>
-    <section class="card card-pad section"><h2>Import progress from this browser</h2><p>Preview the import first. Completed items, pins, notes and priorities are merged into v2 without replacing newer cloud text; your original browser data stays intact. Run this on the browser where you previously used Career Track.</p><button type="button" class="button secondary" data-preview-import>Preview import</button><div id="importReport" role="status" aria-live="polite"></div></section>
+  document.querySelector('#view-settings').innerHTML=`<section class="card card-pad section"><h2>Device storage and backups</h2><p>Your checklists, pins, priorities and notes save in this browser. No account is needed. Export a backup before clearing browser data, changing the website address or moving to another device; automatic cross-device sync is off.</p><div class="dialog-actions"><button type="button" class="button" data-export-state>Export progress</button><a class="button secondary" href="/deadlines.ics">Subscribe / download calendar</a></div><p class="muted">Calendar alarms use verified exact times only. Add the calendar to your phone for reminders.</p></section>
+    <section class="card card-pad section"><h2>Import a backup file</h2><p id="backupHelp">Choose one Career Track v2 JSON export, up to 1 MB. Preview before importing. Completed work and missing items are added; existing notes, priorities and profile details are kept. The file stays on this device.</p><button type="button" class="button secondary" data-pick-backup>Choose backup file</button><input id="backupFile" type="file" accept=".json,application/json" aria-label="Career Track JSON backup" aria-describedby="backupHelp backupReport" hidden><div id="backupReport" role="status" aria-live="polite"></div></section>
+    <section class="card card-pad section"><h2>Import progress from this browser</h2><p>Preview the import first. Completed items, pins, notes and priorities are merged into v2 while keeping existing notes and priorities; your original browser data stays intact. Run this on the browser where you previously used Career Track.</p><button type="button" class="button secondary" data-preview-import>Preview import</button><div id="importReport" role="status" aria-live="polite"></div></section>
     <details class="card card-pad section danger-zone"><summary>Danger zone</summary><h3>Reset v2 checklist progress</h3><p>This clears v2 checklist flags, notes, pins and application statuses for this workspace. Your previous browser data stays intact. A JSON backup downloads before the reset.</p><form id="resetProgressForm" novalidate><label for="resetWord">Type RESET to continue</label><input id="resetWord" name="resetWord" aria-describedby="resetError" autocomplete="off" spellcheck="false"><p id="resetError" role="status"></p><button type="submit" class="button danger-outline">Export backup and reset v2</button></form></details>`;
+  if(pendingBackup)renderBackupPreview();
 }
-let pendingImport=null;
+let pendingImport=null,pendingBackup=null,backupVersion=0;
+function inspectBrowserImport() {
+  try{return inspectLegacy(localStorage,progressStore.get().state);}
+  catch{return {changes:[],newItems:0,newTicks:0,sources:0,errors:['Browser storage is unavailable. Allow site storage, or choose an exported JSON backup instead.']};}
+}
+function renderBackupPreview() {
+  const report=document.querySelector('#backupReport');
+  if(!report||!pendingBackup)return;
+  try{
+    const preview=inspectBackup(pendingBackup.state,progressStore.get().state);
+    report.innerHTML=`<p>${esc(pendingBackup.name)}: ${preview.newItems} new items (${preview.newTicks} completed checklist items). ${preview.keptValues} existing values kept.</p><div class="dialog-actions">${preview.newItems?`<button type="button" class="button" data-commit-backup${progressStore.get().draftProblem?' disabled':''}>Import backup</button>`:'<p>This backup is already up to date.</p>'}<button type="button" class="button secondary" data-cancel-backup>Cancel</button></div>`;
+  }catch{report.textContent='This backup cannot fit alongside your current progress. Export your progress and choose a smaller backup.';}
+}
+document.addEventListener('change',async e=>{
+  if(e.target.id!=='backupFile')return;
+  const input=e.target,file=input.files?.[0],version=++backupVersion;
+  const report=document.querySelector('#backupReport');pendingBackup=null;
+  if(!file){report.textContent='';return;}
+  report.textContent='Checking '+file.name+'…';input.removeAttribute('aria-invalid');
+  try{
+    if(!/\.json$/i.test(file.name)||!file.size||file.size>MAX_BACKUP_BYTES)throw Error('Choose one non-empty JSON backup, up to 1 MB.');
+    const raw=await file.text();
+    if(version!==backupVersion||!input.isConnected)return;
+    const candidate={name:file.name,state:parseBackup(raw)};
+    inspectBackup(candidate.state,progressStore.get().state);
+    pendingBackup=candidate;renderBackupPreview();
+  }catch(error){
+    if(version!==backupVersion||!input.isConnected)return;
+    report.textContent=error.message||'The backup could not be read. Choose another Career Track export.';
+    input.setAttribute('aria-invalid','true');document.querySelector('[data-pick-backup]').focus();
+  }
+});
 function showDeleteConfirmation(id) {
   const dialog=document.querySelector('#confirmDialog');
   document.querySelector('#confirmTitle').textContent='Move scholarship to Trash?';
@@ -649,14 +683,24 @@ function showDeleteConfirmation(id) {
   dialog.showModal();
 }
 document.addEventListener('click',e=>{
-  if(e.target.closest('[data-preview-import]')){
-    pendingImport=inspectLegacy(localStorage,progressStore.get().state);
-    document.querySelector('#importReport').innerHTML=`<p>${pendingImport.newItems} new items (${pendingImport.newTicks} checklist ticks) from ${pendingImport.sources} prior data source(s).</p>${pendingImport.errors.map(error=>`<p>${esc(error)}</p>`).join('')}${pendingImport.newItems?'<button type="button" class="button" data-commit-import>Import completed progress</button>':''}`;
+  if(e.target.closest('[data-pick-backup]'))document.querySelector('#backupFile').click();
+  if(e.target.closest('[data-cancel-backup]')){backupVersion++;pendingBackup=null;document.querySelector('#backupFile').value='';document.querySelector('#backupReport').textContent='';document.querySelector('[data-pick-backup]').focus();}
+  if(e.target.closest('[data-commit-backup]')&&pendingBackup&&!progressStore.get().draftProblem){
+    try{
+      const preview=inspectBackup(pendingBackup.state,progressStore.get().state);
+      pendingBackup=null;backupVersion++;progressStore.applyState(preview.state);renderSettings();
+      document.querySelector('#backupReport').textContent=progressStore.get().storageFailed?'Backup imported into this tab but not saved. Use Retry or export before closing.':'Backup imported and saved on this device.';
+      document.querySelector('[data-pick-backup]').focus();
+    }catch{document.querySelector('#backupReport').textContent='Backup could not be imported. Your current progress is unchanged; export it and try a smaller backup.';}
   }
-  if(e.target.closest('[data-commit-import]')&&pendingImport){
-    const latest=inspectLegacy(localStorage,progressStore.get().state);
+  if(e.target.closest('[data-preview-import]')){
+    pendingImport=inspectBrowserImport();
+    document.querySelector('#importReport').innerHTML=`<p>${pendingImport.newItems} new items (${pendingImport.newTicks} checklist ticks) from ${pendingImport.sources} prior data source(s).</p>${pendingImport.errors.map(error=>`<p>${esc(error)}</p>`).join('')}${pendingImport.newItems?`<button type="button" class="button" data-commit-import${progressStore.get().draftProblem?' disabled':''}>Import completed progress</button>`:''}`;
+  }
+  if(e.target.closest('[data-commit-import]')&&pendingImport&&!progressStore.get().draftProblem){
+    const latest=inspectBrowserImport();
     progressStore.changeMany([...latest.changes,{bucket:'ui',key:'legacyImported',value:true}]);
-    pendingImport=null;renderSettings();document.querySelector('#importReport').textContent='Import queued for saving. Preview again to check for new items.';
+    pendingImport=null;renderSettings();document.querySelector('#importReport').textContent=progressStore.get().storageFailed?'Imported into this tab but not saved. Use Retry or export before closing.':'Progress imported and saved on this device. Preview again to check for new items.';
   }
 });
 document.addEventListener('submit',e=>{
@@ -666,7 +710,7 @@ document.addEventListener('submit',e=>{
   const a=document.createElement('a');a.href=url;a.download='career-track-before-reset-'+new Date().toISOString().replace(/[:.]/g,'-')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
   const current=progressStore.get().state;
   const changes=['progress','applications','pins','notes','tracking'].flatMap(bucket=>Object.keys(current[bucket]||{}).map(key=>({bucket,key,value:null})));
-  if(changes.length)progressStore.changeMany(changes);renderSettings();toast('v2 reset queued for saving. Backup downloaded.');
+  if(changes.length)progressStore.changeMany(changes);renderSettings();toast(progressStore.get().storageFailed?'Reset is not saved. Use Retry or export before closing.':'v2 reset saved on this device. Backup downloaded.');
 });
 
 function renderCurrentView() {

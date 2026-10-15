@@ -17,19 +17,17 @@
     <div class="noscript">This dashboard needs JavaScript enabled to render scholarship data.</div>
   </noscript>
 
-  <main id="authGate" class="auth-gate" aria-labelledby="authTitle">
+  <main id="workspaceGate" class="auth-gate" aria-labelledby="workspaceTitle">
     <section class="auth-card card">
       <div class="brand-mark" aria-hidden="true">M</div>
       <p class="eyebrow">Scholarship OS · MSc 2027</p>
-      <h1 id="authTitle">Opening your workspace</h1>
-      <p id="authMessage" class="auth-message" role="status" aria-live="polite">Opening saved progress…</p>
+      <h1 id="workspaceTitle">Opening your workspace</h1>
+      <p id="workspaceMessage" class="auth-message" role="status" aria-live="polite">Opening saved progress…</p>
       <div class="auth-actions">
-        <button type="button" id="authSignIn" class="button" hidden>Sign in with Google</button>
-        <button type="button" id="authSignOut" class="button secondary" hidden>Sign out of this account</button>
-        <button type="button" id="authRetry" class="button secondary" hidden>Retry</button>
+        <button type="button" id="workspaceRetry" class="button secondary" hidden>Retry</button>
         <button type="button" id="gateExport" class="button secondary" hidden>Export saved progress</button>
       </div>
-      <p class="small muted">Sign in to sync across devices, or use this device and export backups.</p>
+      <p class="small muted">No account needed. Progress stays in this browser; export a backup to keep a separate copy.</p>
     </section>
   </main>
 
@@ -73,8 +71,6 @@
             <input id="globalSearch" type="search" autocomplete="off" enterkeyhint="search" placeholder="Search scholarships, countries, funding, status..." aria-label="Search scholarships" />
             <button type="button" id="searchClear" class="search-clear" aria-label="Clear search" title="Clear search" hidden>×</button>
           </div>
-          <button type="button" id="signIn" class="button secondary">Sign in to sync</button>
-          <button type="button" id="signOut" class="button secondary" hidden>Sign out</button>
           <button type="button" id="themeToggle" class="icon-button" aria-label="Switch to dark theme" title="Switch to dark theme">◐</button>
         </div>
       </header>
@@ -99,18 +95,6 @@
   <dialog id="scholarshipDialog" class="dialog" aria-labelledby="scholarshipDialogTitle">
     <button type="button" class="dialog-close" id="dialogClose" aria-label="Close scholarship details">×</button>
     <div id="dialogContent"></div>
-  </dialog>
-
-  <dialog id="signOutDialog" class="dialog dialog--compact" aria-labelledby="signOutTitle" aria-describedby="signOutDescription">
-    <div class="dialog-body">
-      <p class="eyebrow">Pending changes</p>
-      <h2 id="signOutTitle" class="dialog-title dialog-title--compact">Save before signing out</h2>
-      <p id="signOutDescription" class="dialog-copy"></p>
-      <div class="dialog-actions dialog-actions--end">
-        <button type="button" id="signOutCancel" class="button secondary">Stay and retry</button>
-        <button type="button" id="exportSignOut" class="button">Export and sign out</button>
-      </div>
-    </div>
   </dialog>
 
   <dialog id="confirmDialog" class="dialog dialog--compact" aria-labelledby="confirmTitle" aria-describedby="confirmDescription"><form method="dialog" class="dialog-body" novalidate><h2 id="confirmTitle" class="dialog-title dialog-title--compact"></h2><p id="confirmDescription"></p><div class="dialog-actions"><button type="submit" value="cancel" class="button secondary" autofocus>Cancel</button><button type="button" id="confirmAction" class="button danger-outline">Move to Trash</button></div></form></dialog>
