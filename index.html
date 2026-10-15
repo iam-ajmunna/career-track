@@ -10,6 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script type="module" src="/assets/theme.js"></script>
   <link rel="stylesheet" href="./assets/styles.css" />
+  <link rel="stylesheet" href="./assets/countries.css" />
 </head>
 <body>
   <noscript>
@@ -23,10 +24,12 @@
       <h1 id="authTitle">Opening your workspace</h1>
       <p id="authMessage" class="auth-message" role="status" aria-live="polite">Opening saved progress…</p>
       <div class="auth-actions">
+        <button type="button" id="authSignIn" class="button" hidden>Sign in with Google</button>
+        <button type="button" id="authSignOut" class="button secondary" hidden>Sign out of this account</button>
         <button type="button" id="authRetry" class="button secondary" hidden>Retry</button>
         <button type="button" id="gateExport" class="button secondary" hidden>Export saved progress</button>
       </div>
-      <p class="small muted">Progress is saved in this browser.</p>
+      <p class="small muted">Sign in to sync across devices, or use this device and export backups.</p>
     </section>
   </main>
 
@@ -46,8 +49,9 @@
         <button type="button" class="nav-item" data-view="pipeline"><span>Application Pipeline</span><kbd>3</kbd></button>
         <button type="button" class="nav-item" data-view="documents"><span>Documents</span><kbd>4</kbd></button>
         <button type="button" class="nav-item" data-view="profile"><span>Profile Fit</span><kbd>5</kbd></button>
-        <button type="button" class="nav-item" data-view="goal"><span>Personalized Goal</span><kbd>6</kbd></button>
-        <button type="button" class="nav-item" data-view="library"><span>Archive &amp; History</span><kbd>7</kbd></button>
+        <button type="button" class="nav-item" data-view="settings"><span>Settings</span><kbd>6</kbd></button>
+        <button type="button" class="nav-item" data-view="goal"><span>Personalized Goal</span><kbd>7</kbd></button>
+        <button type="button" class="nav-item" data-view="library"><span>Archive &amp; History</span><kbd>8</kbd></button>
       </nav>
 
       <div class="sidebar-footer">
@@ -58,16 +62,19 @@
     </aside>
 
     <main class="main">
+      <div class="sticky-chrome">
       <header class="topbar">
         <div>
           <p class="eyebrow">Fully Funded MSc Strategy</p>
-          <h1 id="pageTitle">Overview</h1>
+          <h1 id="pageTitle">Overview</h1><p id="pageSubtitle" class="page-subtitle">What should I do next?</p>
         </div>
         <div class="topbar-actions">
           <div class="search-wrap">
             <input id="globalSearch" type="search" autocomplete="off" enterkeyhint="search" placeholder="Search scholarships, countries, funding, status..." aria-label="Search scholarships" />
             <button type="button" id="searchClear" class="search-clear" aria-label="Clear search" title="Clear search" hidden>×</button>
           </div>
+          <button type="button" id="signIn" class="button secondary">Sign in to sync</button>
+          <button type="button" id="signOut" class="button secondary" hidden>Sign out</button>
           <button type="button" id="themeToggle" class="icon-button" aria-label="Switch to dark theme" title="Switch to dark theme">◐</button>
         </div>
       </header>
@@ -77,6 +84,7 @@
         <button type="button" id="syncRetry" class="text-button" hidden>Retry</button>
       </div>
       <p id="syncMessage" class="sync-message" role="status" hidden></p>
+      </div>
       <section id="view-overview" class="view active-view"></section>
       <section id="view-scholarships" class="view"></section>
       <section id="view-pipeline" class="view"></section>
@@ -84,6 +92,7 @@
       <section id="view-profile" class="view"></section>
       <section id="view-goal" class="view"></section>
       <section id="view-library" class="view"></section>
+      <section id="view-settings" class="view"></section>
     </main>
   </div>
 
@@ -104,6 +113,7 @@
     </div>
   </dialog>
 
+  <dialog id="confirmDialog" class="dialog dialog--compact" aria-labelledby="confirmTitle" aria-describedby="confirmDescription"><form method="dialog" class="dialog-body" novalidate><h2 id="confirmTitle" class="dialog-title dialog-title--compact"></h2><p id="confirmDescription"></p><div class="dialog-actions"><button type="submit" value="cancel" class="button secondary" autofocus>Cancel</button><button type="button" id="confirmAction" class="button danger-outline">Move to Trash</button></div></form></dialog>
   <template id="toastTemplate">
     <div class="toast"></div>
   </template>
@@ -113,3 +123,4 @@
   <script type="module" src="/assets/app.js"></script>
 </body>
 </html>
+

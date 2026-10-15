@@ -11,12 +11,14 @@ export function createCountdowns({ state, readiness, isVisible = () => true, onH
   let timer;
   let previousHero;
   let previousAnnouncement;
+  let previousMinute;
   const now = () => Date.now() + (state.clockOffset ?? 0);
   const activeDeadlines = () => verifiedDeadlines.filter(item => isVisible(item.scholarship_id));
+  const chooseHero=()=>{const all=activeDeadlines();const pinned=all.filter(item=>state.pins?.[item.scholarship_id] && Date.parse(item.deadline_at)>now() && !['submitted','skipped'].includes(state.applications[item.scholarship_id]));return selectHero(pinned.length?pinned:all,state.applications,now(),readiness);};
   function render() {
     const root = document.querySelector('#deadlineHub');
     if (!root) return;
-    const hero = selectHero(activeDeadlines(), state.applications, now(), readiness);
+    const hero = chooseHero();
     previousHero = hero?.id;
     const remaining = hero ? Date.parse(hero.deadline_at) - now() : 0;
     root.innerHTML = hero ? `
@@ -33,7 +35,7 @@ export function createCountdowns({ state, readiness, isVisible = () => true, onH
           <button type="button" class="button secondary" data-export-visible-calendar>Calendar alarms</button>
           <a class="text-link" href="${html(hero.source_url)}" target="_blank" rel="noopener noreferrer">Official source</a></div>
       </section>` : `<section class="card card-pad"><h2 class="section-title">No active verified deadlines</h2><p class="muted">Review the scholarship list for upcoming calls.</p><button type="button" class="button secondary" data-export-visible-calendar>Export available deadlines</button></section>`;
-    root.innerHTML += `<div class="compact-deadlines">${activeDeadlines().filter(item => item.id !== hero?.id &&
+    root.innerHTML += `<div class="compact-deadlines">${activeDeadlines().filter(item => item.id !== hero?.id && Date.parse(item.deadline_at)>now() &&
       !['submitted', 'skipped'].includes(state.applications[item.scholarship_id])).map(item => `
       <button class="card compact-deadline" data-open-scholarship="${html(item.scholarship_id)}"><span>${html(item.title)}</span>
         <strong data-deadline-at="${html(item.deadline_at)}">${countdown(item.deadline_at, now(), true)}</strong></button>`).join('')}</div>
@@ -42,7 +44,7 @@ export function createCountdowns({ state, readiness, isVisible = () => true, onH
   }
   function tick() {
     onTick();
-    const hero = selectHero(activeDeadlines(), state.applications, now(), readiness);
+    const hero = chooseHero();
     if (previousHero !== hero?.id) { render(); onHeroChange(); }
     if (hero) {
       const remaining = Date.parse(hero.deadline_at) - now();
@@ -60,9 +62,11 @@ export function createCountdowns({ state, readiness, isVisible = () => true, onH
         previousAnnouncement = announcement;
       }
     }
-    document.querySelectorAll('[data-deadline-at]').forEach(node => { node.textContent = countdown(node.dataset.deadlineAt, now(), true); });
+    const minute=Math.floor(now()/60000);
+    if(minute!==previousMinute){previousMinute=minute;document.querySelectorAll('[data-deadline-at]').forEach(node=>{node.textContent=countdown(node.dataset.deadlineAt,now(),true);});}
   }
   function visibility() { clearInterval(timer); tick(); if (!document.hidden) timer = setInterval(tick, 1000); }
   return { render, tick, start() { document.addEventListener('visibilitychange', visibility); visibility(); },
     stop() { clearInterval(timer); document.removeEventListener('visibilitychange', visibility); } };
 }
+

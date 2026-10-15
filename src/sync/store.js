@@ -1,3 +1,5 @@
+import { applyTracking } from '../tracking.js';
+import { transitionScholarship, advanceScholarshipLifecycle } from '../scholarship-lifecycle.js';
 import { reconcile, validateSnapshot } from './model.js';
 
 export function createProgressStore({ ownerId, backend, cache, isOnline = () => navigator.onLine, onChange = () => {} }) {
@@ -95,14 +97,34 @@ export function createProgressStore({ ownerId, backend, cache, isOnline = () => 
       clearTimeout(timer);
       if (isOnline()) timer = setTimeout(() => { void store.sync(); }, 180);
     },
+    changeMany(changes) {
+      if(stopped || !snapshot || !authorized || cache.draftProblem || ['forbidden','reauth'].includes(status))throw Error('Sign in before editing.');
+      const operations=changes.map(change=>({...change,baseRev:snapshot.rev}));
+      reconcile(snapshot,operations);
+      operations.forEach(op=>cache.append(op));conflicts=[];error='';status=isOnline()?'saving':'offline';emit();
+      clearTimeout(timer);if(isOnline())timer=setTimeout(()=>{void store.sync();},180);
+    },
+    applyState(next) {
+      const before=view().state,changes=[];
+      for(const bucket of ['progress','applications','tracking','lifecycle','history','pins','preferences','ui','notes']){
+        for(const key of new Set([...Object.keys(before[bucket]||{}),...Object.keys(next[bucket]||{})])){
+          if(JSON.stringify(before[bucket]?.[key])!==JSON.stringify(next[bucket]?.[key]))changes.push({bucket,key,value:next[bucket]?.[key]??null});
+        }
+      }
+      if(changes.length)store.changeMany(changes);
+    },
+    bulkTrack(ids,status){store.applyState(applyTracking(view().state,ids,status));},
+    lifecycle(action,id){store.applyState(transitionScholarship(view().state,id,action));},
+    reap(){const state=view().state;if(state){const next=advanceScholarshipLifecycle(state,Date.now(),{expire:false});if(next!==state)store.applyState(next);}},
     sync() {
       clearTimeout(timer);
       if (!inflight) inflight = synchronize().finally(() => { inflight = null; });
       return inflight;
     },
     export() { return { format: 'career-track-state-export', version: 1, exported_at: new Date().toISOString(),
-      snapshot, pending: cache.operations(), local_recovery: cache.rawBackup() }; },
+      snapshot, pending: cache.operations(), conflicts, local_recovery: cache.rawBackup() }; },
     stop({ clear = false } = {}) { stopped = true; clearTimeout(timer); if (clear) cache.clear(); }
   };
   return store;
 }
+

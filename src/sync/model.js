@@ -1,3 +1,4 @@
+import { validateV2, applyV2Operation } from './v2-fields.js';
 export const EMPTY_STATE = Object.freeze({ schema_version: 1, progress: {}, applications: {}, tracking: {}, profile: null, lifecycle: {}, history: {} });
 const prohibited = new Set(['__proto__', 'constructor', 'prototype']);
 const record = value => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -67,6 +68,7 @@ export function validateState(value) {
         !validStamp(item.expiredAt) || next.lifecycle[id]?.status !== 'expired') throw Error('Invalid deadline history.');
     next.history[id] = { name: item.name.trim(), deadline: item.deadline, expiredAt: item.expiredAt };
   }
+  validateV2(next);
   return next;
 }
 export function validateSnapshot(value, ownerId) {
@@ -84,6 +86,7 @@ export function reconcile(snapshot, operations) {
       next.profile = validateProfile(value);
       continue;
     }
+    if(applyV2Operation(next,operation,snapshot.rev,conflicts)) continue;
     if (!['progress', 'applications'].includes(bucket) || prohibited.has(key)) throw new Error('Invalid pending change.');
     const current = next[bucket][key];
     const stale = baseRev !== snapshot.rev;
@@ -92,7 +95,7 @@ export function reconcile(snapshot, operations) {
       conflicts.push({ bucket, key });
       continue;
     }
-    next[bucket][key] = value;
+    if (value === null) delete next[bucket][key]; else next[bucket][key] = value;
   }
   validateState(next);
   return { state: next, conflicts, changed: JSON.stringify(next) !== JSON.stringify(snapshot.state) };
@@ -101,3 +104,4 @@ export function reconcile(snapshot, operations) {
 export function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
 }
+

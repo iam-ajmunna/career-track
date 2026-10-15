@@ -120,3 +120,8 @@ Copy is concise, operational, and specific. Status labels distinguish Open, Open
 The login gate uses the existing card, neutral primary button, typography and spacing. Authenticated content stays hidden until owner state is available. Save status and persistent recovery messages sit below the top bar. Missing setup, forbidden access and expired sessions have distinct copy.
 
 Countdowns use tabular monospace numerals, provider/Dhaka time labels, semantic urgency borders and quiet source links. Seconds update timer nodes only; screen readers receive urgency changes and final-day minute updates. Compact cards wrap at existing responsive breakpoints. The export/sign-out controls replace local reset.
+
+
+### Country navigation and v2 surfaces
+
+v2 retains the established palette, typography and radii. `src/styles/countries.css` adapts `--ct-*` to the existing runtime tokens; notably `--ct-border → --line` and requirement statuses → the existing success/warning/danger tokens. Country tiers and compact compromise chips replace the flat landing list. The tray is shared between Overview and Scholarships. A dedicated Settings view contains backups, explicit import and reset; the first five navigation positions are preserved. On screens at most 640px wide the same navigation becomes a horizontally scrollable bottom rail, with at least 44px actions. Body copy on the new surfaces is at least 14px. Small status metadata remains 12px. Focus rings use the existing focus token. Reduced-motion preference disables smooth transitions.

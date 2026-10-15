@@ -30,6 +30,7 @@ export async function buildSite({ outdir = 'dist', env = process.env } = {}) {
   await mkdir(`${outdir}/assets`, { recursive: true });
   await cp('index.html', `${outdir}/index.html`);
   await cp('assets/styles.css', `${outdir}/assets/styles.css`);
+  await cp('src/styles/countries.css', `${outdir}/assets/countries.css`);
   const { deadlines } = JSON.parse(await readFile('deadlines.json', 'utf8'));
   await writeFile(`${outdir}/deadlines.ics`, buildCalendar(deadlines));
   await build({ entryPoints: { app: 'src/bootstrap.js', theme: 'src/theme.js' }, outdir: `${outdir}/assets`,
@@ -40,3 +41,4 @@ export async function buildSite({ outdir = 'dist', env = process.env } = {}) {
   console.log(`Built browser entry: ${bytes} bytes (${gzip} gzip). Cloud configuration: ${url && key ? 'present' : 'missing; sign-in fails closed'}.`);
 }
 if (process.argv[1] && new URL(import.meta.url).pathname === process.argv[1]) await buildSite();
+

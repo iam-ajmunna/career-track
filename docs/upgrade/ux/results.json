@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-15T09:03:46.289Z",
+  "checks": [
+    {
+      "name": "Countries first; unrated collapsed; empty country shows evidence",
+      "status": "PASS"
+    },
+    {
+      "name": "Pin, checklist and escaped notes survive reload; unpin preserves progress",
+      "status": "PASS"
+    },
+    {
+      "name": "Country selection supports bulk research and completion without changing submission",
+      "status": "PASS"
+    },
+    {
+      "name": "Priority/order persistence, shortcuts, country search and invalid routes",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy import is explicit, idempotent and preserves original bytes",
+      "status": "PASS"
+    },
+    {
+      "name": "Calendar download has exact UTC deadline and four alarms per event",
+      "status": "PASS"
+    },
+    {
+      "name": "Eight tabs and country detail: desktop/mobile, both themes, no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Deletion dialog focuses Cancel; Escape preserves scholarship",
+      "status": "PASS"
+    },
+    {
+      "name": "Cloud pins and ticks survive refresh and a clean second browser",
+      "status": "PASS"
+    },
+    {
+      "name": "Failed write retains pending tick; Retry confirms save",
+      "status": "PASS"
+    },
+    {
+      "name": "Other account cannot read owner workspace",
+      "status": "PASS"
+    }
+  ],
+  "consoleErrors": [],
+  "scope": "Synthetic local fixture; real owner OAuth/device acceptance is separate."
+}

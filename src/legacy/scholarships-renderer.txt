@@ -1,0 +1,84 @@
+function renderScholarships() {
+  const items = filteredScholarships();
+  const trackedGoals = ['researching', 'completed'].includes(state.filter)
+    ? goalProgrammes.filter(p => isScholarshipVisible(state.lifecycle, p.id) &&
+      trackingStatus(state.tracking, p.id) === state.filter &&
+      !scholarships.some(s => canonicalScholarshipId(s.id) === canonicalScholarshipId(p.id)) &&
+      (!state.query.trim() || [p.name, p.full, p.institution, p.location].join(' ').toLowerCase().includes(state.query.trim().toLowerCase())))
+    : [];
+  const visibleIds = [...new Set([...items.map(x => canonicalScholarshipId(x.id)), ...trackedGoals.map(x => canonicalScholarshipId(x.id))])];
+  const screenedQuery = state.query.trim().toLowerCase();
+  const screened = screenedSuggestions.filter(item => isScholarshipVisible(state.lifecycle, item.id) && (!screenedQuery || `${item.name} ${item.country} ${item.reason}`.toLowerCase().includes(screenedQuery)));
+  document.querySelector('#view-scholarships').innerHTML = `
+    ${trackingToolbar(visibleIds)}
+    <div class="filters" role="group" aria-label="Scholarship filters">
+      ${[['focus','Apply + Watch'],['apply','Apply'],['watch','Watch'],['closed','Closed'],['researching','Researching'],['completed','Completed']].map(([id,label]) => `<button type="button" class="filter-btn ${state.filter===id?'active':''}" data-filter="${id}" aria-pressed="${state.filter===id}">${label}</button>`).join('')}
+    </div>
+    <div class="scholarship-grid">${items.length ? items.map(scholarshipCard).join('') : trackedGoals.length ? '' : '<div class="empty">No scholarships match the current search/filter.</div>'}</div>
+    ${trackedGoals.length ? `<section class="section"><div class="section-head"><div class="section-title">Personalized Goal programmes</div><div class="section-sub">Tracked programmes from the extended funding catalogue</div></div>
+      <div class="scholarship-grid">${trackedGoals.map(p => `<article class="card scholarship-card">
+        <div class="scholarship-name">${escapeHtml(p.name)}</div>
+        <div class="country">${escapeHtml(p.institution)}</div>
+        <div class="tracking-card-row">${trackSelection(p.id,p.name)} ${trackBadge(p.id)} ${trackStatusControl(p.id,p.name)}</div>
+        <p>${escapeHtml(p.full)}</p>
+        <div class="card-bottom"><span class="deadline">${escapeHtml(p.location)}</span>
+        <button type="button" class="button secondary" data-open-goal-programme="${escapeHtml(p.id)}">View programme</button></div>
+      </article>`).join('')}</div></section>` : ''}
+    <details class="card card-pad section">
+      <summary class="section-title">Screened out (${screened.length})</summary>
+      <p class="section-sub">Verified leads that do not currently deserve application time. Kept here so the same social-media claims are not researched repeatedly.</p>
+      <div class="timeline" style="margin-top:14px">
+        ${screened.length ? screened.map(item => `<div class="timeline-item"><div class="timeline-date">${escapeHtml(item.country)}</div><div class="timeline-content"><h3>${escapeHtml(item.name)}</h3><p>${escapeHtml(item.reason)} ${item.source ? `<a class="text-link" href="${item.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''} <span class="card-actions"><button type="button" class="button ghost lifecycle-btn" data-life-action="archive" data-life-id="${item.id}">Archive</button><button type="button" class="button danger-outline lifecycle-btn" data-life-action="delete" data-life-id="${item.id}">Delete</button></span></p></div></div>`).join('') : '<div class="empty">No screened-out records match the current search.</div>'}
+      </div>
+    </details>`;
+}
+
+function openScholarship(id) {
+  const s = scholarships.find(x => x.id === id);
+  if (!s || !isScholarshipVisible(state.lifecycle, id)) return;
+  const status = statusMap[effectiveStatus(s)] || ['Unknown','neutral'];
+  const fit = fitMap[s.fit] || ['Fit unknown','neutral'];
+  const decision = decisionMap[decisionOf(s)] || ['Review','neutral'];
+  const career = countryOutlooks[s.country];
+  const verifiedOn = s.verifiedOn || snapshotDate;
+  els.dialogContent.innerHTML = `
+    <div class="dialog-body">
+      <div class="tag-row">${badge(decision)} ${badge(status)} ${badge(fit)}</div>
+      <h2 id="scholarshipDialogTitle" class="dialog-title">${s.name}</h2>
+      <div class="muted">${s.country} · ${s.provider}</div>
+      <div class="dialog-grid">
+        <div class="info-box"><div class="info-label">Funding</div><div class="info-value">${s.funding}</div></div>
+        <div class="info-box"><div class="info-label">Deadline</div><div class="info-value">${deadlineLabel(s)}</div></div>
+        <div class="info-box"><div class="info-label">Profile fit</div><div class="info-value">${Number.isFinite(s.fitScore) ? `${s.fitScore}/100 · ` : ''}${fit[0]}</div></div>
+        <div class="info-box"><div class="info-label">Primary risk</div><div class="info-value">${s.keyRisk}</div></div>
+      </div>
+      <h3>Why it fits your profile</h3>
+      <p class="muted" style="line-height:1.7;font-size:13px">${s.whyFit}</p>
+      <h3>Next action</h3>
+      <p class="muted" style="line-height:1.7;font-size:13px">${s.nextAction || s.actions[0]}</p>
+      ${career ? `<h3>Career outlook</h3>
+        <div class="dialog-grid">
+          <div class="info-box"><div class="info-label">During MSc</div><div class="info-value">${career.duringStudy}</div></div>
+          <div class="info-box"><div class="info-label">After MSc</div><div class="info-value">${career.postStudy}</div></div>
+          <div class="info-box"><div class="info-label">Long-term route</div><div class="info-value">${career.longTerm}</div></div>
+          <div class="info-box"><div class="info-label">Immigration check</div><div class="info-value">Verified ${career.verifiedOn}. Planning context only — not a PR guarantee.</div></div>
+        </div>` : ''}
+      <h3>Research / completion status</h3>
+      <div class="tracking-card-row">${trackBadge(s.id)} ${trackStatusControl(s.id,s.name)}</div>
+      <p class="muted small">This manual status is separate from application submission and checklist progress.</p>
+      <h3>Execution checklist</h3>
+      <ul>${s.actions.map(a=>`<li>${a}</li>`).join('')}</ul>
+      <p class="deadline-evidence">✓ Scholarship source verified ${verifiedOn}.${career ? ` Career rules last checked ${career.verifiedOn}.` : ''}</p>
+      <div class="dialog-actions">
+        <button class="button" data-open-gpt="${s.id}">Open GPT ↗</button>
+        ${s.source ? `<a class="button secondary" href="${s.source}" target="_blank" rel="noopener noreferrer">Official source ↗</a>` : ''}
+        ${s.secondarySource ? `<a class="button secondary" href="${s.secondarySource}" target="_blank" rel="noopener noreferrer">Secondary official source ↗</a>` : ''}
+        ${career?.source ? `<a class="button secondary" href="${career.source}" target="_blank" rel="noopener noreferrer">Career rules ↗</a>` : ''}
+        <button class="button ghost" data-jump-pipeline="${s.id}">Open pipeline</button>
+        <button class="button ghost" data-life-action="archive" data-life-id="${s.id}">Archive</button>
+        <button class="button danger-outline" data-life-action="delete" data-life-id="${s.id}">Delete</button>
+      </div>
+    </div>`;
+  els.dialog.showModal();
+}
+
