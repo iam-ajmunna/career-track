@@ -1,3 +1,5 @@
+> Active V3 evidence: [`data/v3/sources.json`](data/v3/sources.json), field-level opportunity claims and [research coverage](docs/v3/RESEARCH.md). The material below is the retained earlier research snapshot; V3 guides disclose current verification and uncertainty.
+
 # Scholarship Source Registry
 
 Last manual verification: **28 Sep 2026**
@@ -78,3 +80,4 @@ Career information appears only inside scholarship details and is planning conte
 - **Ineligible**: current known eligibility rules block this cycle.
 
 The UI derives deadline countdowns from the current browser date. It does **not** invent dates for Watch items.
+

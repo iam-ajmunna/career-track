@@ -3,7 +3,7 @@
 export const goalSnapshot = '2026-10-03';
 export const goalCoreDocuments = [
   "Valid passport scan and consistent legal-name spelling",
-  "Official NSU degree certificate (or accepted provisional evidence)",
+  "Official degree-awarding university degree certificate (or accepted provisional evidence)",
   "Full official transcript and grading-scale explanation",
   "IELTS Academic test report (target overall 7.0+; check programme minima)",
   "Research-oriented academic CV with dated achievements",
@@ -13,10 +13,10 @@ export const goalCoreDocuments = [
 ];
 export const goalCampaign = [
   "Book IELTS Academic on Computer; study toward 7.0+ (Cambridge component floors and Oxford higher English threshold are separate).",
-  "Request official NSU degree, transcript, grading scale and English MOI certificate.",
+  "Request official degree-awarding university degree, transcript, grading scale and English MOI certificate.",
   "Start Bangladesh MOFA attestation/e-apostille for EDISS degree and EVERY transcript page.",
   "Confirm 2–3 academic referees and supply a precise research-achievements brief.",
-  "Build an academic CV with publication status stated honestly; retain employment and Nippon AI Dojo evidence.",
+  "Build an academic CV with publication status stated honestly; retain verified employment, teaching and project evidence.",
   "Draft three SOP variants: multimodal vision research, AI systems engineering, and biomedical/spatial intelligence.",
   "Ship one reproducible open-source multimodal/efficient-inference project with benchmarks and limitations.",
   "Shortlist recent lab papers, thesis supervisors, GPU access and internship partners for each viable programme.",
@@ -127,22 +127,22 @@ export const goalProgrammes = [
     "goal": "Research-centric visual AI, deep learning and a dedicated internship align with your ViT, segmentation and production CV experience. Propose vision-language foundation models, temporal reasoning or efficient perception as a thesis direction after confirming partner supervision.",
     "careerKey": "mobility",
     "careerExtra": "For the last semester, actively pursue the internship in a lab/company with foundation-model or GPU-systems research. If relying on Spain's graduate job-search residence, verify qualifying Spanish-study/status conditions: it is up to 24 months but does NOT authorize working during job search.",
-    "language": "2027 admission explicitly accepts IELTS Academic overall ≥6.5 with no band below 6.0, OR an official NSU statement confirming that the entire bachelor’s programme was taught in English. CEFR B2 required.",
+    "language": "2027 admission explicitly accepts IELTS Academic overall ≥6.5 with no band below 6.0, OR an official degree-awarding university statement confirming that the entire bachelor’s programme was taught in English. CEFR B2 required.",
     "docs": [
       "Programme admission and parallel Erasmus Mundus scholarship request via official eMundus portal",
-      "English proof: IELTS Academic ≥6.5 (no component below 6.0), OR signed/sealed official NSU English MOI certificate",
+      "English proof: IELTS Academic ≥6.5 (no component below 6.0), OR signed/sealed official degree-awarding university English MOI certificate",
       "Programme-specific motivation letter of no more than 1,000 words",
       "Two suitable academic/scientific referees briefed; letters requested only if shortlisted for round two",
       "Official BSc CSE certificate (English and original language, where different) or university completion letter if degree certificate pending",
-      "Full official NSU transcript including grading scale (English and original language, where different)",
+      "Full official degree-awarding university transcript including grading scale (English and original language, where different)",
       "Europass-format academic CV; distinguish submitted papers from published research",
       "Passport identification pages covering the intended two-year study period, plus passport-style photograph",
       "Employment certificates if claiming AI engineering experience",
       "Second round only: prepare motivation video and ensure both referees upload signed institutional letters themselves"
     ],
     "levers": [
-      "Obtain a signed, institutionally sealed NSU MOI statement; still complete IELTS for other Erasmus Mundus programmes.",
-      "Add NSU official grading-scale/degree-duration evidence; ask the consortium to confirm recognition of the 4-year Bangladeshi BSc as equivalent to 180 ECTS, instead of paying for third-party WES without a request.",
+      "Obtain a signed, institutionally sealed degree-awarding university MOI statement; still complete IELTS for other Erasmus Mundus programmes.",
+      "Add degree-awarding university official grading-scale/degree-duration evidence; ask the consortium to confirm recognition of the 4-year Bangladeshi BSc as equivalent to 180 ECTS, instead of paying for third-party WES without a request.",
       "Show controlled experiments on visual foundation models: baselines, dataset splits, metrics and failure analysis.",
       "In your ≤1,000-word motivation letter, connect CSE, ViT, SAM segmentation, efficient inference and real-time production CV to a focused IPCVAI research thesis and its 4th-semester internship.",
       "Get two research-capable academic/scientific referees ready for stage two and prepare for an oral technical interview."
@@ -181,7 +181,7 @@ export const goalProgrammes = [
         {
           "name": "Degree subject",
           "assessment": "Meets published rule",
-          "evidence": "NSU BSc Computer Science and Engineering matches accepted Computer Science/Engineering areas."
+          "evidence": "degree-awarding university BSc Computer Science and Engineering matches accepted Computer Science/Engineering areas."
         },
         {
           "name": "Degree level / 180 ECTS equivalent",
@@ -191,7 +191,7 @@ export const goalProgrammes = [
         {
           "name": "Academic results",
           "assessment": "Appears to meet minimum",
-          "evidence": "3.74/4.00 is consistent with the stated Good-or-better criterion; provide NSU grading scale for consortium decision."
+          "evidence": "Academic classification must be assessed against the stated Good-or-better criterion using your official grading scale."
         },
         {
           "name": "English",
@@ -204,8 +204,8 @@ export const goalProgrammes = [
           "evidence": "Prior recipients of an Erasmus Mundus Joint Master scholarship are ineligible for a second IPCVAI EMJM award."
         }
       ],
-      "blocker": "No published hard blocker identified. Confirm formal degree equivalency, obtain signed/sealed NSU MOI or qualifying IELTS, and declare previous EMJM scholarship history truthfully.",
-      "nextAction": "Request official NSU degree certificate, transcript with grading scale and MOI. Ask IPCVAI admissions to confirm that NSU’s four-year BSc CSE is a recognised equivalent to the 180-ECTS bachelor’s criterion."
+      "blocker": "No published hard blocker identified. Confirm formal degree equivalency, obtain signed/sealed degree-awarding university MOI or qualifying IELTS, and declare previous EMJM scholarship history truthfully.",
+      "nextAction": "Request official degree-awarding university degree certificate, transcript with grading scale and MOI. Ask IPCVAI admissions to confirm that degree-awarding university’s four-year BSc CSE is a recognised equivalent to the 180-ECTS bachelor’s criterion."
     }
   },
   {
@@ -266,7 +266,7 @@ export const goalProgrammes = [
     "goal": "Offers cross-layer training in ML, intelligent systems and data infrastructure. Use this route for efficient multimodal model pipelines, data quality and scalable AI training/evaluation.",
     "careerKey": "mobility",
     "careerExtra": "Second-year residence and award structure control which country can issue a post-study permit; confirm destination and degree entitlement.",
-    "language": "2027 English evidence and thresholds await updated programme call; prepare IELTS Academic and NSU MOI.",
+    "language": "2027 English evidence and thresholds await updated programme call; prepare IELTS Academic and degree-awarding university MOI.",
     "docs": [
       "DEAI official application and bachelor's CS-credit evidence",
       "Detailed official transcript including computer-science/maths modules",
@@ -304,7 +304,7 @@ export const goalProgrammes = [
     "goal": "Particularly suitable if your AI ambition emphasizes spatial intelligence, 3D perception, imaging and embodied multimodal systems. Less directly focused on core LLM pretraining.",
     "careerKey": "mobility",
     "careerExtra": "A Finnish graduate job-search permit is potentially relevant ONLY if the completed degree/residence meets Migri requirements; confirm with the university and Migri.",
-    "language": "IELTS Academic ≥6.5. Bangladesh is NOT on the degree-location exemption list; NSU MOI alone is insufficient.",
+    "language": "IELTS Academic ≥6.5. Bangladesh is NOT on the degree-location exemption list; degree-awarding university MOI alone is insufficient.",
     "docs": [
       "One-page motivation letter addressing the published IMLEX questions",
       "Compulsory motivation video up to 2 minutes",
@@ -434,7 +434,7 @@ export const goalProgrammes = [
       "Evidence of excellent academic standing / class rank if available"
     ],
     "levers": [
-      "Verify top-10% undergraduate standing with NSU if supportable.",
+      "Verify top-10% undergraduate standing with degree-awarding university if supportable.",
       "Write a non-generic, self-developed pre-proposal with credible literature, novelty and feasibility.",
       "Check CS module prerequisites and strict English-document deadline; no late IELTS."
     ],
@@ -472,7 +472,7 @@ export const goalProgrammes = [
     "docs": [
       "KAUST Fall 2027 MS Computer Science online application (portal opens 28 Sep 2026)",
       "Approximately 750-word statement of purpose: previous AI work, intended research, programme rationale and future goals",
-      "Full NSU official transcript with institutional grading scale, degree proof (or accepted interim evidence) and passport biodata page",
+      "Full degree-awarding university official transcript with institutional grading scale, degree proof (or accepted interim evidence) and passport biodata page",
       "Enter THREE referees with academic/institutional email addresses; academic referees normally expected for a recent 2026 graduate",
       "IELTS Academic target ≥7.0 overall with EACH band ≥6.5; not mandatory at initial submission, mandatory before enrolment if admitted; MOI NOT accepted",
       "Research-led CV with genuine dates, measurable production AI contributions and accurately labelled publications",
@@ -483,7 +483,7 @@ export const goalProgrammes = [
       "Confirm THREE academic/research referees with institutional emails, and brief them on evidence of independent research ability.",
       "Write a approximately 750-word SOP that connects your CSE/ViT/CV/TensorRT background to one grounded multimodal or efficient-foundation-model research question.",
       "Read KAUST GenAI Factory and Vision-CAIR research; investigate Mohamed Elhoseiny, Bernard Ghanem, Marco Canini and Peter Richtarik as research-alignment leads, verifying current MS supervision and exact programme affiliation.",
-      "Upload transcript with official NSU grading scale; distinguish published, accepted, and submitted papers."
+      "Upload transcript with official degree-awarding university grading scale; distinguish published, accepted, and submitted papers."
     ],
     "sources": [
       [
@@ -523,17 +523,17 @@ export const goalProgrammes = [
         {
           "name": "Bachelor's field",
           "assessment": "Meets field requirement subject to recognition",
-          "evidence": "NSU four-year BSc in CSE is directly relevant to MS Computer Science; KAUST must verify that the issuing institution/degree is recognised."
+          "evidence": "degree-awarding university four-year BSc in CSE is directly relevant to MS Computer Science; KAUST must verify that the issuing institution/degree is recognised."
         },
         {
           "name": "Academic GPA",
           "assessment": "Meets numeric minimum",
-          "evidence": "Your stated CGPA is 3.74/4.00; KAUST minimum is 3.0/4.0, with a holistic competitive assessment."
+          "evidence": "Compare your official CGPA against the programme minimum; competitive assessment remains holistic."
         },
         {
           "name": "English proficiency",
           "assessment": "Required score outstanding",
-          "evidence": "IELTS Academic ≥7.0 overall AND ≥6.5 in all four sections. An NSU MOI certificate is NOT accepted. KAUST accepts initial applications without scores, but conditional admits must submit compliant results before enrolling."
+          "evidence": "IELTS Academic ≥7.0 overall AND ≥6.5 in all four sections. An degree-awarding university MOI certificate is NOT accepted. KAUST accepts initial applications without scores, but conditional admits must submit compliant results before enrolling."
         },
         {
           "name": "GRE / PGAT",
@@ -709,3 +709,4 @@ export const goalProgrammes = [
     ]
   }
 ];
+

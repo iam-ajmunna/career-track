@@ -1,0 +1,74 @@
+[
+  {
+    "id": "screened-1",
+    "name": "Swiss Government Excellence Scholarship — generic MSc AI claim",
+    "reason": "The current academic scholarship route is primarily research/PhD-oriented; the Master's scholarship route is for arts, not a general AI/CS Master's.",
+    "url": "https://www.sbfi.admin.ch/en/swiss-government-excellence-scholarships-at-a-glance",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-2",
+    "name": "VLIR-UOS Belgium",
+    "reason": "Bangladesh is not in the published 2027–31 scholarship-country framework used for the current ICP Connect cycle.",
+    "url": "https://www.vliruos.be/get-funded/calls/icp-connect-2027-phase-3-call-project-proposals",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-3",
+    "name": "Pierre Elliott Trudeau Foundation Scholarship",
+    "reason": "This is a doctoral scholarship, not a Master's route, and its research focus does not match your current MSc AI objective.",
+    "url": "https://www.trudeaufoundation.ca/2027-applications/",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-4",
+    "name": "Cardiff Vice-Chancellor's International Scholarship",
+    "reason": "The current award is a tuition discount rather than the fully funded package claimed in the social post.",
+    "url": "https://www.cardiff.ac.uk/study/international/funding-and-fees/international-scholarships",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-5",
+    "name": "Curtin University generic 'fully funded' social-media claim",
+    "reason": "The verified Curtin awards found are tuition-credit/discount scholarships rather than the blanket fully funded package shown in the post.",
+    "url": "https://scholarships.curtin.edu.au/",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-6",
+    "name": "Banach NAWA",
+    "reason": "Bangladesh is not included in the current official country list for the verified call.",
+    "url": "https://nawa.gov.pl/en/students/foreign-students/the-banach-scholarship-programme",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-7",
+    "name": "OeAD / Ernst Mach as a full MSc route",
+    "reason": "The relevant Ernst Mach schemes are mobility/research grants rather than a standard fully funded complete AI Master's route.",
+    "url": "https://grants.at/en/questions-and-answers",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-8",
+    "name": "EPFL Excellence Fellowship as guaranteed full funding",
+    "reason": "Academically relevant, but the fellowship is a fixed contribution rather than guaranteed complete funding; revisit only if partial-funding options become acceptable.",
+    "url": "https://www.epfl.ch/education/master/master-excellence-fellowships/how-to-apply/",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  },
+  {
+    "id": "screened-9",
+    "name": "Generic USA/Australia 'fully funded — no IELTS' posts",
+    "reason": "These are not identifiable scholarship programmes. Do not track them until a specific official programme and source can be verified.",
+    "url": "",
+    "checkedAt": "2026-09-28T00:00:00Z",
+    "verification": "historical"
+  }
+]

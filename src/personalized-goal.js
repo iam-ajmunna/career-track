@@ -1,7 +1,6 @@
 import { goalSnapshot,goalCoreDocuments,goalCampaign,goalPathways,goalProgrammes } from './personalized-goal-data.js';
 import { escapeHtml } from './sync/model.js';
-import { isScholarshipVisible, canonicalScholarshipId } from './scholarship-lifecycle.js';
-import { trackingStatus } from './tracking.js';
+import { isScholarshipVisible, canonicalScholarshipId, trackingStatus } from './v3/legacy-identifiers.js';
 let goalSelected='ipcvai';
 let goalActiveFilter='Open now';
 let goalActiveQuery='';
@@ -158,3 +157,4 @@ export function renderPersonalizedGoal(progress={}, lifecycle={}, tracking={}, s
     <p class="goal-footer">Progress checks are saved locally in this browser using independent additive keys. Scholarship and immigration rules can change; only linked institutional/government notices are authoritative. No admission, employment or PR outcome is guaranteed.</p>
   </div>`;
 }
+

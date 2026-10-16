@@ -1,8 +1,8 @@
-name: Personal Dynamic CI
+name: Career Track CI
 
 on:
   push:
-    branches: [personal-dynamic]
+    branches: [main, personal-dynamic, v3-intelligence]
   pull_request:
     branches: [main]
 

@@ -1,0 +1,30 @@
+{
+  "profile": "product-admin",
+  "sourceRoots": [
+    "src/v3",
+    "src/bootstrap.js",
+    "src/styles/intelligence.css",
+    "index.html"
+  ],
+  "canonicalMap": "UX-CONTRACT.md",
+  "requiredCapabilities": [
+    "Select/Listbox",
+    "Date",
+    "Form",
+    "Scrollbar",
+    "Toast",
+    "CRUD",
+    "Table Selection"
+  ],
+  "ownership": { "Select/Listbox": "native", "Date": "native" },
+  "requiredCommands": ["test", "build", "browser"],
+  "commands": {
+    "test": "npm test",
+    "build": "npm run build",
+    "browser": "npm run test:browser"
+  },
+  "evidence": {
+    "crudFullFlow": "tests/browser-v3.mjs",
+    "failurePaths": "tests/v3-domain.test.mjs"
+  }
+}

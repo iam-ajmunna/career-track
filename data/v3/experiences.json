@@ -1,0 +1,28 @@
+[
+  {
+    "id": "ubc-funding-account",
+    "scope": "university",
+    "targetId": "ubc",
+    "sourceId": "experience-ubc",
+    "programme": "MSc, exact department unconfirmed",
+    "nationality": "Not stated",
+    "publishedAt": null,
+    "publicationNote": "Page displayed “1y ago”; exact date not confirmed.",
+    "summary": "One respondent reports receiving an MSc scholarship with admission without securing external funding first.",
+    "limitations": "Identity, department, nationality and award amount are unverified. One account does not establish a 2027 CS funding rule.",
+    "interpretation": "Compare the actual offer against the department’s funding policy; do not assume all Masters programmes share it."
+  },
+  {
+    "id": "melbourne-budget-account",
+    "scope": "university",
+    "targetId": "melbourne",
+    "sourceId": "experience-melbourne",
+    "programme": "PhD respondent; not a Masters account",
+    "nationality": "Not stated",
+    "publishedAt": null,
+    "publicationNote": "Page displayed “1y ago”; exact date not confirmed.",
+    "summary": "A PhD respondent describes living on a stipend with shared housing and careful budgeting.",
+    "limitations": "Historical personal housing costs cannot predict 2027 rent. The original poster was prospective; only the respondent described lived experience.",
+    "interpretation": "Build a city-specific living budget and preserve a buffer instead of treating the gross stipend as surplus."
+  }
+]

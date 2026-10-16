@@ -1,6 +1,6 @@
 {
   "name": "career-track",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,8 +12,10 @@
     "test": "node --test --test-concurrency=1 tests/*.test.mjs",
     "check:keys": "node scripts/check-legacy-contract.mjs",
     "provision:owner": "node --env-file-if-exists=.env scripts/provision-owner.mjs",
-    "test:browser": "node tests/browser-v2.mjs",
-    "check:data": "node scripts/check-normalized-data.mjs"
+    "test:browser": "node tests/browser-v3.mjs",
+    "check:data": "node scripts/check-normalized-data.mjs && node scripts/check-v3-data.mjs",
+    "research:check": "node scripts/research/source-review.mjs",
+    "check:ui": "node scripts/check-ui-bindings.mjs"
   },
   "dependencies": {
     "@supabase/supabase-js": "2.117.2"

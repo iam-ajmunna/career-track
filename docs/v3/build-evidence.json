@@ -1,0 +1,28 @@
+{
+  "checkedAt": "2026-10-16T14:17:10.640Z",
+  "bundles": [
+    {
+      "name": "app.js",
+      "bytes": 2300,
+      "gzipBytes": 1099
+    },
+    {
+      "name": "chunk-RJYRRD2E.js",
+      "bytes": 31457,
+      "gzipBytes": 10165
+    },
+    {
+      "name": "theme.js",
+      "bytes": 171,
+      "gzipBytes": 128
+    },
+    {
+      "name": "workspace-5QMBGCUU.js",
+      "bytes": 445442,
+      "gzipBytes": 78598
+    }
+  ],
+  "totalJavaScriptGzipBytes": 89990,
+  "privateDefaultAndAuthScan": "PASS",
+  "sourceFetchOnBrowserStartup": false
+}

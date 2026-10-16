@@ -1,0 +1,310 @@
+[
+  {
+    "id": "ubc-cs-msc",
+    "name": "Computer Science MSc thesis",
+    "universityIds": [
+      "ubc"
+    ],
+    "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-science-computer-science",
+    "sourceIds": [
+      "ubc-admission"
+    ],
+    "degree": "MSc",
+    "duration": "2 years thesis; essay route differs",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "waterloo-mmath",
+    "name": "Computer Science MMath thesis",
+    "universityIds": [
+      "waterloo"
+    ],
+    "url": "https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/computer-science-master-math-mmath",
+    "sourceIds": [
+      "waterloo-admission"
+    ],
+    "degree": "MMath",
+    "duration": "Confirm thesis duration with department",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "alberta-msc",
+    "name": "Computing Science MSc thesis",
+    "universityIds": [
+      "alberta"
+    ],
+    "url": "https://www.ualberta.ca/en/computing-science/graduate-studies/programs-and-admissions/applications-and-admissions/index.html",
+    "sourceIds": [
+      "alberta-admission"
+    ],
+    "degree": "MSc",
+    "duration": "Confirm in offer",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "mcgill-msc",
+    "name": "Computer Science MSc thesis",
+    "universityIds": [
+      "mcgill"
+    ],
+    "url": "https://www.cs.mcgill.ca/graduate/masters/mscthesis/",
+    "sourceIds": [
+      "mcgill-admission",
+      "mcgill-funding"
+    ],
+    "degree": "MSc",
+    "duration": "18–24 months",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "toronto-msc",
+    "name": "Computer Science MSc",
+    "universityIds": [
+      "toronto"
+    ],
+    "url": "https://web.cs.toronto.edu/graduate/msc",
+    "sourceIds": [
+      "toronto-msc"
+    ],
+    "degree": "MSc",
+    "duration": "16 months",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "sydney-research",
+    "name": "Research Masters / MPhil — course eligibility to confirm",
+    "universityIds": [
+      "sydney"
+    ],
+    "url": "https://www.sydney.edu.au/scholarships/australian-government-research-training-program/rtp-international.html",
+    "sourceIds": [
+      "sydney-scholarship"
+    ],
+    "degree": "MPhil",
+    "duration": "Up to 2 years subject to award",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "melbourne-research",
+    "name": "Research Masters / MPhil — course eligibility to confirm",
+    "universityIds": [
+      "melbourne"
+    ],
+    "url": "https://scholarships.unimelb.edu.au/awards/graduate-research-scholarships",
+    "sourceIds": [
+      "melbourne-scholarship"
+    ],
+    "degree": "MPhil",
+    "duration": "Up to 2 years subject to award",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "monash-research",
+    "name": "Research Masters / MPhil — course eligibility to confirm",
+    "universityIds": [
+      "monash"
+    ],
+    "url": "https://www.monash.edu/graduate-research/study/apply",
+    "sourceIds": [
+      "monash-scholarship"
+    ],
+    "degree": "MPhil",
+    "duration": "Up to 2 years subject to award",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "unsw-research",
+    "name": "Research Masters / MPhil — course eligibility to confirm",
+    "universityIds": [
+      "unsw"
+    ],
+    "url": "https://www.unsw.edu.au/research/hdr/application",
+    "sourceIds": [
+      "unsw-scholarship"
+    ],
+    "degree": "MPhil",
+    "duration": "Up to 2 years subject to award",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "anu-research",
+    "name": "Research Masters / MPhil — course eligibility to confirm",
+    "universityIds": [
+      "anu"
+    ],
+    "url": "https://study.anu.edu.au/scholarships/find-scholarship/anu-master-philosophy-scholarship",
+    "sourceIds": [
+      "anu-scholarship"
+    ],
+    "degree": "MPhil",
+    "duration": "Up to 2 years subject to award",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "uq-research",
+    "name": "Research Masters / MPhil — course eligibility to confirm",
+    "universityIds": [
+      "uq"
+    ],
+    "url": "https://scholarships.uq.edu.au/scholarship/graduate-school-scholarships-uqgss-%E2%80%93-includes-rtp",
+    "sourceIds": [
+      "uq-scholarship"
+    ],
+    "degree": "MPhil",
+    "duration": "Up to 2 years subject to award",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "cornell-ms",
+    "name": "Computer Science research MS",
+    "universityIds": [
+      "cornell"
+    ],
+    "url": "https://www.cs.cornell.edu/master-science-computer-science/apply",
+    "sourceIds": [
+      "cornell-ms"
+    ],
+    "degree": "MS",
+    "duration": "4 semesters",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "princeton-mse",
+    "name": "Computer Science MSE",
+    "universityIds": [
+      "princeton"
+    ],
+    "url": "https://gradschool.princeton.edu/academics/degrees-requirements/fields-study/computer-science",
+    "sourceIds": [
+      "princeton-mse"
+    ],
+    "degree": "MSE",
+    "duration": "2 years",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "oxford-acs",
+    "name": "MSc Advanced Computer Science",
+    "universityIds": [
+      "oxford"
+    ],
+    "url": "https://www.ox.ac.uk/admissions/graduate/courses/msc-advanced-computer-science",
+    "sourceIds": [
+      "oxford-acs"
+    ],
+    "degree": "MSc",
+    "duration": "1 year",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "cambridge-acs",
+    "name": "MPhil Advanced Computer Science",
+    "universityIds": [
+      "cambridge"
+    ],
+    "url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/cscsmpacs",
+    "sourceIds": [
+      "cambridge-acs"
+    ],
+    "degree": "MPhil",
+    "duration": "9 months",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "kaust-ms",
+    "name": "Computer Science MS — standalone Masters",
+    "universityIds": [
+      "kaust"
+    ],
+    "url": "https://admissions.kaust.edu.sa/study/master%27s-degree",
+    "sourceIds": [
+      "kaust-entry",
+      "kaust-fellowship"
+    ],
+    "degree": "MS",
+    "duration": "Confirm standalone MS study plan",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "mbzuai-msc",
+    "name": "Computer Vision / ML MSc — not MAAI",
+    "universityIds": [
+      "mbzuai"
+    ],
+    "url": "https://mbzuai.ac.ae/admissions/graduate-masters-admissions",
+    "sourceIds": [
+      "mbzuai-2027"
+    ],
+    "degree": "MSc",
+    "duration": "Confirm in offer",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "monash-round-one-date",
+    "opportunityId": "monash-rtp",
+    "date": "2026-10-16",
+    "field": "International Round 1 deadline",
+    "before": "31 March 2027 recurring date",
+    "after": "28 February 2027 published early closing",
+    "sourceIds": [
+      "monash-scholarship"
+    ],
+    "state": "verified-change"
+  },
+  {
+    "id": "mbzuai-funding-model",
+    "opportunityId": "mbzuai",
+    "date": "2026-10-16",
+    "field": "MSc funding interpretation",
+    "before": "Admission sometimes advertised as automatically funded",
+    "after": "Fee-paying unless faculty-sponsored RA/TA funding confirmed",
+    "sourceIds": [
+      "mbzuai-2027"
+    ],
+    "state": "verified-change"
+  },
+  {
+    "id": "princeton-2027",
+    "opportunityId": "princeton-mse",
+    "date": "2026-10-16",
+    "field": "MSE availability",
+    "before": "Research seed only",
+    "after": "Not accepting Fall 2027 MSE applications",
+    "sourceIds": [
+      "princeton-mse"
+    ],
+    "state": "verified-change"
+  }
+]

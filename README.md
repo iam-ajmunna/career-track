@@ -1,3 +1,7 @@
+# Career Track V3
+
+The active app is the login-free V3 scholarship intelligence and application workspace. Start with [V3 release](docs/v3/RELEASE.md), [architecture](docs/v3/ARCHITECTURE.md) and [migration](docs/v3/MIGRATION.md). Earlier sections below document the retained prior implementation.
+
 # Career Track v2
 
 A personal scholarship workspace for the 2027 MSc intake. Vanilla ES modules and esbuild, hosted on Vercel. The active app needs no account or cloud configuration.
@@ -39,3 +43,9 @@ Exact deadlines retain source, UTC instant and provider timezone. The calendar u
 Implementation/audit/acceptance evidence: [STATUS](docs/upgrade/STATUS.md), [UI review](docs/upgrade/UI-REVIEW.md), [design](DESIGN.md), [interaction contract](UX-CONTRACT.md). Original kit/specs remain under `docs/upgrade/`.
 
 Work is on `personal-dynamic`; the owner reviews and merges the PR to `main`.
+
+## Career Track V3
+
+The active release uses the login-free V3 intelligence workspace. See [architecture](docs/v3/ARCHITECTURE.md), [research coverage](docs/v3/RESEARCH.md), [migration and recovery](docs/v3/MIGRATION.md) and [acceptance evidence](docs/v3/ACCEPTANCE.md). Public researched facts live in `data/v3`; private device state is never a public default. The earlier v2 modules/specifications below remain compatibility/history documentation.
+
+Validation: `npm test`, `npm run check:keys`, `npm run check:data`, `npm run build`, and `npm run test:browser` (Playwright with a Chromium installation, or `CT_CHROMIUM_PATH`). `npm run research:check` produces a bounded official-source review report. A daily GitHub Actions job creates the same report without rewriting verified claims. Settings supports v2/v3 backups and a separately supplied private context import.
