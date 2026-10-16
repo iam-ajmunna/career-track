@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-10-16T16:16:19.918Z",
+  "checkedAt": "2026-10-16T16:21:01.209Z",
   "bundles": [
     {
-      "name": "app.js",
+      "name": "app-BYZIMYAO.js",
       "bytes": 2364,
       "gzipBytes": 1132
     },
@@ -12,7 +12,7 @@
       "gzipBytes": 10342
     },
     {
-      "name": "theme.js",
+      "name": "theme-S6KY44PZ.js",
       "bytes": 171,
       "gzipBytes": 128
     },
@@ -24,5 +24,6 @@
   ],
   "totalJavaScriptGzipBytes": 90274,
   "privateDefaultAndAuthScan": "PASS",
-  "sourceFetchOnBrowserStartup": false
+  "sourceFetchOnBrowserStartup": false,
+  "hashedEntryUpgradeCheck": "PASS"
 }
