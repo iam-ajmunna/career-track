@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 3,
+  "checkedAt": "2026-10-16T14:16:10.163Z",
+  "targetIntake": 2027,
+  "coverage": "Curated initial registry, not exhaustive. Legacy leads remain explicitly unconfirmed.",
+  "reviewPolicy": {
+    "nearDeadlineDays": 14,
+    "openReviewDays": 3,
+    "upcomingReviewDays": 14,
+    "immigration": "Recheck official rules whenever a decision depends on them."
+  }
+}

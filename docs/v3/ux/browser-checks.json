@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-10-16T14:15:10.278Z",
+  "checks": [
+    {
+      "name": "No-login startup and global counts include urgency without a top-five cap",
+      "status": "PASS"
+    },
+    {
+      "name": "Explorer filters, local search, clear and URL restoration",
+      "status": "PASS"
+    },
+    {
+      "name": "Detailed playbook has A–Q, independent stages, checklist and escaped private notes",
+      "status": "PASS"
+    },
+    {
+      "name": "University admission is independent from funding stage and excluded routes remain discoverable",
+      "status": "PASS"
+    },
+    {
+      "name": "Funding calculator rejects incomplete net and excludes conditional assistantship",
+      "status": "PASS"
+    },
+    {
+      "name": "Documents, private contacts, completed ticks and goal-board progress remain functional",
+      "status": "PASS"
+    },
+    {
+      "name": "Calendar contains date-only markers and alarms only on exact deadlines",
+      "status": "PASS"
+    },
+    {
+      "name": "Archive, Trash confirmation and restore preserve submitted work past deadlines",
+      "status": "PASS"
+    },
+    {
+      "name": "Full export/import roundtrip works in a clean browser without touching v2",
+      "status": "PASS"
+    },
+    {
+      "name": "Private planning context previews Oxford admission and missed nomination separately",
+      "status": "PASS"
+    },
+    {
+      "name": "Country navigation, all regions, universities, sources and research leads render",
+      "status": "PASS"
+    },
+    {
+      "name": "Keyboard shortcuts, IME-safe search, and narrow/light/dark screens have no page overflow",
+      "status": "PASS"
+    },
+    {
+      "name": "Funding comparison, prompt/package exports and source-report notices work",
+      "status": "PASS"
+    },
+    {
+      "name": "Previously loaded workspace reloads offline from static cache",
+      "status": "PASS"
+    },
+    {
+      "name": "V2 migration requires an export, preserves original bytes, notes and submitted status",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrupt state blocks edits and recovery keeps raw bytes exportable",
+      "status": "PASS"
+    },
+    {
+      "name": "Blocked storage keeps edits in memory and exportable, then Retry saves",
+      "status": "PASS"
+    }
+  ],
+  "errors": [],
+  "authRequests": []
+}

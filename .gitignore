@@ -15,3 +15,6 @@ supabase/.temp/
 # Raw capture intermediates; identical lossless WebP review images are tracked.
 docs/upgrade/baseline/*.png
 docs/upgrade/ux/*.png
+
+# V3 browser captures are reviewed as selected lossless WebP evidence.
+docs/v3/ux/*.png

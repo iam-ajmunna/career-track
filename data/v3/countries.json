@@ -1,0 +1,141 @@
+[
+  {
+    "id": "ca",
+    "code": "CA",
+    "name": "Canada",
+    "sourceIds": [
+      "immigration-ca",
+      "canada-pgwp-eligibility"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "Eligible Masters graduates can apply for a three-year PGWP even for a programme under two years.",
+    "conditions": "Programme at least eight months, PGWP-eligible institution/programme, passport validity and all other eligibility rules. University-degree language requirement CLB/NCLC 7; no Masters field restriction.",
+    "transition": "A qualifying job and a separate immigration pathway are still needed for longer-term status.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+  },
+  {
+    "id": "au",
+    "code": "AU",
+    "name": "Australia",
+    "sourceIds": [
+      "immigration-au"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "Research Masters: generally three years; coursework Masters: generally two years under current rules.",
+    "conditions": "Generally age 35 or under, with under-50 exception for research Masters/PhD; eligible Australian study, timing, English and health conditions apply.",
+    "transition": "Employer-sponsored or skilled routes have separate occupation, assessment and eligibility requirements.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+  },
+  {
+    "id": "us",
+    "code": "US",
+    "name": "United States",
+    "sourceIds": [
+      "immigration-us",
+      "us-stem-opt"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "Eligible F-1 graduates may receive 12 months of OPT; qualifying STEM graduates may apply for a further 24 months.",
+    "conditions": "DSO recommendation and authorisation required. STEM extension depends on the actual degree/CIP, institution and employer/training requirements.",
+    "transition": "An employment visa or permanent-residence route requires a separate basis; OPT is temporary training.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+  },
+  {
+    "id": "gb",
+    "code": "GB",
+    "name": "United Kingdom",
+    "sourceIds": [
+      "immigration-gb"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "Graduate visa applications from 1 January 2027: 18 months for eligible non-doctoral graduates. Doctoral graduates: three years.",
+    "conditions": "Apply in the UK before Student permission expires, after the provider reports successful completion. Current rules can change before graduation.",
+    "transition": "A Skilled Worker switch requires an eligible sponsor, role and applicable requirements. Scholarship return-home contracts may prevent use of this route.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+  },
+  {
+    "id": "ie",
+    "code": "IE",
+    "name": "Ireland",
+    "sourceIds": [
+      "immigration-ie"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "Level 9 or above graduates may receive up to 24 months in two 12-month blocks.",
+    "conditions": "Graduate-programme eligibility, timely application and evidence for renewal apply; total student-pathway limits apply.",
+    "transition": "Employment permits and longer-term residence have independent requirements.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+  },
+  {
+    "id": "fi",
+    "code": "FI",
+    "name": "Finland",
+    "sourceIds": [
+      "immigration-fi"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "Eligible graduates/researchers may obtain up to two years to seek work or start a business.",
+    "conditions": "Apply within five years of expiry of the study/research permit; qualifying Finnish completion, means of support and application conditions apply.",
+    "transition": "A work/business permit or other independent residence basis is needed afterwards.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+  },
+  {
+    "id": "nz",
+    "code": "NZ",
+    "name": "New Zealand",
+    "sourceIds": [
+      "immigration-nz"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "A Masters with at least 30 weeks of eligible study in New Zealand can lead to a three-year Post Study Work Visa.",
+    "conditions": "Qualification, study, funds and application-timing requirements apply; verify the selected course and personal history.",
+    "transition": "Skilled/employer residence and work routes are separate from the graduate visa.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+  },
+  {
+    "id": "no",
+    "code": "NO",
+    "name": "Norway",
+    "sourceIds": [
+      "immigration-no"
+    ],
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "postStudy": "A recent-Norway-graduate job-seeker category exists; current duration and financial requirement were not reliably retrieved.",
+    "conditions": "Official page access was incomplete. Do not plan a budget or application around an unverified duration.",
+    "transition": "A skilled-worker permit requires its own qualifying offer and conditions.",
+    "studyWork": "Current student work conditions require a separate official check.",
+    "language": "English-language study does not guarantee local job-market access.",
+    "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
+    "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "verification": "official-information-unavailable"
+  }
+]

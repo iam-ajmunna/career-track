@@ -1,0 +1,113 @@
+[
+  {
+    "id": "ubc-vision",
+    "name": "UBC Computer Vision Lab",
+    "universityId": "ubc",
+    "url": "https://vision.cs.ubc.ca/",
+    "sourceIds": [
+      "ubc-vision-source"
+    ],
+    "researchAreas": [
+      "computer-vision",
+      "machine-learning"
+    ],
+    "detail": "Image and video understanding; verify current faculty projects and intake capacity.",
+    "availability": "unknown",
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "funding": "No funded student vacancy verified.",
+    "contact": "Use the official faculty page; do not infer recruitment from a research match."
+  },
+  {
+    "id": "ubc-faculty",
+    "name": "UBC CS faculty research directory",
+    "universityId": "ubc",
+    "url": "https://www.cs.ubc.ca/people/faculty",
+    "sourceIds": [
+      "ubc-faculty-source"
+    ],
+    "researchAreas": [
+      "machine-learning",
+      "efficient-ai"
+    ],
+    "detail": "Use research-area listings to shortlist faculty; directory membership is not an advertised opening.",
+    "availability": "unknown",
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "funding": "No funded student vacancy verified.",
+    "contact": "Use the official faculty page; do not infer recruitment from a research match."
+  },
+  {
+    "id": "waterloo-ai",
+    "name": "Waterloo Artificial Intelligence Group",
+    "universityId": "waterloo",
+    "url": "https://uwaterloo.ca/artificial-intelligence-group/",
+    "sourceIds": [
+      "waterloo-ai-source"
+    ],
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "robotics"
+    ],
+    "detail": "Research includes vision, robotics, learning and reasoning; specific supervision availability unconfirmed.",
+    "availability": "unknown",
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "funding": "No funded student vacancy verified.",
+    "contact": "Use the official faculty page; do not infer recruitment from a research match."
+  },
+  {
+    "id": "cornell-ml",
+    "name": "Machine Learning at Cornell",
+    "universityId": "cornell",
+    "url": "https://research.cs.cornell.edu/machinelearning/",
+    "sourceIds": [
+      "cornell-ml-source"
+    ],
+    "researchAreas": [
+      "machine-learning",
+      "multimodal-learning"
+    ],
+    "detail": "Interdisciplinary research directory; individual faculty funding and research MS capacity unconfirmed.",
+    "availability": "unknown",
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "funding": "No funded student vacancy verified.",
+    "contact": "Use the official faculty page; do not infer recruitment from a research match."
+  },
+  {
+    "id": "cornell-capra",
+    "name": "Cornell Capra research group",
+    "universityId": "cornell",
+    "url": "https://capra.cs.cornell.edu/",
+    "sourceIds": [
+      "cornell-capra-source"
+    ],
+    "researchAreas": [
+      "efficient-ai",
+      "model-compression",
+      "ai-systems"
+    ],
+    "detail": "Programming systems and intelligent applications; inspect current papers before approaching faculty.",
+    "availability": "unknown",
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "funding": "No funded student vacancy verified.",
+    "contact": "Use the official faculty page; do not infer recruitment from a research match."
+  },
+  {
+    "id": "melbourne-research",
+    "name": "Melbourne graduate research opportunities",
+    "universityId": "melbourne",
+    "url": "https://eng.unimelb.edu.au/research/graduate-research/opportunities",
+    "sourceIds": [
+      "melbourne-research-source"
+    ],
+    "researchAreas": [
+      "computer-vision",
+      "machine-learning",
+      "ai-systems"
+    ],
+    "detail": "Faculty opportunity directory; confirm project-specific research Masters eligibility and funding.",
+    "availability": "unknown",
+    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "funding": "No funded student vacancy verified.",
+    "contact": "Use the official faculty page; do not infer recruitment from a research match."
+  }
+]

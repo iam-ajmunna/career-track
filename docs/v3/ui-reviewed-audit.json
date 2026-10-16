@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-16T14:17:49.167Z",
+  "rawStaticFindings": 5,
+  "resolvedDelegatedHandlers": [
+    {
+      "file": "src/v3/views.js",
+      "line": 342,
+      "selector": "data-v3-save-note",
+      "reason": "Shared document click delegation in workspace.js; literal-HTML scanner recognises inline handlers only. Browser suite exercises this workflow."
+    },
+    {
+      "file": "src/v3/views.js",
+      "line": 356,
+      "selector": "data-v3-ics",
+      "reason": "Shared document click delegation in workspace.js; literal-HTML scanner recognises inline handlers only. Browser suite exercises this workflow."
+    },
+    {
+      "file": "src/v3/views.js",
+      "line": 371,
+      "selector": "data-v3-save-note",
+      "reason": "Shared document click delegation in workspace.js; literal-HTML scanner recognises inline handlers only. Browser suite exercises this workflow."
+    },
+    {
+      "file": "src/v3/views.js",
+      "line": 559,
+      "selector": "data-v3-life",
+      "reason": "Shared document click delegation in workspace.js; literal-HTML scanner recognises inline handlers only. Browser suite exercises this workflow."
+    },
+    {
+      "file": "src/v3/views.js",
+      "line": 573,
+      "selector": "data-v3-life",
+      "reason": "Shared document click delegation in workspace.js; literal-HTML scanner recognises inline handlers only. Browser suite exercises this workflow."
+    }
+  ],
+  "unresolved": 0,
+  "designLint": "0 errors; runtime token document has 9 informational ownership warnings",
+  "browserEvidence": "docs/v3/ux/browser-checks.json"
+}

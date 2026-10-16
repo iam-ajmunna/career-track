@@ -7,13 +7,14 @@ English UI; dates shown in provider zone and Asia/Dhaka. Personal application op
 ## Canonical UI Map
 
 | Capability | Canonical owner | Source of truth | Allowed variants | Verification |
-|---|---|---|---|---|
-| Form | Native checkbox / existing search | Fresh-start data contract | Checklist, local search | Store and browser tests |
-| Date | `src/domain/time.ts`, `src/countdowns.js` | Verified deadline JSON | Hero, compact, provider/Dhaka | DST/boundary tests |
-| Scrollbar | `assets/styles.css` | DESIGN.md | Existing responsive geometry | Static/browser review |
-| Toast | `toast()` in `src/app.js` | This contract | Non-critical acknowledgements | Browser review |
-| CRUD | `src/sync/local-v2.js` | Validated device state | Checklist / submission flag | Local-store and browser tests |
-| Workspace | `src/bootstrap.js` | No-account owner decision | Loading / recovery gate | No-auth browser checks |
+| --- | --- | --- | --- | --- |
+| Select/Listbox | Native select from `src/v3/views.js` | V3 brief and this contract | Filters, stages and private budgets; OS-owned popup | `tests/browser-v3.mjs` |
+| Date | Native date input plus `src/v3/domain.js` | Official precision in `data/v3/deadlines.json` | Date-only markers, exact provider/Dhaka instants, unknown dates | V3 domain/calendar tests |
+| Form | `workspace.js` submit/change delegation | `src/v3/store.js` validated state | Inline text errors; no native validation bubbles | Browser failure fixtures |
+| Scrollbar | Global baseline in `assets/styles.css` | DESIGN.md runtime mapping | Table horizontal overflow only | Mobile/light/dark matrix |
+| Toast | Shared `notice()` and persistent sync message | Device-save outcome | Noncritical acknowledgement; persistent failure | Browser storage fixtures |
+| CRUD | `src/v3/store.js` | Versioned device state; private data separate from static research | Migration, stages, notes, archive/restore, backup-gated purge | V3 store and browser suites |
+| Table Selection | Explicit compare checkboxes / preserved goal selection | Local selection set, maximum four funding routes | Page-local comparison; explicit bulk research tracking | Browser comparison and goal workflows |
 
 ## Flow ledger
 
@@ -72,3 +73,23 @@ Pins, priorities, notes and tracking use validated local writes. Failed writes r
 | Toast | `toast()` / persistent sync status | This contract | Acknowledgement, inline failure | Browser recovery fixture |
 | CRUD | `src/sync/local-v2.js` | Device release decision and state validation | Device workspace only | Unit and browser tests |
 | Backup file | `src/sync/backup.js`, Settings delegated handlers | `docs/upgrade/RELEASE.md` | Validate / preview / explicit commit / cancel | Backup tests and clean-browser restore |
+
+## V3 contract — 16 October 2026 (supersedes active v2 surfaces)
+
+Authority: the attached Career Track V3 implementation brief, sections 6, 10–14 and 18–24. It explicitly authorizes release to main after validation, retains a login-free local workspace, separates independent statuses and forbids automatic history loss. Earlier v2 descriptions above remain historical documentation.
+
+| Capability | Canonical owner | Source of truth | Allowed variants | Verification |
+| --- | --- | --- | --- | --- |
+| Select/Listbox | Native select from `src/v3/views.js` | V3 brief and this contract | Filters, stages and private budgets; OS-owned popup | `tests/browser-v3.mjs` |
+| Date | Native date input plus `src/v3/domain.js` | Official precision in `data/v3/deadlines.json` | Date-only markers, exact provider/Dhaka instants, unknown dates | V3 domain/calendar tests |
+| Form | `workspace.js` submit/change delegation | `src/v3/store.js` validated state | Inline text errors; no native validation bubbles | Browser failure fixtures |
+| Scrollbar | Global baseline in `assets/styles.css` | DESIGN.md runtime mapping | Table horizontal overflow only | Mobile/light/dark matrix |
+| Toast | Shared `notice()` and persistent sync message | Device-save outcome | Noncritical acknowledgement; persistent failure | Browser storage fixtures |
+| CRUD | `src/v3/store.js` | Versioned device state; private data separate from static research | Migration, stages, notes, archive/restore, backup-gated purge | V3 store and browser suites |
+| Table Selection | Explicit compare checkboxes / preserved goal selection | Local selection set, maximum four funding routes | Page-local comparison; explicit bulk research tracking | Browser comparison and goal workflows |
+
+V3 preserves `career-track:v2` bytes and all 102 original keys and labels. A separate `career-track:v3` copy stores versioned applications, admissions, budgets, references and documents. No cloud cache is opened. A partial valid v2 state is completed safely; malformed bytes block edits and remain exportable. Backup imports validate and preview before writes. Existing text/conflicting records win in ordinary merge; a private context file explicitly previews updates and downloads the current state first.
+
+The explorer and country routes own URL-restored filter/search/page state. The eight numeric shortcuts retain their historical mapping. The original Personalized Goal board remains a labeled historical planning surface with retained keys; current official V3 guides take precedence. Native dialog owns confirmation focus, Escape and restoration. In-app note drafts persist across views and are included before complete exports; failed saves remain in memory and exportable. Only the active view is rendered. One interval updates visible timer nodes; no continuous browser scraping or closed-tab notification is implied.
+
+Source checking is a scheduled GitHub Actions job. Fingerprint changes require human review; no automatic claim verification, private-group extraction, personal email, live exchange-rate feed, external application submission or account sync is represented as implemented. Reports are imported explicitly from the owner's private repository.

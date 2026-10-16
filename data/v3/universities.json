@@ -1,0 +1,173 @@
+[
+  {
+    "id": "ubc",
+    "name": "University of British Columbia",
+    "countryCode": "CA",
+    "url": "https://www.cs.ubc.ca/",
+    "sourceIds": [
+      "ubc-admission",
+      "ubc-funding"
+    ]
+  },
+  {
+    "id": "waterloo",
+    "name": "University of Waterloo",
+    "countryCode": "CA",
+    "url": "https://cs.uwaterloo.ca/",
+    "sourceIds": [
+      "waterloo-admission",
+      "waterloo-funding"
+    ]
+  },
+  {
+    "id": "alberta",
+    "name": "University of Alberta",
+    "countryCode": "CA",
+    "url": "https://www.ualberta.ca/en/computing-science/",
+    "sourceIds": [
+      "alberta-admission",
+      "alberta-funding"
+    ]
+  },
+  {
+    "id": "mcgill",
+    "name": "McGill University",
+    "countryCode": "CA",
+    "url": "https://www.cs.mcgill.ca/",
+    "sourceIds": [
+      "mcgill-admission",
+      "mcgill-funding"
+    ]
+  },
+  {
+    "id": "toronto",
+    "name": "University of Toronto",
+    "countryCode": "CA",
+    "url": "https://web.cs.toronto.edu/",
+    "sourceIds": [
+      "toronto-msc"
+    ]
+  },
+  {
+    "id": "sydney",
+    "name": "University of Sydney",
+    "countryCode": "AU",
+    "url": "https://www.sydney.edu.au/scholarships/australian-government-research-training-program/rtp-international.html",
+    "sourceIds": [
+      "sydney-scholarship"
+    ]
+  },
+  {
+    "id": "melbourne",
+    "name": "University of Melbourne",
+    "countryCode": "AU",
+    "url": "https://scholarships.unimelb.edu.au/awards/graduate-research-scholarships",
+    "sourceIds": [
+      "melbourne-scholarship"
+    ]
+  },
+  {
+    "id": "monash",
+    "name": "Monash University",
+    "countryCode": "AU",
+    "url": "https://www.monash.edu/graduate-research/study/apply",
+    "sourceIds": [
+      "monash-scholarship"
+    ]
+  },
+  {
+    "id": "unsw",
+    "name": "UNSW Sydney",
+    "countryCode": "AU",
+    "url": "https://www.unsw.edu.au/research/hdr/application",
+    "sourceIds": [
+      "unsw-scholarship"
+    ]
+  },
+  {
+    "id": "anu",
+    "name": "Australian National University",
+    "countryCode": "AU",
+    "url": "https://study.anu.edu.au/scholarships/find-scholarship/anu-master-philosophy-scholarship",
+    "sourceIds": [
+      "anu-scholarship"
+    ]
+  },
+  {
+    "id": "uq",
+    "name": "University of Queensland",
+    "countryCode": "AU",
+    "url": "https://scholarships.uq.edu.au/scholarship/graduate-school-scholarships-uqgss-%E2%80%93-includes-rtp",
+    "sourceIds": [
+      "uq-scholarship"
+    ]
+  },
+  {
+    "id": "cornell",
+    "name": "Cornell University",
+    "countryCode": "US",
+    "url": "https://www.cs.cornell.edu/",
+    "sourceIds": [
+      "cornell-ms"
+    ]
+  },
+  {
+    "id": "princeton",
+    "name": "Princeton University",
+    "countryCode": "US",
+    "url": "https://www.cs.princeton.edu/",
+    "sourceIds": [
+      "princeton-mse"
+    ]
+  },
+  {
+    "id": "oxford",
+    "name": "University of Oxford",
+    "countryCode": "GB",
+    "url": "https://www.ox.ac.uk/",
+    "sourceIds": [
+      "oxford-acs",
+      "clarendon",
+      "weidenfeld"
+    ]
+  },
+  {
+    "id": "cambridge",
+    "name": "University of Cambridge",
+    "countryCode": "GB",
+    "url": "https://www.cam.ac.uk/",
+    "sourceIds": [
+      "cambridge-acs",
+      "gates-how"
+    ]
+  },
+  {
+    "id": "ucl",
+    "name": "University College London",
+    "countryCode": "GB",
+    "url": "https://www.ucl.ac.uk/",
+    "sourceIds": [
+      "ucl-global"
+    ]
+  },
+  {
+    "id": "kaust",
+    "name": "KAUST",
+    "countryCode": "SA",
+    "url": "https://www.kaust.edu.sa/",
+    "sourceIds": [
+      "kaust-timing",
+      "kaust-entry",
+      "kaust-fellowship"
+    ]
+  },
+  {
+    "id": "mbzuai",
+    "name": "MBZUAI",
+    "countryCode": "AE",
+    "url": "https://mbzuai.ac.ae/",
+    "sourceIds": [
+      "mbzuai-2027"
+    ]
+  }
+]
