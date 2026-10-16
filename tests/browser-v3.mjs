@@ -2,6 +2,7 @@ import { spawn } from "node:child_process";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
 import assert from "node:assert/strict";
+import { prepareWorkspace } from "../scripts/prepare-v3-workspace.mjs";
 const require = createRequire(import.meta.url),
   { chromium } = require(
     process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES
@@ -138,11 +139,9 @@ try {
       await page.selectOption('[data-v3-stage="kaust"]', "submitted");
       await page.selectOption('[data-v3-track="kaust"]', "completed");
       await page.locator('[data-progress-key="sch-kaust-0"]').check();
-      const notes = page
-        .locator(".v3-guide-section")
-        .filter({
-          has: page.locator("summary", { hasText: "My decision & notes" }),
-        });
+      const notes = page.locator(".v3-guide-section").filter({
+        has: page.locator("summary", { hasText: "My decision & notes" }),
+      });
       await notes.locator("summary").click();
       await page
         .locator('[data-v3-note="kaust"]')
@@ -322,13 +321,11 @@ try {
       const imported = await clean.newPage();
       await imported.goto(base + "/#/settings");
       await imported.waitForSelector("#v3BackupFile", { state: "attached" });
-      await imported
-        .locator("#v3BackupFile")
-        .setInputFiles({
-          name: "backup.json",
-          mimeType: "application/json",
-          buffer: Buffer.from(raw),
-        });
+      await imported.locator("#v3BackupFile").setInputFiles({
+        name: "backup.json",
+        mimeType: "application/json",
+        buffer: Buffer.from(raw),
+      });
       await imported.locator("[data-v3-commit-backup]").click();
       await imported.goto(base + "/#/scholarships/kaust");
       assert.equal(
@@ -369,13 +366,11 @@ try {
           { programmeId: "oxford-acs", intake: 2027, stage: "submitted" },
         ],
       });
-      await page
-        .locator("#v3BackupFile")
-        .setInputFiles({
-          name: "private.json",
-          mimeType: "application/json",
-          buffer: Buffer.from(raw),
-        });
+      await page.locator("#v3BackupFile").setInputFiles({
+        name: "private.json",
+        mimeType: "application/json",
+        buffer: Buffer.from(raw),
+      });
       await page.locator("[data-v3-commit-backup]").waitFor();
       assert.match(
         await page.locator("#v3BackupReport").innerText(),
@@ -528,13 +523,11 @@ try {
         checkedAt: "2026-10-16T00:00:00Z",
         items: [{ id: "ubc-funding", status: "changed" }],
       });
-      await page
-        .locator("#v3ReportFile")
-        .setInputFiles({
-          name: "report.json",
-          mimeType: "application/json",
-          buffer: Buffer.from(report),
-        });
+      await page.locator("#v3ReportFile").setInputFiles({
+        name: "report.json",
+        mimeType: "application/json",
+        buffer: Buffer.from(report),
+      });
       await page.waitForFunction(() =>
         document.querySelector(".active-view")?.innerText.includes("changed"),
       );
@@ -614,6 +607,179 @@ try {
       await migrated.reload();
       assert.equal(await migrated.locator("[data-v3-migrate]").count(), 0);
       await old.close();
+    },
+  );
+  await check(
+    "Complete workspace import finishes migration in one action and preserves Trash",
+    async () => {
+      const c = await browser.newContext();
+      const old = {
+        schema_version: 1,
+        progress: {},
+        applications: {},
+        profile: null,
+        tracking: {},
+        lifecycle: {
+          commonwealth: {
+            status: "trash",
+            at: "2026-10-10T00:00:00.000Z",
+            purgeAt: "2026-10-20T00:00:00.000Z",
+          },
+        },
+        history: {},
+        pins: {},
+        notes: {},
+        preferences: {},
+        ui: { unratedOpen: true },
+      };
+      const original = JSON.stringify(old);
+      const backup = JSON.stringify({
+        format: "career-track-v2-export",
+        version: 2,
+        state: old,
+        raw_recovery: original,
+      });
+      const context = JSON.stringify({
+        format: "career-track-private-context",
+        version: 1,
+        profile: {
+          citizenship: "BD",
+          cgpa: "3.80",
+          feeStatus: "international",
+          graduationDate: null,
+          researchAreas: ["computer-vision"],
+        },
+        applications: [
+          {
+            opportunityId: "commonwealth",
+            intake: 2027,
+            stage: "not-started",
+            decision: "not-pursuing",
+            blockedReason: "Nomination not completed",
+          },
+        ],
+        admissions: [
+          { programmeId: "oxford-acs", intake: 2027, stage: "submitted" },
+        ],
+      });
+      const ready = JSON.stringify(prepareWorkspace(backup, context));
+      await c.addInitScript((raw) => {
+        if (!sessionStorage.getItem("seeded")) {
+          localStorage.setItem("career-track:v2", raw);
+          sessionStorage.setItem("seeded", "yes");
+        }
+      }, original);
+      const p = await c.newPage();
+      p.on("pageerror", (e) => errors.push(e.message));
+      await p.goto(base + "/#/settings");
+      await p.waitForSelector("[data-v3-migrate]");
+      assert.match(
+        await p.locator("#syncLabel").innerText(),
+        /finish migration/,
+      );
+      await p
+        .locator("#v3BackupFile")
+        .setInputFiles({
+          name: "complete-v3.json",
+          mimeType: "application/json",
+          buffer: Buffer.from(ready),
+        });
+      const commit = p.locator("[data-v3-commit-backup]");
+      await commit.waitFor();
+      assert.match(await commit.innerText(), /Back up v2 & import/);
+      assert.equal(
+        await p.evaluate(() => localStorage.getItem("career-track:v3")),
+        null,
+      );
+      const downloaded = p.waitForEvent("download");
+      await commit.click();
+      await downloaded;
+      await p.waitForFunction(() =>
+        document
+          .querySelector("#v3BackupReport")
+          ?.innerText.includes("Import saved"),
+      );
+      assert.equal(
+        await p.evaluate(() => localStorage.getItem("career-track:v2")),
+        original,
+      );
+      const saved = await p.evaluate(() =>
+        JSON.parse(localStorage.getItem("career-track:v3")),
+      );
+      assert.deepEqual(saved.lifecycle, old.lifecycle);
+      assert.deepEqual(saved.progress, {});
+      assert.equal(saved.v3.profile.feeStatus, "international");
+      assert.equal(saved.v3.admissions["oxford-acs:2027"].stage, "submitted");
+      assert.equal(
+        saved.v3.applications["commonwealth:2027"].decision,
+        "not-pursuing",
+      );
+      assert.equal(saved.v3.applications["clarendon:2027"], undefined);
+      await p.reload();
+      await p.waitForSelector("#v3BackupFile", { state: "attached" });
+      assert.equal(await p.locator("[data-v3-migrate]").count(), 0);
+      await c.close();
+    },
+  );
+  await check(
+    "A deployed worker update activates without closing tabs or discarding a draft",
+    async () => {
+      await go("/#/scholarships/kaust");
+      await page.evaluate(async () => {
+        await navigator.serviceWorker.ready;
+      });
+      await page.reload();
+      await page.waitForFunction(() =>
+        Boolean(navigator.serviceWorker.controller),
+      );
+      await page
+        .locator(".v3-guide-section summary", {
+          hasText: "My decision & notes",
+        })
+        .click();
+      await page
+        .locator('[data-v3-note="kaust"]')
+        .fill("Unsaved draft kept through an app update.");
+      const originalWorker = await readFile("dist/sw.js", "utf8");
+      try {
+        await writeFile(
+          "dist/sw.js",
+          originalWorker + "\n// browser update fixture " + Date.now(),
+        );
+        await page.evaluate(async () => {
+          const registration = await navigator.serviceWorker.getRegistration();
+          const activated = new Promise((resolve, reject) => {
+            const timeout = setTimeout(
+              () => reject(Error("Worker update did not activate")),
+              20000,
+            );
+            navigator.serviceWorker.addEventListener(
+              "controllerchange",
+              () => {
+                clearTimeout(timeout);
+                resolve();
+              },
+              { once: true },
+            );
+          });
+          await registration.update();
+          await activated;
+        });
+        assert.equal(
+          await page.locator('[data-v3-note="kaust"]').inputValue(),
+          "Unsaved draft kept through an app update.",
+        );
+        await page.locator('[data-v3-save-note="kaust"]').click();
+        assert.equal(
+          await page.evaluate(
+            () =>
+              JSON.parse(localStorage.getItem("career-track:v3")).notes.kaust,
+          ),
+          "Unsaved draft kept through an app update.",
+        );
+      } finally {
+        await writeFile("dist/sw.js", originalWorker);
+      }
     },
   );
   await check(

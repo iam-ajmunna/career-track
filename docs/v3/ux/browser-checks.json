@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-16T14:15:10.278Z",
+  "checkedAt": "2026-10-16T16:14:40.010Z",
   "checks": [
     {
       "name": "No-login startup and global counts include urgency without a top-five cap",
@@ -59,6 +59,14 @@
     },
     {
       "name": "V2 migration requires an export, preserves original bytes, notes and submitted status",
+      "status": "PASS"
+    },
+    {
+      "name": "Complete workspace import finishes migration in one action and preserves Trash",
+      "status": "PASS"
+    },
+    {
+      "name": "A deployed worker update activates without closing tabs or discarding a draft",
       "status": "PASS"
     },
     {

@@ -1,15 +1,15 @@
 {
-  "checkedAt": "2026-10-16T14:17:10.640Z",
+  "checkedAt": "2026-10-16T16:16:19.918Z",
   "bundles": [
     {
       "name": "app.js",
-      "bytes": 2300,
-      "gzipBytes": 1099
+      "bytes": 2364,
+      "gzipBytes": 1132
     },
     {
-      "name": "chunk-RJYRRD2E.js",
-      "bytes": 31457,
-      "gzipBytes": 10165
+      "name": "chunk-EIFW5YZM.js",
+      "bytes": 32240,
+      "gzipBytes": 10342
     },
     {
       "name": "theme.js",
@@ -17,12 +17,12 @@
       "gzipBytes": 128
     },
     {
-      "name": "workspace-5QMBGCUU.js",
-      "bytes": 445442,
-      "gzipBytes": 78598
+      "name": "workspace-5GOEJBK4.js",
+      "bytes": 445828,
+      "gzipBytes": 78672
     }
   ],
-  "totalJavaScriptGzipBytes": 89990,
+  "totalJavaScriptGzipBytes": 90274,
   "privateDefaultAndAuthScan": "PASS",
   "sourceFetchOnBrowserStartup": false
 }
