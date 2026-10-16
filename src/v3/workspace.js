@@ -566,6 +566,24 @@ document.addEventListener("click", async (ev) => {
   if ("v3CommitBackup" in d && pendingBackup) {
     try {
       const b = pendingBackup;
+      if (store.get().migrationPending) {
+        // Validate the complete proposed state before any migration write.
+        if (b.kind === "context")
+          previewContext(b.raw, store.get().state, registry);
+        else store.previewBackup(b.state);
+        if (
+          !download(
+            store.migrationBackup(),
+            "career-track-v2-before-import.json",
+          )
+        )
+          return;
+        store.completeMigration();
+        if (store.get().migrationPending) {
+          $("v3BackupReport").textContent = store.get().cacheProblem;
+          return;
+        }
+      }
       if (b.kind === "context") {
         if (
           !download(privateExport(), "career-track-before-context-import.json")
@@ -737,7 +755,15 @@ document.addEventListener("change", (ev) => {
       () => store.change("progress", d.progressKey, n.checked),
       "Checklist saved.",
     );
-  if(d.v3DocVersion)mutate(()=>store.setDocument(d.v3DocVersion,{status:store.get().state.v3.documents[d.v3DocVersion]?.status||'not-started',version:n.value}));
+  if (d.v3DocVersion)
+    mutate(() =>
+      store.setDocument(d.v3DocVersion, {
+        status:
+          store.get().state.v3.documents[d.v3DocVersion]?.status ||
+          "not-started",
+        version: n.value,
+      }),
+    );
   if (d.v3Admission)
     mutate(() => store.setAdmission(d.v3Admission, intake, n.value));
   if (d.v3Doc)
@@ -810,18 +836,17 @@ function showBackupPreview() {
         "<p>Private planning context proposes these explicit updates:</p><ul>" +
         p.changes.map((x) => "<li>" + view.e(x) + "</li>").join("") +
         "</ul><p>A complete current backup downloads before these updates.</p>";
-    } else if (store.get().migrationPending)
-      throw Error(
-        "Finish the v2 backup/migration first, then choose this backup again.",
-      );
-    else if (store.get().draftProblem)
+    } else if (store.get().draftProblem && !store.get().migrationPending)
       text =
         "<p>Recovery replaces the unreadable V3 workspace with this validated backup. Recovery bytes download first and remain saved separately.</p>";
     else {
       const p = store.previewBackup(b.state);
       text = `<p>${p.newItems} items added, ${p.newTicks} completed ticks; ${p.keptValues} conflicts keep current values.</p>`;
     }
-    report.innerHTML = `<h4>${view.e(b.name)}</h4>${text}<div class="card-actions"><button class="button secondary" type="button" data-v3-commit-backup>Apply previewed import</button><button class="button ghost" type="button" data-v3-cancel-backup>Cancel</button></div>`;
+    if (store.get().migrationPending)
+      text +=
+        "<p>Your v2 backup will download before this import enables V3. The original v2 data stays untouched.</p>";
+    report.innerHTML = `<h4>${view.e(b.name)}</h4>${text}<div class="card-actions"><button class="button secondary" type="button" data-v3-commit-backup>${store.get().migrationPending ? "Back up v2 & import" : "Apply previewed import"}</button><button class="button ghost" type="button" data-v3-cancel-backup>Cancel</button></div>`;
   } catch (error) {
     report.textContent = error.message;
   }

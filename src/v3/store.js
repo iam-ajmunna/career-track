@@ -238,7 +238,14 @@ export function migrateV2(value, now = new Date().toISOString()) {
       next[bucket] ||= {};
       next[bucket].clarendon = structuredClone(legacy[bucket].oxford);
     }
-  for (const [id, stage] of Object.entries(legacy.applications))
+  // Oxford was an earlier identifier for the Clarendon route. Retain the
+  // original record while making its status visible through the canonical ID.
+  if (
+    legacy.applications.oxford !== undefined &&
+    next.applications.clarendon === undefined
+  )
+    next.applications.clarendon = legacy.applications.oxford;
+  for (const [id, stage] of Object.entries(next.applications))
     next.v3.applications[appKey(id)] = {
       opportunityId: id,
       intake: 2027,
@@ -283,7 +290,24 @@ export function mergeBackup(incoming, current) {
     v3: structuredClone(target.v3),
   };
   let added = legacy.newItems,
-    kept = legacy.keptValues;
+    kept = legacy.keptValues,
+    ticks = legacy.newTicks;
+  const beforeSubmission = new Set([
+    "not-started",
+    "preparing",
+    "awaiting-documents",
+    "awaiting-references",
+    "ready",
+  ]);
+  const submittedOrLater = new Set([
+    "submitted",
+    "under-review",
+    "interview",
+    "offer",
+    "awarded",
+    "rejected",
+    "withdrawn",
+  ]);
   for (const bucket of [
     "applications",
     "admissions",
@@ -303,12 +327,37 @@ export function mergeBackup(incoming, current) {
       if (next.v3[bucket][key] === undefined) {
         next.v3[bucket][key] = value;
         added++;
-      } else if (JSON.stringify(next.v3[bucket][key]) !== JSON.stringify(value))
-        kept++;
+      } else if (
+        JSON.stringify(next.v3[bucket][key]) !== JSON.stringify(value)
+      ) {
+        const existing = next.v3[bucket][key];
+        if (bucket === "applications") {
+          for (const [step, done] of Object.entries(value.completedSteps)) {
+            if (done && existing.completedSteps[step] !== true) {
+              existing.completedSteps[step] = true;
+              added++;
+              ticks++;
+            }
+          }
+        }
+        // Receipt-backed submission is additive completion. Later outcomes and
+        // personal decisions still keep their current values on conflicts.
+        if (
+          ["applications", "admissions"].includes(bucket) &&
+          beforeSubmission.has(existing.stage) &&
+          submittedOrLater.has(value.stage)
+        ) {
+          existing.stage = value.stage;
+          if (value.updatedAt) existing.updatedAt = value.updatedAt;
+          added++;
+        }
+        if (JSON.stringify(existing) !== JSON.stringify(value)) kept++;
+      }
     }
   for (const [key, value] of Object.entries(source.v3.profile))
     if (
       (next.v3.profile[key] === null ||
+        (key === "feeStatus" && next.v3.profile[key] === "unknown") ||
         (Array.isArray(next.v3.profile[key]) &&
           !next.v3.profile[key].length)) &&
       value !== null &&
@@ -317,10 +366,12 @@ export function mergeBackup(incoming, current) {
       next.v3.profile[key] = value;
       added++;
     }
+  if (next.v3.migration === null && source.v3.migration !== null)
+    next.v3.migration = structuredClone(source.v3.migration);
   return {
     state: validatePrivateState(next),
     newItems: added,
-    newTicks: legacy.newTicks,
+    newTicks: ticks,
     keptValues: kept,
   };
 }

@@ -25,9 +25,11 @@ function render(event) {
     mounted = true;
   }
   ui.updateWorkspace(event);
-  $("syncLabel").textContent = event.storageFailed
-    ? "Not saved — Retry"
-    : "Saved on this device";
+  $("syncLabel").textContent = event.migrationPending
+    ? "V2 progress loaded — finish migration"
+    : event.storageFailed
+      ? "Not saved — Retry"
+      : "Saved on this device";
   $("syncBar").dataset.status = event.status;
   $("syncRetry").hidden = !event.storageFailed || event.draftProblem;
   $("syncMessage").textContent = [event.cacheProblem, event.error]
