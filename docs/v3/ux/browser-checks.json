@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-10-16T16:14:40.010Z",
+  "checkedAt": "2026-10-16T16:20:10.056Z",
   "checks": [
     {
       "name": "No-login startup and global counts include urgency without a top-five cap",
@@ -63,6 +63,10 @@
     },
     {
       "name": "Complete workspace import finishes migration in one action and preserves Trash",
+      "status": "PASS"
+    },
+    {
+      "name": "An older cached app entry cannot block a fresh upgrade",
       "status": "PASS"
     },
     {

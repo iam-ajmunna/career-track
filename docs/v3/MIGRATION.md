@@ -19,3 +19,5 @@ V3 backup merge fills an unset (`unknown`) fee status, unions completed applicat
 For offline preparation, `node scripts/prepare-v3-workspace.mjs BACKUP.json CONTEXT.json OUTPUT.json` creates a complete validated V3 import from private files. All three paths must be outside the repository; the output must be a new file. It preserves original backup bytes for recovery and records their checksum. This does not write another browser's localStorage; the owner imports the file through Settings.
 
 Static app updates activate after their new assets have cached, without reloading the page or discarding private in-memory drafts. A normal refresh then uses the new release even if other tabs remain open.
+
+The production HTML references content-hashed app and theme entries from V3.0.2 onward. This lets a normal refresh load the new implementation even while an older worker still controls the tab; private state is independent of the static cache.

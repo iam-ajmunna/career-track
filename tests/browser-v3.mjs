@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile, rm } from "node:fs/promises";
 import { createRequire } from "node:module";
 import assert from "node:assert/strict";
 import { prepareWorkspace } from "../scripts/prepare-v3-workspace.mjs";
@@ -677,13 +677,11 @@ try {
         await p.locator("#syncLabel").innerText(),
         /finish migration/,
       );
-      await p
-        .locator("#v3BackupFile")
-        .setInputFiles({
-          name: "complete-v3.json",
-          mimeType: "application/json",
-          buffer: Buffer.from(ready),
-        });
+      await p.locator("#v3BackupFile").setInputFiles({
+        name: "complete-v3.json",
+        mimeType: "application/json",
+        buffer: Buffer.from(ready),
+      });
       const commit = p.locator("[data-v3-commit-backup]");
       await commit.waitFor();
       assert.match(await commit.innerText(), /Back up v2 & import/);
@@ -719,6 +717,60 @@ try {
       await p.waitForSelector("#v3BackupFile", { state: "attached" });
       assert.equal(await p.locator("[data-v3-migrate]").count(), 0);
       await c.close();
+    },
+  );
+  await check(
+    "An older cached app entry cannot block a fresh upgrade",
+    async () => {
+      const c = await browser.newContext(),
+        p = await c.newPage();
+      p.on("pageerror", (e) => errors.push(e.message));
+      const fixture = "dist/legacy-worker-fixture.js",
+        blank = "dist/legacy-page-fixture.html";
+      try {
+        await writeFile(
+          blank,
+          "<!doctype html><html><title>Upgrade fixture</title><body>Before upgrade</body></html>",
+        );
+        await writeFile(
+          fixture,
+          `self.addEventListener('install',e=>e.waitUntil(self.skipWaiting()));self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));self.addEventListener('fetch',e=>{if(new URL(e.request.url).pathname==='/assets/app.js')e.respondWith(caches.match('/assets/app.js',{ignoreSearch:true}).then(cached=>cached||fetch(e.request)));});`,
+        );
+        await p.goto(base + "/legacy-page-fixture.html");
+        await p.evaluate(async () => {
+          const cache = await caches.open("career-track-static-legacy-fixture");
+          await cache.put(
+            "/assets/app.js",
+            new Response('document.body.dataset.staleBuild="true"', {
+              headers: { "Content-Type": "text/javascript" },
+            }),
+          );
+          await navigator.serviceWorker.register("/legacy-worker-fixture.js", {
+            scope: "/",
+          });
+          await navigator.serviceWorker.ready;
+        });
+        await p.waitForFunction(() =>
+          navigator.serviceWorker.controller?.scriptURL.includes(
+            "legacy-worker-fixture.js",
+          ),
+        );
+        await p.goto(base + "/#/settings");
+        await p.waitForSelector("#v3BackupFile", { state: "attached" });
+        assert.equal(
+          await p.evaluate(() => document.body.dataset.staleBuild),
+          undefined,
+        );
+        assert.ok((await p.locator('script[src*="/assets/app-"]').count()) > 0);
+        assert.equal(
+          await p.locator('script[src="/assets/app.js"]').count(),
+          0,
+        );
+      } finally {
+        await c.close();
+        await rm(fixture, { force: true });
+        await rm(blank, { force: true });
+      }
     },
   );
   await check(

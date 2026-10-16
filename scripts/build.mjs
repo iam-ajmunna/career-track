@@ -22,7 +22,7 @@ export async function buildSite({ outdir = "dist" } = {}) {
       sources,
     ),
   );
-  await build({
+  const result = await build({
     entryPoints: { app: "src/bootstrap.js", theme: "src/theme.js" },
     outdir: `${outdir}/assets`,
     bundle: true,
@@ -31,9 +31,24 @@ export async function buildSite({ outdir = "dist" } = {}) {
     platform: "browser",
     target: ["es2022"],
     minify: true,
+    entryNames: "[name]-[hash]",
+    metafile: true,
     sourcemap: false,
     logLevel: "warning",
   });
+  const entryPath = (entry) => {
+    const output = Object.entries(result.metafile.outputs).find(
+      ([, metadata]) => metadata.entryPoint === entry,
+    )?.[0];
+    if (!output) throw Error("Missing browser entry: " + entry);
+    return "/assets/" + output.split("/").at(-1);
+  };
+  const appPath = entryPath("src/bootstrap.js");
+  const themePath = entryPath("src/theme.js");
+  const html = (await readFile(`${outdir}/index.html`, "utf8"))
+    .replace('src="/assets/app.js"', `src="${appPath}"`)
+    .replace('src="/assets/theme.js"', `src="${themePath}"`);
+  await writeFile(`${outdir}/index.html`, html);
   const staticPaths = [
     "/",
     "/index.html",
@@ -54,8 +69,8 @@ if(event.request.mode==='navigate')event.respondWith(fetch(event.request).then(r
 else event.respondWith(caches.match(event.request,{ignoreSearch:true}).then(cached=>cached||fetch(event.request)));
 });`;
   await writeFile(`${outdir}/sw.js`, worker);
-  const bytes = (await readFile(`${outdir}/assets/app.js`)).length;
-  const gzip = gzipSync(await readFile(`${outdir}/assets/app.js`)).length;
+  const bytes = (await readFile(outdir + appPath)).length;
+  const gzip = gzipSync(await readFile(outdir + appPath)).length;
   console.log(
     `Built browser entry: ${bytes} bytes (${gzip} gzip). Device workspace; no authentication configuration required.`,
   );
