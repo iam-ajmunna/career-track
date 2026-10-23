@@ -1,10 +1,10 @@
 # STATUS — Career Track V4
 
-**Last updated:** 23 October 2026 · **Updated by:** Codex · **STATE: release candidate; local verification complete, publishing to main**
+**Last updated:** 23 October 2026 · **Updated by:** Codex · **STATE: merged to main; CI passed; hosting blocked**
 
 ## NEXT ACTION
 
-Publish the reviewed V4 tree on `v4-redesign`, wait for GitHub CI and Vercel checks, merge to `main`, then verify production assets at https://muncareer.vercel.app. The user explicitly authorized this publication.
+Obtain build-log access to the existing Vercel team `aj-81af` or the failed build error for deployment `dpl_4s9zbNmVQsnD8Nopi3q6DPcMk2gS`. Fix that concrete hosting error and redeploy. Do not reimplement or remerge V4: source is already on main.
 
 ## Done
 
@@ -46,3 +46,16 @@ Publish the reviewed V4 tree on `v4-redesign`, wait for GitHub CI and Vercel che
 ## Files and deviations
 
 See RELEASE.md for the exact kit-to-runtime mapping and integration corrections. The V3 store/domain/schema/views/workspace/intelligence CSS remain unchanged. Original uploaded ZIP is unchanged. Source is Git-backed; no private backup or applicant context is included in this release.
+
+
+## Main publication — 23 October 2026
+
+- PR [#8](https://github.com/iam-ajmunna/career-track/pull/8) merged successfully.
+- Source commit: `0107d08f1f42c3a2ab385280e524996343c57245`; main merge: `3395ba4e123c48db1c67ed29e3900093061facff`.
+- All **145 intentional paths** were compared by Git blob SHA with the checked local files: no mismatches.
+- GitHub CI passed on both PR and main (main run `39929743291`), including tests, keys, data, classic/V4 UI binding checks, privacy and production build. GitGuardian reported no secrets.
+- Vercel preview and production deployments failed. The [production build](https://vercel.com/aj-81af/career-track/4s9zbNmVQsnD8Nopi3q6DPcMk2gS) is not ready.
+- The Vercel connector returned **403 forbidden** for deployment details and build logs because it lacks team access. Its advertised team-authorization action is not exposed in this connection. No token/secret was read or requested.
+- Public production returned HTTP 200 with the prior V3 entry `/assets/app-BYZIMYAO.js`; the new UI is **not live yet**. The previous site remains active.
+
+This is an unresolved hosting/access blocker, not a passing production verification. Grant the existing Vercel connection access to that team or provide the build error before continuing hosting work.

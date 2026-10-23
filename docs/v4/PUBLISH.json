@@ -1,0 +1,19 @@
+{
+  "repository": "iam-ajmunna/career-track",
+  "pullRequest": "https://github.com/iam-ajmunna/career-track/pull/8",
+  "sourceCommit": "0107d08f1f42c3a2ab385280e524996343c57245",
+  "mainMerge": "3395ba4e123c48db1c67ed29e3900093061facff",
+  "ciRun": 39929743291,
+  "ci": "success",
+  "intentionalPaths": 145,
+  "fileComparison": "all matched",
+  "unitTests": 144,
+  "classicBrowserScenarios": 20,
+  "v4BrowserScenarios": 20,
+  "productionStatus": "failure",
+  "productionDeployment": "https://vercel.com/aj-81af/career-track/4s9zbNmVQsnD8Nopi3q6DPcMk2gS",
+  "buildLogAccess": "Vercel 403: team aj-81af unavailable to this connection",
+  "productionHttpStatus": 200,
+  "productionUi": "V3 remains active",
+  "productionEntry": "/assets/app-BYZIMYAO.js"
+}
