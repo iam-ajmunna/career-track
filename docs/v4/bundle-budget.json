@@ -1,9 +1,9 @@
 {
   "limitGzip": 153600,
-  "totalGzip": 84778,
+  "totalGzip": 84769,
   "files": [
     {
-      "path": "/assets/app4-LD26QSB4.js",
+      "path": "/assets/app4-GVOOXPJU.js",
       "gzip": 1218
     },
     {
@@ -11,12 +11,12 @@
       "gzip": 10630
     },
     {
-      "path": "/assets/workspace-AGCFS2GC.js",
-      "gzip": 51901
+      "path": "/assets/workspace-TOLWB63R.js",
+      "gzip": 51902
     },
     {
-      "path": "/assets/chunk-3H776VDH.js",
-      "gzip": 20901
+      "path": "/assets/chunk-EFIPRVRW.js",
+      "gzip": 20891
     },
     {
       "path": "/assets/theme-S6KY44PZ.js",
