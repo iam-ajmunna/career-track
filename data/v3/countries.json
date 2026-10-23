@@ -7,7 +7,7 @@
       "immigration-ca",
       "canada-pgwp-eligibility"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "postStudy": "Eligible Masters graduates can apply for a three-year PGWP even for a programme under two years.",
     "conditions": "Programme at least eight months, PGWP-eligible institution/programme, passport validity and all other eligibility rules. University-degree language requirement CLB/NCLC 7; no Masters field restriction.",
     "transition": "A qualifying job and a separate immigration pathway are still needed for longer-term status.",
@@ -137,7 +137,7 @@
     "sourceIds": [
       "immigration-gb"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "postStudy": "Graduate visa applications from 1 January 2027: 18 months for eligible non-doctoral graduates. Doctoral graduates: three years.",
     "conditions": "Apply in the UK before Student permission expires, after the provider reports successful completion. Current rules can change before graduation.",
     "transition": "A Skilled Worker switch requires an eligible sponsor, role and applicable requirements. Scholarship return-home contracts may prevent use of this route.",
@@ -180,11 +180,11 @@
     "sourceIds": [
       "immigration-ie"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "postStudy": "Level 9 or above graduates may receive up to 24 months in two 12-month blocks.",
     "conditions": "Graduate-programme eligibility, timely application and evidence for renewal apply; total student-pathway limits apply.",
     "transition": "Employment permits and longer-term residence have independent requirements.",
-    "studyWork": "Current student work conditions require a separate official check.",
+    "studyWork": "Stamp 2 student conditions generally permit 20 hours/week in term and 40 hours/week in the specified vacation periods; the actual permission controls.",
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
@@ -223,7 +223,7 @@
     "sourceIds": [
       "immigration-fi"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "postStudy": "Eligible graduates/researchers may obtain up to two years to seek work or start a business.",
     "conditions": "Apply within five years of expiry of the study/research permit; qualifying Finnish completion, means of support and application conditions apply.",
     "transition": "A work/business permit or other independent residence basis is needed afterwards.",
@@ -266,7 +266,7 @@
     "sourceIds": [
       "immigration-nz"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "postStudy": "A Masters with at least 30 weeks of eligible study in New Zealand can lead to a three-year Post Study Work Visa.",
     "conditions": "Qualification, study, funds and application-timing requirements apply; verify the selected course and personal history.",
     "transition": "Skilled/employer residence and work routes are separate from the graduate visa.",
@@ -311,7 +311,7 @@
     ],
     "checkedAt": "2026-10-16T14:16:10.163Z",
     "postStudy": "A recent-Norway-graduate job-seeker category exists; current duration and financial requirement were not reliably retrieved.",
-    "conditions": "Official page access was incomplete. Do not plan a budget or application around an unverified duration.",
+    "conditions": "The official job-seeker page was reviewed, but nationality-dependent duration and funds were not resolved. Apply before an eligible study/research permit expires; do not rely on an unverified duration.",
     "transition": "A skilled-worker permit requires its own qualifying offer and conditions.",
     "studyWork": "Current student work conditions require a separate official check.",
     "language": "English-language study does not guarantee local job-market access.",

@@ -73,14 +73,55 @@ export function drawerView(ctx, row, active, guide, error) {
       <div class="hero__meta">
         ${chip(label(row.window.status), row.window.status === "open" ? "success" : "warning")}${row.blockers.map((d) => chip("Missed prerequisite: " + d.title, "danger"))}
       </div>
+      <p class="section__sub">
+        ${row.window.reason || "Current application window needs verification."}
+      </p>
+      ${guide?.overview ? html`<p>${guide.overview}</p>` : ""}
       <div class="form-grid">
         ${select("decision", "My decision", DECISIONS, a.decision)}${select("stage", "Application stage", STAGES, a.stage)}
+        ${select(
+          "tracking",
+          "Research / completion tracking",
+          [
+            ["none", "Not tracked"],
+            ["researching", "Researching"],
+            ["completed", "Completed"],
+          ],
+          ctx.state.tracking?.[o.id] || "none",
+          "research-tracking",
+        )}
       </div>
       <p class="section__sub">
         University admission and scholarship submission are separate. Record
-        each in its own tracker.
+        each in its own tracker. Completed research does not mark an application
+        submitted.
       </p>
       <div class="hero__actions">
+        <button
+          class="btn btn--secondary"
+          type="button"
+          data-open-gpt="${o.id}"
+        >
+          Open GPT ↗
+        </button>
+        <button class="btn btn--ghost" type="button" data-copy-prompt="${o.id}">
+          Copy research prompt
+        </button>
+        <button
+          class="btn btn--ghost"
+          type="button"
+          data-application-package="${o.id}"
+        >
+          Export application package
+        </button>
+        <button
+          class="btn btn--ghost"
+          type="button"
+          data-pin-opportunity="${o.id}"
+          aria-pressed="${Boolean(ctx.state.pins[o.id])}"
+        >
+          ${ctx.state.pins[o.id] ? "Unpin priority" : "Pin priority"}
+        </button>
         ${o.officialUrl ? external(o.officialUrl, "Official application page") : ""}<a
           href="/classic/#/scholarships/${o.id}"
           >Advanced application tools</a
@@ -189,7 +230,8 @@ ${ctx.drafts.get(o.id) ?? ctx.state.notes[o.id] ?? ""}</textarea>
           html`<div class="fact">
             ${external(s.url, s.title || s.id)}
             <p class="section__sub">
-              Checked ${s.checkedAt?.slice(0, 10) || "Not confirmed"}
+              Reviewed ${s.checkedAt?.slice(0, 10) || "Not confirmed"} ·
+              ${s.access || label(s.kind)}
             </p>
           </div>`,
       )}
@@ -220,7 +262,7 @@ ${ctx.drafts.get(o.id) ?? ctx.state.notes[o.id] ?? ""}</textarea>
                 )}${(guide.portals || []).map((p) => external(p.url, p.label))}`
           : ""
       }`;
-  if (!guide && active !== "overview")
+  if (!guide)
     content = html`${content}${
       error
         ? html`<div class="inline-error" role="alert">

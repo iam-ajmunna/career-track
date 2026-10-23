@@ -29,7 +29,7 @@ The kit explicitly anticipates implementation around its modules; it is not a co
 9. Main publication is explicitly authorized by the current user instruction, superseding the kit’s generic owner-merge restriction. `pre-v4` preserves the actual remote baseline as a branch because this connector exposes branch creation but no tag-creation capability.
 10. The classic browser suite now targets `/classic/` and fixes its clock for historical deadline assertions. Its implementation files remain untouched.
 
-## Verification evidence
+## Initial implementation verification evidence
 
 - `npm test`: 144 passing tests, including all 26 supplied tests and seven integration regressions.
 - `check:keys`: all 102 original keys and labels preserved.
@@ -42,3 +42,9 @@ The kit explicitly anticipates implementation around its modules; it is not a co
 - `baseline/results.json`: all 13 classic screens captured in both themes at 1440/390 with an empty fictional workspace. PNG captures remain local; selected V4 demo WebP captures are committed.
 
 The production Vercel deployment is triggered by Git after the PR checks pass. The public HTML, content-hashed application assets, guide endpoint, classic shell, manifest and service worker are checked after merge. Private browser data remains on its original device/origin.
+
+## Functionality and source audit — 23 October 2026
+
+The follow-up audit is recorded in FUNCTIONAL-AUDIT-2026-10-23.md and supersedes the initial verification counts above: 149 unit/integration tests, 25 V4 browser scenarios, 20 Classic scenarios and 47 curated routes / 103 sources. All routes render all six tabs. Individual/bulk research tracking, GPT launch/copy, pinning and application-package export are now available in V4. Draft isolation, guide retry/timeout, async recovery locks and the ticker startup cadence were repaired. Exact published opening times are an additive registry field; the private store/schema version stays unchanged. Current bundle evidence remains below the 150 KiB gzip limit. The earlier Lighthouse figures are the original design baseline and were not rerun as part of this functionality audit.
+
+75 source records were reviewed, with indexed-only evidence and provider limitations labelled. Twelve routes remain in explicit verification rather than receiving assumed opening dates or funding guarantees. The original ZIP, legacy keys and existing application work remain preserved.

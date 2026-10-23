@@ -306,5 +306,98 @@
       "computer-vision",
       "efficient-ai"
     ]
+  },
+  {
+    "id": "qut-research-master",
+    "name": "Research master / MPhil — verify the selected AI/CS project",
+    "universityIds": [
+      "qut"
+    ],
+    "url": "https://www.qut.edu.au/research/study-with-us/scholarships/applying-for-scholarships",
+    "sourceIds": [
+      "qut-scholarship-rounds",
+      "qut-pra"
+    ],
+    "degree": "Research Master",
+    "duration": "Confirm the funded research-master duration in the offer",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "uts-research-master",
+    "name": "Research master / MPhil — verify the selected AI/CS project",
+    "universityIds": [
+      "uts"
+    ],
+    "url": "https://www.uts.edu.au/for-students/admissions-entry/how-to-apply/masters-by-research-phd/application-closing-dates",
+    "sourceIds": [
+      "uts-scholarship-rounds",
+      "uts-research-funding"
+    ],
+    "degree": "Research Master",
+    "duration": "Confirm the funded research-master duration in the offer",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "adelaide-research-master",
+    "name": "Research master / MPhil — verify the selected AI/CS project",
+    "universityIds": [
+      "adelaide"
+    ],
+    "url": "https://adelaide.edu.au/research/research-degrees/research-scholarships/",
+    "sourceIds": [
+      "adelaide-research-funding"
+    ],
+    "degree": "Research Master",
+    "duration": "Confirm the funded research-master duration in the offer",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "tasmania-research-master",
+    "name": "Research master / MPhil — verify the selected AI/CS project",
+    "universityIds": [
+      "tasmania"
+    ],
+    "url": "https://www.utas.edu.au/research/degrees/scholarships-and-fees",
+    "sourceIds": [
+      "tasmania-research-funding",
+      "tasmania-projects"
+    ],
+    "degree": "Research Master",
+    "duration": "Confirm the funded research-master duration in the offer",
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ]
+  },
+  {
+    "id": "cambridge-mlmi",
+    "name": "MPhil Machine Learning and Machine Intelligence",
+    "universityIds": [
+      "cambridge"
+    ],
+    "url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/egegmpmsl/requirements",
+    "sourceIds": [
+      "goal-cambridge-source-0",
+      "goal-cambridge-source-1"
+    ],
+    "degree": "MPhil",
+    "duration": "11 months full-time; taught programme with research",
+    "researchAreas": [
+      "machine-learning",
+      "artificial-intelligence"
+    ]
   }
 ]

@@ -158,17 +158,46 @@ export function settingsView(ctx) {
         Country policy ratings remain provisional.
       </p>
       <details class="section">
-        <summary>Official sources</summary>
+        <summary>Source register</summary>
         <div class="stack">
           ${ctx.registry.sources.map(
             (s) =>
               html`<div class="fact">
                 ${external(s.url, s.title || s.id)}
                 <p class="section__sub">
-                  Checked ${s.checkedAt?.slice(0, 10) || "Not confirmed"}
+                  Reviewed ${s.checkedAt?.slice(0, 10) || "Not confirmed"} ·
+                  ${label(s.kind)}
                 </p>
+                ${s.reviewNote ? html`<p class="section__sub">${s.reviewNote}</p>` : ""}
               </div>`,
           )}
+        </div>
+      </details>
+      <details class="section">
+        <summary>
+          Calls needing verification
+          (${ctx.rows.filter((r) => ["verification-required", "deadline-unknown"].includes(r.window.status)).length})
+        </summary>
+        <div class="stack">
+          ${ctx.rows
+            .filter((r) =>
+              ["verification-required", "deadline-unknown"].includes(
+                r.window.status,
+              ),
+            )
+            .map(
+              (r) =>
+                html`<div class="fact">
+                  <button
+                    type="button"
+                    class="text-button"
+                    data-open-opportunity="${r.opportunity.id}"
+                  >
+                    ${r.opportunity.name}
+                  </button>
+                  <p class="section__sub">${r.window.reason}</p>
+                </div>`,
+            )}
         </div>
       </details>
       <div class="section">

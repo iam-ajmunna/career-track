@@ -169,5 +169,44 @@
     "sourceIds": [
       "mbzuai-2027"
     ]
+  },
+  {
+    "id": "qut",
+    "name": "Queensland University of Technology",
+    "countryCode": "AU",
+    "url": "https://www.qut.edu.au/research/study-with-us/scholarships/applying-for-scholarships",
+    "sourceIds": [
+      "qut-scholarship-rounds",
+      "qut-pra"
+    ]
+  },
+  {
+    "id": "uts",
+    "name": "University of Technology Sydney",
+    "countryCode": "AU",
+    "url": "https://www.uts.edu.au/for-students/admissions-entry/how-to-apply/masters-by-research-phd/application-closing-dates",
+    "sourceIds": [
+      "uts-scholarship-rounds",
+      "uts-research-funding"
+    ]
+  },
+  {
+    "id": "adelaide",
+    "name": "Adelaide University",
+    "countryCode": "AU",
+    "url": "https://adelaide.edu.au/research/research-degrees/research-scholarships/",
+    "sourceIds": [
+      "adelaide-research-funding"
+    ]
+  },
+  {
+    "id": "tasmania",
+    "name": "University of Tasmania",
+    "countryCode": "AU",
+    "url": "https://www.utas.edu.au/research/degrees/scholarships-and-fees",
+    "sourceIds": [
+      "tasmania-research-funding",
+      "tasmania-projects"
+    ]
   }
 ]

@@ -8,9 +8,11 @@ Five screens: Dashboard, Scholarships, Calendar, Documents and Settings. No sign
 
 ![V4 dashboard with fictional demo data](docs/v4/ux/dashboard-desktop.webp)
 
-A quick tour: add a curated match, open its six-tab guide, complete its checklist, prepare shared documents, and export a backup. Country rankings state the exact compromises; unsourced policy ratings remain Provisional. External radar collection and cloud sync are not active.
+A quick tour: add a curated match, track research individually or in bulk, open its six-tab guide or scholarship-specific GPT prompt, prepare shared documents, and export a backup. Country rankings state the exact compromises; unsourced policy ratings remain Provisional. External radar collection and cloud sync are not active.
 
 The implementation follows the supplied V4 kit. See [release details and validation](docs/v4/RELEASE.md), [accessibility](ACCESSIBILITY.md), [security](SECURITY.md) and [licence](LICENSE).
+
+The [23 October functionality and data audit](docs/v4/FUNCTIONAL-AUDIT-2026-10-23.md) records current test coverage, official-source updates and provider information still awaiting confirmation.
 
 ## Development
 

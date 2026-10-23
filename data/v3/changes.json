@@ -34,5 +34,37 @@
       "princeton-mse"
     ],
     "state": "verified-change"
+  },
+  {
+    "id": "erasmus-2027-rounds-reviewed",
+    "opportunityId": "deai",
+    "date": "2026-10-23",
+    "field": "Erasmus Mundus 2027 programme rounds",
+    "before": "Most programmes retained as unverified research leads",
+    "after": "DEAI, IPCVAI, IMLEX and CoDaS now have independently sourced rounds and scholarship tiers. EMAI/MAIA remain future calls without invented dates.",
+    "sourceIds": [
+      "goal-deai-source-0",
+      "goal-ipcvai-source-0",
+      "goal-imlex-source-0",
+      "goal-codas-source-0",
+      "emai-current-call",
+      "goal-maia-source-0"
+    ],
+    "state": "verified-change"
+  },
+  {
+    "id": "australia-shortlist-coverage",
+    "opportunityId": "uts-rtp",
+    "date": "2026-10-23",
+    "field": "Australian research-master coverage",
+    "before": "QUT, UTS, Adelaide and Tasmania absent from V4 registry",
+    "after": "All four restored with international eligibility and closed/watch status; domestic or PhD-only dates are not advertised as offshore MSc calls.",
+    "sourceIds": [
+      "qut-scholarship-rounds",
+      "uts-scholarship-rounds",
+      "adelaide-research-funding",
+      "tasmania-research-funding"
+    ],
+    "state": "verified-change"
   }
 ]

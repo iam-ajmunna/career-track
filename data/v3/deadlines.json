@@ -265,7 +265,7 @@
     "sourceIds": [
       "ubc-admission"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -286,7 +286,7 @@
     "sourceIds": [
       "ubc-admission"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": false,
@@ -309,7 +309,7 @@
     "sourceIds": [
       "ubc-admission"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": false,
@@ -353,7 +353,7 @@
     "sourceIds": [
       "alberta-admission"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -374,7 +374,7 @@
     "sourceIds": [
       "alberta-admission"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": false,
@@ -418,7 +418,7 @@
     "sourceIds": [
       "toronto-msc"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -439,7 +439,7 @@
     "sourceIds": [
       "sydney-scholarship"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": true,
@@ -461,7 +461,7 @@
       "monash-scholarship",
       "monash-rtp-funding"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -482,7 +482,7 @@
     "sourceIds": [
       "unsw-scholarship"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -503,7 +503,7 @@
     "sourceIds": [
       "unsw-scholarship"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -524,7 +524,7 @@
     "sourceIds": [
       "anu-scholarship"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -566,7 +566,7 @@
     "sourceIds": [
       "uq-scholarship"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": true,
@@ -610,7 +610,7 @@
     "sourceIds": [
       "uq-scholarship"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": false,
     "blocksRoute": false,
     "controlsWindow": false,
@@ -633,7 +633,7 @@
     "sourceIds": [
       "australia-awards"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -675,7 +675,7 @@
     "sourceIds": [
       "oxford-acs"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": true,
@@ -696,7 +696,7 @@
     "sourceIds": [
       "oxford-acs"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": true,
@@ -717,7 +717,7 @@
     "sourceIds": [
       "cambridge-acs"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -738,7 +738,7 @@
     "sourceIds": [
       "cambridge-acs"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": false,
     "blocksRoute": false,
     "controlsWindow": false,
@@ -761,7 +761,7 @@
     "sourceIds": [
       "kaust-timing"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -782,7 +782,7 @@
     "sourceIds": [
       "kaust-entry"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": true,
     "controlsWindow": false,
@@ -806,7 +806,7 @@
     "sourceIds": [
       "mbzuai-2027"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "blocksRoute": false,
     "controlsWindow": true,
@@ -848,7 +848,7 @@
     "sourceIds": [
       "legacy-ediss"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "controlsWindow": true,
     "blocksRoute": false,
@@ -869,7 +869,7 @@
     "sourceIds": [
       "legacy-eth-esop"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "controlsWindow": true,
     "blocksRoute": false,
@@ -890,7 +890,7 @@
     "sourceIds": [
       "commonwealth-2027"
     ],
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "required": true,
     "controlsWindow": true,
     "blocksRoute": false,
@@ -898,5 +898,369 @@
       "commonwealth-nomination"
     ],
     "action": "Complete all mandatory prior stages and retain confirmation."
+  },
+  {
+    "id": "ipcvai-application-2027",
+    "opportunityId": "ipcvai",
+    "intake": 2027,
+    "title": "IPCVAI 2027–29 scholarship application",
+    "type": "application",
+    "date": "2027-02-02",
+    "at": "2027-02-02T11:00:00Z",
+    "time": "12:00",
+    "timezone": "Europe/Paris",
+    "precision": "exact",
+    "sourceIds": [
+      "goal-ipcvai-source-0"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "deai-application-2027",
+    "opportunityId": "deai",
+    "intake": 2027,
+    "title": "DEAI full scholarship application",
+    "type": "application",
+    "date": "2027-01-11",
+    "at": "2027-01-11T12:00:00Z",
+    "time": "12:00",
+    "timezone": "UTC",
+    "precision": "exact",
+    "sourceIds": [
+      "goal-deai-source-0"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "deai-references-2027",
+    "opportunityId": "deai",
+    "intake": 2027,
+    "title": "DEAI reference letters",
+    "type": "references",
+    "date": "2027-01-18",
+    "at": null,
+    "time": null,
+    "timezone": null,
+    "precision": "date-only",
+    "sourceIds": [
+      "goal-deai-source-0"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": true,
+    "controlsWindow": false,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "imlex-application-2027",
+    "opportunityId": "imlex",
+    "intake": 2027,
+    "title": "IMLEX admission and EMJM scholarship application",
+    "type": "application",
+    "date": "2027-01-13",
+    "at": null,
+    "time": null,
+    "timezone": "Europe/Helsinki",
+    "precision": "date-only",
+    "sourceIds": [
+      "goal-imlex-source-0"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "codas-application-2027",
+    "opportunityId": "codas",
+    "intake": 2027,
+    "title": "CoDaS application form",
+    "type": "application",
+    "date": "2027-01-05",
+    "at": "2027-01-05T13:00:00Z",
+    "time": "15:00",
+    "timezone": "Europe/Helsinki",
+    "precision": "exact",
+    "sourceIds": [
+      "goal-codas-source-0"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "codas-documents-2027",
+    "opportunityId": "codas",
+    "intake": 2027,
+    "title": "CoDaS supporting documents, references and language results",
+    "type": "documents",
+    "date": "2027-01-12",
+    "at": "2027-01-12T13:00:00Z",
+    "time": "15:00",
+    "timezone": "Europe/Helsinki",
+    "precision": "exact",
+    "sourceIds": [
+      "goal-codas-source-0"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": true,
+    "controlsWindow": false,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "waterloo-mmath-fall-policy-2027",
+    "opportunityId": "waterloo-mmath",
+    "intake": 2027,
+    "title": "Recurring Fall MMath application policy — confirm current portal",
+    "type": "application",
+    "date": "2026-12-01",
+    "at": null,
+    "time": null,
+    "timezone": null,
+    "precision": "tentative",
+    "sourceIds": [
+      "waterloo-admission"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": false,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation.",
+    "derived": true
+  },
+  {
+    "id": "mcgill-msc-fall-policy-2027",
+    "opportunityId": "mcgill-msc",
+    "intake": 2027,
+    "title": "Recurring international Fall MSc deadline — confirm 2027 portal",
+    "type": "application",
+    "date": "2026-12-15",
+    "at": null,
+    "time": null,
+    "timezone": null,
+    "precision": "tentative",
+    "sourceIds": [
+      "mcgill-admission"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": false,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation.",
+    "derived": true
+  },
+  {
+    "id": "alberta-msc-documents-2027",
+    "opportunityId": "alberta-msc",
+    "intake": 2027,
+    "title": "Alberta supporting academic and English documents",
+    "type": "documents",
+    "date": "2027-01-15",
+    "at": null,
+    "time": null,
+    "timezone": null,
+    "precision": "date-only",
+    "sourceIds": [
+      "alberta-admission"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": true,
+    "controlsWindow": false,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "cornell-ms-fall-policy-2027",
+    "opportunityId": "cornell-ms",
+    "intake": 2027,
+    "title": "Recurring Cornell Fall MS policy — confirm current cycle",
+    "type": "application",
+    "date": "2027-01-18",
+    "at": null,
+    "time": null,
+    "timezone": null,
+    "precision": "tentative",
+    "sourceIds": [
+      "cornell-ms"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": false,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation.",
+    "derived": true
+  },
+  {
+    "id": "si-sweden-application-2027",
+    "opportunityId": "si-sweden",
+    "intake": 2027,
+    "title": "SI scholarship application — exact time needs verification",
+    "type": "application",
+    "date": "2027-02-24",
+    "at": null,
+    "time": null,
+    "timezone": "Europe/Stockholm",
+    "precision": "date-only",
+    "sourceIds": [
+      "legacy-si-sweden"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "eiffel-conflicting-cutoff-2027",
+    "opportunityId": "eiffel",
+    "intake": 2027,
+    "title": "Earlier reported Eiffel cutoff — conflicting official dates",
+    "type": "application",
+    "date": "2027-01-06",
+    "at": null,
+    "time": null,
+    "timezone": null,
+    "precision": "tentative",
+    "sourceIds": [
+      "legacy-eiffel",
+      "eiffel-conflicting-notice"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": false,
+    "dependsOn": [],
+    "action": "Confirm the earlier university nomination cutoff and resolve the conflicting 6/8 January national deadline."
+  },
+  {
+    "id": "qut-rtp-international-2027",
+    "opportunityId": "qut-rtp",
+    "intake": 2027,
+    "title": "International scholarship round for 2027 commencement",
+    "type": "application",
+    "date": "2026-07-31",
+    "at": "2026-07-31T13:59:00Z",
+    "time": "23:59",
+    "timezone": "Australia/Brisbane",
+    "precision": "exact",
+    "sourceIds": [
+      "qut-scholarship-rounds",
+      "qut-pra"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "uts-rtp-international-2027",
+    "opportunityId": "uts-rtp",
+    "intake": 2027,
+    "title": "International scholarship round for 2027 commencement",
+    "type": "application",
+    "date": "2026-10-07",
+    "at": null,
+    "time": null,
+    "timezone": "Australia/Sydney",
+    "precision": "date-only",
+    "sourceIds": [
+      "uts-scholarship-rounds",
+      "uts-research-funding"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "tasmania-rtp-international-2027",
+    "opportunityId": "tasmania-rtp",
+    "intake": 2027,
+    "title": "International scholarship round for 2027 commencement",
+    "type": "application",
+    "date": "2026-10-01",
+    "at": null,
+    "time": null,
+    "timezone": "Australia/Sydney",
+    "precision": "date-only",
+    "sourceIds": [
+      "tasmania-research-funding",
+      "tasmania-projects"
+    ],
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the required material and retain the official confirmation."
+  },
+  {
+    "id": "cambridge-mlmi-deadline-2027",
+    "opportunityId": "cambridge",
+    "intake": 2027,
+    "title": "Cambridge MLMI admission and general funding deadline",
+    "type": "admission",
+    "date": "2026-12-08",
+    "at": null,
+    "time": null,
+    "timezone": "Europe/London",
+    "precision": "date-only",
+    "sourceIds": [
+      "goal-cambridge-source-1"
+    ],
+    "checkedAt": "2026-10-23T10:17:20Z",
+    "required": true,
+    "blocksRoute": false,
+    "controlsWindow": true,
+    "dependsOn": [],
+    "action": "Submit the course application and the required funding sections; admission does not guarantee an award."
+  },
+  {
+    "id": "commonwealth-shared-scholarship-2027",
+    "opportunityId": "commonwealth-shared",
+    "intake": 2027,
+    "title": "Commonwealth Shared provider application",
+    "type": "scholarship",
+    "date": "2026-12-08",
+    "at": "2026-12-08T16:00:00Z",
+    "time": "16:00",
+    "timezone": "Europe/London",
+    "precision": "exact",
+    "sourceIds": [
+      "commonwealth-shared-current"
+    ],
+    "checkedAt": "2026-10-23T10:30:37Z",
+    "required": true,
+    "controlsWindow": true,
+    "blocksRoute": false,
+    "dependsOn": [],
+    "action": "Select a currently approved 2027 course and meet its admission requirements as well as the scholarship cutoff."
   }
 ]

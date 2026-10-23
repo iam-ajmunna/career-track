@@ -190,6 +190,10 @@ export function validateRegistry(registry) {
             ) &&
             validInstant(w.checkedAt) &&
             (!w.opens || validDate(w.opens)) &&
+            (!w.opensAt ||
+              (validInstant(w.opensAt) &&
+                Boolean(w.opens) &&
+                validZone(w.timezone))) &&
             (!w.timezone || validZone(w.timezone)),
         ),
       "Invalid application window: " + row.id,

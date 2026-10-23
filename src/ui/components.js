@@ -64,20 +64,24 @@ export const emptyState = (title, hint, action) =>
 
 /** Compact application card for the Dashboard board. */
 export const appCard = ({ id, name, countries, text, urgencyKey, readiness }) =>
-  html` <a
-    class="appcard"
-    href="#/scholarships/country/${countries?.[0] ?? "XX"}?focus=${id}"
-    data-opportunity="${id}"
-  >
-    <span class="appcard__name">${name}</span>
-    <span class="appcard__row"
-      ><span>${flagEmoji(countries?.[0])} ${countries?.[0] ?? ""}</span
-      ><span class="mono" data-urgency="${urgencyKey ?? "normal"}"
-        >${text}</span
-      ></span
+  html` <article class="appcard" data-opportunity="${id}">
+    <a
+      class="stack"
+      href="#/scholarships/country/${countries?.[0] ?? "XX"}?focus=${id}"
     >
-    ${readiness == null ? "" : progress(readiness, `${name} readiness`)}
-  </a>`;
+      <span class="appcard__name">${name}</span>
+      <span class="appcard__row"
+        ><span>${flagEmoji(countries?.[0])} ${countries?.[0] ?? ""}</span
+        ><span class="mono" data-urgency="${urgencyKey ?? "normal"}"
+          >${text}</span
+        ></span
+      >
+      ${readiness == null ? "" : progress(readiness, `${name} readiness`)}
+    </a>
+    <button class="btn btn--ghost btn--sm" type="button" data-open-gpt="${id}">
+      Open GPT ↗
+    </button>
+  </article>`;
 
 /** "Matches for you" card. matchResult = output of rankMatches() item. */
 export const matchCard = ({ candidate: c, score, reasons, flags }) =>

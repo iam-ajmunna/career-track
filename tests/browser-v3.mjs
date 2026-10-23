@@ -501,8 +501,9 @@ try {
   await check(
     "Funding comparison, prompt/package exports and source-report notices work",
     async () => {
-      await go("/#/scholarships");
+      await go("/#/scholarships?q=UBC");
       await page.locator('[data-v3-compare="ubc-msc"]').check();
+      await go("/#/scholarships?q=Sydney");
       await page.locator('[data-v3-compare="sydney-rtp"]').check();
       await page.locator("[data-v3-show-compare]").click();
       assert.match(

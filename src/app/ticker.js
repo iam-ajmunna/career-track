@@ -28,9 +28,10 @@ export function createTicker({
   };
   return {
     subscribe(fn, every = 1000) {
-      subs.set(fn, { every, last: 0 });
+      const t = now();
+      subs.set(fn, { every, last: t });
       start();
-      fn(now());
+      fn(t);
       return () => {
         subs.delete(fn);
         stop();

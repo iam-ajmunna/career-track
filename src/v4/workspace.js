@@ -8,6 +8,7 @@ import {
 import isoCodes from "../data/iso-codes.json" with { type: "json" };
 import demoProfile from "../../data/demo/profile.json" with { type: "json" };
 import { emptyState, STORAGE_KEY } from "../v3/store.js";
+import { researchPrompt, applicationPackage } from "../v3/prompt.js";
 import { opportunityFacts, readiness, applicationFor } from "../v3/domain.js";
 import { mergePrefs } from "../lib/requirements.js";
 import { parseRoute, buildRoute, KEY_TO_VIEW } from "../app/router.js";
@@ -37,6 +38,7 @@ const titles = {
   settings: ["Settings", "Profile, data and preferences"],
 };
 const drafts = new Map(),
+  selection = new Set(),
   formDrafts = new Map(),
   guides = new Map(),
   guideErrors = new Map(),
@@ -118,6 +120,7 @@ function context() {
     mine,
     dashboard: d,
     drafts,
+    selection,
     countryName,
     sourceById,
     radar: registry.radar,
@@ -127,18 +130,22 @@ function context() {
     ),
   };
 }
+function formDraftKey(form, canonical) {
+  return (
+    canonical +
+    "|" +
+    (form.dataset.profileForm !== undefined
+      ? "profile"
+      : form.dataset.testsForm !== undefined
+        ? "tests"
+        : form.dataset.referenceForm || "new-reference")
+  );
+}
 function rememberForms() {
   if (!mounted || !lastRoute) return;
   for (const root of [$("main"), $("drawer")])
     for (const form of root.querySelectorAll("form[data-dirty]")) {
-      const key =
-        lastRoute +
-        "|" +
-        (form.dataset.profileForm !== undefined
-          ? "profile"
-          : form.dataset.testsForm !== undefined
-            ? "tests"
-            : form.dataset.referenceForm || "new-reference");
+      const key = formDraftKey(form, lastRoute);
       formDrafts.set(
         key,
         [...form.elements]
@@ -152,14 +159,7 @@ function rememberForms() {
 }
 function restoreForms() {
   for (const form of $("main").querySelectorAll("form")) {
-    const key =
-      route.canonical +
-      "|" +
-      (form.dataset.profileForm !== undefined
-        ? "profile"
-        : form.dataset.testsForm !== undefined
-          ? "tests"
-          : form.dataset.referenceForm || "new-reference");
+    const key = formDraftKey(form, route.canonical);
     for (const [name, value] of formDrafts.get(key) || []) {
       const el = form.elements.namedItem(name);
       if (el) {
@@ -183,6 +183,42 @@ function focusSnapshot() {
       ? "#" + el.id
       : null;
   return selector ? { selector, selection: el.selectionStart } : null;
+}
+function lockRecoveryEdits(root = document) {
+  if (!event.draftProblem) return;
+  root
+    .querySelectorAll(
+      [
+        "[data-add-to-list]",
+        "[data-dismiss-match]",
+        "[data-document-status]",
+        "[data-doc-version]",
+        "[data-doc-expiry]",
+        "[data-application-step]",
+        "[data-private-note]",
+        "[data-priority-enabled]",
+        "[data-priority-weight]",
+        "[data-priority-sort]",
+        "[data-density]",
+        "[data-pin-opportunity]",
+        "[data-bulk-track]",
+        "[data-lifecycle]",
+        "[data-reset-workspace]",
+        '[data-field="decision"]',
+        '[data-field="stage"]',
+        '[data-field="zone"]',
+        '[data-field="referee"]',
+        '[data-field="referenceStage"]',
+        '[data-field="research-tracking"]',
+        "form:not([data-import-form]) input",
+        "form:not([data-import-form]) select",
+        "form:not([data-import-form]) textarea",
+        'form:not([data-import-form]) button[type="submit"]',
+      ].join(","),
+    )
+    .forEach((control) => {
+      control.disabled = true;
+    });
 }
 function render({ focus = false } = {}) {
   if (!event) return;
@@ -223,12 +259,8 @@ function render({ focus = false } = {}) {
   $("navCountScholarships").textContent = ctx.mine.size;
   $("navCountScholarships").hidden = !ctx.mine.size;
   $("freshnessText").textContent =
-    "Registry checked " +
-    registry.opportunities
-      .map((o) => o.verification.checkedAt.slice(0, 10))
-      .sort()
-      .at(-1);
-  $("nextCheckText").textContent = "Review current calls before applying";
+    "Registry reviewed " + registry.checkedAt.slice(0, 10);
+  $("nextCheckText").textContent = "Per-route verification dates in Sources";
   document.documentElement.dataset.density = ctx.v4.ui.density || "comfortable";
   const view = {
     dashboard,
@@ -283,11 +315,7 @@ function render({ focus = false } = {}) {
       toast("Scholarship not found. Browse countries to choose another.");
     hideDrawer();
   }
-  document
-    .querySelectorAll(
-      '[data-add-to-list],[data-document-status],[data-application-step],[data-field],form button[type="submit"],[data-lifecycle],[data-reset-workspace]',
-    )
-    .forEach((n) => (n.disabled = event.draftProblem));
+  lockRecoveryEdits();
   lastRoute = route.canonical;
   if (focus && !drawerId) $("pageTitle").focus({ preventScroll: true });
   else if (snap) {
@@ -320,13 +348,13 @@ function renderDrawer() {
   $("appShell").inert = true;
   document.body.classList.add("has-drawer");
   hydrate($("drawer"));
+  lockRecoveryEdits($("drawer"));
   if (wasHidden) $("drawer").querySelector("[data-close-drawer]").focus();
   else if (oldFocus)
     $("drawer")
       .querySelector(oldFocus.selector)
       ?.focus({ preventScroll: true });
   if (
-    drawerTab !== "overview" &&
     !guides.has(drawerId) &&
     !fetching.has(drawerId) &&
     !guideErrors.has(drawerId)
@@ -449,9 +477,105 @@ function mutate(fn, message) {
     toast(e.message, null, true);
   }
 }
+async function launchResearch(id, open) {
+  const opportunity = opportunityById.get(id);
+  if (!opportunity) return;
+  const prompt = researchPrompt(opportunity, registry, {
+    state: ctx.state,
+    intake: ctx.intake,
+  });
+  if (open) {
+    const link = document.createElement("a");
+    link.href = "https://chatgpt.com/?q=" + encodeURIComponent(prompt);
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.click();
+  }
+  try {
+    await navigator.clipboard.writeText(prompt);
+    toast("Scholarship research prompt copied");
+  } catch {
+    dialogAction = null;
+    $("actionDialog").innerHTML = html`<h2 id="actionTitle">
+        Research prompt · ${opportunity.name}
+      </h2>
+      <p id="actionDescription">
+        Copy this prompt into ChatGPT. It contains public scholarship facts and
+        checklist status; private notes and profile details are excluded.
+      </p>
+      <label class="field"
+        ><span>Scholarship research prompt</span
+        ><textarea readonly rows="12">${prompt}</textarea></label
+      ><button type="button" class="btn btn--secondary" data-cancel-action>
+        Close
+      </button>`;
+    $("actionDialog").showModal();
+    $("actionDialog").querySelector("textarea").focus();
+  }
+}
 function onClick(e) {
   const t = e.target.closest("button,a");
   if (!t) return;
+  if (t.dataset.openGpt || t.dataset.copyPrompt) {
+    launchResearch(
+      t.dataset.openGpt || t.dataset.copyPrompt,
+      Boolean(t.dataset.openGpt),
+    );
+    return;
+  }
+  if (t.dataset.applicationPackage) {
+    const id = t.dataset.applicationPackage,
+      intake = ctx.intake;
+    t.disabled = true;
+    t.setAttribute("aria-busy", "true");
+    loadGuide(id)
+      .then((guide) => {
+        prepareExport();
+        download(
+          applicationPackage(
+            { ...opportunityById.get(id), guide },
+            registry,
+            store.get().state,
+            intake,
+          ),
+          id + "-" + intake + "-private-application.md",
+          "text/markdown",
+        );
+        toast("Application package exported");
+      })
+      .catch((error) => toast(error.message, null, true))
+      .finally(() => {
+        t.disabled = false;
+        t.removeAttribute("aria-busy");
+      });
+    return;
+  }
+  if (t.dataset.pinOpportunity) {
+    const id = t.dataset.pinOpportunity;
+    mutate(
+      () => store.change("pins", id, !ctx.state.pins[id]),
+      "Priority saved",
+    );
+    return;
+  }
+  if (t.dataset.bulkTrack) {
+    if (!selection.size) return;
+    const count = selection.size;
+    mutate(() => {
+      store.bulkTrack(
+        [...selection],
+        t.dataset.bulkTrack === "none" ? null : t.dataset.bulkTrack,
+      );
+      selection.clear();
+      render();
+    }, count + " scholarships updated");
+    return;
+  }
+  if (t.hasAttribute("data-clear-selection")) {
+    selection.clear();
+    render();
+    return;
+  }
   if (t.dataset.tab) {
     const key = t.dataset.value,
       kind = t.dataset.tab;
@@ -558,6 +682,7 @@ function onClick(e) {
   if (t.hasAttribute("data-retry-guide")) {
     guideErrors.delete(drawerId);
     fetchGuide(drawerId);
+    renderDrawer();
     return;
   }
   if (t.hasAttribute("data-complete-migration")) {
@@ -623,6 +748,23 @@ function onClick(e) {
 }
 function change(e) {
   const t = e.target;
+  if (t.dataset.selectOpportunity) {
+    if (t.checked) selection.add(t.dataset.selectOpportunity);
+    else selection.delete(t.dataset.selectOpportunity);
+    render();
+    return;
+  }
+  if (t.dataset.field === "tracking-filter") {
+    query({ tracking: t.value === "all" ? null : t.value, page: null });
+    return;
+  }
+  if (drawerId && t.dataset.field === "research-tracking") {
+    mutate(
+      () => store.bulkTrack([drawerId], t.value === "none" ? null : t.value),
+      "Research tracking saved",
+    );
+    return;
+  }
   if (t.dataset.applicationStep)
     mutate(
       () =>
@@ -733,7 +875,7 @@ function submit(e) {
   try {
     form.removeAttribute("data-dirty");
     form.removeAttribute("data-note-dirty");
-    formDrafts.clear();
+    formDrafts.delete(formDraftKey(form, route.canonical));
     if (form.hasAttribute("data-profile-form")) {
       const v = validatedProfile(data);
       store.setProfile(v.profile);

@@ -33,7 +33,9 @@ export async function loadGuide(id) {
   if (!guides.has(id))
     guides.set(
       id,
-      fetch("/data/v4/guides/" + encodeURIComponent(id) + ".json")
+      fetch("/data/v4/guides/" + encodeURIComponent(id) + ".json", {
+        signal: AbortSignal.timeout(15000),
+      })
         .then((r) => {
           if (!r.ok)
             throw Error(
@@ -43,6 +45,10 @@ export async function loadGuide(id) {
         })
         .catch((e) => {
           guides.delete(id);
+          if (e.name === "TimeoutError")
+            throw Error(
+              "Guide request timed out. Check your connection and retry.",
+            );
           throw e;
         }),
     );

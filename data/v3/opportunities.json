@@ -33,15 +33,15 @@
         "intake": 2027,
         "status": "open",
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": "Europe/London",
-        "note": "Provider portal open. Mandatory national nomination has a separate earlier process."
+        "note": "The 2027/28 provider round closed on 20 October 2026 at 16:00 BST. Existing submissions remain available; a mandatory nomination is separate."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -205,7 +205,7 @@
         "sourceIds": [
           "commonwealth-2027"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "funding": {
@@ -280,13 +280,13 @@
         "opens": "2026-09-28",
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Fall 2027 MS Round 2. Spring 2027 is PhD only."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -526,7 +526,7 @@
           "kaust-entry",
           "kaust-fellowship"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -606,13 +606,13 @@
         "opens": "2026-09-07",
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "MSc ML/CV general round; Computational Biology and fee-based MAAI have other dates."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -835,7 +835,7 @@
         "sourceIds": [
           "mbzuai-2027"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -908,13 +908,13 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Course application must meet the January funding deadline. Existing admission submissions should not be reset."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -1107,7 +1107,7 @@
           "oxford-acs",
           "weidenfeld"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -1187,13 +1187,13 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Course application must meet the January funding deadline. Existing admission submissions should not be reset."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -1380,7 +1380,7 @@
           "oxford-acs",
           "clarendon"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -1458,13 +1458,13 @@
         "opens": "2026-09-09",
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "For Bangladesh/non-US applicants use the course funding deadline, not the US round."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -1678,7 +1678,7 @@
           "cambridge-acs",
           "gates-how"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -1745,17 +1745,17 @@
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "status": "closed",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The official KHS page states the 2027 cohort application is closed. The 2028 cohort application is expected to open in June 2027."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-03T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -1889,8 +1889,8 @@
         "sourceIds": [
           "legacy-khs"
         ],
-        "checkedAt": "2026-10-03T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
       },
       "eligibility": {
         "sourceIds": [
@@ -1952,17 +1952,17 @@
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "status": "closed",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "Applications for the 2027/28 Chevening award are closed. Admission to a university does not reopen the scholarship round."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -2084,8 +2084,8 @@
         "sourceIds": [
           "legacy-chevening"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
       },
       "eligibility": {
         "sourceIds": [
@@ -2142,7 +2142,9 @@
       "efficient-ai"
     ],
     "sourceIds": [
-      "legacy-ediss"
+      "legacy-ediss",
+      "ediss-admission-requirements",
+      "ediss-funding-terms"
     ],
     "deadlineIds": [
       "ediss-legacy-deadline",
@@ -2153,15 +2155,16 @@
         "intake": 2027,
         "status": "open",
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": "2026-11-16",
         "timezone": "Europe/Helsinki",
-        "note": "Intake 7 Erasmus Mundus/EDISS full scholarship round; later fee-waiver round is separate."
+        "note": "Intake 7 Erasmus Mundus/EDISS full scholarship round; later fee-waiver round is separate.",
+        "opensAt": "2026-11-16T06:00:00Z"
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -2198,7 +2201,7 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Retained from the previous portfolio. Earlier checklist wording is preserved; current rules take precedence over historical planning notes.",
+      "overview": "Intake 7 starts in August 2027. The EMJM/EDISS scholarship round is distinct from later tuition-waiver and self-funded rounds.",
       "portals": [
         {
           "label": "Official instructions and application entry",
@@ -2236,6 +2239,21 @@
           "text": "Prepare 2-minute ±30-second motivation video and apply from 16 Nov",
           "required": false,
           "legacyKey": "sch-ediss-4"
+        },
+        {
+          "id": "ediss-2027-review-0",
+          "text": "Use the EDISS CV template and attach evidence for the experience claimed.",
+          "required": true
+        },
+        {
+          "id": "ediss-2027-review-1",
+          "text": "Prepare English evidence, academic records, two recommendation letters and the motivation video.",
+          "required": true
+        },
+        {
+          "id": "ediss-2027-review-2",
+          "text": "Apply during 16 November 2026 at 08:00 to 12 January 2027 at 15:00 Helsinki time.",
+          "required": true
         }
       ],
       "documents": [
@@ -2265,17 +2283,17 @@
         }
       ],
       "references": {
-        "count": null,
+        "count": 2,
         "types": "Programme-specific requirements unconfirmed.",
-        "method": "Confirm whether referees submit directly.",
+        "method": "Letters accompany the application; a referee may send directly to the programme office by the same application deadline.",
         "email": "Institutional-email rule unconfirmed.",
         "format": "Letterhead/signature requirements unconfirmed.",
-        "deadline": "Confirm the referee deadline independently."
+        "deadline": "12 January 2027, 15:00 Helsinki time"
       },
       "english": {
-        "status": "unconfirmed",
-        "admission": "Check accepted tests, component scores, validity and exemptions with the programme.",
-        "scholarship": "No separate scholarship test rule verified."
+        "status": "verified",
+        "admission": "Published requirements list IELTS Academic 6.5 with no component below 6; TOEFL rules distinguish tests before and after 21 January 2026. MOI exemptions apply only to specified countries/institutions, not universally.",
+        "scholarship": "Scholarship selection does not waive admission requirements."
       },
       "essays": [
         {
@@ -2295,8 +2313,8 @@
         "Historical dates and awards must not be assumed to apply to 2027."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "The detailed funding page still labels its amounts as Intake 6; confirm the Intake 7 award amount.",
+        "The general requirements page retains 2026 degree-completion dates; obtain the correct 2027 conditional-offer deadline from the current call."
       ]
     },
     "claims": {
@@ -2304,7 +2322,7 @@
         "sourceIds": [
           "legacy-ediss"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "funding": {
@@ -2361,31 +2379,42 @@
     "sourceIds": [
       "commonwealth-shared-current"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "commonwealth-shared-scholarship-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "opens": null,
-        "timezone": null,
-        "note": "Official page describes closed 2026/27 applications. The 2027/28 timetable and eligible courses are unconfirmed."
+        "status": "open",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:30:37Z",
+        "opens": "2026-11-10",
+        "timezone": "Europe/London",
+        "note": "The 2027/28 Shared round opens 10 November 2026 and closes 8 December 2026 at 16:00 GMT. The provider says the 2027 approved courses will be published before opening; current linked course lists still refer to 2026."
       }
     ],
     "verification": {
-      "state": "historical",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:30:37Z",
       "reviewDays": 7
     },
     "funding": {
-      "classification": "unknown",
-      "summary": "Funding terms require official confirmation.",
-      "currency": null,
-      "components": [],
+      "classification": "full-cost-verified",
+      "summary": "Approved full tuition, return airfare and a living stipend are covered for successful scholars on approved courses.",
+      "currency": "GBP",
+      "components": [
+        {
+          "label": "Award package",
+          "detail": "Tuition, approved travel and living support. Current stipend: GBP 1,712/month, or GBP 2,000/month in London; rates may change.",
+          "conditional": false,
+          "sourceIds": [
+            "commonwealth-shared-current"
+          ]
+        }
+      ],
       "renewal": "Read the offer and satisfactory-progress conditions.",
       "uncovered": [
-        "Travel, visa, insurance, fees and living costs unless explicitly covered."
+        "Dependants and expenses beyond approved allowances."
       ]
     },
     "eligibility": [
@@ -2403,15 +2432,30 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Separate from Commonwealth Masters national nomination. Participating universities select candidates for approved courses.",
+      "overview": "A separate Commonwealth Shared route through participating UK universities and approved courses. It is distinct from the agency-nominated Commonwealth Masters scholarship that closed in October.",
       "portals": [
         {
           "label": "Official instructions and application entry",
-          "url": "https://cscuk.fcdo.gov.uk/commonwealth-shared-scholarship-university-bids/",
+          "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-shared-scholarships-applications/",
           "role": "admission / funding — see instructions"
         }
       ],
       "steps": [
+        {
+          "id": "commonwealth-shared-review-0",
+          "text": "Verify the 2027 approved course and its university admission deadline.",
+          "required": true
+        },
+        {
+          "id": "commonwealth-shared-review-1",
+          "text": "Prepare the university and CSC application evidence and references.",
+          "required": true
+        },
+        {
+          "id": "commonwealth-shared-review-2",
+          "text": "Submit to CSC by 8 December 2026, 16:00 GMT, as well as any earlier university cutoff.",
+          "required": true
+        },
         {
           "id": "commonwealth-shared-legacy-0",
           "text": "Watch the November 2026 eligible-course publication",
@@ -2472,9 +2516,9 @@
         "deadline": "Confirm the referee deadline independently."
       },
       "english": {
-        "status": "unconfirmed",
-        "admission": "Check accepted tests, component scores, validity and exemptions with the programme.",
-        "scholarship": "No separate scholarship test rule verified."
+        "status": "verified",
+        "admission": "The participating university sets its English-evidence requirement; an MOI is not an automatic exemption.",
+        "scholarship": "CSC itself does not require an IELTS test."
       },
       "essays": [
         {
@@ -2491,12 +2535,11 @@
       "nomination": "University-linked Shared selection; do not reuse the Bangladesh UGC Masters nomination assumption.",
       "risks": [
         "An admission offer is not proof of a funded place.",
-        "Historical dates and awards must not be assumed to apply to 2027."
+        "Historical dates and awards must not be assumed to apply to 2027.",
+        "The scholarship provider cutoff does not replace an earlier university admission or nomination deadline."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting.",
-        "2027/28 approved course list, funding terms, return-home rules and exact application dates."
+        "The current provider notice still links the 2026 participating courses; confirm the 2027 eligible AI/CS course list and its admission/nomination conditions before applying."
       ]
     },
     "claims": {
@@ -2504,8 +2547,8 @@
         "sourceIds": [
           "commonwealth-shared-current"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "certainty": "historical"
+        "checkedAt": "2026-10-23T10:30:37Z",
+        "certainty": "verified"
       },
       "eligibility": {
         "sourceIds": [
@@ -2518,8 +2561,8 @@
         "sourceIds": [
           "commonwealth-shared-current"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "certainty": "unconfirmed"
+        "checkedAt": "2026-10-23T10:30:37Z",
+        "certainty": "verified"
       },
       "obligations": {
         "sourceIds": [
@@ -2565,17 +2608,17 @@
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "status": "closed",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The Embassy of Japan in Bangladesh states that 2027 Research Students applications are closed. University recommendation is a separate route."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -2703,8 +2746,8 @@
         "sourceIds": [
           "legacy-mext"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
       },
       "eligibility": {
         "sourceIds": [
@@ -2769,7 +2812,7 @@
         "checkedAt": "2026-10-16T14:16:10.163Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The official Tempus website is under maintenance. A 2027/28 call and Bangladesh nomination deadline could not be verified; no dates were copied from the previous cycle."
       }
     ],
     "verification": {
@@ -2967,15 +3010,15 @@
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The provider publishes a recurring 10 January–20 February annual graduate application period. A specific 2027 call and accepted programmes have not yet been verified."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -3103,8 +3146,8 @@
         "sourceIds": [
           "legacy-turkiye"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -3166,15 +3209,15 @@
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The current notice board lists 2027 undergraduate and Korea–Japan schemes. A general 2027 GKS graduate call applicable to Bangladesh has not been verified."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -3302,8 +3345,8 @@
         "sourceIds": [
           "legacy-gks"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -3367,15 +3410,15 @@
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The DAAD search page alone does not establish the country-specific 2027 award, application deadline or eligible degree. Verify the individual award entry for Bangladesh."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -3509,8 +3552,8 @@
         "sourceIds": [
           "legacy-daad-master"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -3575,15 +3618,15 @@
         "intake": 2027,
         "status": "open",
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": "2026-11-01",
         "timezone": "Europe/Zurich",
-        "note": "Official ESOP page has conflicting clock times; date confirmed, exact closing time requires clarification."
+        "note": "ESOP applications run 1–30 November 2026 for autumn 2027. The published clock notation is ambiguous; submit early and confirm the exact closing time."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -3593,7 +3636,7 @@
       "components": [
         {
           "label": "Full study / living support",
-          "detail": "Scholarship and tuition waiver for three or four semesters; verify the current amount in the offer.",
+          "detail": "CHF 13,500 per semester from autumn 2027 plus tuition waiver for the regular three- or four-semester programme.",
           "conditional": false,
           "sourceIds": [
             "legacy-eth-esop"
@@ -3737,7 +3780,7 @@
         "sourceIds": [
           "legacy-eth-esop"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "funding": {
@@ -3800,15 +3843,15 @@
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "MEXT university recommendation exists, but a relevant CS/AI department and its 2027 nomination timetable still need confirmation. The Embassy route closing does not close every university route."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -3942,8 +3985,8 @@
         "sourceIds": [
           "legacy-mext-university"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -4005,15 +4048,15 @@
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The HEA page still describes the closed 2026 call. No 2027 GOI-IES timetable is verified; do not reuse the 2026 deadline."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -4147,8 +4190,8 @@
         "sourceIds": [
           "legacy-goi-ies"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -4202,23 +4245,26 @@
       "efficient-ai"
     ],
     "sourceIds": [
-      "legacy-eiffel"
+      "legacy-eiffel",
+      "eiffel-conflicting-notice"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "eiffel-conflicting-cutoff-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "status": "open",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The 2027 campaign is open, but official indexed pages disagree on 6 versus 8 January. Apply through a French institution and confirm its earlier nomination deadline."
       }
     ],
     "verification": {
       "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -4340,11 +4386,13 @@
       "nomination": "No current-cycle nomination rule verified.",
       "risks": [
         "An admission offer is not proof of a funded place.",
-        "Historical dates and awards must not be assumed to apply to 2027."
+        "Historical dates and awards must not be assumed to apply to 2027.",
+        "Official indexed pages disagree on the 2027 national closing date; there is no verified exact countdown.",
+        "A university submits the nomination; the national date is not the applicant’s institutional deadline."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "Resolve the 6 January versus 8 January official date conflict with the nominating institution.",
+        "Confirm tuition coverage and the full award package before treating this as full funding."
       ]
     },
     "claims": {
@@ -4352,8 +4400,8 @@
         "sourceIds": [
           "legacy-eiffel"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
       },
       "eligibility": {
         "sourceIds": [
@@ -4409,21 +4457,23 @@
     "sourceIds": [
       "legacy-si-sweden"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "si-sweden-application-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "opens": null,
-        "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "status": "open",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "opens": "2027-02-08",
+        "timezone": "Europe/Stockholm",
+        "note": "Official SI information lists scholarship applications 8–24 February 2027. A separate timely Swedish university application is required; confirm current eligible countries/programmes."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -4557,8 +4607,8 @@
         "sourceIds": [
           "legacy-si-sweden"
         ],
-        "checkedAt": "2026-09-28T00:00:00Z",
-        "certainty": "review-due"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
       },
       "eligibility": {
         "sourceIds": [
@@ -4620,15 +4670,15 @@
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:17:20Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "This is a programme directory rather than one scholarship call. Apply to each consortium separately; current programme-specific rounds are listed as EDISS, IPCVAI, DEAI, IMLEX, CoDaS, MAIA and EMAI."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-09-28T00:00:00Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:17:20Z",
       "reviewDays": 7
     },
     "funding": {
@@ -4659,9 +4709,9 @@
       "overview": "Retained from the previous portfolio. Earlier checklist wording is preserved; current rules take precedence over historical planning notes.",
       "portals": [
         {
-          "label": "Official instructions and application entry",
-          "url": "https://education.ec.europa.eu/study-in-europe/whats-new/news/one-programme-multiple-countries-find-joint-study-programmes-in-europe",
-          "role": "admission / funding — see instructions"
+          "label": "European Commission programme information and catalogue",
+          "url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
+          "role": "Programme discovery; no shared application deadline"
         }
       ],
       "steps": [
@@ -4836,13 +4886,13 @@
         "opens": "2026-09-15",
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Current official application round."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -4880,8 +4930,8 @@
       ],
       "renewal": "Offer-specific satisfactory progress, enrolment and any teaching/research duties apply.",
       "uncovered": [
-        "Insurance and living costs unconfirmed.",
-        "Fee estimates use prior-year fees; a stale programme profile lists a different base rate."
+        "The published funding table is for 2026–27, not a guaranteed 2027–28 rate.",
+        "Confirm mandatory fees and insurance in the offer; MSc tuition awards change after year one."
       ]
     },
     "eligibility": [
@@ -5032,7 +5082,7 @@
           "ubc-admission",
           "ubc-funding"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -5048,7 +5098,7 @@
           "ubc-admission",
           "ubc-funding"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "obligations": {
@@ -5099,22 +5149,23 @@
       "waterloo-funding"
     ],
     "deadlineIds": [
-      "waterloo-mmath-application"
+      "waterloo-mmath-application",
+      "waterloo-mmath-fall-policy-2027"
     ],
     "windows": [
       {
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The official MMath policy lists 1 December for the following September. The precise 2027 portal opening and supporting-document cutoff are not independently confirmed."
       }
     ],
     "verification": {
-      "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -5179,7 +5230,7 @@
         },
         {
           "id": "waterloo-mmath-step-3",
-          "text": "Confirm the current September 2027 application deadline and portal before submitting.",
+          "text": "The published recurring Fall deadline is 1 December; verify the current 2027 portal and document cutoff.",
           "required": true
         },
         {
@@ -5276,11 +5327,10 @@
     "claims": {
       "window": {
         "sourceIds": [
-          "waterloo-admission",
-          "waterloo-funding"
+          "waterloo-admission"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "certainty": "verified"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -5347,22 +5397,23 @@
     ],
     "deadlineIds": [
       "alberta-msc-application",
-      "alberta-msc-documents"
+      "alberta-msc-documents",
+      "alberta-msc-documents-2027"
     ],
     "windows": [
       {
         "intake": 2027,
         "status": "open",
         "opens": "2026-10-15",
-        "timezone": null,
+        "timezone": "America/Edmonton",
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "note": "Current official application round."
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "Fall 2027 thesis MSc applications: 15 October–15 December 2026. Supporting documents, including English evidence, are due 15 January 2027."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -5515,7 +5566,8 @@
       "risks": [
         "An admission offer is not proof of a funded place.",
         "Historical dates and awards must not be assumed to apply to 2027.",
-        "Official FAQ and admissions page differ on supporting-reference timing. Use 15 December for referees until clarified."
+        "Official FAQ and admissions page differ on supporting-reference timing. Use 15 December for referees until clarified.",
+        "The funding page conditions support on satisfactory progress and duties; MSc students must secure a supervisor by April for Spring/Summer funding."
       ],
       "unconfirmed": [
         "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
@@ -5528,7 +5580,7 @@
           "alberta-admission",
           "alberta-funding"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -5544,7 +5596,7 @@
           "alberta-admission",
           "alberta-funding"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "obligations": {
@@ -5595,22 +5647,23 @@
       "mcgill-funding"
     ],
     "deadlineIds": [
-      "mcgill-msc-application"
+      "mcgill-msc-application",
+      "mcgill-msc-fall-policy-2027"
     ],
     "windows": [
       {
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The department lists a recurring 15 December international Fall MSc thesis deadline. A cycle-labelled 2027 portal opening has not been independently confirmed."
       }
     ],
     "verification": {
-      "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -5772,11 +5825,10 @@
     "claims": {
       "window": {
         "sourceIds": [
-          "mcgill-admission",
-          "mcgill-funding"
+          "mcgill-admission"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "certainty": "verified"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -5788,10 +5840,9 @@
       },
       "funding": {
         "sourceIds": [
-          "mcgill-admission",
           "mcgill-funding"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "obligations": {
@@ -5850,13 +5901,13 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "note": "Current official application round."
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "Fall 2027 admission is open with a 1 December 2026 deadline, but international applicants are not considered for this MSc. MScAC and direct-entry PhD are different routes."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -5995,7 +6046,7 @@
         "sourceIds": [
           "toronto-msc"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -6009,7 +6060,7 @@
         "sourceIds": [
           "toronto-msc"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "obligations": {
@@ -6067,13 +6118,13 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Only Research Periods 3/4 2027 remain; Periods 1/2 round closed 11 September."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -6261,7 +6312,7 @@
         "sourceIds": [
           "sydney-scholarship"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -6330,13 +6381,13 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Automatic scholarship consideration with a new graduate research application; course-specific admission cutoff unconfirmed."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -6519,7 +6570,7 @@
         "sourceIds": [
           "melbourne-scholarship"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -6591,13 +6642,13 @@
         "opens": "2026-09-01",
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "International Round 1 2027 closes early: 28 February, replacing 31 March. July–December 2027 commencement."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -6783,7 +6834,7 @@
           "monash-scholarship",
           "monash-rtp-funding"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -6860,7 +6911,7 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "International central round for Terms 2/3 2027 closed 14 August 2026. Domestic/onshore January round is not the offshore international round."
       },
       {
@@ -6869,13 +6920,13 @@
         "verification": "verified",
         "opens": null,
         "timezone": null,
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Next international Term 1 2028 deadline 16 April 2027; opening date unconfirmed."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 14
     },
     "funding": {
@@ -7013,7 +7064,7 @@
         "sourceIds": [
           "unsw-scholarship"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -7085,13 +7136,13 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "International Round 1 for early 2027 closed 31 August 2026. October domestic cutoff does not apply."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 14
     },
     "funding": {
@@ -7101,7 +7152,7 @@
       "components": [
         {
           "label": "MPhil scholarship",
-          "detail": "Competitive, two-year research Masters funding subject to terms.",
+          "detail": "AUD 40,475 per annum for 2027; compatible international tuition support must be confirmed separately.",
           "conditional": false,
           "sourceIds": [
             "anu-scholarship"
@@ -7110,7 +7161,8 @@
       ],
       "renewal": "Offer-specific satisfactory progress, enrolment and any teaching/research duties apply.",
       "uncovered": [
-        "Current 2027 stipend amount and tuition pairing unconfirmed."
+        "International tuition-fee scholarship pairing is separate.",
+        "The main international round for early 2027 closed 31 August 2026; verify any later round and commencement date."
       ]
     },
     "eligibility": [
@@ -7229,7 +7281,7 @@
         "sourceIds": [
           "anu-scholarship"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -7302,13 +7354,13 @@
         "opens": "2026-08-20",
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Offshore international round: Research Quarter 4 2027 or early 2028. Supervisor EOI and invitation precede final application."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 3
     },
     "funding": {
@@ -7491,7 +7543,7 @@
         "sourceIds": [
           "uq-scholarship"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -7560,13 +7612,13 @@
         "opens": "2026-02-01",
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "2027 intake closed. Next intake is a separate call, not an extension."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 14
     },
     "funding": {
@@ -7702,9 +7754,10 @@
     "claims": {
       "window": {
         "sourceIds": [
-          "australia-awards"
+          "australia-awards",
+          "australia-awards-terms"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -7769,22 +7822,23 @@
       "cornell-ms"
     ],
     "deadlineIds": [
-      "cornell-ms-application"
+      "cornell-ms-application",
+      "cornell-ms-fall-policy-2027"
     ],
     "windows": [
       {
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "2027 application window has not been confirmed."
+        "note": "The department publishes a recurring 18 January Fall MS deadline. A cycle-labelled 2027 opening and complete funding offer remain unconfirmed."
       }
     ],
     "verification": {
-      "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -7947,8 +8001,8 @@
         "sourceIds": [
           "cornell-ms"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "certainty": "verified"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -8016,13 +8070,13 @@
         "opens": null,
         "timezone": null,
         "verification": "verified",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "note": "Officially not accepting MSE applications for Fall 2027. The PhD deadline is not an MSE deadline."
       }
     ],
     "verification": {
       "state": "verified",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 14
     },
     "funding": {
@@ -8125,7 +8179,7 @@
         "sourceIds": [
           "princeton-mse"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "certainty": "verified"
       },
       "eligibility": {
@@ -8190,15 +8244,15 @@
         "intake": 2027,
         "status": "verification-required",
         "verification": "unconfirmed",
-        "checkedAt": "2026-10-16T14:16:10.163Z",
+        "checkedAt": "2026-10-23T10:11:23Z",
         "opens": null,
         "timezone": null,
-        "note": "Official page still describes 2026/27. A 2027/28 call has not been verified."
+        "note": "The current page still describes the partial 2026/27 award and 7 May 2026 deadline. The 2027/28 call is not confirmed."
       }
     ],
     "verification": {
-      "state": "historical",
-      "checkedAt": "2026-10-16T14:16:10.163Z",
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 30
     },
     "funding": {
@@ -8336,8 +8390,8 @@
         "sourceIds": [
           "ucl-global"
         ],
-        "checkedAt": "2026-10-16T14:16:10.163Z",
-        "certainty": "historical"
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
       },
       "eligibility": {
         "sourceIds": [
@@ -8371,7 +8425,7 @@
   },
   {
     "id": "ipcvai",
-    "name": "IPCVAI — retained research lead",
+    "name": "Erasmus Mundus — IPCVAI",
     "provider": "Pázmány Péter Catholic University · Universidad Autónoma de Madrid · Université de Bordeaux",
     "category": "joint-programme",
     "countryCodes": [
@@ -8388,40 +8442,51 @@
       "research-master"
     ],
     "researchAreas": [
-      "machine-learning",
       "computer-vision",
-      "efficient-ai"
+      "image-processing",
+      "machine-learning"
     ],
     "sourceIds": [
       "goal-ipcvai-source-0",
       "goal-ipcvai-source-1",
       "goal-ipcvai-source-2"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "ipcvai-application-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "opens": null,
-        "timezone": null,
-        "checkedAt": "2026-10-15T00:00:00Z",
-        "note": "Preserved planning route. Current call and funding require official re-verification."
+        "status": "open",
+        "verification": "verified",
+        "opens": "2026-11-01",
+        "timezone": "Europe/Paris",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "2027–29 scholarship applications open 1 November 2026 and close 2 February 2027 at noon Paris time."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-15T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
-      "classification": "unknown",
-      "summary": "Funding terms require official confirmation.",
-      "currency": null,
-      "components": [],
-      "renewal": "Read the offer and satisfactory-progress conditions.",
+      "classification": "full-cost-verified",
+      "summary": "Competitive Erasmus Mundus scholarship: participation-cost cover and EUR 1,400 per month for up to 24 months.",
+      "currency": "EUR",
+      "components": [
+        {
+          "label": "Scholarship",
+          "detail": "Participation costs and a monthly subsistence allowance for the two-year programme; award selection is competitive.",
+          "conditional": true,
+          "sourceIds": [
+            "goal-ipcvai-source-2"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
       "uncovered": [
-        "Travel, visa, insurance, fees and living costs unless explicitly covered."
+        "Personal expenses beyond the awarded allowance; confirm insurance and payment terms in the offer."
       ]
     },
     "eligibility": [
@@ -8439,7 +8504,7 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Preserved from the existing Personalized Goal board. Original programme checklists remain available there; current-cycle claims need review.",
+      "overview": "A two-year joint master in image processing, computer vision and artificial intelligence across Hungary, Spain and France.",
       "portals": [
         {
           "label": "Official 2027 eligibility and deadline",
@@ -8457,7 +8522,23 @@
           "role": "Retained official research entry"
         }
       ],
-      "steps": [],
+      "steps": [
+        {
+          "id": "ipcvai-2027-review-0",
+          "text": "Check current academic prerequisites and accepted English evidence.",
+          "required": true
+        },
+        {
+          "id": "ipcvai-2027-review-1",
+          "text": "Prepare the documents requested in eMundus and select scholarship consideration.",
+          "required": true
+        },
+        {
+          "id": "ipcvai-2027-review-2",
+          "text": "Submit before noon Paris time on 2 February 2027.",
+          "required": true
+        }
+      ],
       "documents": [
         {
           "name": "Academic records — exact current requirements unconfirmed",
@@ -8515,19 +8596,39 @@
         "Historical dates and awards must not be assumed to apply to 2027."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "The full admissions page timed out during review; verify attachment limits, reference method and English evidence in the official portal."
       ]
     },
-    "claims": {}
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "goal-ipcvai-source-0",
+          "goal-ipcvai-source-1",
+          "goal-ipcvai-source-2"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      },
+      "funding": {
+        "sourceIds": [
+          "goal-ipcvai-source-2"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
   },
   {
     "id": "deai",
-    "name": "DEAI — retained research lead",
+    "name": "Erasmus Mundus — DEAI",
     "provider": "Université libre de Bruxelles and partner consortium universities (verify final mobility assignment)",
     "category": "joint-programme",
     "countryCodes": [
-      "EU"
+      "BE",
+      "ES",
+      "AT",
+      "FR",
+      "IT"
     ],
     "universityIds": [],
     "programmeIds": [],
@@ -8538,39 +8639,60 @@
       "research-master"
     ],
     "researchAreas": [
+      "data-engineering",
       "machine-learning",
-      "computer-vision",
-      "efficient-ai"
+      "artificial-intelligence"
     ],
     "sourceIds": [
       "goal-deai-source-0",
-      "goal-deai-source-1"
+      "deai-funding-2027",
+      "deai-service-notice"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "deai-application-2027",
+      "deai-references-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "opens": null,
-        "timezone": null,
-        "checkedAt": "2026-10-15T00:00:00Z",
-        "note": "Preserved planning route. Current call and funding require official re-verification."
+        "status": "open",
+        "verification": "verified",
+        "opens": "2026-10-20",
+        "timezone": "UTC",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "Scholarship round opened 20 October 2026. The provider reports temporary application-portal maintenance; check the programme notice before submitting."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-15T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
-      "classification": "unknown",
-      "summary": "Funding terms require official confirmation.",
-      "currency": null,
-      "components": [],
-      "renewal": "Read the offer and satisfactory-progress conditions.",
+      "classification": "full-cost-verified",
+      "summary": "Full DEAI awards cover participation costs, insurance and EUR 1,400/month for up to 24 months. Partial awards cover tuition without a stipend.",
+      "currency": "EUR",
+      "components": [
+        {
+          "label": "Full scholarship",
+          "detail": "Full participation costs and insurance plus EUR 1,400 monthly living support for up to 24 months.",
+          "conditional": true,
+          "sourceIds": [
+            "deai-funding-2027"
+          ]
+        },
+        {
+          "label": "Partial scholarship",
+          "detail": "Tuition/participation costs only; no monthly living allowance.",
+          "conditional": true,
+          "sourceIds": [
+            "deai-funding-2027"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
       "uncovered": [
-        "Travel, visa, insurance, fees and living costs unless explicitly covered."
+        "Personal expenses beyond the awarded allowance; confirm insurance and payment terms in the offer."
       ]
     },
     "eligibility": [
@@ -8588,7 +8710,7 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Preserved from the existing Personalized Goal board. Original programme checklists remain available there; current-cycle claims need review.",
+      "overview": "A joint data-engineering and AI master across Belgium, Spain, Austria, France and Italy. Apply in the full scholarship round, which differs from the later self-funded and partial-funding round.",
       "portals": [
         {
           "label": "Official admissions (currently previous cycle)",
@@ -8601,7 +8723,28 @@
           "role": "Retained official research entry"
         }
       ],
-      "steps": [],
+      "steps": [
+        {
+          "id": "deai-2027-review-0",
+          "text": "Check portal maintenance status and the current admission rules.",
+          "required": true
+        },
+        {
+          "id": "deai-2027-review-1",
+          "text": "Prepare academic records, CV, English evidence and the requested application material.",
+          "required": true
+        },
+        {
+          "id": "deai-2027-review-2",
+          "text": "Submit the scholarship application by 11 January 2027 at 12:00 GMT.",
+          "required": true
+        },
+        {
+          "id": "deai-2027-review-3",
+          "text": "Ensure reference letters arrive by 18 January 2027.",
+          "required": true
+        }
+      ],
       "documents": [
         {
           "name": "Academic records — exact current requirements unconfirmed",
@@ -8634,12 +8777,12 @@
         "method": "Confirm whether referees submit directly.",
         "email": "Institutional-email rule unconfirmed.",
         "format": "Letterhead/signature requirements unconfirmed.",
-        "deadline": "Confirm the referee deadline independently."
+        "deadline": "18 January 2027"
       },
       "english": {
-        "status": "unconfirmed",
-        "admission": "Check accepted tests, component scores, validity and exemptions with the programme.",
-        "scholarship": "No separate scholarship test rule verified."
+        "status": "verified",
+        "admission": "The programme publishes CEFR B2 equivalence, including IELTS Academic 5.5 or TOEFL iBT 72. Confirm accepted exemptions and current portal evidence.",
+        "scholarship": "Scholarship selection does not waive admission requirements."
       },
       "essays": [
         {
@@ -8656,22 +8799,42 @@
       "nomination": "No current-cycle nomination rule verified.",
       "risks": [
         "An admission offer is not proof of a funded place.",
-        "Historical dates and awards must not be assumed to apply to 2027."
+        "Historical dates and awards must not be assumed to apply to 2027.",
+        "The provider announced that the eMundus application portal was temporarily offline on 21 October 2026.",
+        "A self-funded or tuition-only offer is different from a full scholarship."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "Check that the provider has restored its application portal; confirm file limits and reference submission method in the current form."
       ]
     },
-    "claims": {}
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "goal-deai-source-0",
+          "goal-deai-source-1"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      },
+      "funding": {
+        "sourceIds": [
+          "deai-funding-2027"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
   },
   {
     "id": "imlex",
-    "name": "IMLEX — retained research lead",
+    "name": "Erasmus Mundus — IMLEX",
     "provider": "University of Eastern Finland and IMLEX consortium partners",
     "category": "joint-programme",
     "countryCodes": [
-      "FI"
+      "FI",
+      "JP",
+      "FR",
+      "BE"
     ],
     "universityIds": [],
     "programmeIds": [],
@@ -8682,40 +8845,51 @@
       "research-master"
     ],
     "researchAreas": [
-      "machine-learning",
       "computer-vision",
-      "efficient-ai"
+      "extended-reality",
+      "computational-imaging"
     ],
     "sourceIds": [
       "goal-imlex-source-0",
-      "goal-imlex-source-1",
-      "goal-imlex-source-2"
+      "imlex-funding-2027",
+      "imlex-consortium"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "imlex-application-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "opens": null,
-        "timezone": null,
-        "checkedAt": "2026-10-15T00:00:00Z",
-        "note": "Preserved planning route. Current call and funding require official re-verification."
+        "status": "open",
+        "verification": "verified",
+        "opens": "2026-12-02",
+        "timezone": "Europe/Helsinki",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "The 2027 round runs from 2 December 2026 to 13 January 2027; full EMJM awards are available. No exact closing time was confirmed."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-15T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
-      "classification": "unknown",
-      "summary": "Funding terms require official confirmation.",
-      "currency": null,
-      "components": [],
-      "renewal": "Read the offer and satisfactory-progress conditions.",
+      "classification": "full-cost-verified",
+      "summary": "Selected EMJM scholars receive participation-cost cover and EUR 1,400 per month during the programme.",
+      "currency": "EUR",
+      "components": [
+        {
+          "label": "EMJM scholarship",
+          "detail": "Participation costs and a EUR 1,400 monthly allowance; competitive selection.",
+          "conditional": true,
+          "sourceIds": [
+            "imlex-funding-2027"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
       "uncovered": [
-        "Travel, visa, insurance, fees and living costs unless explicitly covered."
+        "Personal expenses beyond the awarded allowance; confirm insurance and payment terms in the offer."
       ]
     },
     "eligibility": [
@@ -8733,7 +8907,7 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Preserved from the existing Personalized Goal board. Original programme checklists remain available there; current-cycle claims need review.",
+      "overview": "Imaging and Light in Extended Reality links computer science, imaging, photonics and XR through four partner universities.",
       "portals": [
         {
           "label": "2027 call",
@@ -8751,40 +8925,88 @@
           "role": "Retained official research entry"
         }
       ],
-      "steps": [],
-      "documents": [
+      "steps": [
         {
-          "name": "Academic records — exact current requirements unconfirmed",
-          "required": true,
-          "format": "Confirm live portal format",
-          "template": "No template verified",
-          "issuer": "Applicant or relevant issuing institution",
-          "attestation": "Unconfirmed",
-          "translation": "Confirm if documents are not in English",
-          "limit": "Unconfirmed",
-          "method": "Confirm upload or direct submission",
-          "deadline": "See independent deadlines"
+          "id": "imlex-2027-review-0",
+          "text": "Prepare the academic records, CV, English certificate and two recommendation letters.",
+          "required": true
         },
         {
-          "name": "CV / statement — confirm programme-specific forms",
+          "id": "imlex-2027-review-1",
+          "text": "Answer the programme questions in a motivation letter and a video of at most two minutes.",
+          "required": true
+        },
+        {
+          "id": "imlex-2027-review-2",
+          "text": "Upload the Studyinfo application and enclosures by 13 January 2027.",
+          "required": true
+        }
+      ],
+      "documents": [
+        {
+          "name": "Degree certificate and academic transcript with English translations when needed",
           "required": true,
-          "format": "Confirm live portal format",
-          "template": "No template verified",
-          "issuer": "Applicant or relevant issuing institution",
-          "attestation": "Unconfirmed",
-          "translation": "Confirm if documents are not in English",
-          "limit": "Unconfirmed",
-          "method": "Confirm upload or direct submission",
-          "deadline": "See independent deadlines"
+          "format": "PDF unless the official portal specifies another format",
+          "method": "Upload through the official application system",
+          "limit": "Check the live form",
+          "deadline": "See the independently listed deadlines"
+        },
+        {
+          "name": "Chronological CV",
+          "required": true,
+          "format": "PDF unless the official portal specifies another format",
+          "method": "Upload through the official application system",
+          "limit": "Check the live form",
+          "deadline": "See the independently listed deadlines"
+        },
+        {
+          "name": "English-language certificate",
+          "required": true,
+          "format": "PDF unless the official portal specifies another format",
+          "method": "Upload through the official application system",
+          "limit": "Check the live form",
+          "deadline": "See the independently listed deadlines"
+        },
+        {
+          "name": "Motivation letter",
+          "required": true,
+          "format": "PDF unless the official portal specifies another format",
+          "method": "Upload through the official application system",
+          "limit": "Check the live form",
+          "deadline": "See the independently listed deadlines"
+        },
+        {
+          "name": "Two recommendation letters",
+          "required": true,
+          "format": "PDF unless the official portal specifies another format",
+          "method": "Upload through the official application system",
+          "limit": "Check the live form",
+          "deadline": "See the independently listed deadlines"
+        },
+        {
+          "name": "Passport / identity document",
+          "required": true,
+          "format": "PDF unless the official portal specifies another format",
+          "method": "Upload through the official application system",
+          "limit": "Check the live form",
+          "deadline": "See the independently listed deadlines"
+        },
+        {
+          "name": "Motivation video — maximum 2 minutes, maximum 1 GB",
+          "required": true,
+          "format": "PDF unless the official portal specifies another format",
+          "method": "Upload through the official application system",
+          "limit": "Check the live form",
+          "deadline": "See the independently listed deadlines"
         }
       ],
       "references": {
-        "count": null,
-        "types": "Programme-specific requirements unconfirmed.",
-        "method": "Confirm whether referees submit directly.",
+        "count": 2,
+        "types": "Two recommendation letters; no prescribed template.",
+        "method": "Upload in the application; consult the programme if a referee submits directly.",
         "email": "Institutional-email rule unconfirmed.",
         "format": "Letterhead/signature requirements unconfirmed.",
-        "deadline": "Confirm the referee deadline independently."
+        "deadline": "13 January 2027"
       },
       "english": {
         "status": "unconfirmed",
@@ -8809,15 +9031,31 @@
         "Historical dates and awards must not be assumed to apply to 2027."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "Closing clock time and individual English-test/exemption criteria must be checked in the current Studyinfo call."
       ]
     },
-    "claims": {}
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "goal-imlex-source-0",
+          "goal-imlex-source-1",
+          "goal-imlex-source-2"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      },
+      "funding": {
+        "sourceIds": [
+          "imlex-funding-2027"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
   },
   {
     "id": "codas",
-    "name": "CoDaS — retained research lead",
+    "name": "Erasmus Mundus — CoDaS",
     "provider": "Aalto University · UPC BarcelonaTech · Técnico Lisboa · TU Braunschweig · Grenoble INP–UGA",
     "category": "joint-programme",
     "countryCodes": [
@@ -8836,40 +9074,61 @@
       "research-master"
     ],
     "researchAreas": [
-      "machine-learning",
-      "computer-vision",
-      "efficient-ai"
+      "data-science",
+      "communications-engineering",
+      "machine-learning"
     ],
     "sourceIds": [
       "goal-codas-source-0",
       "goal-codas-source-1",
       "goal-codas-source-2"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "codas-application-2027",
+      "codas-documents-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "opens": null,
-        "timezone": null,
-        "checkedAt": "2026-10-15T00:00:00Z",
-        "note": "Preserved planning route. Current call and funding require official re-verification."
+        "status": "open",
+        "verification": "verified",
+        "opens": "2026-12-01",
+        "timezone": "Europe/Helsinki",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "Autumn 2027 applications open 1 December 2026 at 09:00 Helsinki time. The application and supporting-document deadlines are separate.",
+        "opensAt": "2026-12-01T07:00:00Z"
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-15T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
-      "classification": "unknown",
-      "summary": "Funding terms require official confirmation.",
-      "currency": null,
-      "components": [],
-      "renewal": "Read the offer and satisfactory-progress conditions.",
+      "classification": "full-cost-verified",
+      "summary": "EMJM scholars receive the programme-fee waiver and EUR 1,400 per month for up to 24 months. A CoDaS-only scholarship can be a fee waiver without that stipend.",
+      "currency": "EUR",
+      "components": [
+        {
+          "label": "EMJM award",
+          "detail": "EUR 8,000/year programme fee covered and EUR 1,400/month for up to 24 months.",
+          "conditional": true,
+          "sourceIds": [
+            "goal-codas-source-1"
+          ]
+        },
+        {
+          "label": "CoDaS fee waiver",
+          "detail": "Covers programme fees; the separately named Premium award has a different stipend.",
+          "conditional": true,
+          "sourceIds": [
+            "goal-codas-source-1"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
       "uncovered": [
-        "Travel, visa, insurance, fees and living costs unless explicitly covered."
+        "Personal expenses beyond the awarded allowance; confirm insurance and payment terms in the offer."
       ]
     },
     "eligibility": [
@@ -8887,7 +9146,7 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Preserved from the existing Personalized Goal board. Original programme checklists remain available there; current-cycle claims need review.",
+      "overview": "Communications Engineering and Data Science is a joint programme with separate application-form and document deadlines.",
       "portals": [
         {
           "label": "2027 admissions and timetable",
@@ -8905,7 +9164,23 @@
           "role": "Retained official research entry"
         }
       ],
-      "steps": [],
+      "steps": [
+        {
+          "id": "codas-2027-review-0",
+          "text": "Submit the application form by 5 January 2027 at 15:00 Helsinki time.",
+          "required": true
+        },
+        {
+          "id": "codas-2027-review-1",
+          "text": "Upload every document, motivation video, reference letter and language result by 12 January 2027 at 15:00 Helsinki time.",
+          "required": true
+        },
+        {
+          "id": "codas-2027-review-2",
+          "text": "Select the EMJM scholarship if full living support is required.",
+          "required": true
+        }
+      ],
       "documents": [
         {
           "name": "Academic records — exact current requirements unconfirmed",
@@ -8960,18 +9235,35 @@
       "nomination": "No current-cycle nomination rule verified.",
       "risks": [
         "An admission offer is not proof of a funded place.",
-        "Historical dates and awards must not be assumed to apply to 2027."
+        "Historical dates and awards must not be assumed to apply to 2027.",
+        "A fee waiver alone is not the EMJM living-cost scholarship."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "Check the exact academic prerequisites, test/exemption rules and required reference count in the current call."
       ]
     },
-    "claims": {}
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "goal-codas-source-0",
+          "goal-codas-source-1",
+          "goal-codas-source-2"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      },
+      "funding": {
+        "sourceIds": [
+          "goal-codas-source-1"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
   },
   {
     "id": "maia",
-    "name": "MAIA — retained research lead",
+    "name": "Erasmus Mundus — MAIA",
     "provider": "University of Girona and renewed MAIA partner consortium (confirm 2027 list)",
     "category": "joint-programme",
     "countryCodes": [
@@ -8986,9 +9278,8 @@
       "research-master"
     ],
     "researchAreas": [
-      "machine-learning",
-      "computer-vision",
-      "efficient-ai"
+      "medical-imaging",
+      "computer-vision"
     ],
     "sourceIds": [
       "goal-maia-source-0"
@@ -8997,17 +9288,17 @@
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
+        "status": "upcoming",
+        "verification": "verified",
         "opens": null,
         "timezone": null,
-        "checkedAt": "2026-10-15T00:00:00Z",
-        "note": "Preserved planning route. Current call and funding require official re-verification."
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "The consortium confirms renewed 2027–29 funding. The scholarship call is only tentatively expected November 2026–February 2027; no exact dates have been announced."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-15T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -9035,7 +9326,7 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Preserved from the existing Personalized Goal board. Original programme checklists remain available there; current-cycle claims need review.",
+      "overview": "Medical Imaging and Applications has renewed Erasmus Mundus funding for the 2027–29 edition. Exact application rules and dates are still pending.",
       "portals": [
         {
           "label": "Official MAIA 2027 funding update",
@@ -9098,27 +9389,38 @@
       "nomination": "No current-cycle nomination rule verified.",
       "risks": [
         "An admission offer is not proof of a funded place.",
-        "Historical dates and awards must not be assumed to apply to 2027."
+        "Historical dates and awards must not be assumed to apply to 2027.",
+        "The 2026–28 edition was not offered; do not confuse that cancellation with the newly funded 2027–29 edition.",
+        "The programme focuses on medical imaging; assess that subject focus before prioritising it."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "Exact 2027 scholarship opening, closing date, award terms and revised admissions documents have not yet been published."
       ]
     },
-    "claims": {}
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "goal-maia-source-0"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
   },
   {
     "id": "cambridge",
-    "name": "Cambridge funding — retained research lead",
+    "name": "Cambridge MPhil in Machine Learning and Machine Intelligence",
     "provider": "University of Cambridge",
-    "category": "combined-funding",
+    "category": "research-degree",
     "countryCodes": [
       "GB"
     ],
     "universityIds": [
       "cambridge"
     ],
-    "programmeIds": [],
+    "programmeIds": [
+      "cambridge-mlmi"
+    ],
     "intakes": [
       2027
     ],
@@ -9135,26 +9437,28 @@
       "goal-cambridge-source-1",
       "goal-cambridge-source-2"
     ],
-    "deadlineIds": [],
+    "deadlineIds": [
+      "cambridge-mlmi-deadline-2027"
+    ],
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
-        "opens": null,
-        "timezone": null,
-        "checkedAt": "2026-10-15T00:00:00Z",
-        "note": "Preserved planning route. Current call and funding require official re-verification."
+        "status": "open",
+        "verification": "verified",
+        "opens": "2026-09-09",
+        "timezone": "Europe/London",
+        "checkedAt": "2026-10-23T10:17:20Z",
+        "note": "Michaelmas 2027 MLMI admission and general funding cutoff: 8 December 2026. The course has no dedicated advertised scholarship; apply separately for eligible general funding. The US-only Gates round is not the Bangladesh deadline."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-15T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:17:20Z",
       "reviewDays": 7
     },
     "funding": {
       "classification": "unknown",
-      "summary": "Funding terms require official confirmation.",
+      "summary": "The course advertises no dedicated scholarship. General Cambridge/Gates awards are separate competitive funding routes; admission alone is not a funded place.",
       "currency": null,
       "components": [],
       "renewal": "Read the offer and satisfactory-progress conditions.",
@@ -9177,7 +9481,7 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Preserved from the existing Personalized Goal board. Original programme checklists remain available there; current-cycle claims need review.",
+      "overview": "An 11-month taught MPhil with research in Machine Learning and Machine Intelligence. Admission and general funding consideration share a published course deadline; funding is competitive and is not guaranteed by an admission offer.",
       "portals": [
         {
           "label": "2027 MPhil requirements",
@@ -9195,7 +9499,23 @@
           "role": "Retained official research entry"
         }
       ],
-      "steps": [],
+      "steps": [
+        {
+          "id": "cambridge-2027-step-0",
+          "text": "Check first-class degree equivalence, mathematics and computing prerequisites.",
+          "required": true
+        },
+        {
+          "id": "cambridge-2027-step-1",
+          "text": "Prepare application documents and register referees using the current course application instructions.",
+          "required": true
+        },
+        {
+          "id": "cambridge-2027-step-2",
+          "text": "Apply for MLMI admission and all eligible general funding by 8 December 2026.",
+          "required": true
+        }
+      ],
       "documents": [
         {
           "name": "Academic records — exact current requirements unconfirmed",
@@ -9231,9 +9551,9 @@
         "deadline": "Confirm the referee deadline independently."
       },
       "english": {
-        "status": "unconfirmed",
-        "admission": "Check accepted tests, component scores, validity and exemptions with the programme.",
-        "scholarship": "No separate scholarship test rule verified."
+        "status": "verified",
+        "admission": "IELTS Academic 7.0 overall; listening, writing and speaking 7.0, reading 6.5. Confirm permitted exemptions and current test validity.",
+        "scholarship": "Funding does not waive course admission requirements."
       },
       "essays": [
         {
@@ -9253,15 +9573,22 @@
         "Historical dates and awards must not be assumed to apply to 2027."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "Confirm eligibility and award terms for each general Cambridge scholarship; the course finance page advertises no dedicated course award."
       ]
     },
-    "claims": {}
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "goal-cambridge-source-1"
+        ],
+        "checkedAt": "2026-10-23T10:17:20Z",
+        "certainty": "verified"
+      }
+    }
   },
   {
     "id": "emai",
-    "name": "EMAI — retained research lead",
+    "name": "Erasmus Mundus — EMAI",
     "provider": "Pompeu Fabra University · Sapienza University of Rome · Radboud University · University of Ljubljana",
     "category": "joint-programme",
     "countryCodes": [
@@ -9281,6 +9608,7 @@
       "efficient-ai"
     ],
     "sourceIds": [
+      "emai-current-call",
       "goal-emai-source-0",
       "goal-emai-source-1"
     ],
@@ -9288,17 +9616,17 @@
     "windows": [
       {
         "intake": 2027,
-        "status": "verification-required",
-        "verification": "unconfirmed",
+        "status": "upcoming",
+        "verification": "verified",
         "opens": null,
         "timezone": null,
-        "checkedAt": "2026-10-15T00:00:00Z",
-        "note": "Preserved planning route. Current call and funding require official re-verification."
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "note": "The official homepage says applications are currently closed and the next round opens in November 2026. No exact day or deadline is confirmed."
       }
     ],
     "verification": {
-      "state": "review-due",
-      "checkedAt": "2026-10-15T00:00:00Z",
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
       "reviewDays": 7
     },
     "funding": {
@@ -9326,12 +9654,12 @@
       "employment": "Check award duties, work permissions and immigration rules separately."
     },
     "guide": {
-      "overview": "Preserved from the existing Personalized Goal board. Original programme checklists remain available there; current-cycle claims need review.",
+      "overview": "The Erasmus Mundus joint master in Artificial Intelligence expects its next application round in November 2026.",
       "portals": [
         {
-          "label": "Official programme admissions",
-          "url": "https://www.upf.edu/web/emai/admissions",
-          "role": "Retained official research entry"
+          "label": "Current EMAI application notice",
+          "url": "https://www.upf.edu/web/emai",
+          "role": "Programme and application updates"
         },
         {
           "label": "Scholarship information",
@@ -9397,10 +9725,926 @@
         "Historical dates and awards must not be assumed to apply to 2027."
       ],
       "unconfirmed": [
-        "Confirm accepted file sizes, attestation, translations and any programme-specific forms in the live portal.",
-        "Confirm the final 2027 funding offer, payment schedule and uncovered costs before accepting."
+        "Exact 2027 deadline, scholarship terms and admissions requirements remain unconfirmed; the linked admissions and scholarships pages were unavailable during review."
       ]
     },
-    "claims": {}
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "emai-current-call"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
+  },
+  {
+    "id": "qut-rtp",
+    "name": "Queensland University of Technology research Masters funding",
+    "provider": "Queensland University of Technology",
+    "category": "research-degree",
+    "countryCodes": [
+      "AU"
+    ],
+    "universityIds": [
+      "qut"
+    ],
+    "programmeIds": [
+      "qut-research-master"
+    ],
+    "intakes": [
+      2027
+    ],
+    "degreeTypes": [
+      "research-master"
+    ],
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ],
+    "sourceIds": [
+      "qut-scholarship-rounds",
+      "qut-pra"
+    ],
+    "deadlineIds": [
+      "qut-rtp-international-2027"
+    ],
+    "windows": [
+      {
+        "intake": 2027,
+        "status": "closed",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "opens": null,
+        "timezone": "Australia/Brisbane",
+        "note": "The annual international round closes 31 July for January–July commencement the following year. The main 2027 commencement round is closed; project-specific opportunities require separate confirmation."
+      }
+    ],
+    "verification": {
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
+      "reviewDays": 3
+    },
+    "funding": {
+      "classification": "tuition-stipend-net-pending",
+      "summary": "QUTPRA is a competitive research award. The 2027 stipend is AUD 38,310/year; confirm the separate international tuition arrangement.",
+      "currency": "AUD",
+      "components": [
+        {
+          "label": "2027 living allowance",
+          "detail": "AUD 38,310/year; MPhil scholarship support is normally up to 1.75 years including any approved extension.",
+          "conditional": true,
+          "sourceIds": [
+            "qut-scholarship-rounds",
+            "qut-pra"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
+      "uncovered": [
+        "Confirm tuition, mandatory fees, insurance and living expenses against the individual award offer."
+      ]
+    },
+    "eligibility": [
+      {
+        "label": "Research degree admission, English evidence and the specific scholarship/project conditions require assessment.",
+        "assessment": "conditional",
+        "sourceIds": [
+          "qut-scholarship-rounds",
+          "qut-pra"
+        ]
+      }
+    ],
+    "obligations": {
+      "returnHome": "unknown",
+      "detail": "No return-home condition verified; this is not confirmation that none applies.",
+      "employment": "Check award duties, work permissions and immigration rules separately."
+    },
+    "guide": {
+      "overview": "The annual international round closes 31 July for January–July commencement the following year. The main 2027 commencement round is closed; project-specific opportunities require separate confirmation.",
+      "portals": [
+        {
+          "label": "Official scholarship and admission instructions",
+          "url": "https://www.qut.edu.au/research/study-with-us/scholarships/applying-for-scholarships",
+          "role": "Research admission and scholarship"
+        }
+      ],
+      "steps": [
+        {
+          "id": "qut-rtp-2027-review-0",
+          "text": "Identify an eligible research-master project and prospective supervisor.",
+          "required": true
+        },
+        {
+          "id": "qut-rtp-2027-review-1",
+          "text": "Verify the international scholarship round rather than a domestic-only deadline.",
+          "required": true
+        },
+        {
+          "id": "qut-rtp-2027-review-2",
+          "text": "Prepare academic records, English evidence, CV and a project-specific research proposal.",
+          "required": true
+        },
+        {
+          "id": "qut-rtp-2027-review-3",
+          "text": "Apply for admission and scholarship consideration through the official process.",
+          "required": true
+        }
+      ],
+      "documents": [
+        {
+          "name": "Academic transcript and degree / expected completion evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Degree-awarding institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Academic CV",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Programme-specific statement",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "English-language evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Accepted test provider or authorised exemption",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Research proposal",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        }
+      ],
+      "references": {
+        "count": null,
+        "types": "Check current school/project requirements.",
+        "method": "Use the official research application process.",
+        "email": "Confirm portal instructions.",
+        "format": "Confirm current requirements.",
+        "deadline": "Confirm the current referee deadline."
+      },
+      "english": {
+        "status": "unconfirmed",
+        "admission": "Confirm school-specific test thresholds or the recognised prior-study exemption; an MOI is not a universal waiver.",
+        "scholarship": "Meet the scholarship round’s English evidence deadline."
+      },
+      "essays": [
+        {
+          "name": "Project-specific research proposal",
+          "limit": "Confirm the current school/project length and template.",
+          "purpose": "Explain the research question, preparation, method and supervisor fit.",
+          "evidence": "Use supported academic and technical work; do not invent achievements."
+        }
+      ],
+      "supervisor": {
+        "requirement": "required",
+        "detail": "Identify a suitable supervisor and follow the university’s EOI/admission instructions."
+      },
+      "nomination": "Follow the university research admission and scholarship process.",
+      "risks": [
+        "Research admission and a funded scholarship are separate decisions.",
+        "The annual international round closes 31 July for January–July commencement the following year. The main 2027 commencement round is closed; project-specific opportunities require separate confirmation."
+      ],
+      "unconfirmed": [
+        "Confirm a suitable AI/CS research-master project and supervisor, the next eligible round, English evidence and the complete award offer."
+      ]
+    },
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "qut-scholarship-rounds",
+          "qut-pra"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      },
+      "funding": {
+        "sourceIds": [
+          "qut-scholarship-rounds",
+          "qut-pra"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
+  },
+  {
+    "id": "uts-rtp",
+    "name": "University of Technology Sydney research Masters funding",
+    "provider": "University of Technology Sydney",
+    "category": "research-degree",
+    "countryCodes": [
+      "AU"
+    ],
+    "universityIds": [
+      "uts"
+    ],
+    "programmeIds": [
+      "uts-research-master"
+    ],
+    "intakes": [
+      2027
+    ],
+    "degreeTypes": [
+      "research-master"
+    ],
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ],
+    "sourceIds": [
+      "uts-scholarship-rounds",
+      "uts-research-funding"
+    ],
+    "deadlineIds": [
+      "uts-rtp-international-2027"
+    ],
+    "windows": [
+      {
+        "intake": 2027,
+        "status": "closed",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "opens": null,
+        "timezone": "Australia/Sydney",
+        "note": "The international Research Session 2 2027 scholarship round closed 7 October 2026. FEIT applicants need school-specific timelines. The application portal closes 2 November 2026 for a transition; new forms are expected in January 2027."
+      }
+    ],
+    "verification": {
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
+      "reviewDays": 3
+    },
+    "funding": {
+      "classification": "tuition-stipend-net-pending",
+      "summary": "Competitive stipend and tuition scholarships are distinct awards. The 2027 base stipend is AUD 40,500/year; confirm the complete international package.",
+      "currency": "AUD",
+      "components": [
+        {
+          "label": "2027 stipend base",
+          "detail": "AUD 40,500/year; admission or a stipend alone is not proof of a tuition award.",
+          "conditional": true,
+          "sourceIds": [
+            "uts-scholarship-rounds",
+            "uts-research-funding"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
+      "uncovered": [
+        "Confirm tuition, mandatory fees, insurance and living expenses against the individual award offer."
+      ]
+    },
+    "eligibility": [
+      {
+        "label": "Research degree admission, English evidence and the specific scholarship/project conditions require assessment.",
+        "assessment": "conditional",
+        "sourceIds": [
+          "uts-scholarship-rounds",
+          "uts-research-funding"
+        ]
+      }
+    ],
+    "obligations": {
+      "returnHome": "unknown",
+      "detail": "No return-home condition verified; this is not confirmation that none applies.",
+      "employment": "Check award duties, work permissions and immigration rules separately."
+    },
+    "guide": {
+      "overview": "The international Research Session 2 2027 scholarship round closed 7 October 2026. FEIT applicants need school-specific timelines. The application portal closes 2 November 2026 for a transition; new forms are expected in January 2027.",
+      "portals": [
+        {
+          "label": "Official scholarship and admission instructions",
+          "url": "https://www.uts.edu.au/for-students/admissions-entry/how-to-apply/masters-by-research-phd/application-closing-dates",
+          "role": "Research admission and scholarship"
+        }
+      ],
+      "steps": [
+        {
+          "id": "uts-rtp-2027-review-0",
+          "text": "Identify an eligible research-master project and prospective supervisor.",
+          "required": true
+        },
+        {
+          "id": "uts-rtp-2027-review-1",
+          "text": "Verify the international scholarship round rather than a domestic-only deadline.",
+          "required": true
+        },
+        {
+          "id": "uts-rtp-2027-review-2",
+          "text": "Prepare academic records, English evidence, CV and a project-specific research proposal.",
+          "required": true
+        },
+        {
+          "id": "uts-rtp-2027-review-3",
+          "text": "Apply for admission and scholarship consideration through the official process.",
+          "required": true
+        }
+      ],
+      "documents": [
+        {
+          "name": "Academic transcript and degree / expected completion evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Degree-awarding institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Academic CV",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Programme-specific statement",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "English-language evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Accepted test provider or authorised exemption",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Research proposal",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        }
+      ],
+      "references": {
+        "count": null,
+        "types": "Check current school/project requirements.",
+        "method": "Use the official research application process.",
+        "email": "Confirm portal instructions.",
+        "format": "Confirm current requirements.",
+        "deadline": "Confirm the current referee deadline."
+      },
+      "english": {
+        "status": "unconfirmed",
+        "admission": "Confirm school-specific test thresholds or the recognised prior-study exemption; an MOI is not a universal waiver.",
+        "scholarship": "Meet the scholarship round’s English evidence deadline."
+      },
+      "essays": [
+        {
+          "name": "Project-specific research proposal",
+          "limit": "Confirm the current school/project length and template.",
+          "purpose": "Explain the research question, preparation, method and supervisor fit.",
+          "evidence": "Use supported academic and technical work; do not invent achievements."
+        }
+      ],
+      "supervisor": {
+        "requirement": "required",
+        "detail": "Identify a suitable supervisor and follow the university’s EOI/admission instructions."
+      },
+      "nomination": "Follow the university research admission and scholarship process.",
+      "risks": [
+        "Research admission and a funded scholarship are separate decisions.",
+        "The international Research Session 2 2027 scholarship round closed 7 October 2026. FEIT applicants need school-specific timelines. The application portal closes 2 November 2026 for a transition; new forms are expected in January 2027."
+      ],
+      "unconfirmed": [
+        "Confirm a suitable AI/CS research-master project and supervisor, the next eligible round, English evidence and the complete award offer."
+      ]
+    },
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "uts-scholarship-rounds",
+          "uts-research-funding"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      },
+      "funding": {
+        "sourceIds": [
+          "uts-scholarship-rounds",
+          "uts-research-funding"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
+  },
+  {
+    "id": "adelaide-rtp",
+    "name": "Adelaide University research Masters funding",
+    "provider": "Adelaide University",
+    "category": "research-degree",
+    "countryCodes": [
+      "AU"
+    ],
+    "universityIds": [
+      "adelaide"
+    ],
+    "programmeIds": [
+      "adelaide-research-master"
+    ],
+    "intakes": [
+      2027
+    ],
+    "degreeTypes": [
+      "research-master"
+    ],
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ],
+    "sourceIds": [
+      "adelaide-research-funding"
+    ],
+    "deadlineIds": [],
+    "windows": [
+      {
+        "intake": 2027,
+        "status": "verification-required",
+        "verification": "unconfirmed",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "opens": null,
+        "timezone": "Australia/Sydney",
+        "note": "The currently open 2027 Round 1 requires domestic status or a relevant Australian/New Zealand qualification. This is not a general offshore Bangladesh round. Other project or future rounds need individual review."
+      }
+    ],
+    "verification": {
+      "state": "unconfirmed",
+      "checkedAt": "2026-10-23T10:11:23Z",
+      "reviewDays": 3
+    },
+    "funding": {
+      "classification": "tuition-stipend-net-pending",
+      "summary": "Major Adelaide graduate-research scholarships include a stipend and international fee waiver for the standard research-master duration, subject to the eligible round and award.",
+      "currency": "AUD",
+      "components": [
+        {
+          "label": "Major scholarship package",
+          "detail": "Selected major scholarship holders receive living support and a 100% tuition-fee waiver.",
+          "conditional": true,
+          "sourceIds": [
+            "adelaide-research-funding"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
+      "uncovered": [
+        "Confirm tuition, mandatory fees, insurance and living expenses against the individual award offer."
+      ]
+    },
+    "eligibility": [
+      {
+        "label": "Current Round 1 requires domestic status or a relevant Australian/New Zealand qualification; independently assess project-specific international rounds.",
+        "assessment": "conditional",
+        "sourceIds": [
+          "adelaide-research-funding"
+        ]
+      }
+    ],
+    "obligations": {
+      "returnHome": "unknown",
+      "detail": "No return-home condition verified; this is not confirmation that none applies.",
+      "employment": "Check award duties, work permissions and immigration rules separately."
+    },
+    "guide": {
+      "overview": "The currently open 2027 Round 1 requires domestic status or a relevant Australian/New Zealand qualification. This is not a general offshore Bangladesh round. Other project or future rounds need individual review.",
+      "portals": [
+        {
+          "label": "Official scholarship and admission instructions",
+          "url": "https://adelaide.edu.au/research/research-degrees/research-scholarships/",
+          "role": "Research admission and scholarship"
+        }
+      ],
+      "steps": [
+        {
+          "id": "adelaide-rtp-2027-review-0",
+          "text": "Identify an eligible research-master project and prospective supervisor.",
+          "required": true
+        },
+        {
+          "id": "adelaide-rtp-2027-review-1",
+          "text": "Verify the international scholarship round rather than a domestic-only deadline.",
+          "required": true
+        },
+        {
+          "id": "adelaide-rtp-2027-review-2",
+          "text": "Prepare academic records, English evidence, CV and a project-specific research proposal.",
+          "required": true
+        },
+        {
+          "id": "adelaide-rtp-2027-review-3",
+          "text": "Apply for admission and scholarship consideration through the official process.",
+          "required": true
+        }
+      ],
+      "documents": [
+        {
+          "name": "Academic transcript and degree / expected completion evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Degree-awarding institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Academic CV",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Programme-specific statement",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "English-language evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Accepted test provider or authorised exemption",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Research proposal",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        }
+      ],
+      "references": {
+        "count": null,
+        "types": "Check current school/project requirements.",
+        "method": "Use the official research application process.",
+        "email": "Confirm portal instructions.",
+        "format": "Confirm current requirements.",
+        "deadline": "Confirm the current referee deadline."
+      },
+      "english": {
+        "status": "unconfirmed",
+        "admission": "Confirm school-specific test thresholds or the recognised prior-study exemption; an MOI is not a universal waiver.",
+        "scholarship": "Meet the scholarship round’s English evidence deadline."
+      },
+      "essays": [
+        {
+          "name": "Project-specific research proposal",
+          "limit": "Confirm the current school/project length and template.",
+          "purpose": "Explain the research question, preparation, method and supervisor fit.",
+          "evidence": "Use supported academic and technical work; do not invent achievements."
+        }
+      ],
+      "supervisor": {
+        "requirement": "required",
+        "detail": "Identify a suitable supervisor and follow the university’s EOI/admission instructions."
+      },
+      "nomination": "Follow the university research admission and scholarship process.",
+      "risks": [
+        "Research admission and a funded scholarship are separate decisions.",
+        "The currently open 2027 Round 1 requires domestic status or a relevant Australian/New Zealand qualification. This is not a general offshore Bangladesh round. Other project or future rounds need individual review."
+      ],
+      "unconfirmed": [
+        "Confirm a suitable AI/CS research-master project and supervisor, the next eligible round, English evidence and the complete award offer."
+      ]
+    },
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "adelaide-research-funding"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "unconfirmed"
+      },
+      "funding": {
+        "sourceIds": [
+          "adelaide-research-funding"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
+  },
+  {
+    "id": "tasmania-rtp",
+    "name": "University of Tasmania research Masters funding",
+    "provider": "University of Tasmania",
+    "category": "research-degree",
+    "countryCodes": [
+      "AU"
+    ],
+    "universityIds": [
+      "tasmania"
+    ],
+    "programmeIds": [
+      "tasmania-research-master"
+    ],
+    "intakes": [
+      2027
+    ],
+    "degreeTypes": [
+      "research-master"
+    ],
+    "researchAreas": [
+      "machine-learning",
+      "computer-vision",
+      "efficient-ai"
+    ],
+    "sourceIds": [
+      "tasmania-research-funding",
+      "tasmania-projects"
+    ],
+    "deadlineIds": [
+      "tasmania-rtp-international-2027"
+    ],
+    "windows": [
+      {
+        "intake": 2027,
+        "status": "closed",
+        "verification": "verified",
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "opens": null,
+        "timezone": "Australia/Sydney",
+        "note": "The listed general 2027 commencement round closed 1 October 2026. Separately advertised projects can have later dates, but many are PhD-only. Check each project’s research-master and international eligibility."
+      }
+    ],
+    "verification": {
+      "state": "verified",
+      "checkedAt": "2026-10-23T10:11:23Z",
+      "reviewDays": 3
+    },
+    "funding": {
+      "classification": "tuition-stipend-net-pending",
+      "summary": "Research scholarships and project awards can support eligible Masters by Research students. Verify stipend, fee cover and degree eligibility for the chosen project.",
+      "currency": "AUD",
+      "components": [
+        {
+          "label": "Project-specific package",
+          "detail": "Use the actual research-master award terms; a PhD project listing is not a funded Masters offer.",
+          "conditional": true,
+          "sourceIds": [
+            "tasmania-research-funding",
+            "tasmania-projects"
+          ]
+        }
+      ],
+      "renewal": "Selection, enrolment, mobility and satisfactory academic progress conditions apply.",
+      "uncovered": [
+        "Confirm tuition, mandatory fees, insurance and living expenses against the individual award offer."
+      ]
+    },
+    "eligibility": [
+      {
+        "label": "Research degree admission, English evidence and the specific scholarship/project conditions require assessment.",
+        "assessment": "conditional",
+        "sourceIds": [
+          "tasmania-research-funding",
+          "tasmania-projects"
+        ]
+      }
+    ],
+    "obligations": {
+      "returnHome": "unknown",
+      "detail": "No return-home condition verified; this is not confirmation that none applies.",
+      "employment": "Check award duties, work permissions and immigration rules separately."
+    },
+    "guide": {
+      "overview": "The listed general 2027 commencement round closed 1 October 2026. Separately advertised projects can have later dates, but many are PhD-only. Check each project’s research-master and international eligibility.",
+      "portals": [
+        {
+          "label": "Official scholarship and admission instructions",
+          "url": "https://www.utas.edu.au/research/degrees/scholarships-and-fees",
+          "role": "Research admission and scholarship"
+        }
+      ],
+      "steps": [
+        {
+          "id": "tasmania-rtp-2027-review-0",
+          "text": "Identify an eligible research-master project and prospective supervisor.",
+          "required": true
+        },
+        {
+          "id": "tasmania-rtp-2027-review-1",
+          "text": "Verify the international scholarship round rather than a domestic-only deadline.",
+          "required": true
+        },
+        {
+          "id": "tasmania-rtp-2027-review-2",
+          "text": "Prepare academic records, English evidence, CV and a project-specific research proposal.",
+          "required": true
+        },
+        {
+          "id": "tasmania-rtp-2027-review-3",
+          "text": "Apply for admission and scholarship consideration through the official process.",
+          "required": true
+        }
+      ],
+      "documents": [
+        {
+          "name": "Academic transcript and degree / expected completion evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Degree-awarding institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Academic CV",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Programme-specific statement",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "English-language evidence",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Accepted test provider or authorised exemption",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        },
+        {
+          "name": "Research proposal",
+          "required": true,
+          "format": "Confirm live portal format",
+          "template": "No template verified",
+          "issuer": "Applicant or relevant issuing institution",
+          "attestation": "Unconfirmed",
+          "translation": "Confirm if documents are not in English",
+          "limit": "Unconfirmed",
+          "method": "Confirm upload or direct submission",
+          "deadline": "See independent deadlines"
+        }
+      ],
+      "references": {
+        "count": null,
+        "types": "Check current school/project requirements.",
+        "method": "Use the official research application process.",
+        "email": "Confirm portal instructions.",
+        "format": "Confirm current requirements.",
+        "deadline": "Confirm the current referee deadline."
+      },
+      "english": {
+        "status": "unconfirmed",
+        "admission": "Confirm school-specific test thresholds or the recognised prior-study exemption; an MOI is not a universal waiver.",
+        "scholarship": "Meet the scholarship round’s English evidence deadline."
+      },
+      "essays": [
+        {
+          "name": "Project-specific research proposal",
+          "limit": "Confirm the current school/project length and template.",
+          "purpose": "Explain the research question, preparation, method and supervisor fit.",
+          "evidence": "Use supported academic and technical work; do not invent achievements."
+        }
+      ],
+      "supervisor": {
+        "requirement": "required",
+        "detail": "Identify a suitable supervisor and follow the university’s EOI/admission instructions."
+      },
+      "nomination": "Follow the university research admission and scholarship process.",
+      "risks": [
+        "Research admission and a funded scholarship are separate decisions.",
+        "The listed general 2027 commencement round closed 1 October 2026. Separately advertised projects can have later dates, but many are PhD-only. Check each project’s research-master and international eligibility."
+      ],
+      "unconfirmed": [
+        "Confirm a suitable AI/CS research-master project and supervisor, the next eligible round, English evidence and the complete award offer."
+      ]
+    },
+    "claims": {
+      "window": {
+        "sourceIds": [
+          "tasmania-research-funding",
+          "tasmania-projects"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      },
+      "funding": {
+        "sourceIds": [
+          "tasmania-research-funding",
+          "tasmania-projects"
+        ],
+        "checkedAt": "2026-10-23T10:11:23Z",
+        "certainty": "verified"
+      }
+    }
   }
 ]

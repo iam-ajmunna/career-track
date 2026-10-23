@@ -1,0 +1,531 @@
+{
+  "reviewedAt": "2026-10-23T10:11:23Z",
+  "method": "Manual review of official pages and explicitly labelled official indexed content; no private applicant data.",
+  "sources": [
+    {
+      "sourceId": "commonwealth-2027",
+      "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-masters-scholarships/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "kaust-timing",
+      "url": "https://admissions.kaust.edu.sa/how-to-apply/admission-timelines",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "kaust-fellowship",
+      "url": "https://admissions.kaust.edu.sa/fees-funding",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "mbzuai-2027",
+      "url": "https://mbzuai.ac.ae/admissions/graduate-masters-admissions",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "oxford-acs",
+      "url": "https://www.ox.ac.uk/admissions/graduate/courses/msc-advanced-computer-science",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "clarendon",
+      "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/funding/clarendon",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "weidenfeld",
+      "url": "https://www.ox.ac.uk/admissions/graduate/fees-and-funding/fees-funding-and-scholarship-search/weidenfeld-hoffmann-scholarships-and-leadership-programme",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "cambridge-acs",
+      "url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/cscsmpacs",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-ediss",
+      "url": "https://www.master-ediss.eu/upcoming-application-rounds-ediss-intake-7/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-eth-esop",
+      "url": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "ubc-admission",
+      "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-science-computer-science",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "ubc-funding",
+      "url": "https://www.cs.ubc.ca/grads/awards-support-current-grad-students/financial-assistantship/stipends-support-details-2026-2027",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "waterloo-admission",
+      "url": "https://uwaterloo.ca/future-graduate-students/programs/by-faculty/math/computer-science-master-math-mmath",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "waterloo-funding",
+      "url": "https://cs.uwaterloo.ca/future-graduate-students/funding-graduate-studies",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "alberta-admission",
+      "url": "https://www.ualberta.ca/en/computing-science/graduate-studies/programs-and-admissions/applications-and-admissions/index.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "alberta-funding",
+      "url": "https://www.ualberta.ca/en/computing-science/graduate-studies/financial-support-and-awards/index.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "mcgill-admission",
+      "url": "https://www.cs.mcgill.ca/graduate/future/deadline/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "mcgill-funding",
+      "url": "https://www.cs.mcgill.ca/academic/funding/overview/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "toronto-msc",
+      "url": "https://web.cs.toronto.edu/graduate/msc",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "sydney-scholarship",
+      "url": "https://www.sydney.edu.au/scholarships/australian-government-research-training-program/rtp-international.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "melbourne-scholarship",
+      "url": "https://scholarships.unimelb.edu.au/awards/graduate-research-scholarships",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "monash-scholarship",
+      "url": "https://www.monash.edu/graduate-research/study/apply",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "monash-rtp-funding",
+      "url": "https://www.monash.edu/study/fees-scholarships/scholarships/find-a-scholarship/research-training-program-scholarship",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "unsw-scholarship",
+      "url": "https://www.unsw.edu.au/research/hdr/application",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "anu-scholarship",
+      "url": "https://study.anu.edu.au/scholarships/find-scholarship/anu-master-philosophy-scholarship",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "uq-scholarship",
+      "url": "https://scholarships.uq.edu.au/scholarship/graduate-school-scholarships-uqgss-%E2%80%93-includes-rtp",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "australia-awards",
+      "url": "https://www.dfat.gov.au/sites/default/files/australia-awards-bangladesh-information-for-intake.pdf",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "princeton-mse",
+      "url": "https://gradschool.princeton.edu/academics/degrees-requirements/fields-study/computer-science",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "cornell-ms",
+      "url": "https://www.cs.cornell.edu/master-science-computer-science/apply",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "ucl-global",
+      "url": "https://www.ucl.ac.uk/scholarships/ucl-global-masters-scholarship",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-khs",
+      "url": "https://knight-hennessy.stanford.edu/admission",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-chevening",
+      "url": "https://www.chevening.org/scholarship/bangladesh/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "commonwealth-shared-current",
+      "url": "https://cscuk.fcdo.gov.uk/scholarships/commonwealth-shared-scholarships-applications/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-mext",
+      "url": "https://www.bd.emb-japan.go.jp/itpr_ja/00_000706.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-mext-university",
+      "url": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-turkiye",
+      "url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-goi-ies",
+      "url": "https://hea.ie/policy/internationalisation/goi-ies/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-gks",
+      "url": "https://www.studyinkorea.go.kr/ko/notice/scholarshipsList.do?boardSort=3",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-daad-master",
+      "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?back=1&daad=&origin=29&page=1&q=&status=&subjectGrps=",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "goal-ipcvai-source-0",
+      "url": "https://ipcv.eu/application-and-selection/application/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official indexed content reviewed; full-page retrieval unavailable",
+      "note": "Official indexed 2027–29 call: 1 November 2026 to 2 February 2027 at noon Paris time. Full page timed out."
+    },
+    {
+      "sourceId": "goal-ipcvai-source-1",
+      "url": "https://ipcv.eu/application-and-selection/apply-now/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official indexed content reviewed; full-page retrieval unavailable",
+      "note": "Official indexed application instructions identify the eMundus portal and the same dates."
+    },
+    {
+      "sourceId": "goal-ipcvai-source-2",
+      "url": "https://ipcv.eu/about-ipcv-program-2/costs-and-funding-2/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official indexed content reviewed; full-page retrieval unavailable",
+      "note": "Official indexed funding terms state EUR 1,400 per month for two years. Confirm the individual award letter."
+    },
+    {
+      "sourceId": "goal-deai-source-0",
+      "url": "https://deai.ulb.be/home/students/admission/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "deai-funding-2027",
+      "url": "https://deai.ulb.be/home/students/tuition-fees-scholarships/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "deai-service-notice",
+      "url": "https://deai.ulb.be/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": "21 October 2026 notice says the online application portal is temporarily offline for security maintenance."
+    },
+    {
+      "sourceId": "goal-imlex-source-0",
+      "url": "https://www.imlex.org/how-to-apply/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "imlex-funding-2027",
+      "url": "https://www.imlex.org/fees-and-scholarships/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "imlex-consortium",
+      "url": "https://www.imlex.org/consortium/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "goal-codas-source-0",
+      "url": "https://www.unite-codas-master.eu/admission.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "goal-codas-source-1",
+      "url": "https://www.unite-codas-master.eu/scholarship.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "goal-maia-source-0",
+      "url": "https://maiamaster.udg.edu/admission/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "emai-current-call",
+      "url": "https://www.upf.edu/web/emai",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "ediss-admission-requirements",
+      "url": "https://www.master-ediss.eu/admission-requirements/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": "General requirements include some 2026 completion dates; those old dates were not copied into the 2027 deadline list."
+    },
+    {
+      "sourceId": "ediss-funding-terms",
+      "url": "https://www.master-ediss.eu/scholarship/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": "Detailed award table still identifies Intake 6 (2026–28); Intake 7 amounts require confirmation."
+    },
+    {
+      "sourceId": "legacy-si-sweden",
+      "url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official indexed content reviewed; full-page retrieval unavailable",
+      "note": "Official indexed call lists 8–24 February 2027; full-page retrieval was denied. Confirm country eligibility, work evidence and the separate university application."
+    },
+    {
+      "sourceId": "legacy-eiffel",
+      "url": "https://www.campusfrance.org/en/france-excellence-eiffel-scholarship-program",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official indexed content reviewed; full-page retrieval unavailable",
+      "note": "Official indexed 2027 information gives 6 January; a separate official news result gives 8 January. Institutional nomination cutoffs are earlier. Exact national cutoff is unresolved."
+    },
+    {
+      "sourceId": "eiffel-conflicting-notice",
+      "url": "https://www.campusfrance.org/en/actu/call-for-france-excellence-eiffel-applications-2027",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official indexed content reviewed; full-page retrieval unavailable",
+      "note": "Indexed announcement gives 8 January 2027, conflicting with the programme page. No exact countdown is published in the tracker."
+    },
+    {
+      "sourceId": "qut-scholarship-rounds",
+      "url": "https://www.qut.edu.au/research/study-with-us/scholarships/applying-for-scholarships",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "qut-pra",
+      "url": "https://www.qut.edu.au/study/fees-and-scholarships/scholarships/qut-postgraduate-research-award-qutpra",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "uts-scholarship-rounds",
+      "url": "https://www.uts.edu.au/for-students/admissions-entry/how-to-apply/masters-by-research-phd/application-closing-dates",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "uts-research-funding",
+      "url": "https://www.uts.edu.au/for-students/admissions-entry/scholarships/how-to-fund-your-phd-or-masters-by-research",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "adelaide-research-funding",
+      "url": "https://adelaide.edu.au/research/research-degrees/research-scholarships/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "tasmania-research-funding",
+      "url": "https://www.utas.edu.au/research/degrees/scholarships-and-fees",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "tasmania-projects",
+      "url": "https://www.utas.edu.au/research/degrees/available-projects",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": "Projects have their own closing dates, citizenship and degree restrictions; PhD-only projects are not research-master offers."
+    },
+    {
+      "sourceId": "immigration-ca",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/about.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "canada-pgwp-eligibility",
+      "url": "https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/work/after-graduation/eligibility.html",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "immigration-gb",
+      "url": "https://www.gov.uk/graduate-visa/overview",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "immigration-ie",
+      "url": "https://www.irishimmigration.ie/my-situation-has-changed-since-i-arrived-in-ireland/student-permission/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "immigration-fi",
+      "url": "https://enterfinland.fi/eServices/info/jobsearch",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "immigration-nz",
+      "url": "https://www.immigration.govt.nz/study/after-you-finish-your-study/staying-to-work-after-finishing-your-study/",
+      "reviewedAt": "2026-10-23T10:11:23Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "goal-cambridge-source-0",
+      "url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/egegmpmsl/requirements",
+      "reviewedAt": "2026-10-23T10:17:20Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "goal-cambridge-source-1",
+      "url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/egegmpmsl/finance",
+      "reviewedAt": "2026-10-23T10:17:20Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "kaust-entry",
+      "url": "https://admissions.kaust.edu.sa/how-to-apply/entry-requirements",
+      "reviewedAt": "2026-10-23T10:17:20Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "australia-awards-terms",
+      "url": "https://www.dfat.gov.au/people-to-people/australia-awards/australia-awards-scholarships",
+      "reviewedAt": "2026-10-23T10:17:20Z",
+      "access": "Official public page reviewed",
+      "note": ""
+    },
+    {
+      "sourceId": "legacy-erasmus-ai",
+      "url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
+      "reviewedAt": "2026-10-23T10:17:20Z",
+      "access": "Official public page reviewed",
+      "note": "Programme-specific application dates control; no shared Erasmus Mundus deadline."
+    }
+  ]
+}

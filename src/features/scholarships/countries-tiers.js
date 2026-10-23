@@ -12,7 +12,7 @@ import {
   LEVEL_TEXT,
 } from "../../lib/requirements.js";
 import { chip, flagEmoji, meter, emptyState } from "../../ui/components.js";
-import { label, tabs, panel, external } from "../../ui/fields.js";
+import { label, tabs, panel, external, select } from "../../ui/fields.js";
 import { countdownModel, compactText } from "../dashboard/countdown.js";
 import { inMyList } from "../dashboard/model.js";
 export const prefsOf = (state) => mergePrefs(state.preferences);
@@ -158,6 +158,7 @@ export function opportunityCard(row, ctx) {
       </div>
     </div>
     <div class="oppcard__side">
+      ${["all", "list"].includes(ctx.route.segments[0]) ? html`<label class="check-row"><input type="checkbox" data-select-opportunity="${o.id}" aria-label="Select ${o.name}" ${ctx.selection?.has(o.id) ? html`checked` : ""} /><span>Select</span></label>` : ""}
       <p class="oppcard__time">${compactText(c)}</p>
       ${c.mode === "days" ? chip("Time not confirmed", "warning") : ""}<button
         class="btn btn--${listed ? "secondary" : "primary"} btn--sm"
@@ -166,6 +167,13 @@ export function opportunityCard(row, ctx) {
         aria-pressed="${listed}"
       >
         ${listed ? "✓ In my list" : "+ Add to my list"}
+      </button>
+      <button
+        class="btn btn--ghost btn--sm"
+        type="button"
+        data-open-gpt="${o.id}"
+      >
+        Open GPT ↗
       </button>
     </div>
   </article>`;
@@ -361,6 +369,13 @@ export function scholarships(ctx) {
               ].includes(r.application.stage)
             : r.application.stage === ctx.route.query.stage),
       )
+      .filter(
+        (r) =>
+          !ctx.route.query.tracking ||
+          ctx.route.query.tracking === "all" ||
+          (ctx.state.tracking?.[r.opportunity.id] || "none") ===
+            ctx.route.query.tracking,
+      )
       .filter((r) =>
         [
           r.opportunity.name,
@@ -383,6 +398,48 @@ export function scholarships(ctx) {
           ${filtered.length} scholarships${q ? " matching “" + q + "”" : ""}
         </p>
         ${selected === "all" ? html`<button type="button" class="btn btn--secondary" data-show-all>${ctx.route.query.window === "all" ? "Show open only" : "Include future & closed"}</button>` : ""}
+      </div>
+      <div class="row">
+        ${select(
+          "trackingFilter",
+          "Research tracking",
+          [
+            ["all", "All research statuses"],
+            ["none", "Not tracked"],
+            ["researching", "Researching"],
+            ["completed", "Completed"],
+          ],
+          ctx.route.query.tracking || "all",
+          "tracking-filter",
+        )}
+        <p class="section__sub" role="status">
+          ${ctx.selection?.size || 0} selected across pages
+        </p>
+      </div>
+      <div class="hero__actions" aria-label="Selected scholarships">
+        ${[
+          ["researching", "Mark researching"],
+          ["completed", "Mark completed"],
+          ["none", "Clear tracking"],
+        ].map(
+          ([value, text]) =>
+            html`<button
+              type="button"
+              class="btn btn--secondary"
+              data-bulk-track="${value}"
+              ${ctx.selection?.size ? "" : html`disabled`}
+            >
+              ${text}
+            </button>`,
+        )}
+        <button
+          type="button"
+          class="btn btn--ghost"
+          data-clear-selection
+          ${ctx.selection?.size ? "" : html`disabled`}
+        >
+          Clear selection
+        </button>
       </div>
       <div class="stack">
         ${filtered.length ? filtered.slice((page - 1) * size, page * size).map((r) => opportunityCard(r, ctx)) : emptyState("No scholarships here yet", q ? "Clear search or try another country." : "Add a match to start your list.", html`<a href="#/scholarships" class="btn btn--primary">Browse scholarships</a>`)}

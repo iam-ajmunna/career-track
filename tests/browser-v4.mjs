@@ -31,6 +31,7 @@ const base = "http://127.0.0.1:8091",
   checks = [],
   errors = [],
   requests = [],
+  interceptedLaunches = [],
   a11y = [];
 let page;
 await mkdir("docs/v4/ux", { recursive: true });
@@ -208,8 +209,19 @@ try {
       await go();
       assert.equal(await page.locator('[data-u="s"]').count(), 1);
       const before = await page.locator('[data-u="s"]').innerText();
-      await page.waitForTimeout(1200);
-      assert.notEqual(await page.locator('[data-u="s"]').innerText(), before);
+      await page.locator("#main > section").evaluate((el) => {
+        el.dataset.timerProbe = "stable";
+      });
+      await page.waitForFunction(
+        (value) =>
+          document.querySelector('[data-u="s"]')?.textContent !== value,
+        before,
+        { timeout: 5000 },
+      );
+      assert.equal(
+        await page.locator('[data-timer-probe="stable"]').count(),
+        1,
+      );
     },
   );
   await check(
@@ -424,6 +436,200 @@ try {
     },
   );
   await check(
+    "Single and bulk research tracking persist across pages and reload without submitting applications",
+    async () => {
+      await go("scholarships/all?window=all");
+      const selected = await page
+        .locator("[data-select-opportunity]")
+        .evaluateAll((nodes) =>
+          nodes.slice(0, 2).map((n) => n.dataset.selectOpportunity),
+        );
+      const before = (await stored()).v3.applications;
+      for (const id of selected)
+        await page.locator('[data-select-opportunity="' + id + '"]').check();
+      await page.getByRole("button", { name: "Next", exact: true }).click();
+      await page.waitForTimeout(100);
+      const extra = await page
+        .locator("[data-select-opportunity]")
+        .first()
+        .getAttribute("data-select-opportunity");
+      selected.push(extra);
+      await page.locator('[data-select-opportunity="' + extra + '"]').check();
+      await page
+        .getByRole("button", { name: "Mark researching", exact: true })
+        .click();
+      await page.reload();
+      await page.waitForSelector("[data-view]");
+      for (const id of selected)
+        assert.equal((await stored()).tracking[id], "researching");
+      await go("scholarships/all?window=all&tracking=researching");
+      for (const id of selected)
+        await page.locator('[data-select-opportunity="' + id + '"]').check();
+      await page
+        .getByRole("button", { name: "Mark completed", exact: true })
+        .click();
+      for (const id of selected)
+        assert.equal((await stored()).tracking[id], "completed");
+      assert.deepEqual((await stored()).v3.applications, before);
+      await go("scholarships/all?window=all&tracking=completed");
+      assert.equal(await page.locator(".oppcard").count(), selected.length);
+      await page
+        .locator('[data-open-opportunity="' + selected[0] + '"]')
+        .click();
+      await page
+        .locator('#drawer [name="tracking"]')
+        .selectOption("researching");
+      assert.equal((await stored()).tracking[selected[0]], "researching");
+      assert.deepEqual((await stored()).v3.applications, before);
+      await page.keyboard.press("Escape");
+    },
+  );
+  await check(
+    "GPT launch and copy fallback exclude private data; application package includes the private draft",
+    async () => {
+      await go("scholarships/country/SA?focus=kaust");
+      const privateNote = "Fictional private package-only note";
+      await page.locator('[data-private-note="kaust"]').fill(privateNote);
+      await page.evaluate(() =>
+        Object.defineProperty(navigator, "clipboard", {
+          configurable: true,
+          value: {
+            writeText: async () => {
+              throw Error("Clipboard denied fixture");
+            },
+          },
+        }),
+      );
+      await page.locator("[data-copy-prompt]").click();
+      await page.waitForSelector("#actionDialog[open] textarea");
+      const copied = await page.locator("#actionDialog textarea").inputValue();
+      assert.match(copied, /KAUST/);
+      assert.ok(!copied.includes(privateNote));
+      assert.ok(!copied.includes("Alex Morgan"));
+      await page.locator("#actionDialog [data-cancel-action]").click();
+      await context.route("https://chatgpt.com/**", (request) => {
+        interceptedLaunches.push(request.request().url());
+        return request.fulfill({
+          contentType: "text/html",
+          body: "<title>Intercepted GPT launch</title>",
+        });
+      });
+      const opened = context.waitForEvent("page");
+      await page.locator("#drawer [data-open-gpt]").click();
+      const popup = await opened;
+      await popup.waitForLoadState("domcontentloaded");
+      assert.equal(new URL(popup.url()).searchParams.get("q"), copied);
+      await popup.close();
+      await page.locator("#actionDialog [data-cancel-action]").click();
+      const downloaded = page.waitForEvent("download");
+      await page.locator("[data-application-package]").click();
+      const file = await downloaded;
+      const content = await readFile(await file.path(), "utf8");
+      assert.match(content, /KAUST/);
+      assert.ok(content.includes(privateNote));
+      assert.equal((await stored()).notes.kaust, privateNote);
+      await page.keyboard.press("Escape");
+    },
+  );
+  await check(
+    "Saving one form preserves an unsaved form on another route",
+    async () => {
+      await go("settings/profile");
+      await page
+        .locator('[name="displayName"]')
+        .fill("Unsaved fictional profile");
+      await hash("#/documents/tests");
+      await page.locator('[name="target"]').fill("8.0");
+      await page.locator("[data-tests-form] button[type=submit]").click();
+      await hash("#/settings/profile");
+      assert.equal(
+        await page.locator('[name="displayName"]').inputValue(),
+        "Unsaved fictional profile",
+      );
+      assert.notEqual(
+        (await stored()).v3.profile.displayName,
+        "Unsaved fictional profile",
+      );
+      await page.locator('[name="displayName"]').fill("Alex Morgan");
+      await page
+        .getByRole("button", { name: "Save profile", exact: true })
+        .click();
+    },
+  );
+  await check(
+    "Every registry opportunity renders all six drawer tabs with a loaded guide",
+    async () => {
+      const items = JSON.parse(
+        await readFile("data/v3/opportunities.json", "utf8"),
+      );
+      await go("scholarships");
+      for (const item of items) {
+        await hash("#/scholarships/detail/" + item.id);
+        await page.waitForSelector("#drawer:not([hidden])");
+        await page.waitForSelector("#drawer .guide-loading", {
+          state: "detached",
+        });
+        for (const tab of [
+          "overview",
+          "requirements",
+          "funding",
+          "documents",
+          "timeline",
+          "sources",
+        ]) {
+          await page
+            .locator('[data-tab="drawer"][data-value="' + tab + '"]')
+            .click();
+          assert.equal(
+            await page
+              .locator('#drawer [data-tab="drawer"][aria-selected="true"]')
+              .getAttribute("data-value"),
+            tab,
+            item.id,
+          );
+          assert.ok(
+            !(await page.locator("#drawer").innerText()).includes(
+              "Guide unavailable",
+            ),
+            item.id,
+          );
+        }
+      }
+      await page.keyboard.press("Escape");
+    },
+  );
+  await check(
+    "Guide failure retries and a delayed earlier guide cannot replace a later drawer",
+    async () => {
+      const primary = page,
+        isolated = await browser.newContext({ serviceWorkers: "block" });
+      page = await isolated.newPage();
+      page.on("pageerror", (error) => errors.push(error.message));
+      await page.route("**/data/v4/guides/ipcvai.json", (route) =>
+        route.fulfill({ status: 503, body: "unavailable" }),
+      );
+      await go("scholarships/detail/ipcvai");
+      await page.waitForSelector("[data-retry-guide]");
+      await page.unroute("**/data/v4/guides/ipcvai.json");
+      await page.locator("[data-retry-guide]").click();
+      await page.waitForSelector("#drawer .guide-loading", {
+        state: "detached",
+      });
+      assert.equal(await page.locator("[data-retry-guide]").count(), 0);
+      await page.route("**/data/v4/guides/emai.json", async (route) => {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        await route.continue();
+      });
+      await hash("#/scholarships/detail/emai");
+      await hash("#/scholarships/detail/imlex");
+      await page.waitForTimeout(700);
+      assert.match(await page.locator("#drawer").innerText(), /IMLEX/);
+      assert.ok(!(await page.locator("#drawer").innerText()).includes("EMAI"));
+      await isolated.close();
+      page = primary;
+    },
+  );
+  await check(
     "Demo mode isolates all edits and theme choices from saved owner storage",
     async () => {
       const before = await page.evaluate(() =>
@@ -571,8 +777,19 @@ try {
         localStorage.setItem("career-track:v3", "broken-json"),
       );
       await go("scholarships/country/SA?focus=kaust");
+      await page.waitForSelector("#drawer .guide-loading", {
+        state: "detached",
+      });
       assert.equal(
         await page.locator('#drawer [name="decision"]').isDisabled(),
+        true,
+      );
+      assert.equal(
+        await page.locator('#drawer [name="tracking"]').isDisabled(),
+        true,
+      );
+      assert.equal(
+        await page.locator("#drawer [data-private-note]").isDisabled(),
         true,
       );
       assert.equal(
@@ -587,12 +804,22 @@ try {
     "External HTTP requests",
     JSON.stringify([
       ...new Set(
-        requests.filter((u) => /^https?:/.test(u) && !u.startsWith(base)),
+        requests.filter(
+          (u) =>
+            /^https?:/.test(u) &&
+            !u.startsWith(base) &&
+            !interceptedLaunches.includes(u),
+        ),
       ),
     ]),
   );
   assert.equal(
-    requests.some((u) => /^https?:/.test(u) && !u.startsWith(base)),
+    requests.some(
+      (u) =>
+        /^https?:/.test(u) &&
+        !u.startsWith(base) &&
+        !interceptedLaunches.includes(u),
+    ),
     false,
     "Unexpected external request",
   );
@@ -604,8 +831,12 @@ try {
         accessibility: a11y,
         consoleErrors: errors,
         thirdPartyRequests: requests.filter(
-          (u) => /^https?:/.test(u) && !u.startsWith(base),
+          (u) =>
+            /^https?:/.test(u) &&
+            !u.startsWith(base) &&
+            !interceptedLaunches.includes(u),
         ),
+        interceptedGptLaunchCount: interceptedLaunches.length,
       },
       null,
       2,

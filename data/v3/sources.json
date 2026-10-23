@@ -63,29 +63,31 @@
     "checkedAt": "2026-09-28T00:00:00Z",
     "access": "Public page inspected",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded",
+    "reviewAttemptedAt": "2026-10-23T10:17:20Z",
+    "reviewNote": "Official provider pages returned Gone during this review. Cambridge course pages independently confirm course/funding dates; do not treat an inaccessible provider page as newly verified."
   },
   {
     "id": "legacy-khs",
     "url": "https://knight-hennessy.stanford.edu/admission",
     "title": "Knight-Hennessy Scholars — retained official research link",
     "publisher": "Stanford University",
-    "kind": "discovery",
-    "checkedAt": "2026-10-03T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-chevening",
     "url": "https://www.chevening.org/scholarship/bangladesh/",
     "title": "Chevening Scholarship — retained official research link",
     "publisher": "UK Government",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-ediss",
@@ -93,10 +95,10 @@
     "title": "Erasmus Mundus — EDISS — retained official research link",
     "publisher": "Erasmus Mundus Joint Master",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-commonwealth-shared",
@@ -114,11 +116,11 @@
     "url": "https://www.bd.emb-japan.go.jp/itpr_ja/00_000706.html",
     "title": "MEXT Research Student Scholarship — retained official research link",
     "publisher": "Government of Japan / Embassy of Japan in Bangladesh",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-stipendium",
@@ -129,40 +131,42 @@
     "checkedAt": "2026-09-28T00:00:00Z",
     "access": "Public page inspected",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded",
+    "reviewAttemptedAt": "2026-10-23T10:11:23Z",
+    "reviewNote": "23 October review reached the provider maintenance page. Current 2027/28 call, partners and deadlines remain unverified; previous review date retained."
   },
   {
     "id": "legacy-turkiye",
     "url": "https://www.turkiyeburslari.gov.tr/fulltimeprograms",
     "title": "Türkiye Scholarships — Graduate — retained official research link",
     "publisher": "Türkiye Scholarships",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-gks",
     "url": "https://www.studyinkorea.go.kr/ko/notice/scholarshipsList.do?boardSort=3",
     "title": "Global Korea Scholarship — Graduate (GKS-G) — retained official research link",
     "publisher": "Korean Government / NIIED",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-daad-master",
     "url": "https://www2.daad.de/deutschland/stipendium/datenbank/en/21148-scholarship-database/?back=1&daad=&origin=29&page=1&q=&status=&subjectGrps=",
     "title": "DAAD — Master Studies for All Academic Disciplines — retained official research link",
     "publisher": "German Academic Exchange Service (DAAD)",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-eth-esop",
@@ -170,65 +174,67 @@
     "title": "ETH Zurich Excellence Scholarship & Opportunity Programme (ESOP) — retained official research link",
     "publisher": "ETH Zurich",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-mext-university",
     "url": "https://www.studyinjapan.go.jp/en/planning/scholarships/mext-scholarships/",
     "title": "MEXT Research Student — University Recommendation — retained official research link",
     "publisher": "MEXT / nominating Japanese university",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-goi-ies",
     "url": "https://hea.ie/policy/internationalisation/goi-ies/",
     "title": "Government of Ireland International Education Scholarship (GOI-IES) — retained official research link",
     "publisher": "Government of Ireland / Higher Education Authority",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "legacy-eiffel",
-    "url": "https://www.campusfrance.org/en/the-france-excellence-eiffel-scholarship-program",
+    "url": "https://www.campusfrance.org/en/france-excellence-eiffel-scholarship-program",
     "title": "France Excellence Eiffel — Master's — retained official research link",
     "publisher": "French Ministry for Europe and Foreign Affairs / Campus France",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official indexed content reviewed; full-page retrieval unavailable",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Official indexed 2027 information gives 6 January; a separate official news result gives 8 January. Institutional nomination cutoffs are earlier. Exact national cutoff is unresolved."
   },
   {
     "id": "legacy-si-sweden",
-    "url": "https://si.se/en/apply/scholarships/",
+    "url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/",
     "title": "Swedish Institute Scholarship — Master's — retained official research link",
     "publisher": "Swedish Institute",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official indexed content reviewed; full-page retrieval unavailable",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Official indexed call lists 8–24 February 2027; full-page retrieval was denied. Confirm country eligibility, work evidence and the separate university application."
   },
   {
     "id": "legacy-erasmus-ai",
-    "url": "https://education.ec.europa.eu/study-in-europe/whats-new/news/one-programme-multiple-countries-find-joint-study-programmes-in-europe",
-    "title": "Erasmus Mundus — Additional AI/CS Joint Masters — retained official research link",
+    "url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
+    "title": "European Commission — Erasmus Mundus Joint Masters for students",
     "publisher": "European Union / Erasmus Mundus Joint Masters",
-    "kind": "discovery",
-    "checkedAt": "2026-09-28T00:00:00Z",
-    "access": "Public page inspected",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:17:20Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "ubc-admission",
@@ -236,10 +242,10 @@
     "title": "Computer Science MSc — September 2027 admissions",
     "publisher": "University of British Columbia",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "ubc-funding",
@@ -247,10 +253,10 @@
     "title": "Dated 2026–27 MSc/PhD stipend table",
     "publisher": "UBC Computer Science",
     "kind": "department",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "waterloo-admission",
@@ -258,10 +264,10 @@
     "title": "Computer Science MMath admissions",
     "publisher": "University of Waterloo",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "waterloo-funding",
@@ -269,10 +275,10 @@
     "title": "Funding graduate studies",
     "publisher": "Waterloo Computer Science",
     "kind": "department",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "alberta-admission",
@@ -280,10 +286,10 @@
     "title": "Fall 2027 Computing Science thesis applications",
     "publisher": "University of Alberta",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "alberta-funding",
@@ -291,10 +297,10 @@
     "title": "Graduate financial support and awards",
     "publisher": "Alberta Computing Science",
     "kind": "department",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "mcgill-admission",
@@ -302,10 +308,10 @@
     "title": "Current graduate deadline page",
     "publisher": "McGill Computer Science",
     "kind": "department",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "mcgill-funding",
@@ -313,10 +319,10 @@
     "title": "Funding offers — most Masters students funded",
     "publisher": "McGill Computer Science",
     "kind": "department",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "toronto-msc",
@@ -324,10 +330,10 @@
     "title": "MSc CS — international applicants not considered",
     "publisher": "University of Toronto Computer Science",
     "kind": "department",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "sydney-scholarship",
@@ -335,10 +341,10 @@
     "title": "RTP International — 2027 periods 3/4",
     "publisher": "University of Sydney",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "melbourne-scholarship",
@@ -346,10 +352,10 @@
     "title": "Graduate Research Scholarships",
     "publisher": "University of Melbourne",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "monash-scholarship",
@@ -357,10 +363,10 @@
     "title": "Research degree and scholarship rounds",
     "publisher": "Monash University",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "unsw-scholarship",
@@ -368,10 +374,10 @@
     "title": "HDR international scholarship deadlines",
     "publisher": "UNSW Sydney",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "anu-scholarship",
@@ -379,10 +385,10 @@
     "title": "Master of Philosophy scholarship rounds",
     "publisher": "Australian National University",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "uq-scholarship",
@@ -390,10 +396,10 @@
     "title": "UQ Graduate Research School Scholarships",
     "publisher": "University of Queensland",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "monash-rtp-funding",
@@ -401,10 +407,10 @@
     "title": "RTP stipend — 2027 rate and tuition pairing",
     "publisher": "Monash University",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "australia-awards",
@@ -412,10 +418,10 @@
     "title": "Bangladesh Australia Awards — study commencing 2027",
     "publisher": "Australian Department of Foreign Affairs and Trade",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "cornell-ms",
@@ -423,10 +429,10 @@
     "title": "Research MS CS application and funding",
     "publisher": "Cornell Computer Science",
     "kind": "department",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "princeton-mse",
@@ -434,10 +440,10 @@
     "title": "CS MSE — no Fall 2027 applications",
     "publisher": "Princeton Graduate School",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "oxford-acs",
@@ -445,10 +451,10 @@
     "title": "Advanced Computer Science MSc — 2027–28",
     "publisher": "University of Oxford",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "clarendon",
@@ -456,10 +462,10 @@
     "title": "Clarendon Fund — automatic consideration",
     "publisher": "University of Oxford",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "weidenfeld",
@@ -467,10 +473,10 @@
     "title": "Weidenfeld-Hoffmann — 2027–28 eligibility and form",
     "publisher": "University of Oxford",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "cambridge-acs",
@@ -478,10 +484,10 @@
     "title": "MPhil Advanced CS — 2027 course and funding dates",
     "publisher": "University of Cambridge",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "gates-how",
@@ -492,7 +498,9 @@
     "checkedAt": "2026-10-16T14:16:10.163Z",
     "access": "Public page inspected",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Manual verification-session checkpoint",
+    "reviewAttemptedAt": "2026-10-23T10:17:20Z",
+    "reviewNote": "Official provider pages returned Gone during this review. Cambridge course pages independently confirm course/funding dates; do not treat an inaccessible provider page as newly verified."
   },
   {
     "id": "ucl-global",
@@ -500,10 +508,10 @@
     "title": "Global Masters Scholarship — 2026/27 published round",
     "publisher": "University College London",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "kaust-timing",
@@ -511,10 +519,10 @@
     "title": "KAUST Fall 2027 admission timetable",
     "publisher": "KAUST",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "kaust-entry",
@@ -522,10 +530,10 @@
     "title": "KAUST entry requirements",
     "publisher": "KAUST",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:17:20Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "kaust-fellowship",
@@ -533,10 +541,10 @@
     "title": "KAUST Fellowship fees and funding",
     "publisher": "KAUST",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "mbzuai-2027",
@@ -544,10 +552,10 @@
     "title": "2027 MSc admission and faculty-sponsored funding",
     "publisher": "MBZUAI",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "commonwealth-2027",
@@ -555,10 +563,10 @@
     "title": "Commonwealth Masters provider application",
     "publisher": "Commonwealth Scholarship Commission",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "commonwealth-shared-current",
@@ -566,10 +574,10 @@
     "title": "Shared Scholarship applications — official current call",
     "publisher": "Commonwealth Scholarship Commission",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "immigration-ca",
@@ -577,10 +585,10 @@
     "title": "PGWP duration for eligible Masters graduates",
     "publisher": "IRCC",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "canada-pgwp-eligibility",
@@ -588,10 +596,10 @@
     "title": "PGWP eligibility and language rules",
     "publisher": "IRCC",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "immigration-au",
@@ -602,7 +610,9 @@
     "checkedAt": "2026-10-16T14:16:10.163Z",
     "access": "Public page inspected",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Manual verification-session checkpoint",
+    "reviewAttemptedAt": "2026-10-23T10:11:23Z",
+    "reviewNote": "Current complete rule text could not be established during this review; previous verified date and provisional assessment retained."
   },
   {
     "id": "immigration-us",
@@ -613,7 +623,9 @@
     "checkedAt": "2026-10-16T14:16:10.163Z",
     "access": "Public page inspected",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Manual verification-session checkpoint",
+    "reviewAttemptedAt": "2026-10-23T10:11:23Z",
+    "reviewNote": "Current complete rule text could not be established during this review; previous verified date and provisional assessment retained."
   },
   {
     "id": "us-stem-opt",
@@ -624,7 +636,9 @@
     "checkedAt": "2026-10-16T14:16:10.163Z",
     "access": "Public page inspected",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Manual verification-session checkpoint",
+    "reviewAttemptedAt": "2026-10-23T10:11:23Z",
+    "reviewNote": "Current complete rule text could not be established during this review; previous verified date and provisional assessment retained."
   },
   {
     "id": "immigration-gb",
@@ -632,10 +646,10 @@
     "title": "Graduate visa duration from January 2027",
     "publisher": "UK Government",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "immigration-ie",
@@ -643,10 +657,10 @@
     "title": "Student and graduate permission",
     "publisher": "Irish Immigration Service",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "immigration-fi",
@@ -654,10 +668,10 @@
     "title": "Residence permit to look for work or start a business",
     "publisher": "Finnish Immigration Service",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "immigration-nz",
@@ -665,10 +679,10 @@
     "title": "Post Study Work Visa after eligible Masters study",
     "publisher": "Immigration New Zealand",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
-    "access": "Public page inspected",
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "immigration-no",
@@ -679,7 +693,9 @@
     "checkedAt": "2026-10-16T14:16:10.163Z",
     "access": "Public page inspected",
     "publishedAt": null,
-    "checkPrecision": "Manual verification-session checkpoint"
+    "checkPrecision": "Manual verification-session checkpoint",
+    "reviewAttemptedAt": "2026-10-23T10:11:23Z",
+    "reviewNote": "Current complete rule text could not be established during this review; previous verified date and provisional assessment retained."
   },
   {
     "id": "experience-ubc",
@@ -775,54 +791,57 @@
     "title": "Australia Awards benefits and conditions",
     "publisher": "DFAT",
     "kind": "official",
-    "checkedAt": "2026-10-16T14:16:10.163Z",
+    "checkedAt": "2026-10-23T10:17:20Z",
     "publishedAt": null,
-    "access": "Public official page inspected",
-    "checkPrecision": "Manual verification-session checkpoint"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-ipcvai-source-0",
     "title": "Official 2027 eligibility and deadline",
     "url": "https://ipcv.eu/application-and-selection/application/",
     "publisher": "Pázmány Péter Catholic University · Universidad Autónoma de Madrid · Université de Bordeaux",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official indexed content reviewed; full-page retrieval unavailable",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Official indexed 2027–29 call: 1 November 2026 to 2 February 2027 at noon Paris time. Full page timed out."
   },
   {
     "id": "goal-ipcvai-source-1",
     "title": "Official 2027 document list and portal",
     "url": "https://ipcv.eu/application-and-selection/apply-now/",
     "publisher": "Pázmány Péter Catholic University · Universidad Autónoma de Madrid · Université de Bordeaux",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official indexed content reviewed; full-page retrieval unavailable",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Official indexed application instructions identify the eMundus portal and the same dates."
   },
   {
     "id": "goal-ipcvai-source-2",
     "title": "2027 full scholarship coverage",
     "url": "https://ipcv.eu/about-ipcv-program-2/costs-and-funding-2/",
     "publisher": "Pázmány Péter Catholic University · Universidad Autónoma de Madrid · Université de Bordeaux",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official indexed content reviewed; full-page retrieval unavailable",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Official indexed funding terms state EUR 1,400 per month for two years. Confirm the individual award letter."
   },
   {
     "id": "goal-deai-source-0",
     "title": "Official admissions (currently previous cycle)",
     "url": "https://deai.ulb.be/home/students/admission/",
     "publisher": "Université libre de Bruxelles and partner consortium universities (verify final mobility assignment)",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-deai-source-1",
@@ -840,11 +859,11 @@
     "title": "2027 call",
     "url": "https://www.imlex.org/how-to-apply/",
     "publisher": "University of Eastern Finland and IMLEX consortium partners",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-imlex-source-1",
@@ -873,22 +892,22 @@
     "title": "2027 admissions and timetable",
     "url": "https://www.unite-codas-master.eu/admission.html",
     "publisher": "Aalto University · UPC BarcelonaTech · Técnico Lisboa · TU Braunschweig · Grenoble INP–UGA",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-codas-source-1",
     "title": "Funding terms",
-    "url": "https://codas.dice.aalto.fi/scholarship.html",
+    "url": "https://www.unite-codas-master.eu/scholarship.html",
     "publisher": "Aalto University · UPC BarcelonaTech · Técnico Lisboa · TU Braunschweig · Grenoble INP–UGA",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-codas-source-2",
@@ -906,33 +925,33 @@
     "title": "Official MAIA 2027 funding update",
     "url": "https://maiamaster.udg.edu/admission/",
     "publisher": "University of Girona and renewed MAIA partner consortium (confirm 2027 list)",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:11:23Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-cambridge-source-0",
     "title": "2027 MPhil requirements",
     "url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/egegmpmsl/requirements",
     "publisher": "University of Cambridge",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:17:20Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-cambridge-source-1",
     "title": "Programme finance disclosure",
     "url": "https://www.postgraduate.study.cam.ac.uk/courses/directory/egegmpmsl/finance",
     "publisher": "University of Cambridge",
-    "kind": "discovery",
-    "checkedAt": "2026-10-15T00:00:00Z",
+    "kind": "official",
+    "checkedAt": "2026-10-23T10:17:20Z",
     "publishedAt": null,
-    "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
   },
   {
     "id": "goal-cambridge-source-2",
@@ -943,7 +962,9 @@
     "checkedAt": "2026-10-15T00:00:00Z",
     "publishedAt": null,
     "access": "Retained prior planning source; current cycle not reverified.",
-    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+    "checkPrecision": "Inherited snapshot date; retrieval instant not recorded",
+    "reviewAttemptedAt": "2026-10-23T10:17:20Z",
+    "reviewNote": "Official provider pages returned Gone during this review. Cambridge course pages independently confirm course/funding dates; do not treat an inaccessible provider page as newly verified."
   },
   {
     "id": "goal-emai-source-0",
@@ -966,5 +987,175 @@
     "publishedAt": null,
     "access": "Retained prior planning source; current cycle not reverified.",
     "checkPrecision": "Inherited snapshot date; retrieval instant not recorded"
+  },
+  {
+    "id": "deai-funding-2027",
+    "url": "https://deai.ulb.be/home/students/tuition-fees-scholarships/",
+    "title": "DEAI tuition fees and scholarship tiers",
+    "publisher": "DEAI consortium",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "deai-service-notice",
+    "url": "https://deai.ulb.be/",
+    "title": "DEAI current news and consortium",
+    "publisher": "DEAI consortium",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "21 October 2026 notice says the online application portal is temporarily offline for security maintenance."
+  },
+  {
+    "id": "imlex-funding-2027",
+    "url": "https://www.imlex.org/fees-and-scholarships/",
+    "title": "IMLEX Erasmus Mundus fees and scholarships",
+    "publisher": "IMLEX consortium",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "imlex-consortium",
+    "url": "https://www.imlex.org/consortium/",
+    "title": "IMLEX consortium universities",
+    "publisher": "IMLEX consortium",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "emai-current-call",
+    "url": "https://www.upf.edu/web/emai",
+    "title": "EMAI current application notice",
+    "publisher": "Universitat Pompeu Fabra",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "ediss-admission-requirements",
+    "url": "https://www.master-ediss.eu/admission-requirements/",
+    "title": "EDISS admission requirements and document rules",
+    "publisher": "EDISS consortium",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "General requirements include some 2026 completion dates; those old dates were not copied into the 2027 deadline list."
+  },
+  {
+    "id": "ediss-funding-terms",
+    "url": "https://www.master-ediss.eu/scholarship/",
+    "title": "EDISS scholarship tiers and historical funding terms",
+    "publisher": "EDISS consortium",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Detailed award table still identifies Intake 6 (2026–28); Intake 7 amounts require confirmation."
+  },
+  {
+    "id": "eiffel-conflicting-notice",
+    "url": "https://www.campusfrance.org/en/actu/call-for-france-excellence-eiffel-applications-2027",
+    "title": "Eiffel 2027 call announcement — conflicting deadline",
+    "publisher": "Campus France",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official indexed content reviewed; full-page retrieval unavailable",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Indexed announcement gives 8 January 2027, conflicting with the programme page. No exact countdown is published in the tracker."
+  },
+  {
+    "id": "qut-scholarship-rounds",
+    "url": "https://www.qut.edu.au/research/study-with-us/scholarships/applying-for-scholarships",
+    "title": "QUT international research scholarship rounds",
+    "publisher": "Queensland University of Technology",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "qut-pra",
+    "url": "https://www.qut.edu.au/study/fees-and-scholarships/scholarships/qut-postgraduate-research-award-qutpra",
+    "title": "QUT Postgraduate Research Award terms",
+    "publisher": "Queensland University of Technology",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "uts-scholarship-rounds",
+    "url": "https://www.uts.edu.au/for-students/admissions-entry/how-to-apply/masters-by-research-phd/application-closing-dates",
+    "title": "UTS international scholarship and portal deadlines",
+    "publisher": "University of Technology Sydney",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "uts-research-funding",
+    "url": "https://www.uts.edu.au/for-students/admissions-entry/scholarships/how-to-fund-your-phd-or-masters-by-research",
+    "title": "UTS research-master scholarship funding",
+    "publisher": "University of Technology Sydney",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "adelaide-research-funding",
+    "url": "https://adelaide.edu.au/research/research-degrees/research-scholarships/",
+    "title": "Adelaide University research scholarship rounds and eligibility",
+    "publisher": "Adelaide University",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "tasmania-research-funding",
+    "url": "https://www.utas.edu.au/research/degrees/scholarships-and-fees",
+    "title": "Tasmania research-master scholarships and rounds",
+    "publisher": "University of Tasmania",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp"
+  },
+  {
+    "id": "tasmania-projects",
+    "url": "https://www.utas.edu.au/research/degrees/available-projects",
+    "title": "Tasmania funded research projects and degree eligibility",
+    "publisher": "University of Tasmania",
+    "kind": "official",
+    "publishedAt": null,
+    "checkedAt": "2026-10-23T10:11:23Z",
+    "access": "Official public page reviewed",
+    "checkPrecision": "Review timestamp",
+    "reviewNote": "Projects have their own closing dates, citizenship and degree restrictions; PhD-only projects are not research-master offers."
   }
 ]
