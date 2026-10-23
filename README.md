@@ -1,51 +1,31 @@
-# Career Track V3
+# Career Track — Scholarship OS
 
-The active app is the login-free V3 scholarship intelligence and application workspace. Start with [V3 release](docs/v3/RELEASE.md), [architecture](docs/v3/ARCHITECTURE.md) and [migration](docs/v3/MIGRATION.md). Earlier sections below document the retained prior implementation.
+A local-first workspace for scholarship deadlines, country trade-offs, applications and documents.
 
-# Career Track v2
+**V4 is live:** [muncareer.vercel.app](https://muncareer.vercel.app) · [Try the fictional demo](https://muncareer.vercel.app/?demo=1) · [Classic tools](https://muncareer.vercel.app/classic/)
 
-A personal scholarship workspace for the 2027 MSc intake. Vanilla ES modules and esbuild, hosted on Vercel. The active app needs no account or cloud configuration.
+Five screens: Dashboard, Scholarships, Calendar, Documents and Settings. No sign-in is required. Existing browser progress is preserved on the same origin. Export your workspace in Settings to keep a portable backup.
 
-## Workflow
+![V4 dashboard with fictional demo data](docs/v4/ux/dashboard-desktop.webp)
 
-- **Overview:** nearest verified deadline, currently working on, up to five next actions and three summary tiles.
-- **Scholarships:** country names first, grouped by five personal requirements with explicit compromises. Every current country/territory is listed; unresearched entries are collapsed. Provisional means the evidence has not been fully verified.
-- **Country details:** editable checklist, notes, submission, single/bulk research and completion tracking, official evidence and a pin toggle. Tray links restore the country and focused scholarship.
-- **Pipeline / Documents / Profile Fit:** existing application preparation, evidence and profile workflows.
-- **Settings:** JSON backup export/import, explicit idempotent browser-progress import and typed reset with a backup first.
-- **Personalized Goal / Archive & History:** existing extended programme research and recoverable archive/trash.
+A quick tour: add a curated match, open its six-tab guide, complete its checklist, prepare shared documents, and export a backup. Country rankings state the exact compromises; unsourced policy ratings remain Provisional. External radar collection and cloud sync are not active.
 
-Shortcuts: 1–5 retain the original tabs; Settings=6, Goal=7, Archive=8. `/` opens country search. Navigation is keyboard accessible and becomes a bottom rail on mobile.
+The implementation follows the supplied V4 kit. See [release details and validation](docs/v4/RELEASE.md), [accessibility](ACCESSIBILITY.md), [security](SECURITY.md) and [licence](LICENSE).
 
-## Persistence
-
-The app opens directly with **Saved on this device** and stores progress under `career-track:v2`. There is no Google sign-in or automatic cross-device sync. The browser bundle does not load the Supabase client or read OAuth sessions. Offline changes save locally while the page is open; this is not an offline-installable PWA.
-
-Use **Settings → Import progress from this browser** to migrate previous local work without changing either legacy key. Use **Export progress** and **Import a backup file** to transfer between browsers, devices or website origins. Imports validate the file, preview changes and preserve existing notes, priorities and profile details. Storage failures retain an exportable draft and expose Retry; corrupt bytes are preserved for recovery. Export before clearing browser data.
-
-Publication and usage are documented in [RELEASE](docs/upgrade/RELEASE.md). Google/Supabase activation is deferred. Existing database protections and backend tooling are preserved but are not used by this release; the scheduled keepalive is removed. No service secret belongs in browser configuration or source control.
-
-## Development and checks
+## Development
 
 ```sh
 npm ci
-npm run dev
 npm test
-npm run check:data
 npm run check:keys
+npm run check:data
+npm run check:ui
+npm run check:ui:v4
+npm run check:privacy
 npm run build
+npm run dev
 ```
 
-Node 22.18+ is required. Unit tests run serially to bound PGlite memory; retained backend tests use isolated synthetic data. Browser verification uses a development Playwright installation (the supplied execution runtime also provides one); set `CT_CHROMIUM_PATH` to an existing Chromium binary when needed, then run `npm run test:browser`. It exercises the actual device-mode entry without a live database or OAuth identity.
+`npm run test:browser` exercises classic flows. `npm run test:browser:v4` exercises the new interface; set `CT_CHROMIUM_PATH` to a Chromium executable and `CT_AXE_PATH` to an installed Axe script for accessibility scans. Playwright can be supplied by the runtime or a local tooling installation. No new runtime dependencies are required.
 
-Exact deadlines retain source, UTC instant and provider timezone. The calendar uses four alarms per event; date-only/unannounced deadlines never receive invented exact times. Country lists contain 249 ISO entries plus Kosovo, with a separate regional Europe collection; historical CLDR aliases are removed.
-
-Implementation/audit/acceptance evidence: [STATUS](docs/upgrade/STATUS.md), [UI review](docs/upgrade/UI-REVIEW.md), [design](DESIGN.md), [interaction contract](UX-CONTRACT.md). Original kit/specs remain under `docs/upgrade/`.
-
-Work is on `personal-dynamic`; the owner reviews and merges the PR to `main`.
-
-## Career Track V3
-
-The active release uses the login-free V3 intelligence workspace. See [architecture](docs/v3/ARCHITECTURE.md), [research coverage](docs/v3/RESEARCH.md), [migration and recovery](docs/v3/MIGRATION.md) and [acceptance evidence](docs/v3/ACCEPTANCE.md). Public researched facts live in `data/v3`; private device state is never a public default. The earlier v2 modules/specifications below remain compatibility/history documentation.
-
-Validation: `npm test`, `npm run check:keys`, `npm run check:data`, `npm run build`, and `npm run test:browser` (Playwright with a Chromium installation, or `CT_CHROMIUM_PATH`). `npm run research:check` produces a bounded official-source review report. A daily GitHub Actions job creates the same report without rewriting verified claims. Settings supports v2/v3 backups and a separately supplied private context import.
+The original V2 data and all 102 legacy progress keys are retained. Private exports and profiles must stay outside Git. The licence is unchanged. Historical release documentation remains under `docs/upgrade` and `docs/v3`; current behavior is documented in `docs/v4`.

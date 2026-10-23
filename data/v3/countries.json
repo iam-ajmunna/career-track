@@ -15,7 +15,33 @@
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
-    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   },
   {
     "id": "au",
@@ -32,7 +58,33 @@
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
-    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   },
   {
     "id": "us",
@@ -50,7 +102,33 @@
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
-    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   },
   {
     "id": "gb",
@@ -67,7 +145,33 @@
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
-    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   },
   {
     "id": "ie",
@@ -84,7 +188,33 @@
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
-    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   },
   {
     "id": "fi",
@@ -101,7 +231,33 @@
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
-    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   },
   {
     "id": "nz",
@@ -118,7 +274,33 @@
     "language": "English-language study does not guarantee local job-market access.",
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
-    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes."
+    "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   },
   {
     "id": "no",
@@ -136,6 +318,32 @@
     "cost": "Use programme tuition, insurance and current city-specific living estimates; no unsupported country average.",
     "longTerm": "Employment, work permits and permanent residence are distinct processes; no outcome is guaranteed.",
     "returnHome": "Award-specific return-home terms can restrict the use of otherwise available post-study routes.",
-    "verification": "official-information-unavailable"
+    "verification": "official-information-unavailable",
+    "fit": {
+      "work": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "career": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "spouse": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      },
+      "pr": {
+        "level": "unknown",
+        "reason": "Not yet assessed against the five-requirement rubric. Review the official country sources.",
+        "sourceIds": [],
+        "checkedAt": null
+      }
+    }
   }
 ]

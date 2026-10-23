@@ -18,3 +18,9 @@ docs/upgrade/ux/*.png
 
 # V3 browser captures are reviewed as selected lossless WebP evidence.
 docs/v3/ux/*.png
+
+.generated/
+docs/v4/ux/*.png
+docs/v4/baseline/*.png
+
+docs/v4/ux/lighthouse-*.json

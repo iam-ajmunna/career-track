@@ -16,7 +16,7 @@ test('JSON backup restores a complete workspace into a fresh browser without an 
   const state = { ...empty(), progress: { 'sch-kaust-0': true }, applications: { kaust: 'submitted' },
     tracking: { mext: 'researching' }, pins: { kaust: true }, notes: { kaust: '<private note>' },
     preferences: { 'enabled-pr': false }, ui: { unratedOpen: true },
-    profile: { name: 'AJ', degree: 'CSE', university: 'NSU', cgpa: '3.74', highlights: [],
+    profile: { name: 'Alex Morgan', degree: 'Sample degree', university: 'Example University', cgpa: '3.50', highlights: [],
       positioning: { engineering: 80, research: 70, academics: 90, developmentImpact: 60, leadership: 50 } },
     lifecycle: { khs: { status: 'expired', at } }, history: { khs: { name: 'KHS', deadline: '2026-10-06', expiredAt: at } } };
   const preview = inspectBackup(parseBackup(exported(state)), empty());

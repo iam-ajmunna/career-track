@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" data-theme-pref="system">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Career Track — Scholarship OS (next)</title>
+    <meta name="robots" content="noindex" />
+    <!-- remove at flip (S9) -->
+    <meta
+      name="description"
+      content="Plan, track and win fully funded Masters scholarships. Deadlines, documents and matches in one calm workspace."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="theme-color"
+      content="#F6F7F9"
+      media="(prefers-color-scheme: light)"
+    />
+    <meta
+      name="theme-color"
+      content="#0F1114"
+      media="(prefers-color-scheme: dark)"
+    />
+    <meta property="og:title" content="Career Track — Scholarship OS" />
+    <meta
+      property="og:description"
+      content="Deadlines, documents and matches for fully funded Masters applications."
+    />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/assets/tokens.css" />
+    <link rel="stylesheet" href="/assets/app4.css" />
+    <script src="/assets/theme.js"></script>
+    <!-- EXISTING file (src/theme.js): reads localStorage key "scholarship-theme" (light|dark). Do NOT replace it. -->
+  </head>
+  <body class="workspace-loading">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <svg
+      width="0"
+      height="0"
+      class="icon-sprite"
+      aria-hidden="true"
+      focusable="false"
+      id="icon-sprite"
+    >
+      <!-- <symbol> set from src/ui/icons.js -->
+    </svg>
+
+    <noscript
+      ><p class="noscript">
+        Career Track needs JavaScript to render your workspace.
+      </p></noscript
+    >
+
+    <div class="app" id="appShell" hidden>
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">
+          <div class="brand__mark" aria-hidden="true">CT</div>
+          <div>
+            <div class="brand__name">Career Track</div>
+            <div class="brand__tag">Scholarship OS</div>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Main" id="mainNav">
+          <a class="nav__item" href="#/dashboard" data-nav="dashboard"
+            ><svg class="nav__icon" aria-hidden="true">
+              <use href="#i-dash" /></svg
+            ><span>Dashboard</span></a
+          >
+          <a class="nav__item" href="#/scholarships" data-nav="scholarships"
+            ><svg class="nav__icon" aria-hidden="true">
+              <use href="#i-cap" /></svg
+            ><span>Scholarships</span
+            ><span class="nav__badge" id="navCountScholarships" hidden></span
+          ></a>
+          <a class="nav__item" href="#/calendar" data-nav="calendar"
+            ><svg class="nav__icon" aria-hidden="true">
+              <use href="#i-cal" /></svg
+            ><span>Calendar</span></a
+          >
+          <a class="nav__item" href="#/documents" data-nav="documents"
+            ><svg class="nav__icon" aria-hidden="true">
+              <use href="#i-doc" /></svg
+            ><span>Documents</span></a
+          >
+          <a class="nav__item" href="#/settings" data-nav="settings"
+            ><svg class="nav__icon" aria-hidden="true">
+              <use href="#i-gear" /></svg
+            ><span>Settings</span></a
+          >
+        </nav>
+        <div class="sidebar__foot" id="dataFreshness">
+          <div>
+            <span class="status-dot" aria-hidden="true"></span
+            ><span id="freshnessText">Data verified —</span>
+          </div>
+          <div id="nextCheckText"></div>
+        </div>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <div class="topbar__title">
+            <h1 id="pageTitle" tabindex="-1">Dashboard</h1>
+            <p class="topbar__sub" id="pageSub"></p>
+          </div>
+          <div class="topbar__actions">
+            <!-- IDs below are required by the existing bootstrap logic: copy their semantics from /index.html (hidden attribute / classes) -->
+            <div
+              class="sync-pill"
+              id="syncBar"
+              role="status"
+              data-state="saved"
+            >
+              <span id="syncLabel">Saved on this device</span>
+              <span id="syncMessage"></span>
+            </div>
+            <button
+              class="btn btn--ghost btn--sm"
+              id="syncRetry"
+              type="button"
+              hidden
+            >
+              Retry
+            </button>
+            <label class="intake field"
+              ><span class="sr-only">Intake</span
+              ><select id="intakeSelect" aria-label="Intake">
+                <option value="2027">2027 intake</option>
+                <option value="2028">2028 intake</option>
+              </select></label
+            >
+            <form
+              class="search"
+              role="search"
+              id="searchForm"
+              autocomplete="off"
+              novalidate
+            >
+              <svg class="search__icon" aria-hidden="true">
+                <use href="#i-search" />
+              </svg>
+              <input
+                class="search__input"
+                id="globalSearch"
+                name="q"
+                type="search"
+                placeholder="Search scholarships, countries…"
+                aria-label="Search scholarships and countries"
+                enterkeyhint="search"
+              />
+              <button
+                class="search__clear"
+                type="button"
+                id="searchClear"
+                aria-label="Clear search"
+                hidden
+              >
+                ×
+              </button>
+            </form>
+            <button
+              class="icon-btn"
+              id="themeToggle"
+              type="button"
+              aria-label="Switch to dark theme"
+            >
+              ◐
+            </button>
+            <div class="account">
+              <button
+                class="avatar-btn"
+                id="accountBtn"
+                type="button"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                aria-controls="accountMenu"
+                aria-label="Account menu"
+              >
+                <span class="avatar" id="accountAvatar" aria-hidden="true"
+                  >?</span
+                >
+              </button>
+              <div class="menu" id="accountMenu" role="menu" hidden>
+                <div class="menu__item menu__name" role="presentation">
+                  <strong id="accountName">Your profile</strong>
+                </div>
+                <a class="menu__item" role="menuitem" href="#/settings/profile"
+                  >Profile &amp; preferences</a
+                >
+                <a class="menu__item" role="menuitem" href="#/settings/data"
+                  >Backup &amp; export</a
+                >
+                <button
+                  class="menu__item"
+                  role="menuitem"
+                  id="exportProgress"
+                  type="button"
+                >
+                  Export progress
+                </button>
+                <a class="menu__item" role="menuitem" href="#/settings/sources"
+                  >Sources &amp; coverage</a
+                >
+              </div>
+            </div>
+          </div>
+        </header>
+        <main id="main" tabindex="-1"><!-- active view renders here --></main>
+      </div>
+    </div>
+
+    <section id="workspaceGate" aria-live="polite">
+      <h2 id="workspaceTitle">Opening your workspace</h2>
+      <p id="workspaceMessage">Opening saved progress…</p>
+      <div>
+        <button
+          class="btn btn--secondary"
+          id="workspaceRetry"
+          type="button"
+          hidden
+        >
+          Retry
+        </button>
+        <button class="btn btn--secondary" id="gateExport" type="button" hidden>
+          Export a backup
+        </button>
+      </div>
+    </section>
+    <aside
+      class="drawer"
+      id="drawer"
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="drawerTitle"
+    >
+      <!-- opportunity detail -->
+    </aside>
+    <div class="scrim" id="scrim" hidden></div>
+    <div
+      class="toast-root"
+      id="toastRoot"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <dialog
+      id="actionDialog"
+      aria-labelledby="actionTitle"
+      aria-describedby="actionDescription"
+    ></dialog>
+    <div
+      id="timerStatus"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <script type="module" src="/assets/app4.js"></script>
+    <!-- built from src/v4/bootstrap.js -->
+  </body>
+</html>

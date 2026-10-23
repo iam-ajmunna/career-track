@@ -1,0 +1,127 @@
+{
+  "rawAudit": "ui-static-audit.json",
+  "reviewed": [
+    {
+      "category": "violation",
+      "file": "src/app/toast.js",
+      "line": 9,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/dashboard/view.js",
+      "line": 109,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/dashboard/view.js",
+      "line": 115,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/dashboard/view.js",
+      "line": 218,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/scholarships/countries-tiers.js",
+      "line": 385,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/scholarships/countries-tiers.js",
+      "line": 390,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/scholarships/countries-tiers.js",
+      "line": 390,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/scholarships/drawer.js",
+      "line": 228,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/features/settings/view.js",
+      "line": 207,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    },
+    {
+      "category": "violation",
+      "file": "src/ui/fields.js",
+      "line": 35,
+      "message": "Enabled literal button has no detectable action or submit behavior.",
+      "remediation": "Connect the button to a real action, make it a submit button, or disable/remove it.",
+      "ruleId": "affordance.actionless-button",
+      "severity": "error",
+      "classification": "shared-delegation",
+      "evidence": "tests/browser-v4.mjs",
+      "resolution": "Native button uses a data hook handled by the mounted shared controller or toast owner."
+    }
+  ],
+  "unresolved": 0,
+  "runtimeEvidence": "ux/browser-results.json"
+}

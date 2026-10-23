@@ -93,3 +93,26 @@ V3 preserves `career-track:v2` bytes and all 102 original keys and labels. A sep
 The explorer and country routes own URL-restored filter/search/page state. The eight numeric shortcuts retain their historical mapping. The original Personalized Goal board remains a labeled historical planning surface with retained keys; current official V3 guides take precedence. Native dialog owns confirmation focus, Escape and restoration. In-app note drafts persist across views and are included before complete exports; failed saves remain in memory and exportable. Only the active view is rendered. One interval updates visible timer nodes; no continuous browser scraping or closed-tab notification is implied.
 
 Source checking is a scheduled GitHub Actions job. Fingerprint changes require human review; no automatic claim verification, private-group extraction, personal email, live exchange-rate feed, external application submission or account sync is represented as implemented. Reports are imported explicitly from the owner's private repository.
+
+
+## V4 contract — 23 October 2026 (current default)
+
+Authority: `docs/v4/agent.md`, `coding.md` and `implementation.md`, plus the owner’s explicit instruction to push this ZIP upgrade to the main repository. Earlier V2/V3 entries describe the isolated classic interface. V4 runs at `/` and `/next/`; `/classic/` and `?ui=3` retain advanced V3 tools for one release.
+
+| Capability | Canonical owner | Source of truth | Allowed variants | Verification |
+| --- | --- | --- | --- | --- |
+| Select/Listbox | Native select from `src/ui/fields.js` | ZIP coding §7 | Platform-owned popup for intake, filters, stages and status | V4 browser keyboard and popup checks |
+| Date | Native date fields and `src/features/calendar/grid.js` | Registry precision; ZIP coding §9 | Published-date markers, exact viewer-zone events, personal test dates | Unit and V4 browser calendar checks |
+| Form | `src/v4/workspace.js` delegated handlers; `src/v4/state.js` validation | Unchanged V3 state contract with additive V4 namespace | Inline errors, associated fields, retained form drafts | V4 profile/referee/failure tests |
+| Scrollbar | Global baseline in `src/styles/app.css` | DESIGN.md and supplied tokens | Internal table and drawer overflow | Width/theme and computed-style checks |
+| Toast | `src/app/toast.js`, persistent sync message | Device-save result | Undo dismissal; persistent storage error | V4 browser save/failure checks |
+| CRUD | Unchanged `src/v3/store.js` | Validated local state and lifecycle | V4 adapters and classic advanced tools | Unit and both browser suites |
+| Table Selection | Classic comparison and planning tools | Existing V3 maximum-four contract | Retained via explicit advanced-tool links | Classic browser suite |
+
+Five numeric shortcuts route to Dashboard, Scholarships, Calendar, Documents and Settings. Search commits on Enter, retains its query in the hash, ignores composition and offers an immediate clear action. Tabs use roving focus with arrow/Home/End navigation. The shared detail drawer uses six tabs, inert background, focus trapping and restoration, with route-based `focus` and `tab` parameters. Guide requests are keyed and stale responses never replace another opportunity.
+
+The V3 schema and storage key remain unchanged. Version 1 V4 additions live at `v3.preferences.workspaceV4`; `readV4` supplies additive defaults without writing on load, validates imported additions, and exposes a temporary `state.v4` adapter alias. Display name/programme are optional profile fields. The V3 store API performs every persistent mutation. The original V2 key and all 102 progress keys/labels are preserved. No legacy auto-import, cloud sign-in or third-party browser connection is introduced.
+
+V4 data restore is an explicit replacement after preview, typed RESTORE and a download of the current state. Classic retains additive merge and private-context/recovery imports. Reset requires RESET and exports first. Purge requires PURGE and exports first; Trash/Archive can be restored without losing work. Failed writes stay in memory, remain exportable and retry through the store. Note drafts survive view changes and are flushed before full export. Form drafts remain in memory across V4 routes and trigger an unload warning.
+
+Country rubric ratings remain unknown/Provisional unless sources and check dates support the judgement. Curated funding classification feeds the existing five-requirement scorer. Radar remains static, unverified and without countdowns; its workflow requires explicit provider review/configuration. Sync stays off per the owner’s prior direction.

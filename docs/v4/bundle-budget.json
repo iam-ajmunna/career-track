@@ -1,0 +1,27 @@
+{
+  "limitGzip": 153600,
+  "totalGzip": 73526,
+  "files": [
+    {
+      "path": "/assets/app4-RON3JL6Z.js",
+      "gzip": 1218
+    },
+    {
+      "path": "/assets/chunk-RG6SLCJL.js",
+      "gzip": 10598
+    },
+    {
+      "path": "/assets/workspace-HLYCDDH2.js",
+      "gzip": 44920
+    },
+    {
+      "path": "/assets/chunk-N4LVPJW7.js",
+      "gzip": 16662
+    },
+    {
+      "path": "/assets/theme-S6KY44PZ.js",
+      "gzip": 128
+    }
+  ],
+  "guides": "loaded on demand"
+}

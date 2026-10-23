@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Career Track — design preview</title>
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* ===== Career Track — design tokens (single source of truth). Light is default; dark via [data-theme="dark"]. =====
+   Contrast ratios (WCAG 2.2, computed) are noted where a pair is used for text. AA text = 4.5:1, large text/UI = 3:1. */
+:root {
+  /* Neutrals */
+  --bg: #F6F7F9;          /* page background */
+  --surface: #FFFFFF;     /* cards */
+  --surface-2: #F0F2F5;   /* inset panels, hover */
+  --surface-3: #E8EBEF;   /* pressed, tracks */
+  --line: #E2E5E9;        /* 1px borders */
+  --line-strong: #C9CED6; /* inputs, emphasised borders */
+  --text: #15171A;        /* 17.96:1 on surface */
+  --text-2: #454B54;      /* 8.80:1 on surface — secondary body */
+  --muted: #5B616B;       /* 6.24:1 on surface, 5.56:1 on surface-2 (replaces #70757D, which failed AA on surface-2 at 4.13) */
+
+  /* Brand (single accent) */
+  --brand: #3451D1;       /* 6.47:1 on surface; white on brand 6.47:1 */
+  --brand-ink: #2A41A8;   /* text on brand-soft, 7.50:1 */
+  --brand-soft: #EBEEFA;
+  --on-brand: #FFFFFF;
+  --accent: #15171A;      /* primary neutral button (kept from v3) */
+
+  /* Semantics (text colour / soft background pairs, all >= 4.5:1) */
+  --success: #1B6F48;  --success-soft: #E8F1EC;
+  --warning: #7F5E0E;  --warning-soft: #F2EFE7;   /* old #8F6A12 failed on surface-2 (4.42) */
+  --danger:  #A43B3B;  --danger-soft:  #F6EBEB;
+  --critical:#B42318;  --critical-soft:#FBEAE8;
+  --info:    #3867A7;  --info-soft:    #EBF0F6;
+  --focus:   #3451D1;
+
+  /* Shape */
+  --r-xs: 6px; --r-sm: 9px; --r-md: 12px; --r-lg: 16px; --r-xl: 20px; --r-pill: 999px;
+  /* Elevation */
+  --shadow-1: 0 1px 2px rgba(16,24,40,.05);
+  --shadow-2: 0 8px 24px rgba(16,24,40,.07);
+  --shadow-3: 0 24px 64px rgba(16,24,40,.18);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--focus) 24%, transparent);
+  /* Space (4px base) */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px;
+  /* Layout */
+  --sidebar-w: 248px; --topbar-h: 64px; --content-max: 1280px; --page-pad: 32px; --bottom-nav-h: 64px;
+  /* Type */
+  --sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-display: 40px; --lh-display: 44px;   /* hero countdown digits use --mono at this size */
+  --fs-h1: 28px; --lh-h1: 34px;
+  --fs-h2: 20px; --lh-h2: 28px;
+  --fs-h3: 16px; --lh-h3: 24px;
+  --fs-body: 15px; --lh-body: 24px;
+  --fs-small: 13px; --lh-small: 20px;
+  --fs-micro: 12px; --lh-micro: 16px;
+  /* Motion */
+  --t-fast: 120ms; --t-base: 200ms; --t-slow: 320ms; --ease: cubic-bezier(.2,.8,.2,1);
+  /* Z-index scale */
+  --z-sticky: 10; --z-drawer: 40; --z-dialog: 50; --z-toast: 60;
+}
+
+[data-theme="dark"] {
+  --bg: #0F1114; --surface: #171A1F; --surface-2: #1D2127; --surface-3: #262B33;
+  --line: #2B3139; --line-strong: #3A424D;
+  --text: #F3F5F7; --text-2: #C6CBD2; --muted: #9AA2AD;
+  --brand: #8DA2FB; --brand-ink: #B7C4FD; --brand-soft: #282D3E; --on-brand: #0F1114;
+  --accent: #F4F5F6;
+  --success: #71C89A; --success-soft: #243230;
+  --warning: #DEC06D; --warning-soft: #33312A;
+  --danger: #E77C7C;  --danger-soft: #34282C;
+  --critical: #FF8A80; --critical-soft: #3A2626;
+  --info: #81AEE9;    --info-soft: #262F3B;
+  --focus: #9ABCE7;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.3); --shadow-2: 0 8px 24px rgba(0,0,0,.28); --shadow-3: 0 24px 64px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0F1114; --surface: #171A1F; --surface-2: #1D2127; --surface-3: #262B33;
+  --line: #2B3139; --line-strong: #3A424D;
+  --text: #F3F5F7; --text-2: #C6CBD2; --muted: #9AA2AD;
+  --brand: #8DA2FB; --brand-ink: #B7C4FD; --brand-soft: #282D3E; --on-brand: #0F1114; --accent: #F4F5F6;
+  --success: #71C89A; --success-soft: #243230; --warning: #DEC06D; --warning-soft: #33312A;
+  --danger: #E77C7C; --danger-soft: #34282C; --critical: #FF8A80; --critical-soft: #3A2626;
+  --info: #81AEE9; --info-soft: #262F3B; --focus: #9ABCE7;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.3); --shadow-2: 0 8px 24px rgba(0,0,0,.28); --shadow-3: 0 24px 64px rgba(0,0,0,.5);
+} }
+@media (max-width: 1080px) { :root { --sidebar-w: 216px; --page-pad: 24px; } }
+@media (max-width: 760px)  { :root { --page-pad: 16px; --fs-display: 32px; --lh-display: 36px; } }
+@media (prefers-reduced-motion: reduce) { :root { --t-fast: 0ms; --t-base: 0ms; --t-slow: 0ms; } html { scroll-behavior: auto; } }
+
+/* ===== Career Track — base + shell + components. Requires tokens.css. ===== */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scrollbar-width: thin; }
+body { margin: 0; min-width: 320px; background: var(--bg); color: var(--text); font: 400 var(--fs-body)/var(--lh-body) var(--sans); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, h4, p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--brand); text-underline-offset: 3px; }
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--r-xs); }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.muted { color: var(--muted); }
+.eyebrow { font-size: var(--fs-micro); line-height: var(--lh-micro); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.skip-link { position: absolute; left: var(--s-4); top: -64px; background: var(--surface); padding: var(--s-2) var(--s-4); border-radius: var(--r-sm); z-index: var(--z-toast); }
+.skip-link:focus { top: var(--s-4); }
+
+/* ---------- Shell ---------- */
+.app { display: grid; grid-template-columns: var(--sidebar-w) minmax(0, 1fr); min-height: 100dvh; }
+.sidebar { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; gap: var(--s-6); padding: var(--s-6) var(--s-4); background: var(--surface); border-right: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: var(--s-3); padding: 0 var(--s-2); }
+.brand__mark { width: 36px; height: 36px; border-radius: var(--r-md); display: grid; place-items: center; background: var(--brand); color: var(--on-brand); font-weight: 700; letter-spacing: -.02em; }
+.brand__name { font-weight: 700; letter-spacing: -.02em; line-height: 20px; }
+.brand__tag { font-size: var(--fs-micro); color: var(--muted); }
+.nav { display: grid; gap: var(--s-1); }
+.nav__item { display: flex; align-items: center; gap: var(--s-3); min-height: 44px; padding: 0 var(--s-3); border: 0; border-radius: var(--r-md); background: transparent; color: var(--text-2); text-decoration: none; font-weight: 500; transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease); }
+.nav__item:hover { background: var(--surface-2); color: var(--text); }
+.nav__item[aria-current="page"] { background: var(--brand-soft); color: var(--brand-ink); font-weight: 600; }
+.nav__icon { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+.nav__badge { margin-left: auto; min-width: 22px; padding: 1px 7px; border-radius: var(--r-pill); background: var(--surface-3); color: var(--text-2); font: 600 var(--fs-micro)/18px var(--mono); text-align: center; }
+.sidebar__foot { margin-top: auto; display: grid; gap: var(--s-2); padding: var(--s-3); border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface-2); font-size: var(--fs-micro); color: var(--muted); }
+.status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--success); margin-right: var(--s-2); }
+
+.main { min-width: 0; padding: 0 var(--page-pad) var(--s-12); }
+.topbar { position: sticky; top: 0; z-index: var(--z-sticky); display: flex; align-items: center; justify-content: space-between; gap: var(--s-4); min-height: var(--topbar-h); padding: var(--s-4) 0; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); }
+.topbar__title h1 { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-spacing: -.03em; font-weight: 700; }
+.topbar__sub { color: var(--muted); font-size: var(--fs-small); }
+.topbar__actions { display: flex; align-items: center; gap: var(--s-3); }
+.search { position: relative; }
+.search__input { width: clamp(180px, 26vw, 340px); min-height: 44px; padding: 0 44px 0 40px; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); }
+.search__input:focus { border-color: var(--brand); box-shadow: var(--ring); outline: none; }
+.search__icon { position: absolute; left: 12px; top: 12px; width: 20px; height: 20px; stroke: var(--muted); fill: none; stroke-width: 1.75; pointer-events: none; }
+.search__kbd { position: absolute; right: 10px; top: 11px; font: 500 var(--fs-micro)/20px var(--mono); border: 1px solid var(--line); border-radius: var(--r-xs); padding: 0 6px; color: var(--muted); }
+.icon-btn { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); transition: background var(--t-fast) var(--ease); }
+.icon-btn:hover { background: var(--surface-2); }
+.avatar-btn { display: flex; align-items: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-3) 0 var(--s-1); border: 1px solid var(--line-strong); border-radius: var(--r-pill); background: var(--surface); }
+.avatar { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: var(--on-brand); font-weight: 700; font-size: var(--fs-small); }
+.menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 240px; padding: var(--s-2); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-3); z-index: var(--z-drawer); }
+.menu__item { display: flex; width: 100%; align-items: center; gap: var(--s-3); min-height: 40px; padding: 0 var(--s-3); border: 0; background: transparent; border-radius: var(--r-sm); text-align: left; color: var(--text); text-decoration: none; }
+.menu__item:hover { background: var(--surface-2); }
+.sync-pill { display: inline-flex; align-items: center; gap: 6px; font-size: var(--fs-micro); color: var(--muted); }
+.sync-pill[data-state="saved"] { color: var(--success); } .sync-pill[data-state="failed"], .sync-pill[data-state="offline"] { color: var(--warning); }
+
+/* ---------- Primitives ---------- */
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-lg); box-shadow: var(--shadow-1); min-width: 0; }
+.card--pad { padding: var(--s-6); }
+.section { margin-top: var(--s-8); }
+.section__head { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--s-4); margin-bottom: var(--s-4); }
+.section__title { font-size: var(--fs-h2); line-height: var(--lh-h2); letter-spacing: -.02em; font-weight: 700; }
+.section__sub { color: var(--muted); font-size: var(--fs-small); }
+.grid { display: grid; gap: var(--s-4); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); min-height: 44px; padding: 0 var(--s-5); border-radius: var(--r-md); border: 1px solid transparent; font-weight: 600; font-size: var(--fs-small); text-decoration: none; transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--brand); color: var(--on-brand); } .btn--primary:hover { background: color-mix(in srgb, var(--brand) 88%, black); }
+.btn--secondary { background: var(--surface); border-color: var(--line-strong); color: var(--text); } .btn--secondary:hover { background: var(--surface-2); }
+.btn--ghost { background: transparent; color: var(--text-2); } .btn--ghost:hover { background: var(--surface-2); }
+.btn--danger { background: transparent; border-color: var(--danger); color: var(--danger); }
+.btn--sm { min-height: 36px; padding: 0 var(--s-3); }
+.btn[aria-pressed="true"] { background: var(--brand-soft); border-color: var(--brand); color: var(--brand-ink); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.chip { display: inline-flex; align-items: center; gap: 6px; min-height: 24px; padding: 0 var(--s-2); border-radius: var(--r-pill); font-size: var(--fs-micro); font-weight: 600; white-space: nowrap; border: 1px solid transparent; }
+.chip--neutral { background: var(--surface-2); color: var(--text-2); border-color: var(--line); }
+.chip--brand { background: var(--brand-soft); color: var(--brand-ink); }
+.chip--success { background: var(--success-soft); color: var(--success); }
+.chip--warning { background: var(--warning-soft); color: var(--warning); border-style: dashed; border-color: currentColor; }
+.chip--danger { background: var(--danger-soft); color: var(--danger); }
+.chip--critical { background: var(--critical-soft); color: var(--critical); border-width: 2px; border-color: currentColor; }
+.chip--info { background: var(--info-soft); color: var(--info); }
+.chip--unknown { background: transparent; color: var(--muted); border-style: dotted; border-color: var(--line-strong); }
+.progress { height: 8px; border-radius: var(--r-pill); background: var(--surface-3); overflow: hidden; }
+.progress > i { display: block; width: calc(var(--v, 0) * 1%); height: 100%; border-radius: inherit; background: var(--brand); transition: width var(--t-slow) var(--ease); }
+.ring { --p: 0; width: 88px; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(var(--brand) calc(var(--p) * 1%), var(--surface-3) 0); position: relative; }
+.ring::after { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: var(--surface); }
+.ring > b { position: relative; z-index: 1; font: 700 18px/1 var(--sans); }
+.empty { padding: var(--s-10) var(--s-6); text-align: center; color: var(--muted); border: 1px dashed var(--line-strong); border-radius: var(--r-lg); }
+.skeleton { background: linear-gradient(90deg, var(--surface-2), var(--surface-3), var(--surface-2)); background-size: 200% 100%; animation: shimmer 1.4s linear infinite; border-radius: var(--r-md); }
+@keyframes shimmer { to { background-position: -200% 0; } }
+
+/* ---------- Dashboard ---------- */
+.dash { display: grid; gap: var(--s-4); grid-template-columns: repeat(12, minmax(0, 1fr)); }
+.dash__hero { grid-column: span 8; } .dash__profile { grid-column: span 4; }
+.dash__kpis { grid-column: 1 / -1; display: grid; gap: var(--s-4); grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.dash__board { grid-column: span 8; } .dash__upcoming { grid-column: span 4; }
+.dash__matches { grid-column: 1 / -1; }
+.hero { padding: var(--s-8); border-left: 6px solid var(--info); display: grid; gap: var(--s-5); }
+.hero[data-urgency="attention"] { border-left-color: var(--warning); }
+.hero[data-urgency="high"], .hero[data-urgency="urgent"] { border-left-color: var(--danger); }
+.hero[data-urgency="critical"], .hero[data-urgency="final"] { border-left-color: var(--critical); }
+.hero__title { font-size: var(--fs-h1); line-height: var(--lh-h1); letter-spacing: -.03em; font-weight: 700; }
+.hero__meta { display: flex; flex-wrap: wrap; gap: var(--s-2); align-items: center; }
+.countdown { display: flex; gap: var(--s-3); align-items: stretch; flex-wrap: wrap; }
+.countdown__unit { min-width: 84px; padding: var(--s-3) var(--s-4); border-radius: var(--r-md); background: var(--surface-2); text-align: center; }
+.countdown__num { display: block; font: 600 var(--fs-display)/var(--lh-display) var(--mono); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.countdown__lbl { display: block; font-size: var(--fs-micro); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.countdown--days .countdown__num { font-size: 56px; line-height: 60px; }
+.hero__zones { display: grid; gap: 4px; font-size: var(--fs-small); color: var(--text-2); }
+.hero__zones b { font-weight: 600; color: var(--text); }
+.hero__actions { display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: center; }
+.profile-card { padding: var(--s-6); display: grid; gap: var(--s-5); align-content: start; }
+.profile-card__head { display: flex; gap: var(--s-4); align-items: center; }
+.profile-card .avatar { width: 56px; height: 56px; font-size: 20px; }
+.profile-card__facts { display: grid; gap: var(--s-2); font-size: var(--fs-small); color: var(--text-2); }
+.stat-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-2); padding: var(--s-3); border-radius: var(--r-md); background: var(--surface-2); }
+.stat-row span { font-size: var(--fs-micro); color: var(--muted); }
+.stat-row b { display: block; font: 700 22px/26px var(--sans); color: var(--text); letter-spacing: -.02em; }
+.kpi { padding: var(--s-5); display: grid; gap: var(--s-1); text-decoration: none; color: inherit; transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease); }
+.kpi:hover { border-color: var(--line-strong); box-shadow: var(--shadow-2); }
+.kpi__value { font: 700 32px/36px var(--sans); letter-spacing: -.03em; }
+.kpi__label { color: var(--muted); font-size: var(--fs-small); }
+.board { display: grid; gap: var(--s-3); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lane { display: grid; gap: var(--s-2); align-content: start; padding: var(--s-3); border-radius: var(--r-md); background: var(--surface-2); min-height: 160px; }
+.lane__head { display: flex; justify-content: space-between; font-size: var(--fs-small); font-weight: 600; color: var(--text-2); }
+.appcard { display: grid; gap: var(--s-2); padding: var(--s-3); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); text-decoration: none; color: var(--text); }
+.appcard:hover { border-color: var(--brand); }
+.appcard__name { font-weight: 600; line-height: 20px; overflow-wrap: anywhere; }
+.appcard__row { display: flex; justify-content: space-between; align-items: center; gap: var(--s-2); font-size: var(--fs-micro); color: var(--muted); }
+.timeline { display: grid; gap: 0; }
+.timeline__item { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--s-3); padding: var(--s-3) 0; border-bottom: 1px solid var(--line); }
+.timeline__item:last-child { border-bottom: 0; }
+.timeline__date { text-align: center; line-height: 1.1; }
+.timeline__date b { display: block; font-size: 20px; } .timeline__date span { font-size: var(--fs-micro); color: var(--muted); text-transform: uppercase; }
+.match { display: grid; gap: var(--s-3); padding: var(--s-5); }
+.matches { display: grid; gap: var(--s-4); grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.match__top { display: flex; justify-content: space-between; gap: var(--s-3); align-items: flex-start; }
+.match__score { font: 700 var(--fs-small)/1 var(--mono); padding: 6px 8px; border-radius: var(--r-sm); background: var(--brand-soft); color: var(--brand-ink); }
+.match__why { display: flex; flex-wrap: wrap; gap: 6px; }
+.match__actions { display: flex; gap: var(--s-2); margin-top: auto; }
+
+/* ---------- Scholarships ---------- */
+.tabs { display: flex; gap: var(--s-1); padding: 4px; border-radius: var(--r-md); background: var(--surface-2); width: fit-content; max-width: 100%; overflow-x: auto; }
+.tab { min-height: 36px; padding: 0 var(--s-4); border: 0; border-radius: var(--r-sm); background: transparent; color: var(--text-2); font-weight: 600; font-size: var(--fs-small); white-space: nowrap; }
+.tab[aria-selected="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow-1); }
+.tier { margin-top: var(--s-8); }
+.tier__head { display: flex; align-items: baseline; gap: var(--s-3); flex-wrap: wrap; margin-bottom: var(--s-3); }
+.tier__title { font-size: var(--fs-h2); line-height: var(--lh-h2); font-weight: 700; letter-spacing: -.02em; }
+.compromise { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2); margin: var(--s-4) 0 var(--s-2); font-size: var(--fs-small); font-weight: 600; color: var(--text-2); }
+.country-grid { display: grid; gap: var(--s-4); grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+.country { min-width: 0; display: grid; gap: var(--s-3); padding: var(--s-5); text-decoration: none; color: var(--text); height: 100%; transition: border-color var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), transform var(--t-fast) var(--ease); }
+.country:hover { border-color: var(--brand); box-shadow: var(--shadow-2); transform: translateY(-1px); }
+.country__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-3); }
+.country__flag { font-size: 28px; line-height: 1; }
+.country__name { font-weight: 700; font-size: var(--fs-h3); line-height: var(--lh-h3); flex: 1 1 auto; min-width: 0; }
+.country__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.country__sacrifice { font-size: var(--fs-small); color: var(--text-2); }
+.country__foot { font-size: var(--fs-micro); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-1) var(--s-3); }
+.meter { display: inline-flex; gap: 3px; } .meter i { width: 9px; height: 9px; border-radius: 50%; border: 1.5px solid var(--muted); } .meter i.on { background: var(--brand); border-color: var(--brand); }
+.oppcard { display: grid; gap: var(--s-3); padding: var(--s-5); grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.oppcard__name { font-weight: 700; font-size: var(--fs-h3); line-height: var(--lh-h3); }
+.oppcard__meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--s-2); }
+.oppcard__side { display: grid; gap: var(--s-2); justify-items: end; text-align: right; }
+.oppcard__time { font: 600 var(--fs-small)/20px var(--mono); }
+.drawer { position: fixed; inset: 0 0 0 auto; width: min(640px, 100vw); background: var(--surface); border-left: 1px solid var(--line); box-shadow: var(--shadow-3); z-index: var(--z-drawer); display: flex; flex-direction: column; transform: translateX(0); transition: transform var(--t-slow) var(--ease); }
+.drawer[hidden] { display: flex !important; transform: translateX(100%); visibility: hidden; }
+.drawer__head { padding: var(--s-5) var(--s-6); border-bottom: 1px solid var(--line); display: flex; gap: var(--s-4); justify-content: space-between; }
+.drawer__body { padding: var(--s-6); overflow-y: auto; flex: 1; display: grid; gap: var(--s-6); align-content: start; }
+.scrim { position: fixed; inset: 0; background: rgba(8,12,18,.45); z-index: calc(var(--z-drawer) - 1); }
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-3); }
+.fact { padding: var(--s-3) var(--s-4); border: 1px solid var(--line); border-radius: var(--r-md); }
+.fact dt { font-size: var(--fs-micro); color: var(--muted); } .fact dd { margin: 2px 0 0; font-weight: 600; font-size: var(--fs-small); overflow-wrap: anywhere; }
+
+/* ---------- Calendar ---------- */
+.cal { padding: var(--s-5); }
+.cal__bar { display: flex; align-items: center; justify-content: space-between; gap: var(--s-3); margin-bottom: var(--s-4); flex-wrap: wrap; }
+.cal__title { font-size: var(--fs-h2); font-weight: 700; letter-spacing: -.02em; }
+.cal__grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.cal__dow { padding: var(--s-2); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.cal__cell { min-height: 96px; padding: 6px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: grid; align-content: start; gap: 3px; }
+.cal__cell[data-out="true"] { background: var(--surface-2); color: var(--muted); }
+.cal__cell[data-today="true"] .cal__day { background: var(--brand); color: var(--on-brand); }
+.cal__day { width: 24px; height: 24px; display: grid; place-items: center; border-radius: 50%; font: 600 var(--fs-micro)/1 var(--mono); }
+.cal__ev { display: flex; align-items: center; gap: 4px; width: 100%; min-height: 22px; padding: 0 6px; border: 0; border-radius: 5px; font-size: 11px; font-weight: 600; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.cal__ev::before { font-size: 9px; flex: none; }
+.cal__ev[data-type="opens"]::before { content: "▶"; } .cal__ev[data-type="closes"]::before { content: "■"; } .cal__ev[data-type="milestone"]::before { content: "◆"; }
+.cal__ev[data-type="opens"] { background: var(--success-soft); color: var(--success); }
+.cal__ev[data-type="closes"] { background: var(--critical-soft); color: var(--critical); }
+.cal__ev[data-type="milestone"] { background: var(--info-soft); color: var(--info); }
+.legend { display: flex; flex-wrap: wrap; gap: var(--s-4); font-size: var(--fs-small); color: var(--text-2); }
+
+/* ---------- Documents / forms ---------- */
+.doc-row { display: grid; grid-template-columns: minmax(0, 1fr) 180px 140px; gap: var(--s-4); align-items: center; padding: var(--s-4) var(--s-5); border-bottom: 1px solid var(--line); }
+.doc-row:last-child { border-bottom: 0; }
+.field { display: grid; gap: 6px; font-size: var(--fs-small); color: var(--text-2); }
+.field input, .field select, .field textarea { min-height: 44px; padding: 0 var(--s-3); border: 1px solid var(--line-strong); border-radius: var(--r-md); background: var(--surface); }
+.field textarea { padding: var(--s-3); min-height: 96px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--brand); box-shadow: var(--ring); outline: none; }
+.stepper { display: flex; gap: 4px; } .stepper i { flex: 1; height: 6px; border-radius: var(--r-pill); background: var(--surface-3); } .stepper i.on { background: var(--brand); }
+.toast-root { position: fixed; right: var(--s-5); bottom: var(--s-5); display: grid; gap: var(--s-2); z-index: var(--z-toast); }
+.toast { padding: var(--s-3) var(--s-4); border-radius: var(--r-md); background: var(--text); color: var(--bg); box-shadow: var(--shadow-3); font-size: var(--fs-small); animation: toast-in var(--t-base) var(--ease); }
+@keyframes toast-in { from { transform: translateY(8px); opacity: 0; } }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1180px) {
+  .dash__hero, .dash__profile, .dash__board, .dash__upcoming { grid-column: 1 / -1; }
+  .matches { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .app { display: block; padding-bottom: var(--bottom-nav-h); }
+  .sidebar { position: fixed; inset: auto 0 0 0; z-index: var(--z-sticky); height: var(--bottom-nav-h); width: 100%; flex-direction: row; padding: 0; border-right: 0; border-top: 1px solid var(--line); background: var(--surface); gap: 0; }
+  .sidebar .brand, .sidebar__foot { display: none; }
+  .nav { grid-auto-flow: column; grid-auto-columns: 1fr; width: 100%; gap: 0; }
+  .nav__item { flex-direction: column; justify-content: center; gap: 2px; min-height: var(--bottom-nav-h); border-radius: 0; font-size: 11px; padding: 0; }
+  .nav__badge { display: none; }
+  .topbar { flex-wrap: wrap; } .topbar__actions { width: 100%; } .search__input { width: 100%; } .search__kbd { display: none; }
+  .hero { padding: var(--s-5); }
+  .topbar__actions { flex-wrap: wrap; }
+  .search { flex: 1 1 180px; } .sync-pill { order: 5; width: 100%; }
+  .hero__title { font-size: 24px; line-height: 30px; }
+  .countdown { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-2); }
+  .countdown__unit { min-width: 0; padding: var(--s-2) var(--s-1); }
+  .countdown__num { font-size: 28px; line-height: 32px; }
+  .countdown--days { display: flex; } .countdown--days .countdown__num { font-size: 44px; line-height: 48px; }
+  .dash__kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .board, .matches { grid-template-columns: 1fr; }
+  .oppcard { grid-template-columns: 1fr; } .oppcard__side { justify-items: start; text-align: left; }
+  .facts { grid-template-columns: 1fr; }
+  .doc-row { grid-template-columns: 1fr; gap: var(--s-2); }
+  .cal__grid { display: none; } .cal__agenda { display: grid !important; }
+  .drawer { width: 100vw; }
+}
+@media (min-width: 761px) { .cal__agenda { display: none; } }
+
+/* preview-only additions */
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+.topbar{top:env(safe-area-inset-top,0px)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:11}
+.banner{display:flex;gap:12px;align-items:center;padding:10px 14px;border-radius:12px;background:var(--info-soft);color:var(--info);font-size:13px;font-weight:600;margin:0 0 16px}
+.crumbs{margin:0 0 12px;font-size:13px}
+.country-head{display:grid;gap:12px;padding:24px;margin-bottom:16px}
+.country-head h2{font-size:28px;line-height:34px;letter-spacing:-.03em}
+.reqs{display:grid;gap:8px;margin-top:4px}
+.reqs details{border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--surface-2)}
+.reqs summary{cursor:pointer;font-weight:600;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.reqs p{margin-top:8px;font-size:13px;color:var(--text-2)}
+.stack{display:grid;gap:12px;margin-top:16px}
+.settings{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px;align-items:start}
+.subnav{display:grid;gap:4px;padding:8px}
+.subnav button{min-height:40px;padding:0 12px;border:0;border-radius:9px;background:transparent;text-align:left;font-weight:500;color:var(--text-2)}
+.subnav button[aria-current="true"]{background:var(--brand-soft);color:var(--brand-ink);font-weight:600}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.agenda-list{display:grid;gap:0}
+.drawer .tabs{margin-bottom:4px}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px}
+.toast-root{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+@media (max-width:760px){.banner{font-size:12px;padding:8px 12px}.settings{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.toast-root{bottom:calc(var(--bottom-nav-h) + 16px + env(safe-area-inset-bottom,0px))}.sidebar{padding-bottom:env(safe-area-inset-bottom,0px);height:calc(var(--bottom-nav-h) + env(safe-area-inset-bottom,0px))}.drawer{padding-bottom:env(safe-area-inset-bottom,0px)}}
+
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-dash" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="16" rx="2"/><path d="M3 10h18M8 2.5v4M16 2.5v4"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 2.5h8l5 5V20a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 20V4A1.5 1.5 0 0 1 6.5 2.5z"/><path d="M14 2.5V8h5M8.5 13h7M8.5 17h5"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l5 5"/></symbol>
+</svg>
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="app">
+  <aside class="sidebar" aria-label="Primary">
+    <div class="brand"><div class="brand__mark" aria-hidden="true">CT</div><div><div class="brand__name">Career Track</div><div class="brand__tag">Scholarship OS</div></div></div>
+    <nav class="nav" aria-label="Main">
+      <a class="nav__item" href="#/dashboard" data-nav="dashboard"><svg class="nav__icon" aria-hidden="true"><use href="#i-dash"/></svg><span>Dashboard</span></a>
+      <a class="nav__item" href="#/scholarships" data-nav="scholarships"><svg class="nav__icon" aria-hidden="true"><use href="#i-cap"/></svg><span>Scholarships</span><span class="nav__badge" id="navCount">4</span></a>
+      <a class="nav__item" href="#/calendar" data-nav="calendar"><svg class="nav__icon" aria-hidden="true"><use href="#i-cal"/></svg><span>Calendar</span></a>
+      <a class="nav__item" href="#/documents" data-nav="documents"><svg class="nav__icon" aria-hidden="true"><use href="#i-doc"/></svg><span>Documents</span></a>
+      <a class="nav__item" href="#/settings" data-nav="settings"><svg class="nav__icon" aria-hidden="true"><use href="#i-gear"/></svg><span>Settings</span></a>
+    </nav>
+    <div class="sidebar__foot"><div><span class="status-dot" aria-hidden="true"></span>Data verified 16 Oct 2026</div><div>Next source check: tomorrow</div></div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div class="topbar__title"><h1 id="page-title" tabindex="-1">Dashboard</h1><p class="topbar__sub" id="page-sub">Your next move, at a glance</p></div>
+      <div class="topbar__actions">
+        <span class="sync-pill" data-state="saved" role="status">● Saved on this device</span>
+        <div class="search"><svg class="search__icon" aria-hidden="true"><use href="#i-search"/></svg><input class="search__input" type="search" placeholder="Search scholarships, countries…" aria-label="Search scholarships and countries"><kbd class="search__kbd" aria-hidden="true">/</kbd></div>
+        <button class="icon-btn" id="theme" type="button" aria-label="Switch to dark theme">◐</button>
+        <div style="position:relative">
+          <button class="avatar-btn" id="accBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="accMenu" aria-label="Account menu"><span class="avatar" aria-hidden="true">AM</span></button>
+          <div class="menu" id="accMenu" role="menu" hidden>
+            <div class="menu__item" role="presentation" style="cursor:default"><strong>Alex Morgan</strong></div>
+            <a class="menu__item" role="menuitem" href="#/settings">Profile &amp; preferences</a>
+            <a class="menu__item" role="menuitem" href="#/settings">Backup &amp; export</a>
+            <a class="menu__item" role="menuitem" href="#/settings">Sources &amp; coverage</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <p class="banner" role="note">Design preview · sample data only · scholarships, dates and ratings below are fictional examples</p>
+
+      <!-- DASHBOARD -->
+      <section data-view="dashboard" aria-labelledby="page-title">
+        <div class="dash">
+          <article class="card hero dash__hero" data-urgency="high">
+            <div><p class="eyebrow">Next deadline · in my list</p>
+              <h2 class="hero__title" style="margin-top:6px">🇬🇧 Commonwealth Master’s <span class="muted" style="font-size:14px;font-weight:500">(sample)</span></h2>
+              <div class="hero__meta" style="margin-top:10px"><span class="chip chip--danger">High urgency</span><span class="chip chip--success">Open</span><span class="chip chip--neutral">Full cost verified</span></div></div>
+            <div class="countdown" role="timer" aria-live="off" aria-label="Time remaining" id="cd">
+              <div class="countdown__unit"><span class="countdown__num" data-u="d">09</span><span class="countdown__lbl">days</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-u="h">04</span><span class="countdown__lbl">hours</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-u="m">18</span><span class="countdown__lbl">min</span></div>
+              <div class="countdown__unit"><span class="countdown__num" data-u="s">37</span><span class="countdown__lbl">sec</span></div>
+            </div>
+            <div class="hero__zones"><span><b>Provider time</b> · 29 Oct 2026, 16:00 GMT</span><span><b>Your time</b> · 29 Oct 2026, 22:00 (Dhaka)</span></div>
+            <div><div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px"><span>Application readiness</span><b>6 of 9 required steps</b></div><div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="67" aria-label="Readiness"><i style="--v:67"></i></div></div>
+            <div class="hero__actions"><button class="btn btn--primary" type="button" data-open-drawer>Continue application</button><button class="btn btn--secondary" type="button" data-open-drawer>View requirements</button><span class="muted" style="font-size:12px">Checked 16 Oct 2026 · confirm on the live portal</span></div>
+          </article>
+
+          <aside class="card profile-card dash__profile" aria-label="My profile">
+            <div class="profile-card__head"><span class="avatar" aria-hidden="true">AM</span><div><div style="font-weight:700">Alex Morgan</div><div class="muted" style="font-size:13px">MSc 2027 · Bangladesh</div></div></div>
+            <div style="display:flex;gap:16px;align-items:center"><div class="ring" style="--p:72" role="img" aria-label="Profile 72% complete"><b>72%</b></div><div class="profile-card__facts"><span>Profile completeness</span><a href="#/settings">Complete profile →</a></div></div>
+            <div class="stat-row" aria-label="My progress"><span><b>1</b>Applied</span><span><b>3</b>Applying</span><span><b>0</b>Offers</span></div>
+            <div class="profile-card__facts"><span>🎓 BSc Computer Science</span><span>🔬 ML · Vision · Efficient AI</span><span>🌍 Prefers UK · Germany · Canada</span></div>
+          </aside>
+
+          <div class="dash__kpis">
+            <a class="card kpi" href="#/scholarships"><span class="kpi__value" id="kApplying">3</span><span class="kpi__label">Applying</span></a>
+            <a class="card kpi" href="#/scholarships"><span class="kpi__value">1</span><span class="kpi__label">Submitted</span></a>
+            <a class="card kpi" href="#/calendar"><span class="kpi__value">2</span><span class="kpi__label">Closing in 30 days</span></a>
+            <a class="card kpi" href="#matches"><span class="kpi__value" id="kMatches">8</span><span class="kpi__label">Open matches</span></a>
+          </div>
+
+          <section class="card card--pad dash__board" aria-labelledby="b-h">
+            <div class="section__head" style="margin-top:0"><div><h2 class="section__title" id="b-h">My applications</h2><p class="section__sub">What I’m applying to and what I’ve sent</p></div><a href="#/scholarships" class="btn btn--ghost btn--sm">Manage list</a></div>
+            <div class="board">
+              <div class="lane"><div class="lane__head"><span>Applying</span><span id="laneCount">3</span></div><div id="laneApplying" style="display:grid;gap:8px">
+                <a class="appcard" href="#/scholarships/country/GB"><span class="appcard__name">Commonwealth Master’s</span><span class="appcard__row"><span>🇬🇧 United Kingdom</span><span class="mono">9d 04h</span></span><div class="progress" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" aria-label="Readiness"><i style="--v:67"></i></div></a>
+                <a class="appcard" href="#/scholarships/country/GB"><span class="appcard__name">Gates Cambridge</span><span class="appcard__row"><span>🇬🇧 United Kingdom</span><span class="mono">49 days</span></span><div class="progress" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" aria-label="Readiness"><i style="--v:30"></i></div></a>
+                <a class="appcard" href="#/scholarships/country/DE"><span class="appcard__name">DAAD EPOS</span><span class="appcard__row"><span>🇩🇪 Germany</span><span class="mono">96 days</span></span><div class="progress" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" aria-label="Readiness"><i style="--v:12"></i></div></a></div></div>
+              <div class="lane"><div class="lane__head"><span>Submitted</span><span>1</span></div>
+                <a class="appcard" href="#/scholarships"><span class="appcard__name">Erasmus Mundus</span><span class="appcard__row"><span>🇪🇺 Europe</span><span class="chip chip--info">Under review</span></span></a></div>
+              <div class="lane"><div class="lane__head"><span>Outcome</span><span>0</span></div><p class="muted" style="font-size:13px;padding:8px">Offers and results appear here.</p></div>
+            </div>
+          </section>
+
+          <section class="card card--pad dash__upcoming" aria-labelledby="u-h">
+            <h2 class="section__title" id="u-h">Opening &amp; closing soon</h2>
+            <div class="timeline" style="margin-top:12px">
+              <div class="timeline__item"><div class="timeline__date"><b>29</b><span>Oct</span></div><div><div style="font-weight:600">Commonwealth closes</div><span class="chip chip--critical">Closes</span></div></div>
+              <div class="timeline__item"><div class="timeline__date"><b>01</b><span>Nov</span></div><div><div style="font-weight:600">MEXT field opens</div><span class="chip chip--success">Opens</span></div></div>
+              <div class="timeline__item"><div class="timeline__date"><b>08</b><span>Dec</span></div><div><div style="font-weight:600">Gates Cambridge closes</div><span class="chip chip--critical">Closes</span> <span class="chip chip--warning">Time not confirmed</span></div></div>
+            </div>
+            <a class="btn btn--secondary btn--sm" style="margin-top:12px" href="#/calendar">Open calendar</a>
+          </section>
+
+          <section class="dash__matches" id="matches" aria-labelledby="m-h">
+            <div class="section__head"><div><h2 class="section__title" id="m-h">Matches for you</h2><p class="section__sub">Open now and fitting your interests. One tap adds to your list.</p></div><span class="chip chip--neutral">Updated daily</span></div>
+            <div class="matches" id="matchGrid">
+              <article class="card match"><div class="match__top"><div><h3 style="font-size:16px">Chevening (sample)</h3><p class="muted" style="font-size:13px">🇬🇧 United Kingdom</p></div><span class="match__score" title="Fit with your interests — not a chance of winning.">86</span></div>
+                <div class="match__why"><span class="chip chip--success">Fully funded</span><span class="chip chip--brand">Preferred country</span><span class="chip chip--brand">ML match</span></div>
+                <div class="match__actions"><button class="btn btn--primary btn--sm" type="button" data-add>+ Add to my list</button><button class="btn btn--ghost btn--sm" type="button" data-dismiss>Not interested</button></div></article>
+              <article class="card match"><div class="match__top"><div><h3 style="font-size:16px">TU Munich Excellence (sample)</h3><p class="muted" style="font-size:13px">🇩🇪 Germany</p></div><span class="match__score" title="Fit with your interests — not a chance of winning.">72</span></div>
+                <div class="match__why"><span class="chip chip--success">Fully funded</span><span class="chip chip--brand">Preferred country</span><span class="chip chip--warning">Unverified lead</span></div>
+                <div class="match__actions"><button class="btn btn--primary btn--sm" type="button" data-add>+ Add to my list</button><button class="btn btn--ghost btn--sm" type="button" data-dismiss>Not interested</button></div></article>
+              <article class="card match"><div class="match__top"><div><h3 style="font-size:16px">Vanier-style award (sample)</h3><p class="muted" style="font-size:13px">🇨🇦 Canada</p></div><span class="match__score" title="Fit with your interests — not a chance of winning.">58</span></div>
+                <div class="match__why"><span class="chip chip--info">Partial funding</span><span class="chip chip--neutral">Opens in 12 days</span></div>
+                <div class="match__actions"><button class="btn btn--primary btn--sm" type="button" data-add>+ Add to my list</button><button class="btn btn--ghost btn--sm" type="button" data-dismiss>Not interested</button></div></article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- SCHOLARSHIPS -->
+      <section data-view="scholarships" hidden aria-labelledby="page-title">
+        <div id="schLevel1">
+          <div class="tabs" role="tablist" aria-label="Scholarship views"><button class="tab" role="tab" aria-selected="true" data-stab="country">By country</button><button class="tab" role="tab" aria-selected="false" data-stab="list">My list (4)</button><button class="tab" role="tab" aria-selected="false" data-stab="all">All open (12)</button><button class="tab" role="tab" aria-selected="false" data-stab="uni">Universities</button></div>
+          <div data-spanel="country">
+            <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center"><span class="muted" style="font-size:13px">Ordered by how many of your 5 requirements a country meets</span><details class="card" style="padding:8px 14px"><summary style="cursor:pointer;font-weight:600;font-size:13px">My priorities</summary><div class="pill-row" style="margin-top:10px"><span class="chip chip--success">✓ Fully funded MSc</span><span class="chip chip--success">✓ Good work opportunity</span><span class="chip chip--success">✓ Better career</span><span class="chip chip--success">✓ Spouse accommodation</span><span class="chip chip--success">✓ Chance of PR</span></div></details></div>
+            <section class="tier" aria-labelledby="t5"><div class="tier__head"><h2 class="tier__title" id="t5">Complete match</h2><span class="muted">Nothing to sacrifice · 1 country</span></div>
+              <div class="country-grid"><a class="card country" href="#/scholarships/country/NL"><div class="country__head"><span class="country__flag" aria-hidden="true">🇳🇱</span><span class="country__name">Netherlands</span><span class="chip chip--warning">Provisional</span></div><span class="meter" role="img" aria-label="5 of 5 requirements met"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span><div class="country__chips"><span class="chip chip--success">✓ Funding</span><span class="chip chip--success">✓ Work</span><span class="chip chip--success">✓ Career</span><span class="chip chip--success">✓ Spouse</span><span class="chip chip--success">✓ PR</span></div><p class="country__sacrifice">Nothing to sacrifice — every requirement met.</p><div class="country__foot"><span>2 scholarships</span><span>2 open now</span></div></a></div></section>
+            <section class="tier" aria-labelledby="t4"><div class="tier__head"><h2 class="tier__title" id="t4">4 of 5 requirements met</h2><span class="muted">You sacrifice 1 requirement</span></div>
+              <p class="compromise">Compromise: <span class="chip chip--danger">✗ Chance of PR</span></p>
+              <div class="country-grid"><a class="card country" href="#/scholarships/country/GB"><div class="country__head"><span class="country__flag" aria-hidden="true">🇬🇧</span><span class="country__name">United Kingdom</span></div><span class="meter" role="img" aria-label="4 of 5 requirements met"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><div class="country__chips"><span class="chip chip--success">✓ Funding</span><span class="chip chip--success">✓ Work</span><span class="chip chip--success">✓ Career</span><span class="chip chip--success">✓ Spouse</span><span class="chip chip--danger">✗ PR</span></div><p class="country__sacrifice">You sacrifice: Chance of PR.</p><div class="country__foot"><span>5 scholarships</span><span class="mono">Next: 9d 04h</span></div></a>
+              <a class="card country" href="#/scholarships/country/DE"><div class="country__head"><span class="country__flag" aria-hidden="true">🇩🇪</span><span class="country__name">Germany</span><span class="chip chip--warning">Provisional</span></div><span class="meter" role="img" aria-label="4 of 5 requirements met"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><div class="country__chips"><span class="chip chip--success">✓ Funding</span><span class="chip chip--success">✓ Work</span><span class="chip chip--success">✓ Career</span><span class="chip chip--warning">◐ Spouse</span><span class="chip chip--success">✓ PR</span></div><p class="country__sacrifice">You sacrifice: Spouse accommodation (partly).</p><div class="country__foot"><span>3 scholarships</span><span class="mono">Next: 96 days</span></div></a></div></section>
+            <section class="tier" aria-labelledby="t3"><div class="tier__head"><h2 class="tier__title" id="t3">3 of 5 requirements met</h2><span class="muted">You sacrifice 2 requirements</span></div>
+              <p class="compromise">Compromise: <span class="chip chip--danger">✗ Chance of PR</span> <span class="chip chip--warning">◐ Spouse accommodation</span></p>
+              <div class="country-grid"><a class="card country" href="#/scholarships/country/SA"><div class="country__head"><span class="country__flag" aria-hidden="true">🇸🇦</span><span class="country__name">Saudi Arabia</span><span class="chip chip--warning">Provisional</span></div><span class="meter" role="img" aria-label="3 of 5 requirements met"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span><div class="country__chips"><span class="chip chip--success">✓ Funding</span><span class="chip chip--warning">◐ Work</span><span class="chip chip--success">✓ Career</span><span class="chip chip--warning">◐ Spouse</span><span class="chip chip--danger">✗ PR</span></div><p class="country__sacrifice">You sacrifice: Chance of PR; Work (partly); Spouse (partly).</p><div class="country__foot"><span>1 scholarship</span><span class="mono">Next: 95 days</span></div></a></div></section>
+            <details class="card card--pad section"><summary style="cursor:pointer;font-weight:600">Not rated yet · 240 countries</summary><p class="muted" style="margin-top:8px">No scholarship tracked and no research yet. Listed so nothing is missing.</p></details>
+          </div>
+          <div data-spanel="list" hidden><div class="stack" id="listStack"></div></div>
+          <div data-spanel="all" hidden><div class="stack" id="allStack"></div></div>
+          <div data-spanel="uni" hidden><div class="empty" style="margin-top:16px"><p><strong>Universities &amp; research groups</strong></p><p>Absorbs today’s University Explorer and Research &amp; Supervisors. Not mocked in this preview.</p></div></div>
+        </div>
+
+        <div id="schLevel2" hidden>
+          <p class="crumbs"><a href="#/scholarships">← All countries</a></p>
+          <header class="card country-head">
+            <h2><span id="cFlag" aria-hidden="true">🇬🇧</span> <span id="cName">United Kingdom</span></h2>
+            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><span class="meter" role="img" aria-label="4 of 5 requirements met"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span><strong>4 of 5 requirements met</strong></div>
+            <p style="font-weight:600">You sacrifice: Chance of PR.</p>
+            <div class="reqs">
+              <details><summary><span class="chip chip--success">✓ Fully funded MSc</span><span class="muted" style="font-weight:400;font-size:13px">3 fully funded scholarships tracked</span></summary><p>Derived from the scholarships listed below.</p></details>
+              <details><summary><span class="chip chip--success">✓ Good work opportunity</span></summary><p>Post-study work route and part-time work during study. Source and check date appear here once verified.</p></details>
+              <details><summary><span class="chip chip--danger">✗ Chance of PR</span></summary><p>Sample reason: settlement route is long. Evidence link and “checked on” date appear here.</p></details>
+            </div>
+          </header>
+          <div class="tabs" role="tablist" aria-label="Country scholarships"><button class="tab" role="tab" aria-selected="true" data-ctab="open">Open now (2)</button><button class="tab" role="tab" aria-selected="false" data-ctab="soon">Opening soon (1)</button><button class="tab" role="tab" aria-selected="false" data-ctab="future">Future &amp; watch (1)</button><button class="tab" role="tab" aria-selected="false" data-ctab="closed">Closed (1)</button></div>
+          <div class="stack" id="cList"></div>
+        </div>
+      </section>
+
+      <!-- CALENDAR -->
+      <section data-view="calendar" hidden aria-labelledby="page-title">
+        <div class="card cal">
+          <div class="cal__bar"><h2 class="cal__title" id="calTitle">October 2026</h2>
+            <div class="legend"><span class="chip chip--success">▶ Opens</span><span class="chip chip--critical">■ Closes</span><span class="chip chip--info">◆ Milestone</span></div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn btn--secondary btn--sm" type="button" id="calPrev" aria-label="Previous month">‹</button><button class="btn btn--secondary btn--sm" type="button" id="calToday">Today</button><button class="btn btn--secondary btn--sm" type="button" id="calNext" aria-label="Next month">›</button><button class="btn btn--primary btn--sm" type="button" id="calIcs">Export .ics</button></div></div>
+          <div class="pill-row" style="margin-bottom:12px"><button class="tab btn btn--sm" type="button" aria-pressed="true" id="fMine">My list</button><button class="tab btn btn--sm" type="button" aria-pressed="false" id="fAll">All matches</button></div>
+          <div class="cal__grid" role="grid" aria-label="Calendar" id="calGrid"></div>
+          <div class="cal__agenda agenda-list" id="calAgenda"></div>
+        </div>
+      </section>
+
+      <!-- DOCUMENTS -->
+      <section data-view="documents" hidden aria-labelledby="page-title">
+        <div class="tabs" role="tablist" aria-label="Documents"><button class="tab" role="tab" aria-selected="true" data-dtab="dossier">Dossier</button><button class="tab" role="tab" aria-selected="false" data-dtab="refs">References</button><button class="tab" role="tab" aria-selected="false" data-dtab="tests">Tests</button></div>
+        <div data-dpanel="dossier" class="grid" style="grid-template-columns:minmax(0,1fr) 280px;align-items:start;margin-top:16px">
+          <div class="card"><div class="card--pad" style="border-bottom:1px solid var(--line)"><h2 class="section__title">Dossier</h2><p class="section__sub">Everything an application can ask for</p></div>
+            <div class="doc-row"><div><b>Academic transcript</b><div class="muted" style="font-size:13px">Needed by 9 of 12 routes</div></div><div class="stepper" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="chip chip--success">Ready</span></div>
+            <div class="doc-row"><div><b>Research CV</b><div class="muted" style="font-size:13px">Version 3 · updated 12 Oct</div></div><div class="stepper" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="chip chip--info">Draft</span></div>
+            <div class="doc-row"><div><b>Statement of purpose</b><div class="muted" style="font-size:13px">Needed by 8 routes</div></div><div class="stepper" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div><span class="chip chip--warning">In progress</span></div>
+            <div class="doc-row"><div><b>Passport (copy)</b><div class="muted" style="font-size:13px">Expires 14 Mar 2028</div></div><div class="stepper" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="chip chip--success">Ready</span></div>
+            <div class="doc-row"><div><b>English test result</b><div class="muted" style="font-size:13px">Target 7.0 · not booked</div></div><div class="stepper" aria-hidden="true"><i></i><i></i><i></i><i></i></div><span class="chip chip--unknown">Not started</span></div></div>
+          <aside class="card card--pad" style="display:grid;gap:12px"><div class="ring" style="--p:58;margin:auto" role="img" aria-label="Dossier 58% ready"><b>58%</b></div><div style="text-align:center"><b>Dossier readiness</b><div class="muted" style="font-size:13px">7 of 12 documents ready</div></div><div class="card card--pad" style="background:var(--surface-2);box-shadow:none"><div class="eyebrow">Next missing</div><div style="font-weight:600;margin-top:4px">Statement of purpose</div></div></aside>
+        </div>
+        <div data-dpanel="refs" hidden class="stack"><div class="card card--pad"><h2 class="section__title">References</h2><div class="row"><div><b>Referee A (sample)</b><div class="muted" style="font-size:13px">Academic · asked 3 Oct</div></div><span class="chip chip--success">Letter received</span></div><div class="row"><div><b>Referee B (sample)</b><div class="muted" style="font-size:13px">Professional · asked 10 Oct</div></div><span class="chip chip--info">Agreed</span></div><div class="row"><div><b>Referee C (sample)</b><div class="muted" style="font-size:13px">Academic · not asked</div></div><span class="chip chip--unknown">Not asked</span></div></div></div>
+        <div data-dpanel="tests" hidden class="stack"><div class="card card--pad"><h2 class="section__title">English test</h2><div class="form-grid"><div class="field"><span>Target score</span><input value="7.0" aria-label="Target score"></div><div class="field"><span>Test date</span><input placeholder="Not booked" aria-label="Test date"></div></div></div></div>
+      </section>
+
+      <!-- SETTINGS -->
+      <section data-view="settings" hidden aria-labelledby="page-title">
+        <div class="settings">
+          <nav class="card subnav" aria-label="Settings sections"><button type="button" data-sec="profile" aria-current="true">Profile</button><button type="button" data-sec="appearance" aria-current="false">Appearance</button><button type="button" data-sec="notifications" aria-current="false">Notifications</button><button type="button" data-sec="data" aria-current="false">Backup &amp; sync</button><button type="button" data-sec="sources" aria-current="false">Sources &amp; coverage</button></nav>
+          <div>
+            <div class="card card--pad" data-spanel2="profile"><h2 class="section__title">Profile</h2><p class="section__sub">Used for your dashboard and to rank matches</p>
+              <div class="form-grid"><label class="field"><span>Name</span><input value="Alex Morgan"></label><label class="field"><span>Programme</span><input value="MSc 2027 · Bangladesh"></label><label class="field"><span>Research interests</span><input value="Machine learning, computer vision"></label><label class="field"><span>Preferred countries</span><input value="UK, Germany, Canada"></label></div>
+              <div style="margin-top:20px"><div class="eyebrow">My five requirements</div>
+                <div class="row"><span>Fully funded MSc</span><span class="chip chip--brand">Important</span></div><div class="row"><span>Good work opportunity</span><span class="chip chip--neutral">On</span></div><div class="row"><span>Better career opportunity</span><span class="chip chip--neutral">On</span></div><div class="row"><span>Spouse accommodation</span><span class="chip chip--brand">Important</span></div><div class="row"><span>Chance of getting PR</span><span class="chip chip--brand">Important</span></div></div></div>
+            <div class="card card--pad" data-spanel2="appearance" hidden><h2 class="section__title">Appearance</h2><p class="section__sub">Theme follows your device unless you choose</p><div class="tabs" role="group" aria-label="Theme" style="margin-top:16px"><button class="tab" type="button" data-th="system" aria-selected="true">System</button><button class="tab" type="button" data-th="light" aria-selected="false">Light</button><button class="tab" type="button" data-th="dark" aria-selected="false">Dark</button></div></div>
+            <div class="card card--pad" data-spanel2="notifications" hidden><h2 class="section__title">Notifications</h2><div class="row"><div><b>Calendar feed</b><div class="muted" style="font-size:13px">Alarms at 7 days, 3 days, 24 hours and 3 hours</div></div><button class="btn btn--secondary btn--sm" type="button">Copy link</button></div><div class="row"><div><b>Browser alerts</b><div class="muted" style="font-size:13px">Optional</div></div><button class="btn btn--secondary btn--sm" type="button" aria-pressed="false">Turn on</button></div></div>
+            <div class="card card--pad" data-spanel2="data" hidden><h2 class="section__title">Backup &amp; sync</h2><div class="row"><div><b>Export everything</b><div class="muted" style="font-size:13px">Download a backup file</div></div><button class="btn btn--secondary btn--sm" type="button">Export</button></div><div class="row"><div><b>Import a backup</b></div><button class="btn btn--secondary btn--sm" type="button">Import</button></div><div class="row"><div><b>Sync across devices</b><div class="muted" style="font-size:13px">Off · your progress is saved on this device only</div></div><button class="btn btn--primary btn--sm" type="button">Turn on sync</button></div>
+              <div class="row"><div><b>Danger zone</b><div class="muted" style="font-size:13px">Type RESET to confirm. We download a backup first.</div></div><button class="btn btn--danger btn--sm" type="button">Reset progress</button></div></div>
+            <div class="card card--pad" data-spanel2="sources" hidden><h2 class="section__title">Sources &amp; coverage</h2><p class="section__sub">Data verified 16 Oct 2026 · 43 routes · 88 sources</p><p style="margin-top:12px" class="muted">Every deadline and funding claim keeps its source link and check date here, out of the way of everyday use.</p></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+  <div class="drawer__head"><div><p class="eyebrow" id="dEyebrow">🇬🇧 United Kingdom</p><h2 style="font-size:20px" id="drawerTitle">Commonwealth Master’s (sample)</h2></div><button class="icon-btn" id="dclose" type="button" aria-label="Close details">×</button></div>
+  <div class="drawer__body">
+    <div class="tabs" role="tablist" aria-label="Details"><button class="tab" role="tab" aria-selected="true" data-dt="o">Overview</button><button class="tab" role="tab" aria-selected="false" data-dt="r">Requirements</button><button class="tab" role="tab" aria-selected="false" data-dt="f">Funding</button><button class="tab" role="tab" aria-selected="false" data-dt="d">Documents</button><button class="tab" role="tab" aria-selected="false" data-dt="t">Timeline</button><button class="tab" role="tab" aria-selected="false" data-dt="s">Sources</button></div>
+    <div data-dp="o"><dl class="facts"><div class="fact"><dt>Funding</dt><dd>Full cost verified</dd></div><div class="fact"><dt>Deadline</dt><dd>29 Oct 2026, 16:00 GMT</dd></div><div class="fact"><dt>Degree</dt><dd>Taught Master’s</dd></div><div class="fact"><dt>Eligibility</dt><dd>Requires assessment</dd></div><div class="fact"><dt>Return-home</dt><dd>Terms not confirmed</dd></div><div class="fact"><dt>Readiness</dt><dd>6 of 9 required steps</dd></div></dl>
+      <div class="progress" style="margin-top:16px" role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" aria-label="Readiness"><i style="--v:67"></i></div></div>
+    <div data-dp="r" hidden><p class="muted">Eligibility checks and prerequisites appear here, one short list.</p></div>
+    <div data-dp="f" hidden><p class="muted">Tuition, stipend, travel, health cover and what is not covered.</p></div>
+    <div data-dp="d" hidden><p class="muted">Documents this scholarship needs, with live status from your dossier.</p></div>
+    <div data-dp="t" hidden><p class="muted">Opens, closes and your own milestones.</p></div>
+    <div data-dp="s" hidden><p class="muted">Official pages with the date each was last checked. The long A–Q guide loads here on demand.</p></div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn btn--primary" type="button" aria-pressed="true" id="addbtn">★ In my list</button><button class="btn btn--secondary" type="button">Official page ↗</button></div>
+  </div>
+</aside>
+<div class="scrim" id="scrim" hidden></div>
+<div class="toast-root" id="toastRoot" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var esc = function (v) { return String(v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); };
+
+  /* ---------- toast ---------- */
+  function toast(msg) { var t = document.createElement('div'); t.className = 'toast'; t.textContent = msg; $('#toastRoot').appendChild(t); setTimeout(function () { t.remove(); }, 3500); }
+
+  /* ---------- routing ---------- */
+  var TITLES = { dashboard: ['Dashboard', 'Your next move, at a glance'], scholarships: ['Scholarships', 'Where to apply and what you give up'], calendar: ['Calendar', 'When things open and close'], documents: ['Documents', 'Your application dossier'], settings: ['Settings', 'Profile, data and preferences'] };
+  var COUNTRIES = { GB: ['🇬🇧', 'United Kingdom'], DE: ['🇩🇪', 'Germany'], NL: ['🇳🇱', 'Netherlands'], SA: ['🇸🇦', 'Saudi Arabia'] };
+  function route() {
+    var raw = location.hash.replace(/^#\/?/, ''); var seg = raw.split('?')[0].split('/').filter(Boolean);
+    var view = TITLES[seg[0]] ? seg[0] : 'dashboard';
+    $$('[data-view]').forEach(function (s) { s.hidden = s.dataset.view !== view; });
+    $$('[data-nav]').forEach(function (a) { if (a.dataset.nav === view) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+    $('#page-title').textContent = TITLES[view][0]; $('#page-sub').textContent = TITLES[view][1]; document.title = TITLES[view][0] + ' · Career Track (preview)';
+    if (view === 'scholarships') {
+      var isCountry = seg[1] === 'country' && seg[2];
+      $('#schLevel1').hidden = !!isCountry; $('#schLevel2').hidden = !isCountry;
+      if (isCountry) renderCountry(seg[2].toUpperCase());
+    }
+    closeDrawer(); closeMenu(); window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+
+  /* ---------- keyboard ---------- */
+  var KEYS = { 1: 'dashboard', 2: 'scholarships', 3: 'calendar', 4: 'documents', 5: 'settings' };
+  document.addEventListener('keydown', function (e) {
+    var t = e.target, typing = /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.isContentEditable;
+    if (e.key === 'Escape') { closeDrawer(); closeMenu(); return; }
+    if (typing || e.ctrlKey || e.metaKey || e.altKey) return;
+    if (KEYS[e.key]) location.hash = '#/' + KEYS[e.key];
+    if (e.key === '/') { e.preventDefault(); $('.search__input').focus(); }
+  });
+
+  /* ---------- theme (in-memory in this preview) ---------- */
+  function setTheme(mode) {
+    var root = document.documentElement;
+    if (mode === 'system') root.removeAttribute('data-theme'); else root.setAttribute('data-theme', mode);
+    var dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+    $('#theme').setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+    $$('[data-th]').forEach(function (b) { b.setAttribute('aria-selected', String(b.dataset.th === mode)); });
+  }
+  $('#theme').addEventListener('click', function () { var cur = document.documentElement.getAttribute('data-theme'); var dark = cur ? cur === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches; setTheme(dark ? 'light' : 'dark'); });
+  $$('[data-th]').forEach(function (b) { b.addEventListener('click', function () { setTheme(b.dataset.th); }); });
+
+  /* ---------- account menu ---------- */
+  var accBtn = $('#accBtn'), accMenu = $('#accMenu');
+  function closeMenu() { accMenu.hidden = true; accBtn.setAttribute('aria-expanded', 'false'); }
+  accBtn.addEventListener('click', function (e) { e.stopPropagation(); var open = accMenu.hidden; accMenu.hidden = !open; accBtn.setAttribute('aria-expanded', String(open)); if (open) $('a', accMenu).focus(); });
+  document.addEventListener('click', function (e) { if (!accMenu.contains(e.target) && e.target !== accBtn) closeMenu(); });
+
+  /* ---------- countdown ---------- */
+  var END = Date.now() + (9 * 86400 + 4 * 3600 + 18 * 60 + 37) * 1000;
+  function tick() { var s = Math.max(0, Math.floor((END - Date.now()) / 1000)); var v = { d: Math.floor(s / 86400), h: Math.floor(s % 86400 / 3600), m: Math.floor(s % 3600 / 60), s: s % 60 }; Object.keys(v).forEach(function (k) { var n = $('#cd [data-u="' + k + '"]'); if (n) n.textContent = String(v[k]).padStart(2, '0'); }); }
+  setInterval(function () { if (!document.hidden) tick(); }, 1000); document.addEventListener('visibilitychange', function () { if (!document.hidden) tick(); }); tick();
+
+  /* ---------- matches ---------- */
+  var applying = 3, matches = 8;
+  $('#matchGrid').addEventListener('click', function (e) {
+    var add = e.target.closest('[data-add]'), dis = e.target.closest('[data-dismiss]');
+    if (add) { var card = add.closest('.match'); card.style.opacity = '.5'; add.textContent = '✓ Added'; add.disabled = true; applying++; matches--; $('#kApplying').textContent = applying; $('#kMatches').textContent = matches; $('#laneCount').textContent = applying; toast('Added to your list'); }
+    if (dis) { dis.closest('.match').remove(); matches--; $('#kMatches').textContent = matches; toast('Hidden from matches'); }
+  });
+
+  /* ---------- tabs helper ---------- */
+  function tabs(list, attr, panelAttr, scope) {
+    $$(list, scope).forEach(function (b) { b.addEventListener('click', function () { select(b); }); b.addEventListener('keydown', function (e) {
+      var all = $$(list, scope), i = all.indexOf(b), n = e.key === 'ArrowRight' ? all[(i + 1) % all.length] : e.key === 'ArrowLeft' ? all[(i - 1 + all.length) % all.length] : null; if (n) { e.preventDefault(); n.focus(); select(n); } }); });
+    function select(b) { $$(list, scope).forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); }); $$('[' + panelAttr + ']', scope).forEach(function (p) { p.hidden = p.getAttribute(panelAttr) !== b.dataset[attr]; }); if (b.dataset[attr] === 'list' || b.dataset[attr] === 'all') renderLists(); }
+  }
+  tabs('[data-stab]', 'stab', 'data-spanel', $('#schLevel1'));
+  tabs('[data-dtab]', 'dtab', 'data-dpanel', $('[data-view="documents"]'));
+  tabs('[data-dt]', 'dt', 'data-dp', $('#drawer'));
+
+  /* ---------- scholarships: list + country ---------- */
+  var OPPS = {
+    open: [
+      { id: 'cw', c: 'GB', name: 'Commonwealth Master’s', fund: 'Full cost verified', date: '29 Oct 2026, 16:00 GMT', left: '9d 04h', tone: 'danger', mine: true },
+      { id: 'gates', c: 'GB', name: 'Gates Cambridge', fund: 'Full cost verified', date: '8 Dec 2026', left: '49 days', tone: 'warning', note: 'Time not confirmed', mine: true },
+      { id: 'daad', c: 'DE', name: 'DAAD EPOS', fund: 'Tuition + stipend', date: '24 Jan 2027', left: '96 days', tone: 'info', mine: true },
+      { id: 'kaust', c: 'SA', name: 'KAUST MSc Fellowship', fund: 'Full cost verified', date: '3 Feb 2027', left: '106 days', tone: 'info', mine: false }
+    ],
+    soon: [{ id: 'chev', c: 'GB', name: 'Chevening', fund: 'Full cost verified', date: 'Opens 1 Nov 2026', left: 'in 12 days', tone: 'success' }],
+    future: [{ id: 'clar', c: 'GB', name: 'Clarendon', fund: 'Full cost verified', date: 'Not announced', left: 'Watching', tone: 'neutral' }],
+    closed: [{ id: 'mar', c: 'GB', name: 'Marshall', fund: 'Full cost verified', date: 'Closed 6 Oct 2026', left: 'Closed', tone: 'neutral' }]
+  };
+  var inList = { cw: true, gates: true, daad: true, erasmus: true };
+  function oppCard(o) {
+    var pressed = !!inList[o.id];
+    return '<article class="card oppcard"><div><h3 class="oppcard__name">' + esc(o.name) + '</h3><div class="oppcard__meta"><span class="chip chip--success">' + esc(o.fund) + '</span>' + (o.note ? '<span class="chip chip--warning">' + esc(o.note) + '</span>' : '') + '</div></div>' +
+      '<div class="oppcard__side"><span class="oppcard__time">' + esc(o.left) + '</span><span class="muted" style="font-size:12px">' + esc(o.date) + '</span><div style="display:flex;gap:8px"><button class="btn btn--ghost btn--sm" type="button" data-open="' + esc(o.id) + '">Details</button><button class="btn btn--sm' + (pressed ? ' btn--primary' : ' btn--secondary') + '" type="button" aria-pressed="' + pressed + '" data-toggle="' + esc(o.id) + '">' + (pressed ? '★ In my list' : '+ Add to my list') + '</button></div></div></article>';
+  }
+  function renderLists() {
+    $('#listStack').innerHTML = OPPS.open.filter(function (o) { return inList[o.id]; }).map(oppCard).join('') || '<div class="empty"><p><strong>Nothing in your list yet</strong></p><p>Add a scholarship from a country page or your matches.</p></div>';
+    $('#allStack').innerHTML = OPPS.open.map(oppCard).join('');
+  }
+  var activeCTab = 'open', activeCode = 'GB';
+  function renderCountry(code) {
+    activeCode = code; var info = COUNTRIES[code] || ['🏳️', code];
+    $('#cFlag').textContent = info[0]; $('#cName').textContent = info[1];
+    var list = (OPPS[activeCTab] || []).filter(function (o) { return o.c === code; });
+    $('#cList').innerHTML = list.length ? list.map(oppCard).join('') : '<div class="empty"><p><strong>Nothing here in this sample</strong></p><p>The real app lists every tracked scholarship for ' + esc(info[1]) + ' in this tab.</p></div>';
+  }
+  $$('[data-ctab]').forEach(function (b) { b.addEventListener('click', function () { activeCTab = b.dataset.ctab; $$('[data-ctab]').forEach(function (x) { x.setAttribute('aria-selected', String(x === b)); }); renderCountry(activeCode); }); });
+  document.addEventListener('click', function (e) {
+    var tg = e.target.closest('[data-toggle]'), op = e.target.closest('[data-open]');
+    if (tg) { var id = tg.dataset.toggle; inList[id] = !inList[id]; toast(inList[id] ? 'Added to your list' : 'Removed from your list'); renderLists(); renderCountry(activeCode); }
+    if (op) openDrawer(op.dataset.open);
+    if (e.target.closest('[data-open-drawer]')) openDrawer('cw');
+  });
+  renderLists();
+
+  /* ---------- drawer ---------- */
+  var dr = $('#drawer'), sc = $('#scrim'), opener = null;
+  function openDrawer(id) {
+    var all = OPPS.open.concat(OPPS.soon, OPPS.future, OPPS.closed); var o = all.filter(function (x) { return x.id === id; })[0] || all[0];
+    opener = document.activeElement; $('#drawerTitle').textContent = o.name + ' (sample)'; var ci = COUNTRIES[o.c] || ['', o.c]; $('#dEyebrow').textContent = ci[0] + ' ' + ci[1];
+    dr.hidden = false; sc.hidden = false; $('#dclose').focus();
+  }
+  function closeDrawer() { if (dr.hidden) return; dr.hidden = true; sc.hidden = true; if (opener && opener.focus) opener.focus(); }
+  $('#dclose').addEventListener('click', closeDrawer); sc.addEventListener('click', closeDrawer);
+  dr.addEventListener('keydown', function (e) { if (e.key !== 'Tab') return; var f = $$('button,a,[tabindex]:not([tabindex="-1"])', dr).filter(function (x) { return !x.disabled && x.offsetParent !== null; }); if (!f.length) return; var first = f[0], last = f[f.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } });
+  $('#addbtn').addEventListener('click', function () { var on = this.getAttribute('aria-pressed') !== 'true'; this.setAttribute('aria-pressed', String(on)); this.textContent = on ? '★ In my list' : '+ Add to my list'; });
+
+  /* ---------- calendar ---------- */
+  var EVENTS = [
+    { d: '2026-10-27', t: 'milestone', n: 'Book English test', mine: true },
+    { d: '2026-10-29', t: 'closes', n: 'Commonwealth', mine: true },
+    { d: '2026-11-01', t: 'opens', n: 'Chevening opens', mine: false },
+    { d: '2026-11-01', t: 'opens', n: 'MEXT opens', mine: false },
+    { d: '2026-11-16', t: 'milestone', n: 'Statement draft due', mine: true },
+    { d: '2026-12-08', t: 'closes', n: 'Gates Cambridge', mine: true, note: 'time not confirmed' },
+    { d: '2027-01-24', t: 'closes', n: 'DAAD EPOS', mine: true },
+    { d: '2027-02-03', t: 'closes', n: 'KAUST Fellowship', mine: false }
+  ];
+  var cal = { y: 2026, m: 10, mine: true }, TODAY = '2026-10-20', LABEL = { opens: 'Opens', closes: 'Closes', milestone: 'Milestone' };
+  function monthLabel(y, m) { return new Intl.DateTimeFormat('en-GB', { month: 'long', year: 'numeric', timeZone: 'UTC' }).format(new Date(Date.UTC(y, m - 1, 1))); }
+  function renderCal() {
+    $('#calTitle').textContent = monthLabel(cal.y, cal.m);
+    var first = new Date(Date.UTC(cal.y, cal.m - 1, 1)), off = (first.getUTCDay() + 6) % 7, start = Date.UTC(cal.y, cal.m - 1, 1 - off);
+    var evs = EVENTS.filter(function (e) { return !cal.mine || e.mine; }), by = {}; evs.forEach(function (e) { (by[e.d] = by[e.d] || []).push(e); });
+    var h = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(function (d) { return '<div class="cal__dow" role="columnheader">' + d + '</div>'; }).join('');
+    for (var i = 0; i < 42; i++) { var d = new Date(start + i * 864e5), iso = d.toISOString().slice(0, 10), out = d.getUTCMonth() !== cal.m - 1;
+      h += '<div class="cal__cell" role="gridcell" data-out="' + out + '" data-today="' + (iso === TODAY) + '"><span class="cal__day">' + d.getUTCDate() + '</span>' + (by[iso] || []).map(function (e) { return '<button class="cal__ev" data-type="' + e.t + '" type="button" data-open="cw" title="' + esc(LABEL[e.t] + ': ' + e.n) + '" aria-label="' + esc(LABEL[e.t] + ': ' + e.n) + '">' + esc(e.n) + '</button>'; }).join('') + '</div>'; }
+    $('#calGrid').innerHTML = h;
+    var prefix = cal.y + '-' + String(cal.m).padStart(2, '0'); var list = evs.filter(function (e) { return e.d.slice(0, 7) === prefix; });
+    $('#calAgenda').innerHTML = list.length ? list.map(function (e) { var dd = new Date(e.d + 'T00:00:00Z'); return '<div class="timeline__item"><div class="timeline__date"><b>' + dd.getUTCDate() + '</b><span>' + new Intl.DateTimeFormat('en-GB', { month: 'short', timeZone: 'UTC' }).format(dd) + '</span></div><div><div style="font-weight:600">' + esc(e.n) + '</div><span class="chip chip--' + (e.t === 'closes' ? 'critical' : e.t === 'opens' ? 'success' : 'info') + '">' + LABEL[e.t] + '</span>' + (e.note ? ' <span class="chip chip--warning">Time not confirmed</span>' : '') + '</div></div>'; }).join('') : '<div class="empty"><p><strong>Nothing this month</strong></p><p>Try “All matches” to see other openings.</p></div>';
+  }
+  function shift(d) { var t = cal.y * 12 + cal.m - 1 + d; cal.y = Math.floor(t / 12); cal.m = t % 12 + 1; renderCal(); }
+  $('#calPrev').addEventListener('click', function () { shift(-1); }); $('#calNext').addEventListener('click', function () { shift(1); });
+  $('#calToday').addEventListener('click', function () { cal.y = 2026; cal.m = 10; renderCal(); });
+  $('#calIcs').addEventListener('click', function () { toast('Calendar file ready (preview only)'); });
+  function setFilter(mine) { cal.mine = mine; $('#fMine').setAttribute('aria-pressed', String(mine)); $('#fAll').setAttribute('aria-pressed', String(!mine)); renderCal(); }
+  $('#fMine').addEventListener('click', function () { setFilter(true); }); $('#fAll').addEventListener('click', function () { setFilter(false); });
+  renderCal();
+
+  /* ---------- settings sections ---------- */
+  $$('[data-sec]').forEach(function (b) { b.addEventListener('click', function () { $$('[data-sec]').forEach(function (x) { x.setAttribute('aria-current', String(x === b)); }); $$('[data-spanel2]').forEach(function (p) { p.hidden = p.dataset.spanel2 !== b.dataset.sec; }); }); });
+
+  if (!location.hash) location.hash = '#/dashboard'; route();
+})();
+
+</script>
+</body>
+</html>

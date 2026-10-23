@@ -19,5 +19,8 @@ jobs:
       - run: npm test
       - run: npm run check:keys
       - run: npm run check:data
+      - run: npm run check:ui
+      - run: npm run check:ui:v4
+      - run: npm run check:privacy
       - run: npm run build
 

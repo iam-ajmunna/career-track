@@ -1,0 +1,24 @@
+[
+  {
+    "mode": "desktop",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100
+    },
+    "lcp": 380.09700000000004,
+    "cls": 0,
+    "errors": null
+  },
+  {
+    "mode": "mobile",
+    "scores": {
+      "performance": 99,
+      "accessibility": 100,
+      "best-practices": 100
+    },
+    "lcp": 1806.0194999999999,
+    "cls": 0,
+    "errors": null
+  }
+]

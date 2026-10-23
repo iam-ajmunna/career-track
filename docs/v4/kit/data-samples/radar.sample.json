@@ -1,0 +1,24 @@
+{
+  "schema": "career-track/radar@1",
+  "generatedAt": "2026-10-20T03:00:00Z",
+  "source": { "name": "ScholarshipAPI", "url": "https://scholarshipapi.com/", "terms": "UNVERIFIED — read the provider terms before enabling" },
+  "items": [
+    {
+      "id": "radar:sample-001",
+      "name": "Sample International Masters Scholarship",
+      "provider": "Sample University",
+      "countryCodes": ["GB"],
+      "researchAreas": ["machine-learning"],
+      "degreeTypes": ["taught-master"],
+      "funding": "unknown",
+      "status": "open",
+      "deadlineAt": null,
+      "deadlineDate": "2026-12-15",
+      "officialUrl": "https://example.org/scholarships/sample",
+      "summary": "Short neutral summary (max 240 chars). No copied marketing text.",
+      "verified": false,
+      "firstSeen": "2026-10-20",
+      "lastSeen": "2026-10-20"
+    }
+  ]
+}

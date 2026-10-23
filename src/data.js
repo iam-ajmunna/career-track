@@ -376,7 +376,7 @@ export const scholarships = [
     eligible: true,
     verifiedOn: "2026-09-28",
     keyRisk: "DAAD does not automatically cover tuition charged by the chosen Master's programme, so programme cost must be checked separately.",
-    whyFit: "Your CSE degree, 3.74/4.00 CGPA, AI/CV research, publications and production AI experience form a coherent postgraduate profile.",
+    whyFit: "Compare your degree, academic record, research and engineering experience against the programme requirements.",
     nextAction: "Shortlist eligible German AI/CS Master's programmes and confirm their tuition and admission timelines before finalizing the DAAD study plan.",
     actions: [
       "Shortlist suitable German AI/CS Master's programmes and verify tuition",
@@ -813,3 +813,4 @@ export const timeline = [
   { date: "20 Feb", title: "Türkiye Scholarships recurring window ends", detail: "Confirm the 2027 announcement before relying on this recurring annual date." },
   { date: "Watch", title: "MEXT / Stipendium / GKS-G", detail: "MEXT 2027 Bangladesh embassy route is closed; monitor next MEXT route, the Stipendium 2027/28 call, and the general 2027 GKS Graduate announcement." }
 ];
+
