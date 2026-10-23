@@ -16,9 +16,10 @@ if (rows.length) {
   if (rows.length !== 1 || rows[0].owner_id !== id) throw new Error('Another owner already exists. No row was changed.');
   console.log('Owner already provisioned. Existing progress was preserved.');
 } else {
-  const profile = JSON.parse(await readFile(new URL('../supabase/owner-profile.json', import.meta.url), 'utf8'));
+  const profile = JSON.parse(await readFile(process.env.CAREER_OWNER_PROFILE_FILE || (() => { throw Error('Set CAREER_OWNER_PROFILE_FILE to a private profile file outside the repository.'); })(), 'utf8'));
   const state = validateState({ ...structuredClone(EMPTY_STATE), profile });
   const { error } = await client.from('user_state').insert({ owner_id: id, state });
   if (error) throw new Error('Owner provisioning failed. No existing state was overwritten.');
   console.log('Owner provisioned with empty progress. Disable public signups before release.');
 }
+

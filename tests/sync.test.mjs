@@ -98,7 +98,7 @@ test('profile updates are validated and persisted through store operations', asy
     name: 'AJ',
     degree: 'BSc CSE',
     university: 'NSU',
-    cgpa: '3.74/4.00',
+    cgpa: '3.50/4.00',
     highlights: ['AI', 'CV'],
     positioning: { engineering: 95, research: 90, academics: 82, developmentImpact: 75, leadership: 65 }
   };
@@ -111,3 +111,4 @@ test('profile updates are validated and persisted through store operations', asy
   assert.throws(() => validateState({ ...EMPTY_STATE, profile: { name: 'AJ', positioning: {} } }));
   f.store.stop(); reopened.store.stop();
 });
+

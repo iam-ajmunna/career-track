@@ -79,20 +79,7 @@ const decisionMap = {
   closed: ['Closed', 'neutral']
 };
 
-const defaultProfile = {
-  name: 'Assaduzzaman Munna',
-  degree: 'BSc CSE | AI / Computer Vision systems',
-  university: 'North South University',
-  cgpa: '3.74/4.00',
-  highlights: ['Production AI engineering', 'Computer vision', 'Edge inference', 'Research publications'],
-  positioning: {
-    engineering: 92,
-    research: 86,
-    academics: 82,
-    developmentImpact: 70,
-    leadership: 58
-  }
-};
+const defaultProfile = { name: '', degree: '', university: '', cgpa: '', highlights: [], positioning: {} };
 
 function decisionOf(item) {
   if (item.decision) return item.decision;
