@@ -1,16 +1,19 @@
 ---
 version: alpha
-name: "MSc Scholarship Command Center"
+name: "Career Track — Scholarship OS"
 description: "A quiet, information-dense application workspace for navigating and executing fully funded MSc scholarship applications."
 colors:
   background: "#f6f7f9"
   surface: "#ffffff"
   surfaceMuted: "#f0f2f5"
   text: "#15171a"
-  muted: "#70757d"
+  muted: "#5b616b"
   border: "#e2e5e9"
-  success: "#1f7a4f"
-  warning: "#8f6a12"
+  primary: "#3451d1"
+  brand: "#3451d1"
+  brandSoft: "#ebeefa"
+  success: "#1b6f48"
+  warning: "#7f5e0e"
   danger: "#a43b3b"
   info: "#3867a7"
 typography:
@@ -21,12 +24,12 @@ typography:
 rounded:
   DEFAULT: "16px"
   sm: "9px"
-  md: "11px"
+  md: "12px"
   lg: "16px"
 spacing:
-  section-gap: "22px"
-  card-padding: "20px"
-  desktop-page-inline: "36px"
+  section-gap: "32px"
+  card-padding: "24px"
+  desktop-page-inline: "32px"
 components:
   button: {}
   card: {}
@@ -51,10 +54,10 @@ A personal academic operations console: closer to a disciplined research workspa
 - **Locale(s) and language policy:** English UI; scholarship names and official-source terminology are preserved.
 - **Usage scene:** primarily desktop planning with responsive mobile review/check-off support.
 - **Register:** product UI. Utility, hierarchy, and consistency outrank decoration.
-- **Memorable signature:** monochrome operational surfaces with restrained semantic status chips and deadline-oriented data.
+- **Memorable signature:** one live deadline, an indigo action, and explicit country compromises.
 - **Restraint:** cards, buttons, and navigation remain visually quiet; status color is used only to encode meaning.
 - **Anti-references:** no neon AI-dashboard styling, glass-heavy sci-fi chrome, oversized KPI theatrics, or marketing-style gradient CTAs.
-- **Token ownership/runtime mapping:** this document mirrors the canonical CSS custom properties in `assets/styles.css`; runtime CSS remains the implementation source of truth. Durable token changes must update both files together.
+- **Token ownership/runtime mapping:** V4 mirrors `src/styles/tokens.css` and `src/styles/app.css`; classic retains `assets/styles.css`; runtime CSS remains the implementation source of truth. Durable token changes must update both files together.
 
 ## Colors
 
@@ -84,7 +87,7 @@ All enabled controls expose hover, focus-visible, and pressed states. Focus-visi
 
 ### Buttons and actions
 
-Primary actions are solid neutral controls. Secondary actions use bordered surfaces. Danger indicates critical deadlines and failures that need attention. Status pills are non-interactive and must not inherit button geometry.
+V4 primary actions use the supplied indigo brand token. Classic controls retain neutral emphasis. Secondary actions use bordered surfaces. Danger indicates critical deadlines and failures that need attention. Status pills are non-interactive and must not inherit button geometry.
 
 ### Navigation and data display
 
@@ -131,3 +134,18 @@ v2 retains the established palette, typography and radii. `src/styles/countries.
 V3 extends the same operations-console design. `src/styles/intelligence.css` consumes the existing runtime tokens without a second palette. The explorer uses compact route rows, native select filters and explicit 12-item pagination. Filters, committed search, sort, intake and page live in the hash URL. Country results use explicit Load more. Individual guides use A–Q native disclosures, with local application stages above them and source provenance alongside factual claims. Document tables own horizontal scrolling; the surrounding page remains naturally scrollable. Native date/select popup geometry is deliberately platform-owned.
 
 Global totals describe independent application windows and include urgent routes. Personal stages, eligibility, funding coverage, lifecycle and decisions use separate labeled controls. Mutations retain the shared device-save status and persistent recovery errors. V2 migration requires a downloadable backup and a preserved original key before V3 edits. Trash has no timer-driven deletion; permanent purge is explicit and backup-gated. No identity, academic result or application outcome is a public default.
+
+
+### V4 kit release — 23 October 2026 (current runtime)
+
+The uploaded V4 kit explicitly authorizes the five-screen redesign. Its exact palette, type scale, radii, sidebar, countdown cells and country-card anatomy are the current visual contract. `src/styles/tokens.css` is the canonical V4 token owner. `src/styles/app.css` implements its supplied component styles plus integration states; `scripts/build.mjs` copies these without a second palette. Classic CSS is isolated at `/classic/`.
+
+| Prior rule | V4 evidence | Decision |
+| --- | --- | --- |
+| Neutral primary buttons | Kit `--brand: #3451D1` | Approved system update to indigo; text is white in light mode and dark in dark mode. |
+| Thirteen-item navigation | Kit five-item shell | Five primary destinations; secondary views live in tabs or Settings. |
+| Dense dashboard | Hero and profile in an 8/4 split | One timer and four KPIs fit the first desktop screen. |
+| Muted/warning token contrast | Kit contrast table | Use supplied corrected values in V4; classic tokens remain historical. |
+| 9–11px controls | Kit 12px control token | V4 12px controls; 16px cards, with semantic pills. |
+
+Use the system font fallbacks already in the kit; no remote font request or late font swap is introduced. `Inter` and `JetBrains Mono` apply when installed. Native select/date geometry and locale are accepted. Global scrollbar tokens in `app.css` apply to all document, drawer and table overflow, with forced-colors fallback. At 760px use bottom navigation, full-width drawers and the calendar agenda. Long match chips wrap inside their cards. Demo mode is explicit and in-memory; screenshots use only the fictional profile.

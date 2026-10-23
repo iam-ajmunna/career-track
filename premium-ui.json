@@ -1,10 +1,13 @@
 {
   "profile": "product-admin",
   "sourceRoots": [
-    "src/v3",
-    "src/bootstrap.js",
-    "src/styles/intelligence.css",
-    "index.html"
+    "src/v4",
+    "src/ui",
+    "src/app",
+    "src/features",
+    "src/styles/tokens.css",
+    "src/styles/app.css",
+    "next/index.html"
   ],
   "canonicalMap": "UX-CONTRACT.md",
   "requiredCapabilities": [
@@ -16,15 +19,24 @@
     "CRUD",
     "Table Selection"
   ],
-  "ownership": { "Select/Listbox": "native", "Date": "native" },
-  "requiredCommands": ["test", "build", "browser"],
+  "ownership": {
+    "Select/Listbox": "native",
+    "Date": "native"
+  },
+  "requiredCommands": [
+    "test",
+    "build",
+    "browser",
+    "v4browser"
+  ],
   "commands": {
     "test": "npm test",
     "build": "npm run build",
-    "browser": "npm run test:browser"
+    "browser": "npm run test:browser",
+    "v4browser": "npm run test:browser:v4"
   },
   "evidence": {
-    "crudFullFlow": "tests/browser-v3.mjs",
-    "failurePaths": "tests/v3-domain.test.mjs"
+    "crudFullFlow": "tests/browser-v4.mjs",
+    "failurePaths": "tests/v4-integration.test.mjs"
   }
 }

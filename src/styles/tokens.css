@@ -1,0 +1,83 @@
+/* ===== Career Track — design tokens (single source of truth). Light is default; dark via [data-theme="dark"]. =====
+   Contrast ratios (WCAG 2.2, computed) are noted where a pair is used for text. AA text = 4.5:1, large text/UI = 3:1. */
+:root {
+  /* Neutrals */
+  --bg: #F6F7F9;          /* page background */
+  --surface: #FFFFFF;     /* cards */
+  --surface-2: #F0F2F5;   /* inset panels, hover */
+  --surface-3: #E8EBEF;   /* pressed, tracks */
+  --line: #E2E5E9;        /* 1px borders */
+  --line-strong: #C9CED6; /* inputs, emphasised borders */
+  --text: #15171A;        /* 17.96:1 on surface */
+  --text-2: #454B54;      /* 8.80:1 on surface — secondary body */
+  --muted: #5B616B;       /* 6.24:1 on surface, 5.56:1 on surface-2 (replaces #70757D, which failed AA on surface-2 at 4.13) */
+
+  /* Brand (single accent) */
+  --brand: #3451D1;       /* 6.47:1 on surface; white on brand 6.47:1 */
+  --brand-ink: #2A41A8;   /* text on brand-soft, 7.50:1 */
+  --brand-soft: #EBEEFA;
+  --on-brand: #FFFFFF;
+  --accent: #15171A;      /* primary neutral button (kept from v3) */
+
+  /* Semantics (text colour / soft background pairs, all >= 4.5:1) */
+  --success: #1B6F48;  --success-soft: #E8F1EC;
+  --warning: #7F5E0E;  --warning-soft: #F2EFE7;   /* old #8F6A12 failed on surface-2 (4.42) */
+  --danger:  #A43B3B;  --danger-soft:  #F6EBEB;
+  --critical:#B42318;  --critical-soft:#FBEAE8;
+  --info:    #3867A7;  --info-soft:    #EBF0F6;
+  --focus:   #3451D1;
+
+  /* Shape */
+  --r-xs: 6px; --r-sm: 9px; --r-md: 12px; --r-lg: 16px; --r-xl: 20px; --r-pill: 999px;
+  /* Elevation */
+  --shadow-1: 0 1px 2px rgba(16,24,40,.05);
+  --shadow-2: 0 8px 24px rgba(16,24,40,.07);
+  --shadow-3: 0 24px 64px rgba(16,24,40,.18);
+  --ring: 0 0 0 3px color-mix(in srgb, var(--focus) 24%, transparent);
+  /* Space (4px base) */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px;
+  /* Layout */
+  --sidebar-w: 248px; --topbar-h: 64px; --content-max: 1280px; --page-pad: 32px; --bottom-nav-h: 64px;
+  /* Type */
+  --sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --fs-display: 40px; --lh-display: 44px;   /* hero countdown digits use --mono at this size */
+  --fs-h1: 28px; --lh-h1: 34px;
+  --fs-h2: 20px; --lh-h2: 28px;
+  --fs-h3: 16px; --lh-h3: 24px;
+  --fs-body: 15px; --lh-body: 24px;
+  --fs-small: 13px; --lh-small: 20px;
+  --fs-micro: 12px; --lh-micro: 16px;
+  /* Motion */
+  --t-fast: 120ms; --t-base: 200ms; --t-slow: 320ms; --ease: cubic-bezier(.2,.8,.2,1);
+  /* Z-index scale */
+  --z-sticky: 10; --z-drawer: 40; --z-dialog: 50; --z-toast: 60;
+}
+
+[data-theme="dark"] {
+  --bg: #0F1114; --surface: #171A1F; --surface-2: #1D2127; --surface-3: #262B33;
+  --line: #2B3139; --line-strong: #3A424D;
+  --text: #F3F5F7; --text-2: #C6CBD2; --muted: #9AA2AD;
+  --brand: #8DA2FB; --brand-ink: #B7C4FD; --brand-soft: #282D3E; --on-brand: #0F1114;
+  --accent: #F4F5F6;
+  --success: #71C89A; --success-soft: #243230;
+  --warning: #DEC06D; --warning-soft: #33312A;
+  --danger: #E77C7C;  --danger-soft: #34282C;
+  --critical: #FF8A80; --critical-soft: #3A2626;
+  --info: #81AEE9;    --info-soft: #262F3B;
+  --focus: #9ABCE7;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.3); --shadow-2: 0 8px 24px rgba(0,0,0,.28); --shadow-3: 0 24px 64px rgba(0,0,0,.5);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0F1114; --surface: #171A1F; --surface-2: #1D2127; --surface-3: #262B33;
+  --line: #2B3139; --line-strong: #3A424D;
+  --text: #F3F5F7; --text-2: #C6CBD2; --muted: #9AA2AD;
+  --brand: #8DA2FB; --brand-ink: #B7C4FD; --brand-soft: #282D3E; --on-brand: #0F1114; --accent: #F4F5F6;
+  --success: #71C89A; --success-soft: #243230; --warning: #DEC06D; --warning-soft: #33312A;
+  --danger: #E77C7C; --danger-soft: #34282C; --critical: #FF8A80; --critical-soft: #3A2626;
+  --info: #81AEE9; --info-soft: #262F3B; --focus: #9ABCE7;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.3); --shadow-2: 0 8px 24px rgba(0,0,0,.28); --shadow-3: 0 24px 64px rgba(0,0,0,.5);
+} }
+@media (max-width: 1080px) { :root { --sidebar-w: 216px; --page-pad: 24px; } }
+@media (max-width: 760px)  { :root { --page-pad: 16px; --fs-display: 32px; --lh-display: 36px; } }
+@media (prefers-reduced-motion: reduce) { :root { --t-fast: 0ms; --t-base: 0ms; --t-slow: 0ms; } html { scroll-behavior: auto; } }

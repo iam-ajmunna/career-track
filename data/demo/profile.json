@@ -1,0 +1,15 @@
+{
+  "displayName": "Alex Morgan",
+  "programme": "MSc 2027 \u00b7 Demo",
+  "citizenship": "BD",
+  "researchAreas": [
+    "machine-learning",
+    "computer-vision"
+  ],
+  "preferredCountries": [
+    "GB",
+    "DE",
+    "CA"
+  ],
+  "allowReturnHome": false
+}

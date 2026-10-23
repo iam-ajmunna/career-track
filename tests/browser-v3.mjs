@@ -50,7 +50,7 @@ async function check(name, fn) {
     throw error;
   }
 }
-const base = "http://127.0.0.1:8086";
+const base = "http://127.0.0.1:8086/classic";
 const go = async (hash) => {
   await page.goto(base + hash);
   await page.waitForSelector("#appShell:not([hidden])");
@@ -61,6 +61,7 @@ try {
     reducedMotion: "reduce",
   });
   page = await context.newPage();
+  await page.clock.install({ time: new Date("2026-10-16T15:00:00Z") });
   page.on("pageerror", (e) => errors.push(e.message));
   context.on("request", (r) => requests.push(r.url()));
   await go("");
@@ -726,7 +727,7 @@ try {
         p = await c.newPage();
       p.on("pageerror", (e) => errors.push(e.message));
       const fixture = "dist/legacy-worker-fixture.js",
-        blank = "dist/legacy-page-fixture.html";
+        blank = "dist/classic/legacy-page-fixture.html";
       try {
         await writeFile(
           blank,

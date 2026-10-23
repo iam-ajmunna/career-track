@@ -1,0 +1,138 @@
+{
+  "checks": [
+    {
+      "name": "Clean local startup, five navigation links and empty hero without sign-in",
+      "status": "PASS"
+    },
+    {
+      "name": "Search is URL-restored, IME-safe and has a working clear action",
+      "status": "PASS"
+    },
+    {
+      "name": "A match adds to My list and survives reload; dismissal supports Undo",
+      "status": "PASS"
+    },
+    {
+      "name": "Country tiers show exact compromises, country tabs and unrated destinations",
+      "status": "PASS"
+    },
+    {
+      "name": "Drawer deep links load six tabs, lazy guides and restore focus with Escape",
+      "status": "PASS"
+    },
+    {
+      "name": "Date-only hero shows days and a caveat, while exact hero ticks without rerendering the shell",
+      "status": "PASS"
+    },
+    {
+      "name": "Private note drafts survive navigation and are included in complete export",
+      "status": "PASS"
+    },
+    {
+      "name": "Profile editing validates country codes, updates the avatar and persists preferences",
+      "status": "PASS"
+    },
+    {
+      "name": "Shared document status and expiry update the dossier and scholarship checklist",
+      "status": "PASS"
+    },
+    {
+      "name": "Referee and English test plans persist and private milestones export without false source attribution",
+      "status": "PASS"
+    },
+    {
+      "name": "Calendar grid supports Monday-start dates, arrows, type filters and agenda mode",
+      "status": "PASS"
+    },
+    {
+      "name": "Archive, Trash and restore retain application notes and never purge on a clock",
+      "status": "PASS"
+    },
+    {
+      "name": "Backup, typed reset and typed restore round-trip the entire private workspace",
+      "status": "PASS"
+    },
+    {
+      "name": "Legacy routes, numeric keys, avatar menu and tab arrows stay keyboard operable",
+      "status": "PASS"
+    },
+    {
+      "name": "Demo mode isolates all edits and theme choices from saved owner storage",
+      "status": "PASS"
+    },
+    {
+      "name": "All five views fit 1440, 1024, 768, 390 and 320 pixels in both themes",
+      "status": "PASS"
+    },
+    {
+      "name": "Axe reports zero serious or critical issues on all five views in light and dark",
+      "status": "PASS"
+    },
+    {
+      "name": "Service worker keeps root, next and classic shells distinct offline",
+      "status": "PASS"
+    },
+    {
+      "name": "Quota failure preserves in-memory work, export and retry",
+      "status": "PASS"
+    },
+    {
+      "name": "Corrupt storage blocks writes and retains exportable recovery bytes",
+      "status": "PASS"
+    }
+  ],
+  "accessibility": [
+    {
+      "theme": "light",
+      "route": "dashboard",
+      "violations": []
+    },
+    {
+      "theme": "light",
+      "route": "scholarships",
+      "violations": []
+    },
+    {
+      "theme": "light",
+      "route": "calendar",
+      "violations": []
+    },
+    {
+      "theme": "light",
+      "route": "documents",
+      "violations": []
+    },
+    {
+      "theme": "light",
+      "route": "settings",
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "route": "dashboard",
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "route": "scholarships",
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "route": "calendar",
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "route": "documents",
+      "violations": []
+    },
+    {
+      "theme": "dark",
+      "route": "settings",
+      "violations": []
+    }
+  ],
+  "consoleErrors": [],
+  "thirdPartyRequests": []
+}
