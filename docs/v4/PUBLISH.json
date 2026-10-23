@@ -1,19 +1,36 @@
 {
   "repository": "iam-ajmunna/career-track",
-  "pullRequest": "https://github.com/iam-ajmunna/career-track/pull/8",
-  "sourceCommit": "0107d08f1f42c3a2ab385280e524996343c57245",
-  "mainMerge": "3395ba4e123c48db1c67ed29e3900093061facff",
-  "ciRun": 39929743291,
-  "ci": "success",
-  "intentionalPaths": 145,
-  "fileComparison": "all matched",
-  "unitTests": 144,
-  "classicBrowserScenarios": 20,
-  "v4BrowserScenarios": 20,
-  "productionStatus": "failure",
-  "productionDeployment": "https://vercel.com/aj-81af/career-track/4s9zbNmVQsnD8Nopi3q6DPcMk2gS",
-  "buildLogAccess": "Vercel 403: team aj-81af unavailable to this connection",
-  "productionHttpStatus": 200,
-  "productionUi": "V3 remains active",
-  "productionEntry": "/assets/app-BYZIMYAO.js"
+  "site": "https://muncareer.vercel.app/",
+  "initialV4Release": {
+    "pullRequest": "https://github.com/iam-ajmunna/career-track/pull/8",
+    "sourceCommit": "0107d08f1f42c3a2ab385280e524996343c57245",
+    "mainMerge": "3395ba4e123c48db1c67ed29e3900093061facff",
+    "ciRun": 39929743291,
+    "intentionalPaths": 145,
+    "fileComparison": "all matched"
+  },
+  "lastVerifiedProduction": {
+    "commit": "376688e6637a84e1f8a8fabb25e7021ce8b3527a",
+    "deployment": "https://vercel.com/aj-81af/career-track/qimtGUJYyov2t5Wkc7ihb3z4EncJ",
+    "status": "success",
+    "httpStatus": 200,
+    "ui": "V4",
+    "entry": "/assets/app4-RON3JL6Z.js"
+  },
+  "functionalAudit": {
+    "date": "2026-10-23",
+    "baseMain": "376688e6637a84e1f8a8fabb25e7021ce8b3527a",
+    "unitTests": 149,
+    "classicBrowserScenarios": 20,
+    "v4BrowserScenarios": 25,
+    "drawerRoutes": 47,
+    "drawerTabsPerRoute": 6,
+    "sourceRecords": 103,
+    "reviewedSourceRecords": 75,
+    "fullPageReviews": 69,
+    "officialIndexedReviews": 6,
+    "report": "FUNCTIONAL-AUDIT-2026-10-23.md",
+    "sourceEvidence": "source-review-2026-10-23.json",
+    "releaseProcedure": "Verify the main deployment and public artifacts after merge; immutable deployment status is recorded in GitHub commit checks."
+  }
 }

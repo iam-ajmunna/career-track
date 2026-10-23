@@ -110,7 +110,7 @@ test("Official open-call verification ages visibly without pretending a current 
     evaluateWindow(
       get("ubc-msc"),
       registry.deadlines,
-      Date.parse("2026-11-17T00:00:00Z"),
+      Date.parse(get("ubc-msc").windows[0].checkedAt) + 31 * 86400000,
     ).status,
     "verification-required",
   );

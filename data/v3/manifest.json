@@ -1,12 +1,25 @@
 {
   "schemaVersion": 3,
-  "checkedAt": "2026-10-16T14:16:10.163Z",
+  "checkedAt": "2026-10-23T10:11:23Z",
   "targetIntake": 2027,
-  "coverage": "Curated initial registry, not exhaustive. Legacy leads remain explicitly unconfirmed.",
+  "coverage": "47 curated routes reviewed on 23 October 2026; not an exhaustive global catalogue. Unpublished cycles, recurring-only policies, provider maintenance and conflicting official dates remain explicitly marked.",
   "reviewPolicy": {
     "nearDeadlineDays": 14,
     "openReviewDays": 3,
     "upcomingReviewDays": 14,
     "immigration": "Recheck official rules whenever a decision depends on them."
-  }
+  },
+  "reviewSummary": {
+    "routeCount": 47,
+    "sourceChecks": 75,
+    "method": "Manual official-source review; no automatic promotion of search leads or prior-year deadlines.",
+    "unresolved": [
+      "Stipendium provider maintenance",
+      "Eiffel conflicting dates",
+      "DEAI application-portal maintenance",
+      "Cycle-specific deadlines or offers not yet published for several retained routes",
+      "Country fit ratings remain provisional"
+    ]
+  },
+  "reviewedAt": "2026-10-23T10:17:20Z"
 }

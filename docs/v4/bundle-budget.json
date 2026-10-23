@@ -1,22 +1,22 @@
 {
   "limitGzip": 153600,
-  "totalGzip": 73526,
+  "totalGzip": 84778,
   "files": [
     {
-      "path": "/assets/app4-RON3JL6Z.js",
+      "path": "/assets/app4-LD26QSB4.js",
       "gzip": 1218
     },
     {
-      "path": "/assets/chunk-RG6SLCJL.js",
-      "gzip": 10598
+      "path": "/assets/chunk-YNX6KNVK.js",
+      "gzip": 10630
     },
     {
-      "path": "/assets/workspace-HLYCDDH2.js",
-      "gzip": 44920
+      "path": "/assets/workspace-AGCFS2GC.js",
+      "gzip": 51901
     },
     {
-      "path": "/assets/chunk-N4LVPJW7.js",
-      "gzip": 16662
+      "path": "/assets/chunk-3H776VDH.js",
+      "gzip": 20901
     },
     {
       "path": "/assets/theme-S6KY44PZ.js",

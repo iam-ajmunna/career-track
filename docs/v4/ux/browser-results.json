@@ -57,6 +57,26 @@
       "status": "PASS"
     },
     {
+      "name": "Single and bulk research tracking persist across pages and reload without submitting applications",
+      "status": "PASS"
+    },
+    {
+      "name": "GPT launch and copy fallback exclude private data; application package includes the private draft",
+      "status": "PASS"
+    },
+    {
+      "name": "Saving one form preserves an unsaved form on another route",
+      "status": "PASS"
+    },
+    {
+      "name": "Every registry opportunity renders all six drawer tabs with a loaded guide",
+      "status": "PASS"
+    },
+    {
+      "name": "Guide failure retries and a delayed earlier guide cannot replace a later drawer",
+      "status": "PASS"
+    },
+    {
       "name": "Demo mode isolates all edits and theme choices from saved owner storage",
       "status": "PASS"
     },
@@ -134,5 +154,6 @@
     }
   ],
   "consoleErrors": [],
-  "thirdPartyRequests": []
+  "thirdPartyRequests": [],
+  "interceptedGptLaunchCount": 1
 }

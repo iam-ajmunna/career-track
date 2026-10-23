@@ -26,8 +26,17 @@ export function registryEvents(registry, intake, tests = {}) {
         opportunityId: o.id,
         name: o.name,
         type: "opens",
-        precision: "date-only",
+        precision: w.opensAt ? "exact" : "date-only",
         date: w.opens,
+        at: w.opensAt || null,
+        time: w.opensAt
+          ? new Intl.DateTimeFormat("en-GB", {
+              timeZone: w.timezone,
+              hour: "2-digit",
+              minute: "2-digit",
+              hourCycle: "h23",
+            }).format(new Date(w.opensAt))
+          : null,
         timezone: w.timezone,
       });
   }

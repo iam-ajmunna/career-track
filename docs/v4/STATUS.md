@@ -1,61 +1,42 @@
 # STATUS — Career Track V4
 
-**Last updated:** 23 October 2026 · **Updated by:** Codex · **STATE: merged to main; CI passed; hosting blocked**
+**Updated:** 23 October 2026 · **State:** V4 is live; functionality and source audit completed.
 
-## NEXT ACTION
+## Current evidence
 
-Obtain build-log access to the existing Vercel team `aj-81af` or the failed build error for deployment `dpl_4s9zbNmVQsnD8Nopi3q6DPcMk2gS`. Fix that concrete hosting error and redeploy. Do not reimplement or remerge V4: source is already on main.
+- 149 unit/integration tests pass.
+- 25 V4 browser scenarios and 20 retained Classic scenarios pass.
+- Every route renders all six drawer tabs: 47 routes / 103 source records / 22 programmes.
+- Five views pass 1440/1024/768/390/320 px in light/dark; Axe finds zero serious/critical issues on all five views in both themes.
+- All 102 legacy keys and labels are preserved. Existing checklist IDs and document record meanings are retained.
+- Data, privacy, delegated UI-binding and production-build checks pass. The raw strict scanner findings are resolved through shared controller bindings and browser evidence.
+- Current bundle evidence is in `bundle-budget.json`; guides remain lazy and initial JavaScript remains below 150 KiB gzip.
 
-## Done
+See [the complete functionality/data audit](FUNCTIONAL-AUDIT-2026-10-23.md), `ux/browser-results.json` and `source-review-2026-10-23.json`.
 
-| Step | Result | Evidence |
-| --- | --- | --- |
-| S0 audit | Actual baseline main `8eec65bfc83325b22e58b06d6a0402d90f2ca257` preserved in remote `pre-v4`; privacy commit `c5692a673bdae950bf1ebaf9bc88f1353c12dd0c`; current private defaults and personal captures removed | AUDIT addendum; privacy check |
-| S1 foundation | Supplied tokens/components/router/ticker, five-route shell, theme, avatar, keyboard, parallel `/next/` | All 26 kit tests plus browser suite |
-| S2 dashboard | Open-only hero, precise timer/day-only caveat, profile/KPIs/lanes/matches, persistent add/dismiss | V4 browser results and integration regressions |
-| S3 scholarships | Existing scorer, country tiers/compromises/priorities, lists, universities/research, six-tab deep-link drawer | Browser country/drawer/keyboard/guide checks |
-| S4 calendar | Month/agenda, zone, filters, keyboard, official/own milestone export | Unit/browser precision and ICS checks |
-| S5 documents | Shared dossier statuses/version/expiry, referee matrix, test plan | Dossier/drawer/referee/browser checks |
-| S6 settings | Private profile, appearance, sources, advanced planning, archive, typed backup-first reset/restore/purge | Full export → reset → restore equality |
-| S7 collector installation | Supplied collector, tests, review-gated PR workflow and honest unverified lead UI | Radar tests; no-key run skips without changes |
-| S9 release work | V4 default, classic fallback, lazy registry guides, PWA/demo, docs, budget, a11y/performance checks | RELEASE.md; bundle and browser reports |
+## Current behavior
 
-## Verification
+The five V4 screens run at `/` and `/next/`, with advanced admission, funding comparison, historical planning and recovery tools retained under `/classic/`. No authentication is required. Both interfaces use the same validated V3 local store; the V4 preference namespace is additive.
 
-- `npm test`: **144 passed** (111 existing + 26 kit + 7 integration).
-- `npm run check:keys`: **102 keys/labels unchanged**.
-- `npm run check:data`: registry valid, **43 routes / 88 sources**.
-- `npm run check:ui`: classic delegated bindings verified.
-- `npm run check:ui:v4`: **10 raw literal-button findings** traced to shared delegation; zero unresolved. Raw strict scanner output is retained; it does not understand cross-file delegated handlers.
-- `npm run check:privacy`: current applicant defaults/profile removed; original licence attribution intentionally retained.
-- Classic browser suite: **20 passed**, fixed historical clock and `/classic/` route.
-- V4 browser suite: see `ux/browser-results.json` for all actual scenarios and Axe results.
-- Lighthouse desktop **100 / 100 / 100**, mobile **99 / 100 / 100** (Performance / Accessibility / Best Practices); LCP **0.38s / 1.81s**, CLS **0 / 0**.
-- `npm run build`: passes; initial JS approximately **72 KB gzip**, below 150 KB.
-- DESIGN.md lint: zero errors; runtime-owned token reference warnings are recorded by the tool.
+V4 now exposes individual/bulk research tracking, tracking filters, priority pinning, scholarship-specific GPT launch/copy and private package export. The audit repaired unrelated-form draft loss, guide retry/loading, async recovery locks and ticker cadence. Official opening hours now flow through status evaluation and calendar export. The V3 store itself remains unchanged; additive registry timing and shared prompt behavior were updated and tested in both interfaces.
 
-## Deferred and limitations
+## Data status
 
-- S7 live provider run/review is incomplete: no provider key, verified terms or live response was supplied. `RADAR_PROVIDER_REVIEWED=true` must be set only after owner review. The feed is empty; curated matching works.
-- S8 cloud sync is deferred, consistent with the owner’s instruction to continue without Google Auth.
-- The repository is public. This connector cannot change visibility. History was not rewritten and may retain earlier private defaults/captures; owner administration is required.
-- `pre-v4` is a preservation branch, not a tag (no tag-creation tool). The existing licence remains unchanged.
-- Country rubric judgements are Provisional/unknown until sourced; no immigration or award probability is invented.
-- Classic advanced funding/admission/comparison/planning/context-recovery tools remain linked for one release.
+75 source records reviewed: 69 public-page reviews and six labelled official indexed-content reviews. Erasmus programme rounds, Canadian deadlines/funding conditions, the separate Commonwealth Shared round and the Australian shortlist have been refreshed.
 
-## Files and deviations
+Twelve routes still require current-cycle/provider confirmation. Future month-only dates, Eiffel's conflicting cutoff, DEAI's portal maintenance and unavailable provider pages remain explicit. Country ratings stay Provisional where the required evidence is missing. A review date is not a blanket verification claim.
 
-See RELEASE.md for the exact kit-to-runtime mapping and integration corrections. The V3 store/domain/schema/views/workspace/intelligence CSS remain unchanged. Original uploaded ZIP is unchanged. Source is Git-backed; no private backup or applicant context is included in this release.
+## Production and provenance
 
+- Original ZIP is unchanged. Its modules/instructions and the initial implementation decisions remain documented in RELEASE.md and the audit files.
+- Remote `pre-v4` preserves the actual pre-upgrade main `8eec65bfc83325b22e58b06d6a0402d90f2ca257`.
+- Original V4 PR #8 merged; CI passed. The initially failing Vercel deployment was superseded by a successful production deployment from `376688e6637a84e1f8a8fabb25e7021ce8b3527a`.
+- The Git-connected release process deploys audit fixes from main. The release closeout verifies the public default shell, hashed assets, guides, Classic and live navigation after merge. GitHub checks carry the exact new commit/deployment reference.
 
-## Main publication — 23 October 2026
+## Deferred and boundaries
 
-- PR [#8](https://github.com/iam-ajmunna/career-track/pull/8) merged successfully.
-- Source commit: `0107d08f1f42c3a2ab385280e524996343c57245`; main merge: `3395ba4e123c48db1c67ed29e3900093061facff`.
-- All **145 intentional paths** were compared by Git blob SHA with the checked local files: no mismatches.
-- GitHub CI passed on both PR and main (main run `39929743291`), including tests, keys, data, classic/V4 UI binding checks, privacy and production build. GitGuardian reported no secrets.
-- Vercel preview and production deployments failed. The [production build](https://vercel.com/aj-81af/career-track/4s9zbNmVQsnD8Nopi3q6DPcMk2gS) is not ready.
-- The Vercel connector returned **403 forbidden** for deployment details and build logs because it lacks team access. Its advertised team-authorization action is not exposed in this connection. No token/secret was read or requested.
-- Public production returned HTTP 200 with the prior V3 entry `/assets/app-BYZIMYAO.js`; the new UI is **not live yet**. The previous site remains active.
-
-This is an unresolved hosting/access blocker, not a passing production verification. Grant the existing Vercel connection access to that team or provide the build error before continuing hosting work.
+- External radar collection remains off pending provider configuration/review. The source-fingerprint workflow is installed for review reports, not automatic fact verification.
+- Cloud sync remains off under the instruction to continue without Google Auth. Export/import is the verified transfer path.
+- Country judgements do not imply immigration or scholarship probabilities.
+- Current-tree private defaults/captures were removed previously. Repository visibility and historic private content require owner administration; history was not rewritten.
+- `pre-v4` is a preservation branch, not a tag. Original licence attribution is retained.

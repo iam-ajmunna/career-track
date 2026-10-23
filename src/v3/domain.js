@@ -64,11 +64,16 @@ export function evaluateWindow(
       deadline,
       reason: "Published application window has ended.",
     };
-  if (w.opens && calendarDate(now, w.timezone || "Asia/Dhaka") < w.opens) {
-    const days =
-      (Date.parse(w.opens) -
-        Date.parse(calendarDate(now, w.timezone || "Asia/Dhaka"))) /
-      DAY;
+  if (
+    w.opensAt
+      ? now < Date.parse(w.opensAt)
+      : w.opens && calendarDate(now, w.timezone || "Asia/Dhaka") < w.opens
+  ) {
+    const days = w.opensAt
+      ? (Date.parse(w.opensAt) - now) / DAY
+      : (Date.parse(w.opens) -
+          Date.parse(calendarDate(now, w.timezone || "Asia/Dhaka"))) /
+        DAY;
     return {
       status: days <= 45 ? "opening-soon" : "upcoming",
       urgent: false,

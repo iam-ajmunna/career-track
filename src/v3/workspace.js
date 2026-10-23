@@ -187,6 +187,9 @@ function render() {
         : null;
   const state = store.get().state,
     now = Date.now();
+  const snapshot = $("registrySnapshotDate");
+  if (snapshot)
+    snapshot.textContent = registry.checkedAt.slice(0, 10) + " · V3";
   document
     .querySelectorAll(".view")
     .forEach((n) =>
@@ -497,7 +500,7 @@ document.addEventListener("click", async (ev) => {
   if (d.v3Prompt || d.v3Gpt) {
     const o = opportunityById.get(d.v3Prompt || d.v3Gpt);
     if (!o) return;
-    const prompt = researchPrompt(o, registry);
+    const prompt = researchPrompt(o, registry, { state, intake });
     if (d.v3Gpt) {
       const a = document.createElement("a");
       a.href = "https://chatgpt.com/?q=" + encodeURIComponent(prompt);

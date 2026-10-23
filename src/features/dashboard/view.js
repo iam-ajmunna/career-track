@@ -243,7 +243,7 @@ export function dashboard(ctx) {
           <a href="#/settings/profile">Edit interests</a>
         </div>
         <div class="matches">
-          ${matches.length ? matches.map(matchCard) : emptyState("No new matches today. We check every day.", "Browse countries or update your interests to explore more routes.")}
+          ${matches.length ? matches.map(matchCard) : emptyState("No new curated matches", "Browse countries or update your interests. New external leads require a configured provider.")}
         </div>
         ${
           ctx.radar.items.length
